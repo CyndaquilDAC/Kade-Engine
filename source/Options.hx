@@ -131,6 +131,27 @@ class EffectsEnabledOption extends Option
 	}
 }
 
+class CutscenesInFreeplayOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.freescenes = !FlxG.save.data.freescenes;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return FlxG.save.data.freescenes ? "Cutscenes in Freeplay Off" : "Cutscenes in Freeplay On";
+	}
+}
+
 class AccuracyOption extends Option
 {
 	public function new(desc:String)

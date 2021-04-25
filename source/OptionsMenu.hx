@@ -28,6 +28,7 @@ class OptionsMenu extends MusicBeatState
 			new CustomizeGameplay("Drag'n'Drop Gameplay Modules around to your preference")
 		]),
 		new OptionCatagory("Appearence", [
+			new CutscenesInFreeplayOption("Enable and disable cutscenes and dialogue in freeplay."),
 			new SongPositionOption("Show the songs current position (as a bar)"),
 			new DownscrollOption("Change the layout of the strumline."),
 			new EffectsEnabledOption("Toggles distracting effects on and off."),

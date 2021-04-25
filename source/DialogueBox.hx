@@ -78,6 +78,7 @@ class DialogueBox extends FlxSpriteGroup
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-pixel');
 				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
 				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
+				box.antialiasing = false;
 			case 'roses':
 				hasDialog = true;
 				FlxG.sound.play(Paths.sound('ANGRY_TEXT_BOX'));
@@ -85,17 +86,23 @@ class DialogueBox extends FlxSpriteGroup
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-senpaiMad');
 				box.animation.addByPrefix('normalOpen', 'SENPAI ANGRY IMPACT SPEECH', 24, false);
 				box.animation.addByIndices('normal', 'SENPAI ANGRY IMPACT SPEECH', [4], "", 24);
+				box.antialiasing = false;
+
 
 			case 'thorns':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-evil');
 				box.animation.addByPrefix('normalOpen', 'Spirit Textbox spawn', 24, false);
 				box.animation.addByIndices('normal', 'Spirit Textbox spawn', [11], "", 24);
+				box.antialiasing = false;
+
 			default:
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('ui/DialogueBox','shared');
 				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
 				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
+				box.antialiasing = true;
+
 		}
 
 		this.dialogueList = dialogueList;
@@ -124,7 +131,7 @@ class DialogueBox extends FlxSpriteGroup
 			case 'gf':
 				portraitLeft.frames = Paths.getSparrowAtlas('portraits/GFPortrait','shared');
 				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
 				portraitLeft.updateHitbox();
 				portraitLeft.scrollFactor.set();
 				add(portraitLeft);
@@ -133,7 +140,7 @@ class DialogueBox extends FlxSpriteGroup
 			case 'gf-christmas':
 				portraitLeft.frames = Paths.getSparrowAtlas('portraits/GFChristmasPortrait','shared');
 				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
 				portraitLeft.updateHitbox();
 				portraitLeft.scrollFactor.set();
 				add(portraitLeft);
@@ -142,7 +149,7 @@ class DialogueBox extends FlxSpriteGroup
 			case 'spooky':
 				portraitLeft.frames = Paths.getSparrowAtlas('portraits/SpookyPortrait','shared');
 				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
 				portraitLeft.updateHitbox();
 				portraitLeft.scrollFactor.set();
 				add(portraitLeft);
@@ -158,7 +165,7 @@ class DialogueBox extends FlxSpriteGroup
 						portraitLeft.frames = Paths.getSparrowAtlas('portraits/ParentsChristmasNeitherSpecificPortrait','shared');
 				}
 				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
 				portraitLeft.updateHitbox();
 				portraitLeft.scrollFactor.set();
 				add(portraitLeft);
@@ -167,7 +174,7 @@ class DialogueBox extends FlxSpriteGroup
 			case 'pico':
 				portraitLeft.frames = Paths.getSparrowAtlas('portraits/PicoPortrait','shared');
 				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
 				portraitLeft.updateHitbox();
 				portraitLeft.scrollFactor.set();
 				add(portraitLeft);
@@ -176,7 +183,7 @@ class DialogueBox extends FlxSpriteGroup
 			case 'monster-christmas':
 				portraitLeft.frames = Paths.getSparrowAtlas('portraits/MONSTERChristmasPortrait','shared');
 				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
 				portraitLeft.updateHitbox();
 				portraitLeft.scrollFactor.set();
 				add(portraitLeft);
@@ -185,7 +192,7 @@ class DialogueBox extends FlxSpriteGroup
 			case 'monster':
 				portraitLeft.frames = Paths.getSparrowAtlas('portraits/MonsterPortrait','shared');
 				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
 				portraitLeft.updateHitbox();
 				portraitLeft.scrollFactor.set();
 				add(portraitLeft);
@@ -194,7 +201,7 @@ class DialogueBox extends FlxSpriteGroup
 			case 'mom' | 'mom-car':
 				portraitLeft.frames = Paths.getSparrowAtlas('portraits/momportrait','shared');
 				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
 				portraitLeft.updateHitbox();
 				portraitLeft.scrollFactor.set();
 				add(portraitLeft);
@@ -203,7 +210,7 @@ class DialogueBox extends FlxSpriteGroup
 			default:
 				portraitLeft.frames = Paths.getSparrowAtlas('portraits/DadPortrait','shared');
 				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
-				portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
 				portraitLeft.updateHitbox();
 				portraitLeft.scrollFactor.set();
 				add(portraitLeft);
@@ -225,7 +232,7 @@ class DialogueBox extends FlxSpriteGroup
 			case 'bf-christmas':
 				portraitRight.frames = Paths.getSparrowAtlas('portraits/BFChristmasPortrait','shared');
 				portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
-				portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+				//portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
 				portraitRight.updateHitbox();
 				portraitRight.scrollFactor.set();
 				add(portraitRight);
@@ -234,7 +241,7 @@ class DialogueBox extends FlxSpriteGroup
 			default:
 				portraitRight.frames = Paths.getSparrowAtlas('portraits/BFREGPORTRAIT','shared');
 				portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
-				portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+				//portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
 				portraitRight.updateHitbox();
 				portraitRight.scrollFactor.set();
 				add(portraitRight);
@@ -248,10 +255,6 @@ class DialogueBox extends FlxSpriteGroup
 
 		box.screenCenter(X);
 		box.antialiasing = true;
-		switch(PlayState.SONG.song.toLowerCase()){
-			case 'senpai' | 'roses' | 'thorns':
-				box.antialiasing = false;
-		}
 		portraitLeft.screenCenter(X);
 
 		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9);
@@ -260,6 +263,7 @@ class DialogueBox extends FlxSpriteGroup
 				handSelect.frames = Paths.getSparrowAtlas('weeb/pixelUI/textbox_hand_animated');
 			default:
 				handSelect.frames = Paths.getSparrowAtlas('ui/textboxhandanimatedgf','shared');
+				handSelect.antialiasing = true;
 		}
 		handSelect.animation.addByPrefix('idle', 'textbox hand animated', 24, true);
 		add(handSelect);

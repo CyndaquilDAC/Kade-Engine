@@ -1105,7 +1105,7 @@ class PlayState extends MusicBeatState
 			{
 				
 				case "winter-horrorland":
-					if (FlxG.save.data.effects){
+					if (isStoryMode = true || FlxG.save.data.freescenes){
 						var blackScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
 						add(blackScreen);
 						blackScreen.scrollFactor.set();
@@ -1135,11 +1135,6 @@ class PlayState extends MusicBeatState
 								});
 							});
 						});
-					}
-					else{
-						schoolIntro(doof);
-						//commented out cuz its part of school intro
-						//startCountdown();
 					}
 				//START DIALOGUE SHIT
 				//commented out cuz dupe of default
