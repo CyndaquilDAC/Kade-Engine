@@ -2,9 +2,9 @@
 <TextureAtlas imagePath="DialogueBox.png">
 	<!-- Created with Adobe Animate version 21.0.1.37179 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="Text Box Appear0000" x="1545" y="0" width="38" height="110" pivotX="759.55" pivotY="97.1" frameX="-977" frameY="0" frameWidth="1248" frameHeight="326"/>
-	<SubTexture name="Text Box Appear0001" x="1248" y="0" width="297" height="187" frameX="-806" frameY="-5" frameWidth="1248" frameHeight="326"/>
-	<SubTexture name="Text Box Appear0002" x="1180" y="249" width="780" height="213" frameX="-387" frameY="-54" frameWidth="1248" frameHeight="326"/>
-	<SubTexture name="Text Box Appear0003" x="0" y="249" width="1180" height="235" frameX="-38" frameY="-72" frameWidth="1248" frameHeight="326"/>
-	<SubTexture name="Text Box Appear0004" x="0" y="0" width="1248" height="249" frameX="0" frameY="-77" frameWidth="1248" frameHeight="326"/>
+	<SubTexture name="Text Box Appear0000" x="0" y="0" width="248" height="144" pivotX="257.15" pivotY="178.5"/>
+	<SubTexture name="Text Box Appear0001" x="248" y="0" width="248" height="144"/>
+	<SubTexture name="Text Box Appear0002" x="0" y="144" width="248" height="144"/>
+	<SubTexture name="Text Box Appear0003" x="248" y="144" width="248" height="144"/>
+	<SubTexture name="Text Box Appear0004" x="0" y="288" width="248" height="144"/>
 </TextureAtlas>

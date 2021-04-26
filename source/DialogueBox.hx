@@ -249,12 +249,7 @@ class DialogueBox extends FlxSpriteGroup
 				portraitRight.visible = false;
 		}
 		box.animation.play('normalOpen');
-		switch(PlayState.SONG.song.toLowerCase()){
-			case 'senpai' | 'roses' | 'thorns':
-				box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
-			default:
-				//fuck
-		}
+		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
 		box.updateHitbox();
 		add(box);
 
