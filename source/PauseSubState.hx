@@ -12,6 +12,7 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
+import PlayState;
 
 class PauseSubState extends MusicBeatSubstate
 {
@@ -50,16 +51,27 @@ class PauseSubState extends MusicBeatSubstate
 		levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
 		levelDifficulty.updateHitbox();
 		add(levelDifficulty);
+		/*
+		var practiceText:FlxText = new FlxText(20, 15 + 64, 0, "", 32);
+		practiceText.text = '';
+		practiceText.scrollFactor.set();
+		practiceText.setFormat(Paths.font('vcr.ttf'), 32);
+		practiceText.updateHitbox();
+		add(practiceText);
+		*/
 
 		levelDifficulty.alpha = 0;
 		levelInfo.alpha = 0;
+		//practiceText.alpha = 0;
 
 		levelInfo.x = FlxG.width - (levelInfo.width + 20);
 		levelDifficulty.x = FlxG.width - (levelDifficulty.width + 20);
+		//practiceText.x = FlxG.width - (practiceText.width + 20);
 
 		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
 		FlxTween.tween(levelInfo, {alpha: 1, y: 20}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.3});
 		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});
+		//FlxTween.tween(practiceText, {alpha: 1, y: practiceText.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});
 
 		grpMenuShit = new FlxTypedGroup<Alphabet>();
 		add(grpMenuShit);
@@ -83,7 +95,14 @@ class PauseSubState extends MusicBeatSubstate
 			pauseMusic.volume += 0.01 * elapsed;
 
 		super.update(elapsed);
-
+		/*
+		if(PlayState.practiceMode = true){
+			practiceText.text = 'Practice Mode';
+		}
+		else{
+			practiceText.text = '';
+		}
+		*/
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
 		var accepted = controls.ACCEPT;
@@ -107,6 +126,16 @@ class PauseSubState extends MusicBeatSubstate
 					close();
 				case "Restart Song":
 					FlxG.resetState();
+				/*
+				case "Practice Mode":
+					if (PlayState.practiceMode = true)
+					{
+						PlayState.practiceMode = false;
+					}
+					else if(PlayState.practiceMode = false){
+						PlayState.practiceMode = true;
+					}
+				*/
 				case "Exit to menu":
 					PlayState.loadRep = false;
 					if (PlayState.offsetTesting)

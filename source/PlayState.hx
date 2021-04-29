@@ -68,6 +68,8 @@ class PlayState extends MusicBeatState
 	public static var rep:Replay;
 	public static var loadRep:Bool = false;
 
+	public var practiceMode:Bool = false;
+
 	public static var noteBools:Array<Bool> = [false, false, false, false];
 
 	var halloweenLevel:Bool = false;
@@ -777,12 +779,17 @@ class PlayState extends MusicBeatState
 	switch (SONG.gfVersion){
 		case 'gf':
 			gfVersion = 'gf';
+		case 'gf-steps':
+			gfVersion = 'gf-steps';
 		case 'gf-car':
 			gfVersion = 'gf-car';
 		case 'gf-christmas':
 			gfVersion = 'gf-christmas';
 		case 'gf-pixel':
 			gfVersion = 'gf-pixel';
+		case 'dj':
+			gfVersion = 'dj';
+	
 	}
 	trace('gfversion is ' + SONG.gfVersion.toLowerCase());
 
@@ -2077,18 +2084,19 @@ class PlayState extends MusicBeatState
 			persistentUpdate = false;
 			persistentDraw = false;
 			paused = true;
-
+	
 			vocals.stop();
 			FlxG.sound.music.stop();
-
+	
 			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-
+	
 			#if desktop
 			// Game Over doesn't get his own variable because it's only used here
 			DiscordClient.changePresence("GAME OVER -- " + SONG.song + " (" + storyDifficultyText + ") " + generateRanking(),"\nAcc: " + truncateFloat(accuracy, 2) + "% | Score: " + songScore + " | Misses: " + misses  , iconRPC);
 			#end
-
+			//old gameover
 			// FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+		
 		}
 
 		if (unspawnNotes[0] != null)

@@ -54,6 +54,9 @@ class KadeEngineData
 		if (FlxG.save.data.npsDisplay == null)
 			FlxG.save.data.npsDisplay = false;
 
+		if (FlxG.save.data.effects == null)
+			FlxG.save.data.effects = true;
+
 		(cast (Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
 	}
 }

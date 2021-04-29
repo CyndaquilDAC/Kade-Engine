@@ -72,6 +72,16 @@ class Character extends FlxSprite
 				addOffset('scared', -2, -17);
 
 				playAnim('danceRight');
+				case 'dj':
+				// dj CODE
+				tex = Paths.getSparrowAtlas('characters/lol/dj');
+				frames = tex;
+				animation.addByIndices('danceLeft', 'GF Dancing Beat', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "", 24, false);
+				animation.addByIndices('danceRight', 'GF Dancing Beat', [11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "", 24, false);
+				addOffset('danceLeft', 0, -9);
+				addOffset('danceRight', 0, -9);
+
+				playAnim('danceRight');
 				case 'gf-steps':
 					// GIRLFRIEND CODE
 					tex = Paths.getSparrowAtlas('characters/GF_assets_steps');

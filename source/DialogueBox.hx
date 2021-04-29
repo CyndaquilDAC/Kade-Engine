@@ -50,6 +50,33 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'roses':
 				//sex is real this is official
+			case 'blammed':
+				FlxG.sound.playMusic(Paths.music('blammedDialogue'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'south':
+				FlxG.sound.playMusic(Paths.music('southDialogue'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'bopeebo' | 'drug-pop-bopeebo':
+				FlxG.sound.playMusic(Paths.music('bopeeboDialogue'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'dadbattle':
+				FlxG.sound.playMusic(Paths.music('dadbattleDialogue'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'fresh':
+				FlxG.sound.playMusic(Paths.music('freshDialogue'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'high':
+				FlxG.sound.playMusic(Paths.music('highDialogue'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'milf':
+				FlxG.sound.playMusic(Paths.music('milfDialogue'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'pico':
+				FlxG.sound.playMusic(Paths.music('picoDialogue'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'satin-panties':
+				FlxG.sound.playMusic(Paths.music('satin-pantiesDialogue'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			default:
 				FlxG.sound.playMusic(Paths.music('breakfast'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
