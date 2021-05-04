@@ -302,7 +302,7 @@ class StoryMenuState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 
 				grpWeekText.members[curWeek].startFlashing();
-				if(curWeek == 4){
+				if(curWeek == 5){
 					grpWeekCharacters.members[1].animation.play('bfChristmasConfirm');
 					grpWeekCharacters.members[2].animation.play('gfChristmasCheer');
 

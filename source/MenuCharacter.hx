@@ -9,34 +9,37 @@ class CharacterSetting
 	public var y(default, null):Int;
 	public var scale(default, null):Float;
 	public var flipped(default, null):Bool;
+	public var name:String;
 
-	public function new(x:Int = 0, y:Int = 0, scale:Float = 1.0, flipped:Bool = false)
+	public function new(x:Int = 0, y:Int = 0, scale:Float = 1.0, flipped:Bool = false, name:String = 'bf')
 	{
 		this.x = x;
 		this.y = y;
 		this.scale = scale;
 		this.flipped = flipped;
+		this.name = name;
 	}
 }
 
 class MenuCharacter extends FlxSprite
 {
 	private static var settings:Map<String, CharacterSetting> = [
-		'bf' => new CharacterSetting(0, -20, 1.0, true),
-		'gf' => new CharacterSetting(50, 80, 1.5, true),
-		'bf-christmas' => new CharacterSetting(0, -20, 1.0, true),
-		'gf-christmas' => new CharacterSetting(50, 80, 1.5, true),
-		'dad' => new CharacterSetting(-15, 130),
-		'spooky' => new CharacterSetting(20, 30),
-		'pico' => new CharacterSetting(0, 0, 1.0, true),
-		'mom' => new CharacterSetting(-30, 140, 0.85),
-		'parents-christmas' => new CharacterSetting(100, 130, 1.8),
-		'senpai' => new CharacterSetting(-40, -45, 1.4)
+		'bf' => new CharacterSetting(0, -20, 1.0, true, 'bf'),
+		'gf' => new CharacterSetting(50, 80, 1.5, true, 'gf'),
+		'bf-christmas' => new CharacterSetting(0, -20, 1.0, true, 'bf-christmas'),
+		'gf-christmas' => new CharacterSetting(50, 80, 1.5, true, 'gf-christmas'),
+		'dad' => new CharacterSetting(-15, 130, 1, false, 'dad'),
+		'spooky' => new CharacterSetting(20, 30, 1, false, 'spooky'),
+		'pico' => new CharacterSetting(0, 0, 1.0, true, 'pico'),
+		'mom' => new CharacterSetting(-30, 140, 0.85, false, 'mom'),
+		'parents-christmas' => new CharacterSetting(100, 130, 1.8, false, 'parents-christmas'),
+		'senpai' => new CharacterSetting(-40, -45, 1.4, false, 'senpai'),
+		'senpai-alt' => new CharacterSetting(-40, -45, 1.4, false, 'senpai-alt')
 	];
 
 	private var flipped:Bool = false;
 
-	public function new(x:Int, y:Int, scale:Float, flipped:Bool)
+	public function new(x:Int, y:Int, scale:Float, flipped:Bool, name:String)
 	{
 		super(x, y);
 		this.flipped = flipped;
@@ -57,6 +60,7 @@ class MenuCharacter extends FlxSprite
 		animation.addByPrefix('mom', "Mom Idle BLACK LINES", 24);
 		animation.addByPrefix('parents-christmas', "Parent Christmas Idle", 24);
 		animation.addByPrefix('senpai', "SENPAI idle Black Lines", 24);
+		animation.addByPrefix('senpai-alt', "Senpai Transparent Idle", 24);
 
 		setGraphicSize(Std.int(width * scale));
 		updateHitbox();
