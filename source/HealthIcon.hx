@@ -6,9 +6,6 @@ import flixel.graphics.frames.FlxAtlasFrames;
 
 class HealthIcon extends FlxSprite
 {
-	/**
-	 * Used for FreeplayState! If you use it elsewhere, prob gonna annoying
-	 */
 	public var sprTracker:FlxSprite;
 
 	var tex:FlxAtlasFrames;
@@ -40,67 +37,8 @@ class HealthIcon extends FlxSprite
 
 		setGraphicSize(100);
 
-
-/*
-		/// THESE ARE SHIT LMAO
-
-
-
-		tex = Paths.getSparrowAtlas("iconGrid", "preload");
-
-		frames = tex;
-
-		animation.addByPrefix('bf', 'bf Win', 24, true);
-		animation.addByPrefix('bfLOSE', 'bf Lose', 24, true);
-		animation.addByPrefix('bf-car', 'bf Win', 24, true);
-		animation.addByPrefix('bf-carLOSE', 'bf Lose', 24, true);
-		animation.addByPrefix('bf-christmas', 'bf Win', 24, true);
-		animation.addByPrefix('bf-christmasLOSE', 'bf Lose', 24, true);
-		animation.addByPrefix('bf-pixel', 'bf pixel', 24, true);
-		animation.addByPrefix('bf-pixelLOSE', 'bf pixel', 24, true);
-		animation.addByPrefix('gf', 'gf', 24, true);
-		animation.addByPrefix('gfLOSE', 'gf', 24, true);
-		animation.addByPrefix('gf-pixel', 'gf', 24, true);
-		animation.addByPrefix('gf-pixelLOSE', 'gf', 24, true);
-		animation.addByPrefix('dad', 'dad', 24, true);
-		animation.addByPrefix('dadLOSE', 'dad', 24, true);
-		animation.addByPrefix('parents-christmas', 'parents Win', 24, true);
-		animation.addByPrefix('parents-christmasLOSE', 'parents Lose', 24, true);
-		animation.addByPrefix('mom', 'mom Win', 24, true);
-		animation.addByPrefix('momLOSE', 'mom Lose', 24, true);
-		animation.addByPrefix('mom-car', 'mom Win', 24, true);
-		animation.addByPrefix('mom-carLOSE', 'mom Lose', 24, true);
-		animation.addByPrefix('pico', 'pico Win', 24, true);
-		animation.addByPrefix('picoLOSE', 'pico Lose', 24, true);
-		animation.addByPrefix('monster', 'monster Win', 24, true);
-		animation.addByPrefix('monster-christmas', 'monster Win', 24, true);
-		animation.addByPrefix('monsterLOSE', 'monster Lose', 24, true);
-		animation.addByPrefix('monster-christmasLOSE', 'monster Lose', 24, true);
-		animation.addByPrefix('senpai', 'senpai', 24, true);
-		animation.addByPrefix('senpaiLOSE', 'senpai', 24, true);
-		animation.addByPrefix('senpai-angry', 'senpai', 24, true);
-		animation.addByPrefix('senpai-angryLOSE', 'senpai', 24, true);
-		animation.addByPrefix('spirit', 'spirit', 24, true);
-		animation.addByPrefix('spiritLOSE', 'spirit', 24, true);
-		animation.addByPrefix('spooky', 'spooky Win', 24, true);
-		animation.addByPrefix('spookyLOSE', 'spooky Lose', 24, true);
-		animation.addByPrefix('tankman', 'tankman Win', 24, true);
-		animation.addByPrefix('tankmanLOSE', 'tankman Lose', 24, true);
-		animation.addByPrefix('vy', 'vy Win', 24, true);
-		animation.addByPrefix('vyLOSE', 'vy Lose', 24, true);
-		animation.play(char);
-
-		switch(char){
-			case 'bf-pixel' | 'senpai' | 'senpai-angry' | 'spirit' | 'gf-pixel':
-				{
-
-				}
-			default:
-				{
-					antialiasing = true;
-				}
-		}
-
+		//old lolmao
+	/*
 		loadGraphic(Paths.image('iconGrid'), true, 150, 150);
 
 
@@ -138,7 +76,7 @@ class HealthIcon extends FlxSprite
 				}
 		}
 		scrollFactor.set();
-				*/
+	*/
 	}
 
 	override function update(elapsed:Float)
