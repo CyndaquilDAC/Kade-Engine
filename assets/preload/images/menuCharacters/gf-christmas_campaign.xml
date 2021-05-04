@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="gf-christmas_campaign.png">
+	<!-- Created with Adobe Animate version 21.0.1.37179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="GF Cheer Christmas0000" x="0" y="0" width="778" height="703" pivotX="212.95" pivotY="318.4"/>
+	<SubTexture name="GF Cheer Christmas0001" x="778" y="0" width="778" height="703"/>
+	<SubTexture name="GF Cheer Christmas0002" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0003" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0004" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0005" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0006" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0007" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0008" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0009" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0010" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0011" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0012" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0013" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0014" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0015" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0016" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0017" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0018" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0019" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Cheer Christmas0020" x="1556" y="0" width="778" height="700" frameX="0" frameY="-3" frameWidth="778" frameHeight="703"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0000" x="778" y="2749" width="778" height="680" pivotX="212.95" pivotY="309.7" frameX="0" frameY="-14" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0001" x="0" y="2750" width="778" height="680" frameX="0" frameY="-14" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0002" x="2334" y="2072" width="778" height="678" frameX="0" frameY="-16" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0003" x="2334" y="2750" width="778" height="678" frameX="0" frameY="-16" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0004" x="778" y="2068" width="778" height="681" frameX="0" frameY="-13" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0005" x="1556" y="2071" width="778" height="681" frameX="0" frameY="-13" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0006" x="3112" y="2070" width="778" height="683" frameX="0" frameY="-11" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0007" x="2334" y="0" width="778" height="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0008" x="2334" y="0" width="778" height="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0009" x="2334" y="0" width="778" height="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0010" x="3112" y="0" width="778" height="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0011" x="3112" y="0" width="778" height="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0012" x="3112" y="0" width="778" height="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0013" x="2334" y="694" width="778" height="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0014" x="2334" y="694" width="778" height="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0015" x="0" y="1386" width="778" height="682" frameX="0" frameY="-12" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0016" x="778" y="1386" width="778" height="682" frameX="0" frameY="-12" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0017" x="1556" y="1389" width="778" height="682" frameX="0" frameY="-12" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0018" x="0" y="2068" width="778" height="682" frameX="0" frameY="-12" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0019" x="0" y="703" width="778" height="683" frameX="0" frameY="-11" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0020" x="778" y="703" width="778" height="683" frameX="0" frameY="-11" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0021" x="2334" y="1388" width="778" height="684" frameX="0" frameY="-10" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0022" x="1556" y="700" width="778" height="689" frameX="0" frameY="-5" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0023" x="1556" y="700" width="778" height="689" frameX="0" frameY="-5" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0024" x="1556" y="700" width="778" height="689" frameX="0" frameY="-5" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0025" x="3112" y="694" width="778" height="688" frameX="0" frameY="-6" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0026" x="3112" y="694" width="778" height="688" frameX="0" frameY="-6" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0027" x="3112" y="694" width="778" height="688" frameX="0" frameY="-6" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0028" x="3112" y="1382" width="778" height="688" frameX="0" frameY="-6" frameWidth="778" frameHeight="694"/>
+	<SubTexture name="GF Dancing Beat Christmas WHITE0029" x="3112" y="1382" width="778" height="688" frameX="0" frameY="-6" frameWidth="778" frameHeight="694"/>
+</TextureAtlas>

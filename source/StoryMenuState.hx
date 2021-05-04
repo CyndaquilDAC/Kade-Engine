@@ -60,7 +60,7 @@ class StoryMenuState extends MusicBeatState
 		['spooky', 'bf', 'gf'],
 		['pico', 'bf', 'gf'],
 		['mom', 'bf', 'gf'],
-		['parents-christmas', 'bf', 'gf'],
+		['parents-christmas', 'bf-christmas', 'gf-christmas'],
 		['senpai', 'bf', 'gf']
 	];
 	//too based for haxe to handle so i had to comment it out :(
@@ -167,11 +167,8 @@ class StoryMenuState extends MusicBeatState
 		}
 
 		grpWeekCharacters.add(new MenuCharacter(0, 100, 0.5, false));
-		trace('menu character left');
 		grpWeekCharacters.add(new MenuCharacter(450, 25, 0.9, true));
-		trace('menu character center');
 		grpWeekCharacters.add(new MenuCharacter(850, 100, 0.5, true));
-		trace('menu character right');
 
 		difficultySelectors = new FlxGroup();
 		add(difficultySelectors);
@@ -190,6 +187,8 @@ class StoryMenuState extends MusicBeatState
 		sprDifficulty.animation.addByPrefix('easy', 'EASY');
 		sprDifficulty.animation.addByPrefix('normal', 'NORMAL');
 		sprDifficulty.animation.addByPrefix('hard', 'HARD');
+		sprDifficulty.animation.addByPrefix('baby', 'BABY');
+		sprDifficulty.animation.addByPrefix('insane', 'INSANE');
 		sprDifficulty.animation.play('easy');
 		changeDifficulty();
 		trace('funie difficulty');
@@ -303,7 +302,15 @@ class StoryMenuState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 
 				grpWeekText.members[curWeek].startFlashing();
+				if(curWeek == 4){
+					grpWeekCharacters.members[1].animation.play('bfChristmasConfirm');
+					grpWeekCharacters.members[2].animation.play('gfChristmasCheer');
+
+				}
+				else{
 				grpWeekCharacters.members[1].animation.play('bfConfirm');
+				grpWeekCharacters.members[2].animation.play('gfCheer');
+				}
 				stopspamming = true;
 				trace('confirmation confirmed');
 			}
@@ -359,6 +366,14 @@ class StoryMenuState extends MusicBeatState
 				sprDifficulty.animation.play('hard');
 				sprDifficulty.offset.x = 20;
 				trace('hard');
+			case 3:
+				sprDifficulty.animation.play('insane');
+				sprDifficulty.offset.x = 70;
+				trace('insane');
+			case 4:
+				sprDifficulty.animation.play('baby');
+				sprDifficulty.offset.x = 20;
+				trace('baby');
 		}
 
 		sprDifficulty.alpha = 0;
