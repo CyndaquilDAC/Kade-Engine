@@ -210,6 +210,10 @@ class PlayState extends MusicBeatState
 				storyDifficultyText = "Normal";
 			case 2:
 				storyDifficultyText = "Hard";
+			case 3:
+				storyDifficultyText = "Insane";
+			case 4:
+				storyDifficultyText = "Baby";
 		}
 
 		iconRPC = SONG.player2;
@@ -2266,6 +2270,12 @@ class PlayState extends MusicBeatState
 
 					if (storyDifficulty == 2)
 						difficulty = '-hard';
+
+					if (storyDifficulty == 3)
+						difficulty = '-insane';
+
+					if (storyDifficulty == 4)
+						difficulty = '-baby';
 
 					trace('LOADING NEXT SONG');
 					trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);

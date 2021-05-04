@@ -226,6 +226,7 @@ class StoryMenuState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		//why did i add this
+		/*
 		if(FlxG.keys.justPressed.SEVEN){
 			if(grpWeekCharacters.members[0].publicName == 'senpai' || grpWeekCharacters.members[0].publicName == 'senpai-alt'){
 				if(grpWeekCharacters.members[0].publicName == 'senpai'){
@@ -236,6 +237,7 @@ class StoryMenuState extends MusicBeatState
 				}
 			}
 		}
+		*/
 		// scoreText.setFormat('VCR OSD Mono', 32);
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
 
