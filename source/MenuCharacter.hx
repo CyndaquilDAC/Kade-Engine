@@ -39,10 +39,14 @@ class MenuCharacter extends FlxSprite
 
 	private var flipped:Bool = false;
 
+	public var publicName:String;
+
 	public function new(x:Int, y:Int, scale:Float, flipped:Bool, name:String)
 	{
 		super(x, y);
 		this.flipped = flipped;
+
+		this.publicName = name;
 
 		antialiasing = true;
 		frames = Paths.getSparrowAtlas('campaign_menu_UI_characters');

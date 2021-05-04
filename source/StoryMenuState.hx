@@ -1,5 +1,6 @@
 package;
 
+import flixel.input.keyboard.FlxKey;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.transition.FlxTransitionableState;
@@ -166,9 +167,9 @@ class StoryMenuState extends MusicBeatState
 			}
 		}
 
-		grpWeekCharacters.add(new MenuCharacter(0, 100, 0.5, false));
-		grpWeekCharacters.add(new MenuCharacter(450, 25, 0.9, true));
-		grpWeekCharacters.add(new MenuCharacter(850, 100, 0.5, true));
+		grpWeekCharacters.add(new MenuCharacter(0, 100, 0.5, false, 'dad'));
+		grpWeekCharacters.add(new MenuCharacter(450, 25, 0.9, true, 'bf'));
+		grpWeekCharacters.add(new MenuCharacter(850, 100, 0.5, true, 'gf'));
 
 		difficultySelectors = new FlxGroup();
 		add(difficultySelectors);
@@ -224,11 +225,21 @@ class StoryMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		//why did i add this
+		if(FlxG.keys.justPressed.SEVEN){
+			if(grpWeekCharacters.members[0].publicName == 'senpai' || grpWeekCharacters.members[0].publicName == 'senpai-alt'){
+				if(grpWeekCharacters.members[0].publicName == 'senpai'){
+					grpWeekCharacters.members[0].setCharacter('senpai-alt');
+				}
+				else if(grpWeekCharacters.members[0].publicName == 'senpai-alt'){
+					grpWeekCharacters.members[0].setCharacter('senpai');
+				}
+			}
+		}
 		// scoreText.setFormat('VCR OSD Mono', 32);
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.5));
 
 		scoreText.text = "HIGHEST WEEK SCORE:" + lerpScore;
-		trace('week score updated');
 
 		txtWeekTitle.text = weekNames[curWeek].toUpperCase();
 		txtWeekTitle.x = FlxG.width - (txtWeekTitle.width + 10);
@@ -302,13 +313,16 @@ class StoryMenuState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('confirmMenu'));
 
 				grpWeekText.members[curWeek].startFlashing();
-				if(curWeek == 5){
+				if(grpWeekCharacters.members[1].publicName == 'bf-christmas'){
 					grpWeekCharacters.members[1].animation.play('bfChristmasConfirm');
-					grpWeekCharacters.members[2].animation.play('gfChristmasCheer');
-
 				}
 				else{
 				grpWeekCharacters.members[1].animation.play('bfConfirm');
+				}
+				if(grpWeekCharacters.members[2].publicName == 'gf-christmas'){
+					grpWeekCharacters.members[2].animation.play('gfChristmasCheer');
+				}
+				else{
 				grpWeekCharacters.members[2].animation.play('gfCheer');
 				}
 				stopspamming = true;
@@ -319,6 +333,7 @@ class StoryMenuState extends MusicBeatState
 			PlayState.isStoryMode = true;
 			selectedWeek = true;
 
+
 			var diffic = "";
 
 			switch (curDifficulty)
@@ -327,6 +342,10 @@ class StoryMenuState extends MusicBeatState
 					diffic = '-easy';
 				case 2:
 					diffic = '-hard';
+				case 3:
+					diffic = '-insane';
+				case 4:
+					diffic = '-baby';
 			}
 
 			PlayState.storyDifficulty = curDifficulty;
@@ -346,8 +365,8 @@ class StoryMenuState extends MusicBeatState
 		curDifficulty += change;
 
 		if (curDifficulty < 0)
-			curDifficulty = 2;
-		if (curDifficulty > 2)
+			curDifficulty = 4;
+		if (curDifficulty > 4)
 			curDifficulty = 0;
 
 		sprDifficulty.offset.x = 0;
