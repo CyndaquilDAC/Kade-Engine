@@ -51,14 +51,13 @@ class PauseSubState extends MusicBeatSubstate
 		levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
 		levelDifficulty.updateHitbox();
 		add(levelDifficulty);
-		/*
+
 		var practiceText:FlxText = new FlxText(20, 15 + 64, 0, "", 32);
 		practiceText.text = '';
 		practiceText.scrollFactor.set();
 		practiceText.setFormat(Paths.font('vcr.ttf'), 32);
 		practiceText.updateHitbox();
-		add(practiceText);
-		*/
+		//add(practiceText);
 
 		levelDifficulty.alpha = 0;
 		levelInfo.alpha = 0;
@@ -95,14 +94,12 @@ class PauseSubState extends MusicBeatSubstate
 			pauseMusic.volume += 0.01 * elapsed;
 
 		super.update(elapsed);
-		/*
-		if(PlayState.practiceMode = true){
+		/*if(PlayState.practiceMode = true){
 			practiceText.text = 'Practice Mode';
 		}
 		else{
 			practiceText.text = '';
-		}
-		*/
+		}*/
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
 		var accepted = controls.ACCEPT;
@@ -126,15 +123,8 @@ class PauseSubState extends MusicBeatSubstate
 					close();
 				case "Restart Song":
 					FlxG.resetState();
-				/*
-				case "Practice Mode":
-					if (PlayState.practiceMode = true)
-					{
-						PlayState.practiceMode = false;
-					}
-					else if(PlayState.practiceMode = false){
-						PlayState.practiceMode = true;
-					}
+				/*case "Practice Mode":
+					PlayState.practiceMode = !PlayState.practiceMode;
 				*/
 				case "Exit to menu":
 					PlayState.loadRep = false;
