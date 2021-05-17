@@ -77,6 +77,9 @@ class DialogueBox extends FlxSpriteGroup
 			case 'satin-panties':
 				FlxG.sound.playMusic(Paths.music('satin-pantiesDialogue'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'spookeez':
+				FlxG.sound.playMusic(Paths.music('spookeezDialogue'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			default:
 				FlxG.sound.playMusic(Paths.music('breakfast'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
