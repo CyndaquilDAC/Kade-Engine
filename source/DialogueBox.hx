@@ -1,5 +1,6 @@
 package;
 
+import flixel.system.FlxSound;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.text.FlxTypeText;
@@ -19,7 +20,7 @@ class DialogueBox extends FlxSpriteGroup
 	var box:FlxSprite;
 
 	var curCharacter:String = '';
-
+	var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
 	var dialogue:Alphabet;
 	var dialogueList:Array<String> = [];
 
@@ -38,7 +39,12 @@ class DialogueBox extends FlxSpriteGroup
 
 	public function new(talkingRight:Bool = true, ?dialogueList:Array<String>)
 	{
+		
 		super();
+
+		face.setGraphicSize(Std.int(face.width * 6));
+		add(face);
+		face.visible = false;
 
 		switch (PlayState.SONG.song.toLowerCase())
 		{
@@ -152,12 +158,6 @@ class DialogueBox extends FlxSpriteGroup
 				portraitLeft.antialiasing = true;
 				portraitLeft.antialiasing = false;
 				portraitLeft.visible = false;
-				switch(PlayState.SONG.player2){
-					case 'spirit' | 'spirit-flash':
-						var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
-						face.setGraphicSize(Std.int(face.width * 6));
-						add(face);
-				}
 			case 'gf':
 				portraitLeft.frames = Paths.getSparrowAtlas('portraits/GFPortrait','shared');
 				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
@@ -259,6 +259,7 @@ class DialogueBox extends FlxSpriteGroup
 				portraitRight.antialiasing = true;
 				portraitRight.antialiasing = false;
 				portraitRight.visible = false;
+				rightDialogueSound = FlxG.sound.load(Paths.sound('bfPixelDialogue'));
 			case 'bf-christmas':
 				portraitRight.frames = Paths.getSparrowAtlas('portraits/BFChristmasPortrait','shared');
 				portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
@@ -268,6 +269,7 @@ class DialogueBox extends FlxSpriteGroup
 				add(portraitRight);
 				portraitRight.antialiasing = true;
 				portraitRight.visible = false;
+				rightDialogueSound = FlxG.sound.load(Paths.sound('bfDialogue'));
 			default:
 				portraitRight.frames = Paths.getSparrowAtlas('portraits/BFREGPORTRAIT','shared');
 				portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
@@ -277,6 +279,7 @@ class DialogueBox extends FlxSpriteGroup
 				add(portraitRight);
 				portraitRight.antialiasing = true;
 				portraitRight.visible = false;
+				rightDialogueSound = FlxG.sound.load(Paths.sound('bfDialogue'));
 		}
 		box.animation.play('normalOpen');
 		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
@@ -424,14 +427,242 @@ class DialogueBox extends FlxSpriteGroup
 		switch (curCharacter)
 		{
 			case 'dad':
+				face.visible = false;
 				portraitRight.visible = false;
-				if (!portraitLeft.visible)
-				{
-					portraitLeft.visible = true;
-					portraitLeft.animation.play('enter');
-				}
-			case 'bf':
+				portraitLeft.animation.remove('enter');
+				portraitLeft.frames = Paths.getSparrowAtlas('portraits/DadPortrait','shared');
+				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				portraitLeft.antialiasing = true;
 				portraitLeft.visible = false;
+				if (!portraitLeft.visible)
+					{
+						portraitLeft.visible = true;
+						portraitLeft.animation.play('enter');
+					}
+			case 'senpai':
+					portraitRight.visible = false;
+					portraitLeft.animation.remove('enter');
+					portraitLeft.frames = Paths.getSparrowAtlas('weeb/senpaiPortrait');
+					portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+					portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+					portraitLeft.updateHitbox();
+					portraitLeft.scrollFactor.set();
+					portraitLeft.antialiasing = true;
+					portraitLeft.antialiasing = false;
+					portraitLeft.visible = false;
+					switch(PlayState.SONG.player2)
+					{
+						case 'spirit' | 'spirit-flash':
+							face.visible = true;
+					}
+				if (!portraitLeft.visible)
+					{
+						portraitLeft.visible = true;
+						portraitLeft.animation.play('enter');
+					}
+			case 'mom':
+				face.visible = false;
+				portraitRight.visible = false;
+				portraitLeft.animation.remove('enter');
+				portraitLeft.frames = Paths.getSparrowAtlas('portraits/momportrait','shared');
+				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				portraitLeft.antialiasing = true;
+				portraitLeft.visible = false;
+				if (!portraitLeft.visible)
+					{
+						portraitLeft.visible = true;
+						portraitLeft.animation.play('enter');
+					}
+			case 'gf':
+				face.visible = false;
+				portraitRight.visible = false;
+				portraitLeft.animation.remove('enter');
+				portraitLeft.frames = Paths.getSparrowAtlas('portraits/GFPortrait','shared');
+				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				portraitLeft.antialiasing = true;
+				portraitLeft.visible = false;
+				if (!portraitLeft.visible)
+					{
+						portraitLeft.visible = true;
+						portraitLeft.animation.play('enter');
+					}
+			case 'gfchristmas':
+				face.visible = false;
+				portraitRight.visible = false;
+				portraitLeft.animation.remove('enter');
+				portraitLeft.frames = Paths.getSparrowAtlas('portraits/GFChristmasPortrait','shared');
+				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				portraitLeft.antialiasing = true;
+				portraitLeft.visible = false;
+				if (!portraitLeft.visible)
+					{
+						portraitLeft.visible = true;
+						portraitLeft.animation.play('enter');
+					}
+			case 'monster':
+				face.visible = false;
+				portraitRight.visible = false;
+				portraitLeft.animation.remove('enter');
+				portraitLeft.frames = Paths.getSparrowAtlas('portraits/MonsterPortrait','shared');
+				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				portraitLeft.antialiasing = true;
+				portraitLeft.visible = false;
+				if (!portraitLeft.visible)
+					{
+						portraitLeft.visible = true;
+						portraitLeft.animation.play('enter');
+					}
+			case 'monsterchristmas':
+				face.visible = false;
+				portraitRight.visible = false;
+				portraitLeft.animation.remove('enter');
+				portraitLeft.frames = Paths.getSparrowAtlas('portraits/MONSTERChristmasPortrait','shared');
+				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				portraitLeft.antialiasing = true;
+				portraitLeft.visible = false;
+				if (!portraitLeft.visible)
+					{
+						portraitLeft.visible = true;
+						portraitLeft.animation.play('enter');
+					}
+			case 'dadchristmas':
+				face.visible = false;
+				portraitRight.visible = false;
+				portraitLeft.animation.remove('enter');
+				portraitLeft.frames = Paths.getSparrowAtlas('portraits/ParentsChristmasPortrait','shared');
+				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				portraitLeft.antialiasing = true;
+				portraitLeft.visible = false;
+				if (!portraitLeft.visible)
+					{
+						portraitLeft.visible = true;
+						portraitLeft.animation.play('enter');
+					}
+			case 'momchristmas':
+				face.visible = false;
+				portraitRight.visible = false;
+				portraitLeft.animation.remove('enter');
+				portraitLeft.frames = Paths.getSparrowAtlas('portraits/ParentsChristmasAltPortrait','shared');
+				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				portraitLeft.antialiasing = true;
+				portraitLeft.visible = false;
+				if (!portraitLeft.visible)
+					{
+						portraitLeft.visible = true;
+						portraitLeft.animation.play('enter');
+					}
+			case 'parentschristmas':
+				face.visible = false;
+				portraitRight.visible = false;
+				portraitLeft.animation.remove('enter');
+				portraitLeft.frames = Paths.getSparrowAtlas('portraits/ParentsChristmasNeitherSpecificPortrait','shared');
+				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				portraitLeft.antialiasing = true;
+				portraitLeft.visible = false;
+				if (!portraitLeft.visible)
+					{
+						portraitLeft.visible = true;
+						portraitLeft.animation.play('enter');
+					}
+			case 'pico':
+				face.visible = false;
+				portraitRight.visible = false;
+				portraitLeft.animation.remove('enter');
+				portraitLeft.frames = Paths.getSparrowAtlas('portraits/PicoPortrait','shared');
+				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				portraitLeft.antialiasing = true;
+				portraitLeft.visible = false;
+				if (!portraitLeft.visible)
+					{
+						portraitLeft.visible = true;
+						portraitLeft.animation.play('enter');
+					}
+			case 'spooky':
+				face.visible = false;
+				portraitRight.visible = false;
+				portraitLeft.animation.remove('enter');
+				portraitLeft.frames = Paths.getSparrowAtlas('portraits/SpookyPortrait','shared');
+				portraitLeft.animation.addByPrefix('enter', 'Senpai Portrait Enter', 24, false);
+				//portraitLeft.setGraphicSize(Std.int(portraitLeft.width * PlayState.daPixelZoom * 0.9));
+				portraitLeft.updateHitbox();
+				portraitLeft.scrollFactor.set();
+				portraitLeft.antialiasing = true;
+				portraitLeft.visible = false;
+				if (!portraitLeft.visible)
+					{
+						portraitLeft.visible = true;
+						portraitLeft.animation.play('enter');
+					}
+			case 'bf':
+				face.visible = false;
+				portraitLeft.visible = false;
+				portraitRight.animation.remove('enter');
+				portraitRight.frames = Paths.getSparrowAtlas('portraits/BFREGPORTRAIT','shared');
+				portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
+				//portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+				portraitRight.updateHitbox();
+				portraitRight.scrollFactor.set();
+				portraitRight.antialiasing = true;
+				if (!portraitRight.visible)
+				{
+					portraitRight.visible = true;
+					portraitRight.animation.play('enter');
+				}
+			case 'bfchristmas':
+				face.visible = false;
+				portraitLeft.visible = false;
+				portraitRight.animation.remove('enter');
+				portraitRight.frames = Paths.getSparrowAtlas('portraits/BFChristmasPortrait','shared');
+				portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
+				//portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+				portraitRight.updateHitbox();
+				portraitRight.scrollFactor.set();
+				portraitRight.antialiasing = true;
+				if (!portraitRight.visible)
+				{
+					portraitRight.visible = true;
+					portraitRight.animation.play('enter');
+				}
+			case 'bfpixel':
+				face.visible = false;
+				portraitLeft.visible = false;
+				portraitRight.animation.remove('enter');
+				portraitRight.frames = Paths.getSparrowAtlas('weeb/bfPortrait');
+				portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
+				portraitRight.setGraphicSize(Std.int(portraitRight.width * PlayState.daPixelZoom * 0.9));
+				portraitRight.updateHitbox();
+				portraitRight.scrollFactor.set();
+				portraitRight.antialiasing = false;
 				if (!portraitRight.visible)
 				{
 					portraitRight.visible = true;
