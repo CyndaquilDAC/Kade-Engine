@@ -259,7 +259,7 @@ class DialogueBox extends FlxSpriteGroup
 				portraitRight.antialiasing = true;
 				portraitRight.antialiasing = false;
 				portraitRight.visible = false;
-				rightDialogueSound = FlxG.sound.load(Paths.sound('bfPixelDialogue'));
+				//rightDialogueSound = FlxG.sound.load(Paths.sound('bfPixelDialogue'));
 			case 'bf-christmas':
 				portraitRight.frames = Paths.getSparrowAtlas('portraits/BFChristmasPortrait','shared');
 				portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
@@ -269,7 +269,7 @@ class DialogueBox extends FlxSpriteGroup
 				add(portraitRight);
 				portraitRight.antialiasing = true;
 				portraitRight.visible = false;
-				rightDialogueSound = FlxG.sound.load(Paths.sound('bfDialogue'));
+				//rightDialogueSound = FlxG.sound.load(Paths.sound('bfDialogue'));
 			default:
 				portraitRight.frames = Paths.getSparrowAtlas('portraits/BFREGPORTRAIT','shared');
 				portraitRight.animation.addByPrefix('enter', 'Boyfriend portrait enter', 24, false);
@@ -279,7 +279,7 @@ class DialogueBox extends FlxSpriteGroup
 				add(portraitRight);
 				portraitRight.antialiasing = true;
 				portraitRight.visible = false;
-				rightDialogueSound = FlxG.sound.load(Paths.sound('bfDialogue'));
+				//rightDialogueSound = FlxG.sound.load(Paths.sound('bfDialogue'));
 		}
 		box.animation.play('normalOpen');
 		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
