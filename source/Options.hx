@@ -148,7 +148,7 @@ class ChartBasedVocalsOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return FlxG.save.data.chartVox ? "Chart Based Vocals Off" : "Chart Based Vocals On";
+		return FlxG.save.data.chartVox ? "Chart Based Vocals On" : "Chart Based Vocals Off";
 	}
 }
 
