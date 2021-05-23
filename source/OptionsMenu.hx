@@ -32,7 +32,7 @@ class OptionsMenu extends MusicBeatState
 			new SongPositionOption("Show the songs current position (as a bar)"),
 			new DownscrollOption("Change the layout of the strumline."),
 			new EffectsEnabledOption("Toggles distracting effects on and off."),
-			new RainbowFPSOption("Make the FPS Counter Rainbow (Only works with the FPS Counter toggeled on)"),
+			new RainbowFPSOption("Make the FPS Counter Rainbow (Only works with the FPS Counter toggled on)"),
 			new AccuracyOption("Display accuracy information."),
 			new NPSDisplayOption("Shows your current Notes Per Second.")
 		]),
@@ -41,6 +41,7 @@ class OptionsMenu extends MusicBeatState
 			#if !mobile
 			new FPSOption("Toggle the FPS Counter"),
 			#end
+			new ChartBasedVocalsOption("Toggle vocals getting muted when there aren't any notes being hit by either player."),
 			new ReplayOption("View replays")
 		])
 	];

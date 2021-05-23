@@ -131,6 +131,27 @@ class EffectsEnabledOption extends Option
 	}
 }
 
+class ChartBasedVocalsOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.chartVox = !FlxG.save.data.chartVox;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return FlxG.save.data.chartVox ? "Chart Based Vocals Off" : "Chart Based Vocals On";
+	}
+}
+
 class CutscenesInFreeplayOption extends Option
 {
 	public function new(desc:String)

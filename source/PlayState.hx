@@ -2163,7 +2163,14 @@ class PlayState extends MusicBeatState
 						dad.holdTimer = 0;
 	
 						if (SONG.needsVoices)
-							vocals.volume = 1;
+							{
+								vocals.volume = 1;
+								if(FlxG.save.data.chartVox)
+									{
+										vocals.fadeOut(Conductor.stepCrochet/1000, 1, function(_){vocals.volume = 0;});
+									}
+							}
+
 	
 						daNote.kill();
 						notes.remove(daNote, true);
@@ -3185,6 +3192,10 @@ class PlayState extends MusicBeatState
 		
 					note.wasGoodHit = true;
 					vocals.volume = 1;
+					if(FlxG.save.data.chartVox)
+						{
+							vocals.fadeOut(Conductor.stepCrochet/1000, 1, function(_){vocals.volume = 0;});
+						}
 		
 					note.kill();
 					notes.remove(note, true);
