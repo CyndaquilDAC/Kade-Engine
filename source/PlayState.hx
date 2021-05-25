@@ -379,6 +379,7 @@ class PlayState extends MusicBeatState
 
 
 					var streetBehind:FlxSprite = new FlxSprite(-40, 50).loadGraphic(Paths.image('philly/behindTrain'));
+					streetBehind.scrollFactor.set(0.95, 0.95);
 					add(streetBehind);
 
 					phillyTrain = new FlxSprite(2000, 360).loadGraphic(Paths.image('philly/train'));
@@ -530,6 +531,7 @@ class PlayState extends MusicBeatState
 						santa.frames = Paths.getSparrowAtlas('christmas/santa');
 						santa.animation.addByPrefix('idle', 'santa idle in fear', 24, false);
 						santa.antialiasing = true;
+						santa.scrollFactor.set(0.95, 0.95);
 						add(santa);
 					}
 
@@ -783,6 +785,8 @@ class PlayState extends MusicBeatState
 	switch (SONG.gfVersion){
 		case 'gf':
 			gfVersion = 'gf';
+		case 'gf-tankmen':
+			gfVersion = 'gf-tankmen';
 		case 'gf-steps':
 			gfVersion = 'gf-steps';
 		case 'gf-car':
@@ -988,15 +992,7 @@ class PlayState extends MusicBeatState
 		}*/
 		//commenting the above out because its causing issues oops
 		//replacing it with the below temporarily
-		switch(SONG.player2){
-			case 'spirit' | 'spirit-flash':
-				var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
-				// evilTrail.changeValuesEnabled(false, false, false, false);
-				// evilTrail.changeGraphic()
-				add(evilTrail);
-				// evilTrail.scrollFactor.set(1.1, 1.1);
-				//ew hard coded. we'll make this unhardcoded i promise
-		}
+		//nvm that broke shit oops!!!
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('ui/healthBar'));
 		if (FlxG.save.data.downscroll)
 			healthBarBG.y = 50;
@@ -1053,7 +1049,7 @@ class PlayState extends MusicBeatState
 		
 
 		// Add Kade Engine watermark
-		var kadeEngineWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + " - KE " + MainMenuState.kadeEngineVer + " - " + (FlxG.save.data.etternaMode ? "E.Mode" : "FNF"), 16);
+		var kadeEngineWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 4 ? "Baby" : storyDifficulty == 3 ? "Insane" : storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + " - KE " + MainMenuState.kadeEngineVer + " - " + (FlxG.save.data.etternaMode ? "E.Mode" : "FNF"), 16);
 		kadeEngineWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		kadeEngineWatermark.scrollFactor.set();
 		add(kadeEngineWatermark);

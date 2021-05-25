@@ -72,6 +72,41 @@ class Character extends FlxSprite
 				addOffset('scared', -2, -17);
 
 				playAnim('danceRight');
+			case 'gf-tankmen':
+				// GIRLFRIEND CODE
+				tex = Paths.getSparrowAtlas('characters/gfTankmen');
+				frames = tex;
+				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
+				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
+				animation.addByPrefix('singRIGHT', 'GF Right Note', 24, false);
+				animation.addByPrefix('singUP', 'GF Up Note', 24, false);
+				animation.addByPrefix('singDOWN', 'GF Down Note', 24, false);
+				animation.addByIndices('sad', 'GF Crying at Gunpoint ', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "", 24, false);
+				animation.addByIndices('danceLeft', 'GF Dancing at Gunpoint', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				animation.addByIndices('danceRight', 'GF Dancing at Gunpoint', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+				animation.addByIndices('hairBlow', "GF Dancing Beat Hair blowing", [0, 1, 2, 3], "", 24);
+				animation.addByIndices('hairFall', "GF Dancing Beat Hair Landing", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "", 24, false);
+				animation.addByPrefix('scared', 'GF FEAR', 24);
+				animation.addByPrefix('duck', 'GF Duck', 24);
+				animation.addByPrefix('duckHairBlow', 'GF Duck Hair Blowing', 24);
+
+				addOffset('cheer');
+				addOffset('sad', -2, -2);
+				addOffset('danceLeft', 0, -9);
+				addOffset('duck', 0, -9);
+				addOffset('duckHairBlow', 0, -9);
+				addOffset('danceRight', 0, -9);
+
+				addOffset("singUP", 0, 4);
+				addOffset("singRIGHT", 0, -20);
+				addOffset("singLEFT", 0, -19);
+				addOffset("singDOWN", 0, -20);
+				addOffset('hairBlow', 45, -8);
+				addOffset('hairFall', 0, -9);
+
+				addOffset('scared', -2, -17);
+
+				playAnim('danceRight');
 				case 'dj':
 				// dj CODE
 				tex = Paths.getSparrowAtlas('characters/lol/dj');
@@ -353,6 +388,38 @@ class Character extends FlxSprite
 
 				flipX = true;
 
+			case 'tankman':
+				tex = Paths.getSparrowAtlas('characters/tankmanCaptain');
+				frames = tex;
+				animation.addByPrefix('idle', "Tankman Idle Dance", 24, false);
+				animation.addByPrefix('singUP', 'Tankman UP note', 24, false);
+				animation.addByPrefix('singUPalt', 'TANKMAN UGH', 24, false);
+				animation.addByPrefix('singDOWN', 'Tankman DOWN note', 24, false);
+				animation.addByPrefix('singDOWNalt', 'PRETTY GOOD tankman', 24, false);
+				if (isPlayer)
+				{
+					animation.addByPrefix('singLEFT', 'Tankman Note Left', 24, false);
+					animation.addByPrefix('singRIGHT', 'Tankman Right Note', 24, false);
+				}
+				else
+				{
+					// Need to be flipped! REDO THIS LATER!
+					animation.addByPrefix('singLEFT', 'Tankman Right Note', 24, false);
+					animation.addByPrefix('singRIGHT', 'Tankman Note Left', 24, false);
+				}
+
+				addOffset('idle');
+				addOffset("singUP", 24, 56);
+				addOffset("singUPalt", 24, 56);
+				addOffset("singRIGHT", -1, -7);
+				addOffset("singLEFT", 100, -14);
+				addOffset("singDOWN", 98, -90);
+				addOffset("singDOWNalt", 98, -90);
+
+				playAnim('idle');
+
+				flipX = true;
+
 			case 'bf-holding-gf':
 				var tex = Paths.getSparrowAtlas('characters/bfAndGF','shared');
 				frames = tex;
@@ -369,16 +436,16 @@ class Character extends FlxSprite
 				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
 
-				addOffset('idle', -5);
-				addOffset('catch-gf', -5);
-				addOffset("singUP", -29, 27);
-				addOffset("singRIGHT", -38, -7);
-				addOffset("singLEFT", 12, -6);
-				addOffset("singDOWN", -10, -50);
-				addOffset("singUPmiss", -29, 27);
-				addOffset("singRIGHTmiss", -30, 21);
-				addOffset("singLEFTmiss", 12, 24);
-				addOffset("singDOWNmiss", -11, -19);
+				addOffset('idle');
+				addOffset('catch-gf');
+				addOffset("singUP", -29, 10);
+				addOffset("singRIGHT", -41, 23);
+				addOffset("singLEFT", 12, 7);
+				addOffset("singDOWN", -10, -10);
+				addOffset("singUPmiss", -29, 10);
+				addOffset("singRIGHTmiss", -41, 23);
+				addOffset("singLEFTmiss", 12, 7);
+				addOffset("singDOWNmiss", -10, -10);
 
 				playAnim('idle');
 
@@ -392,11 +459,11 @@ class Character extends FlxSprite
 				animation.addByPrefix('deathLoop', "BF Dead with GF Loop", 24, true);
 				animation.addByPrefix('deathConfirm', "RETRY confirm holding gf", 24, false);
 
-				addOffset('idle', -5);
-				addOffset("singUP", -29, 27);
-				addOffset('firstDeath', 37, 11);
-				addOffset('deathLoop', 37, 5);
-				addOffset('deathConfirm', 37, 69);
+				addOffset('idle', 37, 14);
+				addOffset("singUP", 37, 14);
+				addOffset('firstDeath', 37, 14);
+				addOffset('deathLoop', 37, -3);
+				addOffset('deathConfirm', 37, 28);
 
 				playAnim('firstDeath');
 
