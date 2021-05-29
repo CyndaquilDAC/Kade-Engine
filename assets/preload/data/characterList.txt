@@ -16,3 +16,5 @@ senpai
 senpai-angry
 spirit
 spirit-flash
+tankman
+bf-holding-gf
