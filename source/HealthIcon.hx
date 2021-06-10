@@ -12,6 +12,7 @@ class HealthIcon extends FlxSprite
 
 	public function new(char:String = 'bf', isPlayer:Bool = false)
 	{
+		super();
 		loadGraphic(Paths.image('icons/' + char), true, 150, 150);
 		animation.add(char, [0, 1, 2], 0, false, isPlayer);
 		animation.play(char);
