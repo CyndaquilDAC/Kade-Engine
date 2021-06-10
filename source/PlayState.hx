@@ -1919,21 +1919,21 @@ class PlayState extends MusicBeatState
 
 		if (healthBar.percent < 20)
 			{
-				iconP1.animation.play(1);
-				iconP2.animation.play(2);
+				iconP1.animation.curAnim.curFrame = 1;
+				iconP2.animation.curAnim.curFrame = 2;
 			}
 		else
 			{
-				iconP1.animation.play(0);
+				iconP1.animation.curAnim.curFrame = 0;
 			}
 		if (healthBar.percent > 80)
 			{
-				iconP2.animation.play(1);
-				iconP1.animation.play(2);
+				iconP2.animation.curAnim.curFrame = 1;
+				iconP1.animation.curAnim.curFrame = 2;
 			}
 		else
 			{
-				iconP2.animation.play(0);
+				iconP2.animation.curAnim.curFrame = 0;
 			}
 		/* if (FlxG.keys.justPressed.NINE)
 			FlxG.switchState(new Charting()); */
