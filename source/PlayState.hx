@@ -70,6 +70,8 @@ class PlayState extends MusicBeatState
 
 	public var practiceMode:Bool = false;
 
+	public var canMuteVox:Bool = true;
+
 	public static var noteBools:Array<Bool> = [false, false, false, false];
 
 	var halloweenLevel:Bool = false;
@@ -1901,13 +1903,13 @@ class PlayState extends MusicBeatState
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
 
-		iconP1.setGraphicSize(Std.int(FlxMath.lerp(100, iconP1.width, 0.50)));
-		iconP2.setGraphicSize(Std.int(FlxMath.lerp(100, iconP2.width, 0.50)));
+		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.50)));
+		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.50)));
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
 
-		var iconOffset:Int = 5;
+		var iconOffset:Int = 26;
 
 		iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01) - iconOffset);
 		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (iconP2.width - iconOffset);
@@ -1916,6 +1918,7 @@ class PlayState extends MusicBeatState
 			health = 2;
 
 		/// My system is so cool ~ Vy
+		/// nah lol!!!
 
 		if (healthBar.percent < 20)
 			{
@@ -2171,7 +2174,10 @@ class PlayState extends MusicBeatState
 								vocals.volume = 1;
 								if(FlxG.save.data.chartVox)
 									{
-										vocals.fadeOut(Conductor.stepCrochet/1000, 1, function(_){vocals.volume = 0;});
+										if(canMuteVox)
+											{
+												vocals.fadeOut(Conductor.stepCrochet/1000, 1, function(_){vocals.volume = 0;});
+											}
 									}
 							}
 
@@ -3198,7 +3204,10 @@ class PlayState extends MusicBeatState
 					vocals.volume = 1;
 					if(FlxG.save.data.chartVox)
 						{
-							vocals.fadeOut(Conductor.stepCrochet/1000, 1, function(_){vocals.volume = 0;});
+							if(canMuteVox)
+								{
+									vocals.fadeOut(Conductor.stepCrochet/1000, 1, function(_){vocals.volume = 0;});
+								}
 						}
 		
 					note.kill();
@@ -3315,6 +3324,20 @@ class PlayState extends MusicBeatState
 		{
 			resyncVocals();
 		}
+
+		if(SONG.song.toLowerCase() == 'ugh')
+			{
+				//SO THE OPTION DOESN'T MUTE THE "UGH"S LOL
+				if(curStep == 60 || curStep == 444 || curStep == 524 || curStep == 828)
+					{
+						canMuteVox = false;
+					}
+
+				if(curStep == 65 || curStep == 448 || curStep == 528 || curStep == 832)
+					{
+						canMuteVox = true;
+					}
+			}
 
 		if (dad.curCharacter == 'spooky' && curStep % 4 == 2)
 		{
