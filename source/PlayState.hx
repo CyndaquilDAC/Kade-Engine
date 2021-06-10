@@ -1832,11 +1832,11 @@ class PlayState extends MusicBeatState
 		if (FlxG.keys.justPressed.NINE)
 		{
 			if (iconP1.animation.curAnim.name == 'bf-old')
-				iconP1.animation.play('bf-old-alt');
+				iconP1.changeChar('bf-old-alt');
 			else if (iconP1.animation.curAnim.name == 'bf-old-alt')
-				iconP1.animation.play(SONG.player1);
+				iconP1.changeChar(SONG.player1);
 			else
-				iconP1.animation.play('bf-old');
+				iconP1.changeChar('bf-old');
 		}
 
 		switch (curStage)
@@ -1918,15 +1918,23 @@ class PlayState extends MusicBeatState
 		/// My system is so cool ~ Vy
 
 		if (healthBar.percent < 20)
-			iconP1.animation.play('lose');
+			{
+				iconP1.animation.play(1);
+				iconP2.animation.play(2);
+			}
 		else
-			iconP1.animation.play('win');
-
+			{
+				iconP1.animation.play(0);
+			}
 		if (healthBar.percent > 80)
-			iconP2.animation.play('lose');
+			{
+				iconP2.animation.play(1);
+				iconP1.animation.play(2);
+			}
 		else
-			iconP2.animation.play('win');
-
+			{
+				iconP2.animation.play(0);
+			}
 		/* if (FlxG.keys.justPressed.NINE)
 			FlxG.switchState(new Charting()); */
 		//ANIMATION DEBUG STATE SWITCHES
@@ -1934,8 +1942,8 @@ class PlayState extends MusicBeatState
 			FlxG.switchState(new AnimationDebug(SONG.player2));
 		if (FlxG.keys.justPressed.ONE)
 			FlxG.switchState(new AnimationDebug(SONG.player1));
-		//if (FlxG.keys.justPressed.TWO)
-			//FlxG.switchState(new AnimationDebug(gfVersion));
+		if (FlxG.keys.justPressed.TWO)
+			FlxG.switchState(new AnimationDebug(SONG.gfVersion));
 
 		if (startingSong)
 		{
