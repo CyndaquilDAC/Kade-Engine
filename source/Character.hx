@@ -424,7 +424,7 @@ class Character extends FlxSprite
 				var tex = Paths.getSparrowAtlas('characters/bfAndGF','shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance w gf', 24, false);
-				animation.addByPrefix('catch-gf', 'BF catches GF', 24, false);
+				animation.addByPrefix('bfCatch', 'BF catches GF', 24, false);
 				//animation.addByPrefix('sex', 'BF fuck GF', 24, false);
 				//because boyfriend has SEX with girlfriend ON SCREEN in fnf 2.0
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -437,7 +437,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
 
 				addOffset('idle');
-				addOffset('catch-gf');
+				addOffset('bfCatch');
 				addOffset("singUP", -29, 10);
 				addOffset("singRIGHT", -41, 23);
 				addOffset("singLEFT", 12, 7);

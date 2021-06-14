@@ -62,8 +62,17 @@ class PlayState extends MusicBeatState
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
 
+	public var doof:DialogueBox;
+
 	public static var songPosBG:FlxSprite;
 	public static var songPosBar:FlxBar;
+
+	//cut deez nutz
+	public var hasDialogueScene:Bool = true;
+	public var hasIngameAnimatedScene:Bool = false;
+	public var hasVideoScene:Bool = false;
+	public var vidSceneDone:Bool = false;
+	public var ingameSceneDone:Bool = false;
 
 	public static var rep:Replay;
 	public static var loadRep:Bool = false;
@@ -274,6 +283,13 @@ class PlayState extends MusicBeatState
 		trace('notestyle is ' + SONG.noteStyle.toLowerCase());
 		//COMMENTED OUT CUZ ITS NOT IMPLEMENTED YET
 		//trace('introstyle is ' + SONG.introStyle.toLowerCase());
+
+		if(SONG.song.toLowerCase() == 'roses' || SONG.song.toLowerCase() == 'ingame-scene-test')
+			{
+				hasDialogueScene = false;
+				hasIngameAnimatedScene = true;
+				trace('DAMN BITCH WE BE RUNNIN AN ANIMATED SCENE ON ' + SONG.song.toLowerCase());
+			}
 
 		switch (SONG.song.toLowerCase())
 		{
@@ -900,8 +916,7 @@ class PlayState extends MusicBeatState
 
 		add(dad);
 		add(boyfriend);
-
-		var doof:DialogueBox = new DialogueBox(false, dialogue);
+		doof = new DialogueBox(false, dialogue);
 		// doof.x += 70;
 		// doof.y = FlxG.height * 0.5;
 		doof.scrollFactor.set();
@@ -1137,9 +1152,25 @@ class PlayState extends MusicBeatState
 									ease: FlxEase.quadInOut,
 									onComplete: function(twn:FlxTween)
 									{
-										schoolIntro(doof);
-										//commented out cuz its part of school intro
-										//startCountdown();
+										if(hasDialogueScene)
+											{
+												schoolIntro(doof);
+											}
+										else if(hasIngameAnimatedScene)
+											{
+												animatedSceneLauncher();
+											}
+										else if(hasVideoScene)
+											{
+												//WHOOPS IM TOO STUPID TO MAKE THIS WORK RN ILL COME BACK TO IT LATER I SWEAR
+												//videoLauncher();
+												//FOR NOW JUST GONNA
+												startCountdown();
+											}
+										else
+											{
+												startCountdown();
+											}
 									}
 								});
 							});
@@ -1150,15 +1181,48 @@ class PlayState extends MusicBeatState
 				//case 'senpai':
 				//	schoolIntro(doof);
 				case 'roses':
-					FlxG.sound.play(Paths.sound('ANGRY'));
-					schoolIntro(doof);
+					if(hasDialogueScene)
+						{
+							schoolIntro(doof);
+						}
+					else if(hasIngameAnimatedScene)
+						{
+							animatedSceneLauncher();
+						}
+					else if(hasVideoScene)
+						{
+							//WHOOPS IM TOO STUPID TO MAKE THIS WORK RN ILL COME BACK TO IT LATER I SWEAR
+							//videoLauncher();
+							//FOR NOW JUST GONNA
+							startCountdown();
+						}
+					else
+						{
+							startCountdown();
+						}
 				//commented out cuz dupe of default
 				//case 'thorns':
 				//	schoolIntro(doof);
 				default:
-					schoolIntro(doof);
-					//commented out because its a part of schoolintro
-					//startCountdown();
+					if(hasDialogueScene)
+						{
+							schoolIntro(doof);
+						}
+					else if(hasIngameAnimatedScene)
+						{
+							animatedSceneLauncher();
+						}
+					else if(hasVideoScene)
+						{
+							//WHOOPS IM TOO STUPID TO MAKE THIS WORK RN ILL COME BACK TO IT LATER I SWEAR
+							//videoLauncher();
+							//FOR NOW JUST GONNA
+							startCountdown();
+						}
+					else
+						{
+							startCountdown();
+						}
 			}
 		}
 		else
@@ -1174,6 +1238,60 @@ class PlayState extends MusicBeatState
 			rep = new Replay("na");
 
 		super.create();
+	}
+
+	function videoLauncher():Void
+	{
+		if(vidSceneDone)
+			{
+				startCountdown();
+			}
+	}
+
+	function animatedSceneLauncher():Void
+	{
+		if(SONG.song.toLowerCase() == 'ingame-scene-test')
+			{
+				new FlxTimer().start(2, function(swagTimer:FlxTimer)
+					{
+						camFollow.setPosition(dad.getMidpoint().x, boyfriend.getMidpoint().y);
+						new FlxTimer().start(2, function(swagTimer:FlxTimer)
+							{
+								boyfriend.playAnim('idle');
+								new FlxTimer().start(2, function(swagTimer:FlxTimer)
+									{
+										boyfriend.playAnim('bfCatch');
+										new FlxTimer().start(0.1, function(swagTimer:FlxTimer)
+											{
+												FlxG.sound.play(Paths.sound('GF_1', 'shared'));
+												new FlxTimer().start(2, function(swagTimer:FlxTimer)
+													{
+														startCountdown();
+													});
+											});
+									});
+							});
+					});
+			}
+		else if(SONG.song.toLowerCase() == 'roses')
+			{
+				new FlxTimer().start(2, function(swagTimer:FlxTimer)
+					{
+						camFollow.setPosition(dad.getMidpoint().x, boyfriend.getMidpoint().y);
+						new FlxTimer().start(1, function(swagTimer:FlxTimer)
+							{
+								FlxG.sound.play(Paths.sound('ANGRY', 'shared'));
+								new FlxTimer().start(1, function(swagTimer:FlxTimer)
+									{
+										add(doof);
+									});
+							});
+					});
+			}
+		else
+			{
+				startCountdown();
+			}
 	}
 
 	function schoolIntro(?dialogueBox:DialogueBox):Void
