@@ -10,12 +10,15 @@ class HealthIcon extends FlxSprite
 
 	var tex:FlxAtlasFrames;
 
+	public var publicIsPlayer:Bool;
+
 	public function new(char:String = 'bf', isPlayer:Bool = false)
 	{
 		super();
 		loadGraphic(Paths.image('icons/' + char), true, 150, 150);
 		animation.add(char, [0, 1, 2], 0, false, isPlayer);
 		animation.play(char);
+		publicIsPlayer = isPlayer;
 		switch(char){
 			case 'bf-pixel' | 'senpai' | 'senpai-angry' | 'spirit' | 'gf-pixel':
 				{
@@ -29,12 +32,12 @@ class HealthIcon extends FlxSprite
 		scrollFactor.set();
 	}
 
-	//change char is just a clone of the new function cuz im dumb lol!!!!
+	//change char is just a clone of the new function but without the isplayer cuz im dumb lol!!!!
 
-	public function changeChar(char:String = 'bf', isPlayer:Bool = false)
+	public function changeChar(char:String = 'bf')
 		{
 			loadGraphic(Paths.image('icons/' + char), true, 150, 150);
-			animation.add(char, [0, 1, 2], 0, false, isPlayer);
+			animation.add(char, [0, 1, 2], 0, false, publicIsPlayer);
 			animation.play(char);
 			switch(char){
 				case 'bf-pixel' | 'senpai' | 'senpai-angry' | 'spirit' | 'gf-pixel':

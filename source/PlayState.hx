@@ -67,6 +67,8 @@ class PlayState extends MusicBeatState
 	public static var songPosBG:FlxSprite;
 	public static var songPosBar:FlxBar;
 
+	public var altAnim:String = "";
+
 	//cut deez nutz
 	public var hasDialogueScene:Bool = true;
 	public var hasIngameAnimatedScene:Bool = false;
@@ -113,6 +115,7 @@ class PlayState extends MusicBeatState
 
 	private var strumLineNotes:FlxTypedGroup<FlxSprite>;
 	private var playerStrums:FlxTypedGroup<FlxSprite>;
+	public static var cpuStrums:FlxTypedGroup<FlxSprite>;
 
 	private var camZooming:Bool = false;
 	private var curSong:String = "";
@@ -935,6 +938,7 @@ class PlayState extends MusicBeatState
 		add(strumLineNotes);
 
 		playerStrums = new FlxTypedGroup<FlxSprite>();
+		cpuStrums = new FlxTypedGroup<FlxSprite>();
 
 		// startCountdown();
 
@@ -1747,14 +1751,22 @@ class PlayState extends MusicBeatState
 
 			babyArrow.ID = i;
 
-			if (player == 1)
-			{
-				playerStrums.add(babyArrow);
-			}
+            switch (player)
+            {
+                case 0:
+                    cpuStrums.add(babyArrow);
+                case 1:
+                    playerStrums.add(babyArrow);
+            }
 
 			babyArrow.animation.play('static');
 			babyArrow.x += 50;
 			babyArrow.x += ((FlxG.width / 2) * player);
+
+			cpuStrums.forEach(function(spr:FlxSprite)
+				{					
+					spr.centerOffsets(); //CPU arrows start out slightly off-center
+				});
 
 			strumLineNotes.add(babyArrow);
 		}
@@ -2043,11 +2055,7 @@ class PlayState extends MusicBeatState
 				iconP1.animation.curAnim.curFrame = 1;
 				iconP2.animation.curAnim.curFrame = 2;
 			}
-		else
-			{
-				iconP1.animation.curAnim.curFrame = 0;
-			}
-		if (healthBar.percent > 80)
+		else if (healthBar.percent > 80)
 			{
 				iconP2.animation.curAnim.curFrame = 1;
 				iconP1.animation.curAnim.curFrame = 2;
@@ -2055,6 +2063,7 @@ class PlayState extends MusicBeatState
 		else
 			{
 				iconP2.animation.curAnim.curFrame = 0;
+				iconP1.animation.curAnim.curFrame = 0;
 			}
 		/* if (FlxG.keys.justPressed.NINE)
 			FlxG.switchState(new Charting()); */
@@ -2265,13 +2274,18 @@ class PlayState extends MusicBeatState
 						if (SONG.song != 'Tutorial')
 							camZooming = true;
 	
-						var altAnim:String = "";
 	
 						if (SONG.notes[Math.floor(curStep / 16)] != null)
 						{
 							if (SONG.notes[Math.floor(curStep / 16)].altAnim)
 								altAnim = '-alt';
 						}
+
+						if (SONG.notes[Math.floor(curStep)] != null)
+							{
+								if (SONG.notes[Math.floor(curStep)].altAnim)
+									altAnim = '-alt';
+							}
 	
 						switch (Math.abs(daNote.noteData))
 						{
@@ -2284,6 +2298,22 @@ class PlayState extends MusicBeatState
 							case 0:
 								dad.playAnim('singLEFT' + altAnim, true);
 						}
+
+						cpuStrums.forEach(function(spr:FlxSprite)
+							{
+								if (Math.abs(daNote.noteData) == spr.ID)
+								{
+									spr.animation.play('confirm', true);
+								}
+								if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
+								{
+									spr.centerOffsets();
+									spr.offset.x -= 13;
+									spr.offset.y -= 13;
+								}
+								else
+									spr.centerOffsets();
+							});
 	
 						dad.holdTimer = 0;
 	
@@ -2339,6 +2369,14 @@ class PlayState extends MusicBeatState
 				});
 			}
 
+			cpuStrums.forEach(function(spr:FlxSprite)
+				{
+					if (spr.animation.finished)
+					{
+						spr.animation.play('static');
+						spr.centerOffsets();
+					}
+				});
 
 		if (!inCutscene)
 			keyShit();
@@ -3446,13 +3484,15 @@ class PlayState extends MusicBeatState
 		if(SONG.song.toLowerCase() == 'ugh')
 			{
 				//SO THE OPTION DOESN'T MUTE THE "UGH"S LOL
-				if(curStep == 60 || curStep == 444 || curStep == 524 || curStep == 828)
+				if(curStep == 60 || curStep == 444 || curStep == 524 || curStep == 828 || curStep == 540)
 					{
+						altAnim = '-alt';
 						canMuteVox = false;
 					}
 
-				if(curStep == 65 || curStep == 448 || curStep == 528 || curStep == 832)
+				if(curStep == 65 || curStep == 448 || curStep == 528 || curStep == 832 || curStep == 542)
 					{
+						altAnim = '';
 						canMuteVox = true;
 					}
 			}

@@ -6,4 +6,6 @@ mall
 mallEvil
 school
 schoolEvil
+tank
+tankWar
 test

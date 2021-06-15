@@ -393,9 +393,10 @@ class Character extends FlxSprite
 				frames = tex;
 				animation.addByPrefix('idle', "Tankman Idle Dance", 24, false);
 				animation.addByPrefix('singUP', 'Tankman UP note', 24, false);
-				animation.addByPrefix('singUPalt', 'TANKMAN UGH', 24, false);
+				animation.addByPrefix('singUP-alt', 'TANKMAN UGH', 24, false);
+				animation.addByPrefix('singLEFT-alt', 'TANKMAN UGH', 24, false);
 				animation.addByPrefix('singDOWN', 'Tankman DOWN note', 24, false);
-				animation.addByPrefix('singDOWNalt', 'PRETTY GOOD tankman', 24, false);
+				animation.addByPrefix('singDOWN-alt', 'PRETTY GOOD tankman', 24, false);
 				if (isPlayer)
 				{
 					animation.addByPrefix('singLEFT', 'Tankman Note Left', 24, false);
@@ -410,11 +411,12 @@ class Character extends FlxSprite
 
 				addOffset('idle');
 				addOffset("singUP", 24, 56);
-				addOffset("singUPalt", 24, 56);
+				addOffset("singUP-alt", -20, -6);
+				addOffset("singLEFT-alt", -20, -6);
 				addOffset("singRIGHT", -1, -7);
 				addOffset("singLEFT", 100, -14);
 				addOffset("singDOWN", 98, -90);
-				addOffset("singDOWNalt", 98, -90);
+				addOffset("singDOWN-alt", 100, 17);
 
 				playAnim('idle');
 
@@ -851,6 +853,17 @@ class Character extends FlxSprite
 			switch (curCharacter)
 			{
 				case 'gf':
+					if (!animation.curAnim.name.startsWith('hair'))
+					{
+						danced = !danced;
+
+						if (danced)
+							playAnim('danceRight');
+						else
+							playAnim('danceLeft');
+					}
+
+				case 'gf-tankmen':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
 						danced = !danced;
