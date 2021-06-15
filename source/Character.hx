@@ -107,16 +107,6 @@ class Character extends FlxSprite
 				addOffset('scared', -2, -17);
 
 				playAnim('danceRight');
-				case 'dj':
-				// dj CODE
-				tex = Paths.getSparrowAtlas('characters/lol/dj');
-				frames = tex;
-				animation.addByIndices('danceLeft', 'GF Dancing Beat', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "", 24, false);
-				animation.addByIndices('danceRight', 'GF Dancing Beat', [11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "", 24, false);
-				addOffset('danceLeft', 0, -9);
-				addOffset('danceRight', 0, -9);
-
-				playAnim('danceRight');
 				case 'gf-steps':
 					// GIRLFRIEND CODE
 					tex = Paths.getSparrowAtlas('characters/GF_assets_steps');
@@ -475,8 +465,6 @@ class Character extends FlxSprite
 				var tex = Paths.getSparrowAtlas('characters/BOYFRIEND','shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				//animation.addByPrefix('cock-whip', 'BF Whip Out Cock', 24, false);
-				//because boyfriend has SEX with girlfriend ON SCREEN in fnf 2.0
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
@@ -735,8 +723,6 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 				antialiasing = false;
-
-				hasEvilTrail = true;
 			
 			case 'spirit-flash':
 				frames = Paths.getSparrowAtlas('characters/Spirit_Flash');
