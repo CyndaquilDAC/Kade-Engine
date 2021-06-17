@@ -3561,7 +3561,7 @@ class PlayState extends MusicBeatState
 
 		if(SONG.song.toLowerCase() == 'ugh')
 			{
-				//SO THE OPTION DOESN'T MUTE THE "UGH"S LOL
+				//SO THE OPTION DOESN'T MUTE THE "UGH"S. ALSO PLAYS THE UGH ANIMS LOL
 				if(curStep == 60 || curStep == 444 || curStep == 524 || curStep == 828 || curStep == 540)
 					{
 						altAnim = '-alt';
