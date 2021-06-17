@@ -3,6 +3,10 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
+#if desktop
+import Discord.DiscordClient;
+import sys.thread.Thread;
+#end
 
 class GitarooPause extends MusicBeatState
 {
@@ -18,6 +22,11 @@ class GitarooPause extends MusicBeatState
 
 	override function create()
 	{
+		#if desktop
+		// Updating Discord Rich Presence
+		DiscordClient.changePresence("Alternate Pause Screen", null);
+		#end
+
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 

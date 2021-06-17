@@ -3,7 +3,7 @@ package;
 import openfl.Lib;
 import Section.SwagSection;
 import Song.SwagSong;
-import WiggleEffect.WiggleEffectType;
+import WiggleEffect;
 import flixel.FlxBasic;
 import flixel.FlxCamera;
 import flixel.FlxG;
@@ -163,6 +163,8 @@ class PlayState extends MusicBeatState
 	var upperBoppers:FlxSprite;
 	var bottomBoppers:FlxSprite;
 	var santa:FlxSprite;
+
+	public var watchtower:WatchtowerTankmen;
 
 	var fc:Bool = true;
 
@@ -758,6 +760,80 @@ class PlayState extends MusicBeatState
 	
 						add(stageCurtains);
 				}
+				case 'tank':
+					{
+							defaultCamZoom = 0.9;
+							curStage = 'tank';
+
+							var tankSky:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankSky'));
+							tankSky.antialiasing = true;
+							add(tankSky);
+
+							var tankClouds:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankClouds'));
+							tankClouds.antialiasing = true;
+							tankClouds.scrollFactor.set(0.9, 0.9);
+							add(tankClouds);
+
+							var mountains:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankMountains'));
+							mountains.antialiasing = true;
+							mountains.scrollFactor.set(0.9, 0.9);
+							add(mountains);
+
+							var tankBuildings:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankBuildings'));
+							tankBuildings.antialiasing = true;
+							tankBuildings.scrollFactor.set(0.8, 0.8);
+							add(tankBuildings);
+							
+							var ruins:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankRuins'));
+							ruins.antialiasing = true;
+							ruins.scrollFactor.set(0.75, 0.75);
+							add(ruins);
+
+							watchtower = new WatchtowerTankmen(0, 100);
+							watchtower.antialiasing = true;
+							add(watchtower);
+
+							var tankGround:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankGround'));
+							tankGround.antialiasing = true;
+							add(tankGround);
+					}
+				case 'tankWar':
+					{
+							defaultCamZoom = 0.9;
+							curStage = 'tankWar';
+
+							var tankSky:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankSky'));
+							tankSky.antialiasing = true;
+							add(tankSky);
+
+							var tankClouds:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankClouds'));
+							tankClouds.antialiasing = true;
+							tankClouds.scrollFactor.set(0.9, 0.9);
+							add(tankClouds);
+
+							var mountains:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankMountains'));
+							mountains.antialiasing = true;
+							mountains.scrollFactor.set(0.9, 0.9);
+							add(mountains);
+
+							var tankBuildings:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankBuildings'));
+							tankBuildings.antialiasing = true;
+							tankBuildings.scrollFactor.set(0.8, 0.8);
+							add(tankBuildings);
+
+							var ruins:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankRuins'));
+							ruins.antialiasing = true;
+							ruins.scrollFactor.set(0.75, 0.75);
+							add(ruins);
+
+							watchtower = new WatchtowerTankmen(0, 100);
+							watchtower.antialiasing = true;
+							add(watchtower);
+
+							var tankGround:FlxSprite = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankGround'));
+							tankGround.antialiasing = true;
+							add(tankGround);
+					}
 				default:
 					{
 							defaultCamZoom = 0.9;
@@ -816,9 +892,6 @@ class PlayState extends MusicBeatState
 			gfVersion = 'gf-christmas';
 		case 'gf-pixel':
 			gfVersion = 'gf-pixel';
-		case 'dj':
-			gfVersion = 'dj';
-	
 	}
 	trace('gfversion is ' + SONG.gfVersion.toLowerCase());
 
@@ -839,7 +912,6 @@ class PlayState extends MusicBeatState
 					camPos.x += 600;
 					tweenCamIn();
 				}
-
 			case "spooky":
 				dad.y += 200;
 			case "monster":
@@ -861,6 +933,8 @@ class PlayState extends MusicBeatState
 				dad.x += 150;
 				dad.y += 360;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+			case 'tankman':
+				dad.y -= -210;
 			case 'spirit':
 				dad.x -= 150;
 				dad.y += 100;
@@ -1136,7 +1210,7 @@ class PlayState extends MusicBeatState
 			switch (curSong.toLowerCase())
 			{
 				
-				case "winter-horrorland":
+				case "winter horrorland":
 					if (isStoryMode = true || FlxG.save.data.freescenes){
 						var blackScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
 						add(blackScreen);
@@ -3531,6 +3605,11 @@ class PlayState extends MusicBeatState
 		{
 			notes.sort(FlxSort.byY, FlxSort.DESCENDING);
 		}
+
+		if(curStage == 'tank' || curStage == 'tankWar')
+			{
+				watchtower.dance();
+			}
 
 		if (SONG.notes[Math.floor(curStep / 16)] != null)
 		{

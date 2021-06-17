@@ -25,6 +25,7 @@ class LoadingState extends MusicBeatState
 	
 	var logo:FlxSprite;
 	var gfDance:FlxSprite;
+	var loadingBg:FlxSprite;
 	var danceLeft = false;
 	
 	function new(target:FlxState, stopMusic:Bool)
@@ -42,6 +43,7 @@ class LoadingState extends MusicBeatState
 		logo.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logo.animation.play('bump');
 		logo.updateHitbox();
+		logo.visible = false;
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
@@ -50,8 +52,14 @@ class LoadingState extends MusicBeatState
 		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		gfDance.antialiasing = true;
+		gfDance.visible = false;
 		add(gfDance);
 		add(logo);
+
+		loadingBg = new FlxSprite(0,0);
+        loadingBg.loadGraphic(Paths.image('loading/FunkyLoader'));
+        loadingBg.antialiasing = true;
+        add(loadingBg);
 		
 		initSongsManifest().onComplete
 		(

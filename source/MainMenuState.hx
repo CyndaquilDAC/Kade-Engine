@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxState;
 import Controls.KeyboardScheme;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -32,9 +33,9 @@ class MainMenuState extends MusicBeatState
 	var newGaming2:FlxText;
 	var newInput:Bool = true;
 
-	public static var nightly:String = "mod build of";
+	public static var nightly:String = "mod build";
 
-	public static var kadeEngineVer:String = "FNF as it was always meant to be " + nightly;
+	public static var kadeEngineVer:String = "Custom " + nightly;
 	public static var gameVer:String = "Modded";
 
 	var magenta:FlxSprite;
@@ -129,6 +130,12 @@ class MainMenuState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+
+		if(FlxG.keys.justPressed.DELETE)
+			{
+				FlxG.switchState(new ImageDebugState());
+			}
+
 		if (FlxG.sound.music.volume < 0.8)
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
