@@ -86,6 +86,12 @@ class DialogueBox extends FlxSpriteGroup
 			case 'spookeez':
 				FlxG.sound.playMusic(Paths.music('spookeezDialogue'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'ugh' | 'guns':
+				FlxG.sound.playMusic(Paths.music('DISTORTO'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
+			case 'stress':
+				FlxG.sound.playMusic(Paths.music('KlaskiiRomper'), 0);
+				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			default:
 				FlxG.sound.playMusic(Paths.music('breakfast'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
@@ -122,15 +128,12 @@ class DialogueBox extends FlxSpriteGroup
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-senpaiMad');
 				box.animation.addByPrefix('normalOpen', 'SENPAI ANGRY IMPACT SPEECH', 24, false);
 				box.animation.addByIndices('normal', 'SENPAI ANGRY IMPACT SPEECH', [4], "", 24);
-				box.antialiasing = false;
-
 
 			case 'thorns':
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-evil');
 				box.animation.addByPrefix('normalOpen', 'Spirit Textbox spawn', 24, false);
 				box.animation.addByIndices('normal', 'Spirit Textbox spawn', [11], "", 24);
-				box.antialiasing = false;
 
 			default:
 				hasDialog = true;

@@ -19,8 +19,7 @@ class Highscore
 		#if !switch
 		NGio.postScore(score, song);
 		#end
-
-
+		
 		if (songScores.exists(daSong))
 		{
 			if (songScores.get(daSong) < score)

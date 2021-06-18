@@ -173,6 +173,27 @@ class CutscenesInFreeplayOption extends Option
 	}
 }
 
+class OldWeekSixShitOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.promoWeekSix = !FlxG.save.data.promoWeekSix;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return FlxG.save.data.promoWeekSix ? "Promotional Week 6 Assets Off" : "Promotional Week 6 Assets On";
+	}
+}
+
 class AccuracyOption extends Option
 {
 	public function new(desc:String)

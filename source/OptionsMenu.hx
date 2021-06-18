@@ -42,6 +42,7 @@ class OptionsMenu extends MusicBeatState
 			new FPSOption("Toggle the FPS Counter"),
 			#end
 			new ChartBasedVocalsOption("Toggle vocals getting muted when there aren't any notes being hit by either player."),
+			new OldWeekSixShitOption("Assets in week 6 will be based off of the promotional material instead of the final versions."),
 			new ReplayOption("View replays")
 		])
 	];

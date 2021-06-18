@@ -382,6 +382,10 @@ class PlayState extends MusicBeatState
 						dialogue = CoolUtil.coolTextFile(Paths.txt('satin-panties/satin-pantiesDialogue'));
 				}
 			}
+		else if(SONG.song.toLowerCase() == 'senpai' && FlxG.save.data.promoWeekSix)
+			{
+				dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiDialogueOld'));
+			}
 		else
 			{
 				dialogue = CoolUtil.coolTextFile(Paths.txt(SONG.song.toLowerCase() + '/' + SONG.song.toLowerCase() + 'Dialogue'));
@@ -408,7 +412,6 @@ class PlayState extends MusicBeatState
 				
 				halloweenBG.animation.addByPrefix('lightning', 'halloweem bg lightning strike', 24, false);
 				halloweenBG.animation.play('idle');
-				halloweenBG.antialiasing = true;
 				add(halloweenBG);
 				trace('spooky scary house added');
 
@@ -440,7 +443,6 @@ class PlayState extends MusicBeatState
 								light.visible = false;
 								light.setGraphicSize(Std.int(light.width * 0.85));
 								light.updateHitbox();
-								light.antialiasing = true;
 								phillyCityLights.add(light);
 								trace('light ' + i + ' added to group');
 						}
@@ -539,7 +541,6 @@ class PlayState extends MusicBeatState
 					limo.frames = limoTex;
 					limo.animation.addByPrefix('drive', "Limo stage", 24);
 					limo.animation.play('drive');
-					limo.antialiasing = true;
 					if (FlxG.save.data.effects)
 					{
 						fastCar = new FlxSprite(-300, 160).loadGraphic(Paths.image('limo/fastCarLmao'));
@@ -569,7 +570,6 @@ class PlayState extends MusicBeatState
 							upperBoppers = new FlxSprite(-240, -90);
 							upperBoppers.frames = Paths.getSparrowAtlas('christmas/upperBop');
 							upperBoppers.animation.addByPrefix('bop', "Upper Crowd Bob", 24, false);
-							upperBoppers.antialiasing = true;
 							upperBoppers.scrollFactor.set(0.33, 0.33);
 							upperBoppers.setGraphicSize(Std.int(upperBoppers.width * 0.85));
 							upperBoppers.updateHitbox();
@@ -588,7 +588,6 @@ class PlayState extends MusicBeatState
 					trace('escalator added');
 
 					var tree:FlxSprite = new FlxSprite(370, -250).loadGraphic(Paths.image('christmas/christmasTree'));
-					tree.antialiasing = true;
 					tree.scrollFactor.set(0.40, 0.40);
 					add(tree);
 					trace('tree added');
@@ -596,7 +595,6 @@ class PlayState extends MusicBeatState
 
 					var fgSnow:FlxSprite = new FlxSprite(-600, 700).loadGraphic(Paths.image('christmas/fgSnow'));
 					fgSnow.active = false;
-					fgSnow.antialiasing = true;
 					add(fgSnow);
 					trace('fg snow added');
 					if (!FlxG.save.data.effects)
@@ -614,7 +612,6 @@ class PlayState extends MusicBeatState
 						santa = new FlxSprite(-840, 150);
 						santa.frames = Paths.getSparrowAtlas('christmas/santa');
 						santa.animation.addByPrefix('idle', 'santa idle in fear', 24, false);
-						santa.antialiasing = true;
 						santa.scrollFactor.set(0.95, 0.95);
 						add(santa);
 						trace('santa added');
@@ -634,13 +631,11 @@ class PlayState extends MusicBeatState
 					trace('SCARY HORROR MALL BG added');
 
 					var evilTree:FlxSprite = new FlxSprite(300, -300).loadGraphic(Paths.image('christmas/evilTree'));
-					evilTree.antialiasing = true;
 					evilTree.scrollFactor.set(0.2, 0.2);
 					add(evilTree);
 					trace('SCARY HORROR AR TREE added');
 
 					var evilSnow:FlxSprite = new FlxSprite(-200, 700).loadGraphic(Paths.image("christmas/evilSnow"));
-						evilSnow.antialiasing = true;
 					add(evilSnow);
 					trace('SCARY HORROR AR SNOW added');
 					}
@@ -656,8 +651,11 @@ class PlayState extends MusicBeatState
 					trace('sky added');
 
 					var repositionShit = -200;
-
 					var bgSchool:FlxSprite = new FlxSprite(repositionShit, 0).loadGraphic(Paths.image('weeb/weebSchool'));
+					if(FlxG.save.data.promoWeekSix)
+						{
+							bgSchool.loadGraphic(Paths.image('weeb/weebSchoolFancy'));
+						}
 					bgSchool.scrollFactor.set(0.6, 0.90);
 					add(bgSchool);
 					trace('school added');
@@ -784,7 +782,6 @@ class PlayState extends MusicBeatState
 					defaultCamZoom = 0.9;
 					curStage = 'stage';
 					var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
-					bg.antialiasing = true;
 					bg.scrollFactor.set(0.9, 0.9);
 					bg.active = false;
 					add(bg);
@@ -802,7 +799,6 @@ class PlayState extends MusicBeatState
 					var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
-					stageCurtains.antialiasing = true;
 					stageCurtains.scrollFactor.set(1.3, 1.3);
 					stageCurtains.active = false;
 
@@ -814,7 +810,6 @@ class PlayState extends MusicBeatState
 						defaultCamZoom = 0.9;
 						curStage = 'stage';
 						var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('testenvback'));
-						bg.antialiasing = true;
 						bg.scrollFactor.set(0.9, 0.9);
 						bg.active = false;
 						add(bg);
@@ -832,7 +827,6 @@ class PlayState extends MusicBeatState
 						var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('testenvcurtains'));
 						stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 						stageCurtains.updateHitbox();
-						stageCurtains.antialiasing = true;
 						stageCurtains.scrollFactor.set(1.3, 1.3);
 						stageCurtains.active = false;
 	
@@ -841,37 +835,32 @@ class PlayState extends MusicBeatState
 				}
 				case 'tank':
 					{
-							defaultCamZoom = 0.9;
+							defaultCamZoom = .9;
 							curStage = 'tank';
 
 							tankSky = new FlxSprite(-400, -400).loadGraphic(Paths.image('tank/tankSky'));
-							tankSky.antialiasing = true;
 							add(tankSky);
 							trace('sky added');
 
 							tankClouds = new FlxSprite(-700, -100).loadGraphic(Paths.image('tank/tankClouds'));
-							tankClouds.antialiasing = true;
 							tankClouds.active = true;
 							tankClouds.velocity.x = FlxG.random.float(5, 15);
 							add(tankClouds);
 							trace('clouds added');
 
 							mountains = new FlxSprite(-300, -20).loadGraphic(Paths.image('tank/tankMountains'));
-							mountains.antialiasing = true;
 							mountains.setGraphicSize(Std.int(1.2 * mountains.width));
 							mountains.updateHitbox();
 							add(mountains);
 							trace('mountains added');
 
 							tankBuildings = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankBuildings'));
-							tankBuildings.antialiasing = true;
 							tankBuildings.setGraphicSize(Std.int(1.1 * tankBuildings.width));
 							tankBuildings.updateHitbox();
 							add(tankBuildings);
 							trace('bg buildings added');
 							
 							ruins = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankRuins'));
-							ruins.antialiasing = true;
 							ruins.setGraphicSize(Std.int(1.1 * ruins.width));
 							ruins.updateHitbox();
 							add(ruins);
@@ -892,18 +881,28 @@ class PlayState extends MusicBeatState
 							trace('right smoke added');
 							
 							watchtower = new WatchtowerTankmen(100, 50);
-							watchtower.antialiasing = true;
 							add(watchtower);
 							trace('watchtower added');
+							if (FlxG.save.data.effects)
+								{
+									watchtower.visible = false;
+								}
 
 							tankGround = new FlxSprite(300, 300);
 							tankGround.frames = Paths.getSparrowAtlas('tank/tankRolling');
 							tankGround.animation.addByPrefix('tankRolling','BG tank w lighting');
-							tankGround.antialiasing = true;
 							add(tankGround);
 							trace('rollin tank added');
+							add(tankManRun);
+							trace('war tankmen added (will be used if pico speaker triggers them)');
+							if (FlxG.save.data.effects)
+								{
+									tankGround.visible = false;
+									tankManRun.visible = false;
+								}
 
 							ground = new FlxSprite(-420, -150).loadGraphic(Paths.image('tank/tankGround'));
+							ground.antialiasing = true;
 							ground.setGraphicSize(Std.int(1.15 * ground.width));
 							ground.updateHitbox();
 							add(ground);
@@ -946,6 +945,16 @@ class PlayState extends MusicBeatState
 							foregroundSprites.add(tank5);
 							trace('added tankman foreground bopper 5 to foreground sprite queue');
 
+							if (FlxG.save.data.effects)
+								{
+									tank0.visible = false;
+									tank1.visible = false;
+									tank2.visible = false;
+									tank3.visible = false;
+									tank4.visible = false;
+									tank5.visible = false;
+								}
+
 							moveTank();
 
 							trace('all tank shit added');
@@ -955,7 +964,6 @@ class PlayState extends MusicBeatState
 							defaultCamZoom = 0.9;
 							curStage = 'stage';
 							var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
-							bg.antialiasing = true;
 							bg.scrollFactor.set(0.9, 0.9);
 							bg.active = false;
 							add(bg);
@@ -973,7 +981,6 @@ class PlayState extends MusicBeatState
 							var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
 							stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 							stageCurtains.updateHitbox();
-							stageCurtains.antialiasing = true;
 							stageCurtains.scrollFactor.set(1.3, 1.3);
 							stageCurtains.active = false;
 		
