@@ -18,3 +18,5 @@ spirit
 spirit-flash
 tankman
 bf-holding-gf
+pico-speaker
+gf-tankmen

@@ -1,3 +1,5 @@
+//THIS SHIT IS OLD IMAGE CHART PARSER
+
 package;
 
 import flixel.util.FlxStringUtil;

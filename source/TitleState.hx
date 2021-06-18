@@ -74,6 +74,8 @@ class TitleState extends MusicBeatState
 
 		super.create();
 
+		
+
 		// NGio.noLogin(APIStuff.API);
 
 		#if ng
@@ -100,6 +102,11 @@ class TitleState extends MusicBeatState
 			if (!StoryMenuState.weekUnlocked[0])
 				StoryMenuState.weekUnlocked[0] = true;
 		}
+
+		if (Date.now().getDay() == 5)
+			{
+				//FlxG.save.data.unlockedLoadingFunkerSkin = true;
+			}
 
 		#if FREEPLAY
 		FlxG.switchState(new FreeplayState());
@@ -288,14 +295,7 @@ class TitleState extends MusicBeatState
 
 		if (pressedEnter && !transitioning && skippedIntro)
 		{
-			#if !switch
-			NGio.unlockMedal(60960);
-
-			// If it's Friday according to da clock
-			if (Date.now().getDay() == 5)
-				NGio.unlockMedal(61034);
-			#end
-
+	
 			titleText.animation.play('press');
 
 			FlxG.camera.flash(FlxColor.WHITE, 1);
