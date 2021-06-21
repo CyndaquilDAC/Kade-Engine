@@ -100,7 +100,10 @@ class OptionsMenu extends MusicBeatState
 		super.update(elapsed);
 
 			if (controls.BACK && !isCat)
-				FlxG.switchState(new MainMenuState());
+				{
+					FlxG.sound.play(Paths.sound('cancelMenu'));
+					FlxG.switchState(new MainMenuState());
+				}
 			else if (controls.BACK)
 			{
 				isCat = false;
@@ -186,6 +189,7 @@ class OptionsMenu extends MusicBeatState
 				if (isCat)
 				{
 					if (currentSelectedCat.getOptions()[curSelected].press()) {
+						FlxG.sound.play(Paths.sound('confirmMenu'));
 						grpControls.remove(grpControls.members[curSelected]);
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, currentSelectedCat.getOptions()[curSelected].getDisplay(), true, false);
 						ctrl.isMenuItem = true;
@@ -199,6 +203,7 @@ class OptionsMenu extends MusicBeatState
 					grpControls.clear();
 					for (i in 0...currentSelectedCat.getOptions().length)
 						{
+							FlxG.sound.play(Paths.sound('confirmMenu'));
 							var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, currentSelectedCat.getOptions()[i].getDisplay(), true, false);
 							controlLabel.isMenuItem = true;
 							controlLabel.targetY = i;
@@ -227,7 +232,7 @@ class OptionsMenu extends MusicBeatState
 		if (isCat)
 			currentDescription = currentSelectedCat.getOptions()[curSelected].getDescription();
 		else
-			currentDescription = "Please select a catagory";
+			currentDescription = "Please select a category";
 		versionShit.text = "Offset (Left, Right): " + FlxG.save.data.offset + " - Description - " + currentDescription;
 
 		// selector.y = (70 * curSelected) + 30;

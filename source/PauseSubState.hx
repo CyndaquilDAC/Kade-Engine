@@ -18,12 +18,14 @@ class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
-	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
+	var menuItems:Array<String> = ['Resume', 'Restart Song','Loop Song','AB Repeat', 'Exit to menu'];
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
+	var loopCallback:Bool->Void;
+	var loopState:LoopState;
 
-	public function new(x:Float, y:Float)
+	public function new(x:Float, y:Float, loopCallback:Bool->Void,loopState:LoopState)
 	{
 		super();
 
@@ -72,6 +74,10 @@ class PauseSubState extends MusicBeatSubstate
 		FlxTween.tween(levelDifficulty, {alpha: 1, y: levelDifficulty.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});
 		//FlxTween.tween(practiceText, {alpha: 1, y: practiceText.y + 5}, 0.4, {ease: FlxEase.quartInOut, startDelay: 0.5});
 
+		this.loopCallback = loopCallback;
+		this.loopState = loopState;
+		updateLoopState();
+
 		grpMenuShit = new FlxTypedGroup<Alphabet>();
 		add(grpMenuShit);
 
@@ -115,26 +121,20 @@ class PauseSubState extends MusicBeatSubstate
 
 		if (accepted)
 		{
-			var daSelected:String = menuItems[curSelected];
-
-			switch (daSelected)
+			switch (curSelected)
 			{
-				case "Resume":
+				case 0:
 					close();
-				case "Restart Song":
+				case 1:
 					FlxG.resetState();
-				/*case "Practice Mode":
-					PlayState.practiceMode = !PlayState.practiceMode;
-				*/
-				case "Exit to menu":
-					PlayState.loadRep = false;
-					if (PlayState.offsetTesting)
-					{
-						PlayState.offsetTesting = false;
-						FlxG.switchState(new OptionsMenu());
-					}
-					else
-						FlxG.switchState(new MainMenuState());
+				case 2:
+					loopCallback(false);
+					close();
+				case 3:
+					loopCallback(true);
+					close();
+				case 4:
+					FlxG.switchState(new MainMenuState());
 			}
 		}
 
@@ -142,6 +142,24 @@ class PauseSubState extends MusicBeatSubstate
 		{
 			// for reference later!
 			// PlayerSettings.player1.controls.replaceBinding(Control.LEFT, Keys, FlxKey.J, null);
+		}
+	}
+
+	function updateLoopState(){
+		FlxG.log.add(loopState);
+		switch(loopState){
+			case NONE:
+				menuItems[2] = 'Loop Song';
+				menuItems[3] = 'AB Repeat';
+			case REPEAT:
+				menuItems[2] = 'Stop Looping';
+				menuItems[3] = 'AB Repeat';
+			case ANODE:
+				menuItems[2] = 'Cancel AB repeat';
+				menuItems[3] = 'Confirm B Node';
+			case ABREPEAT:
+				menuItems[2] = 'Loop Song';
+				menuItems[3] = 'Stop Repeating';
 		}
 	}
 

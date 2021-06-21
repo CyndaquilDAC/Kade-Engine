@@ -13,7 +13,6 @@ class GameOverSubstate extends MusicBeatSubstate
 	var bf:Boyfriend;
 	var camFollow:FlxObject;
 	var stageSuffix:String = "";
-	var jeffGameover:Array<FlxSound>;
 
 	public function new(x:Float, y:Float)
 	{
@@ -48,6 +47,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		FlxG.camera.target = null;
 
 		bf.playAnim('firstDeath');
+		
 	}
 
 	override function update(elapsed:Float)
@@ -78,7 +78,10 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
 		{
 			FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
-			
+			if(PlayState.SONG.player2 == 'tankman')
+				{
+					FlxG.sound.play(Paths.sound('jeffGameover/jeffGameover-' + FlxG.random.int(1, 25)).toString(), 1);
+				}
 		}
 
 		if (FlxG.sound.music.playing)

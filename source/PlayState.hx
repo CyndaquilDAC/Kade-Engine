@@ -1,6 +1,6 @@
 package;
 
-
+import LoopState;
 import lime.app.Application;
 import lime.media.AudioContext;
 import lime.media.AudioManager;
@@ -32,6 +32,7 @@ import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import flixel.math.FlxRandom;
 import flixel.ui.FlxBar;
 import flixel.util.FlxCollision;
 import flixel.util.FlxColor;
@@ -106,7 +107,14 @@ class PlayState extends MusicBeatState
 	var boyfriend:Boyfriend;
 
 	private var notes:FlxTypedGroup<Note>;
+	private var allNotes:Array<Note> = [];
 	private var unspawnNotes:Array<Note> = [];
+	private var loopA:Float = 0;
+	private var loopB:Float;
+	private var loopState:LoopState = NONE;
+
+	public var grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
+	public var grpNoteSplashesCpu = new FlxTypedGroup<NoteSplash>();
 
 	private var strumLine:FlxSprite;
 	private var curSection:Int = 0;
@@ -235,7 +243,9 @@ class PlayState extends MusicBeatState
 		repPresses = 0;
 		repReleases = 0;
 
-		
+		#if loop
+		loopState = REPEAT;
+		#end
 
 		#if desktop
 		// Making difficulty text for Discord Rich Presence.
@@ -292,6 +302,12 @@ class PlayState extends MusicBeatState
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
 
+		var tempNoteSplash = new NoteSplash(0, 0, 0);
+		var tempNoteSplashCpu = new NoteSplash(0, 0, 0);
+		grpNoteSplashes.add(tempNoteSplash);
+		grpNoteSplashesCpu.add(tempNoteSplashCpu);
+		tempNoteSplash.alpha = 0.1;
+		tempNoteSplashCpu.alpha = 0.1;
 
 		FlxCamera.defaultCameras = [camGame];
 
@@ -1193,6 +1209,8 @@ class PlayState extends MusicBeatState
 
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
 		add(strumLineNotes);
+		add(grpNoteSplashes);
+		add(grpNoteSplashesCpu);
 
 		playerStrums = new FlxTypedGroup<FlxSprite>();
 		cpuStrums = new FlxTypedGroup<FlxSprite>();
@@ -1361,6 +1379,8 @@ class PlayState extends MusicBeatState
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
 
+		grpNoteSplashes.cameras = [camHUD];
+		grpNoteSplashesCpu.cameras = [camHUD];
 		strumLineNotes.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
@@ -1790,6 +1810,7 @@ class PlayState extends MusicBeatState
 		
 		FlxG.sound.music.onComplete = endSong;
 		vocals.play();
+		loopB = FlxG.sound.music.length - 100;
 
 		// Song duration in a float, useful for the time left feature
 		songLength = FlxG.sound.music.length;
@@ -1929,7 +1950,63 @@ class PlayState extends MusicBeatState
 
 		unspawnNotes.sort(sortByShit);
 
+		allNotes = deepCopyNotes(unspawnNotes);
 		generatedMusic = true;
+	}
+
+	function deepCopyNotes(noteArray:Array<Note>,?startingpoint:Float = 0):Array<Note>
+		{
+			var noteRef:Note = null;
+			var newNoteArray:Array<Note> = [];
+
+			for(note in noteArray){
+				if(note.strumTime > startingpoint)
+				{
+					noteRef = newNoteArray.length > 0 ? newNoteArray[newNoteArray.length - 1] : null;
+					var deepCopy:Note = new Note(note.strumTime,note.noteData,noteRef,note.isSustainNote);
+					deepCopy.mustPress = note.mustPress;
+					deepCopy.x = note.x;
+					newNoteArray.push(deepCopy);
+				}
+	
+			}
+			return newNoteArray;
+		}
+
+	function loopHandler(abLoop:Bool):LoopState
+	{
+		FlxG.log.add("Made it" + abLoop);
+		if(abLoop){
+			switch(loopState){				
+				case REPEAT | NONE:
+					if(!startingSong)
+						loopA = Conductor.songPosition;
+					else
+						loopA = 0;
+					loopState = ANODE;
+					FlxG.log.add("Setting A Node");
+				case ANODE:
+					loopB = Conductor.songPosition;
+					loopState = ABREPEAT;
+					FlxG.log.add("Setting B Node");
+				case ABREPEAT:
+					loopState = NONE;
+					FlxG.log.add("Removing Nodes");				
+			}
+		}
+		else{
+			switch(loopState){
+				case NONE | ABREPEAT:
+					loopA = 0;
+					loopB = FlxG.sound.music.length - 100;
+					loopState = REPEAT;
+					FlxG.log.add("Looping Entire Song");
+				case REPEAT | ANODE:
+					loopState = NONE;
+					FlxG.log.add("No longer Looping");
+			}
+		}
+		return loopState;
 	}
 
 	function sortByShit(Obj1:Note, Obj2:Note):Int
@@ -2307,7 +2384,7 @@ class PlayState extends MusicBeatState
 				FlxG.switchState(new GitarooPause());
 			}
 			else
-				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y,loopHandler.bind(_),loopState));
 		}
 
 		if (FlxG.keys.justPressed.SEVEN)
@@ -2376,6 +2453,13 @@ class PlayState extends MusicBeatState
 		{
 			// Conductor.songPosition = FlxG.sound.music.time;
 			Conductor.songPosition += FlxG.elapsed * 1000;
+			FlxG.watch.addQuick("songPosition", Conductor.songPosition);
+			if(loopState != NONE && Conductor.songPosition >= loopB){
+				Conductor.songPosition = loopA;
+				FlxG.sound.music.time = loopA;
+				resyncVocals();	
+				unspawnNotes = deepCopyNotes(allNotes,loopA);
+			}
 			/*@:privateAccess
 			{
 				FlxG.sound.music._channel.
@@ -2586,6 +2670,10 @@ class PlayState extends MusicBeatState
 								if (Math.abs(daNote.noteData) == spr.ID)
 								{
 									spr.animation.play('confirm', true);
+									var bruhSplashCpu:NoteSplash = grpNoteSplashesCpu.recycle(NoteSplash);
+									bruhSplashCpu.setupNoteSplash(daNote.noteData, daNote.x, strumLine.y);
+									grpNoteSplashesCpu.add(bruhSplashCpu);
+									
 								}
 								if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
 								{
@@ -2827,6 +2915,9 @@ class PlayState extends MusicBeatState
 				case 'sick':
 					if (health < 2)
 						health += 0.1;
+					var bruhSplash:NoteSplash = grpNoteSplashes.recycle(NoteSplash);
+					bruhSplash.setupNoteSplash(daNote.noteData, daNote.x, strumLine.y);
+					grpNoteSplashes.add(bruhSplash);
 					sicks++;
 			}
 
@@ -2927,6 +3018,7 @@ class PlayState extends MusicBeatState
 			comboSpr.y = rating.y + 100;
 			comboSpr.acceleration.y = 600;
 			comboSpr.velocity.y -= 150;
+			add(comboSpr);
 
 			currentTimingShown.screenCenter();
 			currentTimingShown.x = comboSpr.x + 100;

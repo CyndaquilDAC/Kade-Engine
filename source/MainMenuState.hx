@@ -40,6 +40,7 @@ class MainMenuState extends MusicBeatState
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
+	var backSpace:FlxSprite;
 
 	override function create()
 	{
@@ -84,7 +85,6 @@ class MainMenuState extends MusicBeatState
 		magenta.antialiasing = true;
 		magenta.color = 0xFFfd719b;
 		add(magenta);
-		// magenta.scrollFactor.set();
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
@@ -123,6 +123,13 @@ class MainMenuState extends MusicBeatState
 
 		changeItem();
 
+		backSpace = new FlxSprite(1000, 615);
+		backSpace.frames = Paths.getSparrowAtlas('backMainMenu');
+		backSpace.animation.addByPrefix('idle', 'backspace title', true);
+		backSpace.animation.addByPrefix('pushed', 'pushed backspace title', true);
+		add(backSpace);
+		backSpace.animation.play('idle');
+
 		super.create();
 	}
 
@@ -157,6 +164,8 @@ class MainMenuState extends MusicBeatState
 
 			if (controls.BACK)
 			{
+				backSpace.animation.play('pushed');
+				FlxG.sound.play(Paths.sound('cancelMenu'));
 				FlxG.switchState(new TitleState());
 			}
 
