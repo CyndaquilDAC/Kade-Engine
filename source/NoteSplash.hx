@@ -40,7 +40,7 @@ class NoteSplash extends FlxSprite
 
         visible = true;
 
-		alpha = 0.6;
+		alpha = 1;
 
 		animation.play("note" + fromNote + "-" + FlxG.random.int(0, 1), true);
 		//animation.curAnim.frameRate += Random.int(-2, 2);
