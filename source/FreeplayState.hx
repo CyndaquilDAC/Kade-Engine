@@ -19,6 +19,9 @@ using StringTools;
 
 class FreeplayState extends MusicBeatState
 {
+
+	public static var startingSelection:Int = 0;
+
 	var songs:Array<SongMetadata> = [];
 
 	var selector:FlxText;
@@ -108,7 +111,7 @@ class FreeplayState extends MusicBeatState
 
 		add(scoreText);
 
-		changeSelection();
+		changeSelection(startingSelection);
 		changeDiff();
 
 		// FlxG.sound.playMusic(Paths.music('title'), 0);
@@ -209,6 +212,7 @@ class FreeplayState extends MusicBeatState
 			PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName.toLowerCase());
 			PlayState.isStoryMode = false;
 			PlayState.storyDifficulty = curDifficulty;
+			startingSelection = curSelected;
 			PlayState.storyWeek = songs[curSelected].week;
 			trace('CUR WEEK' + PlayState.storyWeek);
 			LoadingState.loadAndSwitchState(new PlayState());
@@ -247,6 +251,7 @@ class FreeplayState extends MusicBeatState
 	{
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
+		iconArray[curSelected].animation.curAnim.curFrame = 0;
 		curSelected += change;
 
 		if (curSelected < 0)
@@ -254,6 +259,7 @@ class FreeplayState extends MusicBeatState
 		if (curSelected >= songs.length)
 			curSelected = 0;
 
+		iconArray[curSelected].animation.curAnim.curFrame = 2;
 		// selector.y = (70 * curSelected) + 30;
 
 		#if !switch

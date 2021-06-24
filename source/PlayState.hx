@@ -175,10 +175,10 @@ class PlayState extends MusicBeatState
 	var santa:FlxSprite;
 
 	public var tankResetShit = false;
-	public var tankSky:FlxSprite;
-	public var tankClouds:FlxSprite;
-	public var mountains:FlxSprite;
-	public var tankBuildings:FlxSprite;
+	public var sky:FlxSprite;
+	public var clouds:FlxSprite;
+	public var mount:FlxSprite;
+	public var buildings:FlxSprite;
 	public var ruins:FlxSprite;
 	public var smokeLeft:FlxSprite;
 	public var smokeRight:FlxSprite;
@@ -189,11 +189,10 @@ class PlayState extends MusicBeatState
 	public var tank3:FlxSprite;
 	public var tank4:FlxSprite;
 	public var tank5:FlxSprite;
+	public var watchTower:FlxSprite;
 	public var tankGround:FlxSprite;
 	public var tankManRun = new FlxTypedGroup<TankmenBG>();
 	public var foregroundSprites = new FlxTypedGroup<FlxSprite>();
-
-	public var watchtower:WatchtowerTankmen;
 
 	var fc:Bool = true;
 
@@ -849,132 +848,121 @@ class PlayState extends MusicBeatState
 						add(stageCurtains);
 						trace('curtains added');
 				}
-				case 'tank':
-					{
-							defaultCamZoom = .9;
-							curStage = 'tank';
+			case 'tank':
+				{
+					defaultCamZoom = .9;
+					curStage = 'tank';
 
-							tankSky = new FlxSprite(-400, -400).loadGraphic(Paths.image('tank/tankSky'));
-							add(tankSky);
-							trace('sky added');
+					sky = new FlxSprite(-400, -400).loadGraphic(Paths.image('tank/tankSky'));
+					add(sky);
+					trace('sky tank added');
 
-							tankClouds = new FlxSprite(-700, -100).loadGraphic(Paths.image('tank/tankClouds'));
-							tankClouds.active = true;
-							tankClouds.velocity.x = FlxG.random.float(5, 15);
-							add(tankClouds);
-							trace('clouds added');
+					clouds = new FlxSprite(-700, -100).loadGraphic(Paths.image('tank/tankClouds'));
+					clouds.active = true;
+					clouds.velocity.x = FlxG.random.float(5, 15);
+					add(clouds);
+					trace('clouds tank added');
 
-							mountains = new FlxSprite(-300, -20).loadGraphic(Paths.image('tank/tankMountains'));
-							mountains.setGraphicSize(Std.int(1.2 * mountains.width));
-							mountains.updateHitbox();
-							add(mountains);
-							trace('mountains added');
+					mount = new FlxSprite(-300, -20).loadGraphic(Paths.image('tank/tankMountains'));
+					mount.setGraphicSize(Std.int(1.2 * mount.width));
+					mount.updateHitbox();
+					add(mount);
+					trace('mountain tank added');
 
-							tankBuildings = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankBuildings'));
-							tankBuildings.setGraphicSize(Std.int(1.1 * tankBuildings.width));
-							tankBuildings.updateHitbox();
-							add(tankBuildings);
-							trace('bg buildings added');
-							
-							ruins = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankRuins'));
-							ruins.setGraphicSize(Std.int(1.1 * ruins.width));
-							ruins.updateHitbox();
-							add(ruins);
-							trace('ruins added');
+					buildings = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankBuildings'));
+					buildings.setGraphicSize(Std.int(1.1 * buildings.width));
+					buildings.updateHitbox();
+					add(buildings);
+					trace('buildings tank added');
 
-							smokeLeft = new FlxSprite(-200, -100);
-							smokeLeft.frames = Paths.getSparrowAtlas('tank/smokeLeft');
-							smokeLeft.animation.addByPrefix('smokeLeft','SmokeBlurLeft', 24, true);
-							smokeLeft.animation.play('smokeLeft');
-							add(smokeLeft);
-							trace('left smoke added');
+					ruins = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankRuins'));
+					ruins.setGraphicSize(Std.int(1.1 * ruins.width));
+					ruins.updateHitbox();
+					add(ruins);
+					trace('ruins tank added');
 
-							smokeRight = new FlxSprite(1100, -100);
-							smokeRight.frames = Paths.getSparrowAtlas('tank/smokeRight');
-							smokeRight.animation.addByPrefix('smokeRight','SmokeRight', 24, true);
-							smokeRight.animation.play('smokeRight');
-							add(smokeRight);
-							trace('right smoke added');
-							
-							watchtower = new WatchtowerTankmen(100, 50);
-							add(watchtower);
-							trace('watchtower added');
-							if (FlxG.save.data.effects)
-								{
-									watchtower.visible = false;
-								}
+					smokeLeft = new FlxSprite(-200, -100);
+					smokeLeft.frames = Paths.getSparrowAtlas('tank/smokeLeft');
+					smokeLeft.animation.addByPrefix('smokeLeft','SmokeBlurLeft', 24, true);
+					smokeLeft.animation.play('smokeLeft');
+					add(smokeLeft);
+					trace('smoke left tank added');
 
-							tankGround = new FlxSprite(300, 300);
-							tankGround.frames = Paths.getSparrowAtlas('tank/tankRolling');
-							tankGround.animation.addByPrefix('tankRolling','BG tank w lighting');
-							add(tankGround);
-							trace('rollin tank added');
-							add(tankManRun);
-							trace('war tankmen added (will be used if pico speaker triggers them)');
-							if (FlxG.save.data.effects)
-								{
-									tankGround.visible = false;
-									tankManRun.visible = false;
-								}
+					smokeRight = new FlxSprite(1100, -100);
+					smokeRight.frames = Paths.getSparrowAtlas('tank/smokeRight');
+					smokeRight.animation.addByPrefix('smokeRight','SmokeRight', 24, true);
+					smokeRight.animation.play('smokeRight');
+					add(smokeRight);
+					trace('smoke right tank added');
 
-							ground = new FlxSprite(-420, -150).loadGraphic(Paths.image('tank/tankGround'));
-							ground.antialiasing = true;
-							ground.setGraphicSize(Std.int(1.15 * ground.width));
-							ground.updateHitbox();
-							add(ground);
-							trace('ground added');
+					watchTower = new FlxSprite(100, 50);
+					watchTower.frames = Paths.getSparrowAtlas('tank/tankWatchtower');
+					watchTower.animation.addByPrefix('tankWatchtower','watchtower gradient color');
+					add(watchTower);
+					trace('watchtower tank added');
 
-							tank0 = new FlxSprite(-500, 650);
-							tank0.frames = Paths.getSparrowAtlas('tank/tank0');
-							tank0.animation.addByPrefix('tank0','fg');
-							tank0.scrollFactor.set(1.7,1.5);
-							foregroundSprites.add(tank0);
-							trace('added tankman foreground bopper 0 to foreground sprite queue');
-							tank1 = new FlxSprite(-300, 750);
-							tank1.frames = Paths.getSparrowAtlas('tank/tank1');
-							tank1.animation.addByPrefix('dance','fg');
-							tank1.scrollFactor.set(2,.2);
-							foregroundSprites.add(tank1);
-							trace('added tankman foreground bopper 1 to foreground sprite queue');
-							tank2 = new FlxSprite(450, 940);
-							tank2.frames = Paths.getSparrowAtlas('tank/tank2');
-							tank2.animation.addByPrefix('dance','foreground');
-							tank2.scrollFactor.set(1.5,1.5);
-							foregroundSprites.add(tank2);
-							trace('added tankman foreground bopper 2 to foreground sprite queue');
-							tank3 = new FlxSprite(1620, 900);
-							tank3.frames = Paths.getSparrowAtlas('tank/tank3');
-							tank3.animation.addByPrefix('dance','fg');
-							tank3.scrollFactor.set(3.5,2.5);
-							foregroundSprites.add(tank3);
-							trace('added tankman foreground bopper 3 to foreground sprite queue');
-							tank4 = new FlxSprite(1300, 700);
-							tank4.frames = Paths.getSparrowAtlas('tank/tank4');
-							tank4.animation.addByPrefix('dance','fg');
-							tank4.scrollFactor.set(1.5,1.5);
-							foregroundSprites.add(tank4);
-							trace('added tankman foreground bopper 4 to foreground sprite queue');
-							tank5 = new FlxSprite(1300, 1200);
-							tank5.frames = Paths.getSparrowAtlas('tank/tank5');
-							tank5.animation.addByPrefix('dance','fg');
-							tank5.scrollFactor.set(1.5,1.5);
-							foregroundSprites.add(tank5);
-							trace('added tankman foreground bopper 5 to foreground sprite queue');
+					tankGround = new FlxSprite(300, 300);
+					tankGround.frames = Paths.getSparrowAtlas('tank/tankRolling');
+					tankGround.animation.addByPrefix('tankRolling','BG tank w lighting');
+					add(tankGround);
+					trace('rolling tank added');
 
-							if (FlxG.save.data.effects)
-								{
-									tank0.visible = false;
-									tank1.visible = false;
-									tank2.visible = false;
-									tank3.visible = false;
-									tank4.visible = false;
-									tank5.visible = false;
-								}
+					add(tankManRun);
+					trace('runners tank added');
 
-							moveTank();
+					ground = new FlxSprite(-420, -150).loadGraphic(Paths.image('tank/tankGround'));
+					ground.setGraphicSize(Std.int(1.15 * ground.width));
+					ground.updateHitbox();
+					add(ground);
+					trace('ground tank added');
 
-							trace('all tank shit added');
-					}
+					moveTank();
+					trace('first call of moveTank');
+
+					tank0 = new FlxSprite(-500, 650);
+					tank0.frames = Paths.getSparrowAtlas('tank/tank0');
+					tank0.animation.addByPrefix('tank0','fg');
+					tank0.scrollFactor.set(1.7,1.5);
+					foregroundSprites.add(tank0);
+					trace('tank0 added to fg sprite queue');
+
+					tank1 = new FlxSprite(-300, 750);
+					tank1.frames = Paths.getSparrowAtlas('tank/tank1');
+					tank1.animation.addByPrefix('dance','fg');
+					tank1.scrollFactor.set(2,.2);
+					foregroundSprites.add(tank1);
+					trace('tank1 added to fg sprite queue');
+
+					tank2 = new FlxSprite(450, 940);
+					tank2.frames = Paths.getSparrowAtlas('tank/tank2');
+					tank2.animation.addByPrefix('dance','foreground');
+					tank2.scrollFactor.set(1.5,1.5);
+					foregroundSprites.add(tank2);
+					trace('tank2 added to fg sprite queue');
+
+					tank3 = new FlxSprite(1620, 900);
+					tank3.frames = Paths.getSparrowAtlas('tank/tank3');
+					tank3.animation.addByPrefix('dance','fg');
+					tank3.scrollFactor.set(3.5,2.5);
+					foregroundSprites.add(tank3);
+					trace('tank3 added to fg sprite queue');
+
+					tank4 = new FlxSprite(1300, 700);
+					tank4.frames = Paths.getSparrowAtlas('tank/tank4');
+					tank4.animation.addByPrefix('dance','fg');
+					tank4.scrollFactor.set(1.5,1.5);
+					foregroundSprites.add(tank4);
+					trace('tank4 added to fg sprite queue');
+
+					tank5 = new FlxSprite(1300, 1200);
+					tank5.frames = Paths.getSparrowAtlas('tank/tank5');
+					tank5.animation.addByPrefix('dance','fg');
+					tank5.scrollFactor.set(1.5,1.5);
+					foregroundSprites.add(tank5);
+					trace('tank5 added to fg sprite queue');
+
+					trace('all tank shit added');
+				}
 				default:
 					{
 							defaultCamZoom = 0.9;
@@ -1037,37 +1025,35 @@ class PlayState extends MusicBeatState
 		case 'gf-pixel':
 			gfVersion = 'gf-pixel';
 	}
-	trace('gfversion is ' + SONG.gfVersion.toLowerCase());
+	trace('gfversion is ' + gfVersion);
 
-		gf = new Character(400, 130, gfVersion);
-		if(gfVersion == 'gf-tankmen')
+	gf = new Character(400, 130, gfVersion);
+	if(gfVersion == 'gf-tankmen')
+		{
+			gf.x -= 30;
+		}
+	if(gfVersion == 'pico-speaker')
+		{
+			gf.x -= 50;
+			gf.y -= 200;
+
+			var tempTankman:TankmenBG = new TankmenBG(20,500,true);
+			tempTankman.strumTime = 10;
+			tempTankman.resetShit(20,600,true);
+			tankManRun.add(tempTankman);
+
+			for(i in 0...TankmenBG.animationNotes.length)
 			{
-				gf.x -= 30;
-				trace('gf-tankmen repositioned');
-			}
-		else if(gfVersion == 'pico-speaker')
-			{
-				gf.x -= 50;
-				gf.y -= 200;
-				trace('pico-speaker repositioned');
-
-				var tempTankman:TankmenBG = new TankmenBG(20,500,true);
-				tempTankman.strumTime = 10;
-				tempTankman.resetShit(20,600,true);
-				tankManRun.add(tempTankman);
-
-				for(i in 0...TankmenBG.animationNotes.length)
+				if (FlxG.random.bool(16))
 				{
-					if (FlxG.random.bool(16))
-					{
-						var tankman:TankmenBG = tankManRun.recycle(TankmenBG);
-						tankman.strumTime = TankmenBG.animationNotes[i][0];
-						tankman.resetShit(500,200 + FlxG.random.int(50,100), TankmenBG.animationNotes[i][1] < 2);
-						tankManRun.add(tankman);
-					}
+					var tankman:TankmenBG = tankManRun.recycle(TankmenBG);
+					tankman.strumTime = TankmenBG.animationNotes[i][0];
+					tankman.resetShit(500,200 + FlxG.random.int(50,100), TankmenBG.animationNotes[i][1] < 2);
+					tankManRun.add(tankman);
 				}
-				trace('tankmen shit pico-speaker');
 			}
+			trace('tankmen shit pico-speaker');
+		}
 		gf.scrollFactor.set(0.95, 0.95);
 
 		dad = new Character(100, 100, SONG.player2);
@@ -1116,7 +1102,6 @@ class PlayState extends MusicBeatState
 				trace('senpai-angry positioned');
 			case 'tankman':
 				dad.y += 180;
-				trace('tankman positioned');
 			case 'spirit':
 				dad.x -= 150;
 				dad.y += 100;
@@ -1173,8 +1158,6 @@ class PlayState extends MusicBeatState
 				trace('stage specific repositioning for schoolEvil is done');
 			case 'tank':
 				boyfriend.x += 40;
-				trace('stage specific repositioning for tank is done');
-
 		}
 
 		add(gf);
@@ -1182,8 +1165,10 @@ class PlayState extends MusicBeatState
 
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')
+		{
 			add(limo);
 			trace('limo added');
+		}
 
 		add(dad);
 		trace('added dad');
@@ -1205,7 +1190,9 @@ class PlayState extends MusicBeatState
 		strumLine.scrollFactor.set();
 		
 		if (FlxG.save.data.downscroll)
-			strumLine.y = FlxG.height - 165;
+			{
+				strumLine.y = FlxG.height - 165;
+			}
 
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
 		add(strumLineNotes);
@@ -1670,7 +1657,7 @@ class PlayState extends MusicBeatState
 	var startTimer:FlxTimer;
 	var perfectMode:Bool = false;
 
-	var tankX:Int = 400;
+	var tankX = 400;
 	var tankAngle:Int = FlxG.random.int(-90,45);
 	var tankSpeed:Float = FlxG.random.float(5,7);
 
@@ -3924,9 +3911,9 @@ class PlayState extends MusicBeatState
 			notes.sort(FlxSort.byY, FlxSort.DESCENDING);
 		}
 
-		if(curStage == 'tank' || curStage == 'tankWar')
+		if(curStage == 'tank')
 			{
-				watchtower.dance();
+				watchTower.animation.play('watchTower');
 
 				foregroundSprites.forEach(function(a) {
 					a.animation.play('dance');
