@@ -11,6 +11,8 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import openfl.ui.Keyboard;
 import flixel.FlxSprite;
 import flixel.FlxG;
+import flixel.*;
+import haxe.*;
 
 class GameplayCustomizeState extends MusicBeatState
 {

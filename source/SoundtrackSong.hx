@@ -7,6 +7,8 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
+import flixel.*;
+import haxe.*;
 import Paths;
 
 class SoundtrackSong

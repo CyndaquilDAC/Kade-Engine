@@ -3,6 +3,8 @@ package;
 import flixel.FlxSprite;
 import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
+import flixel.*;
+import haxe.*;
 
 class HealthIcon extends FlxSprite
 {

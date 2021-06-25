@@ -15,6 +15,8 @@ import flixel.util.FlxColor;
 import io.newgrounds.NG;
 import lime.app.Application;
 import Sys;
+import flixel.*;
+import haxe.*;
 
 #if desktop
 import Discord.DiscordClient;

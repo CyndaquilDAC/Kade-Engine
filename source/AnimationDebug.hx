@@ -8,6 +8,8 @@ import flixel.addons.display.FlxGridOverlay;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import flixel.*;
+import haxe.*;
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;

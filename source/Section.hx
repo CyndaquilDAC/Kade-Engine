@@ -1,5 +1,8 @@
 package;
 
+import flixel.*;
+import haxe.*;
+
 typedef SwagSection =
 {
 	var sectionNotes:Array<Dynamic>;

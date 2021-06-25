@@ -1,5 +1,6 @@
 package;
-
+import flixel.*;
+import haxe.*;
 enum LoopState{
     NONE; // The song is not Looping
     REPEAT; // The song is either in a AB Loop or normal repeat mode

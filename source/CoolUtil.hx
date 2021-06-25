@@ -1,7 +1,8 @@
 package;
 
 import lime.utils.Assets;
-
+import flixel.*;
+import haxe.*;
 using StringTools;
 
 class CoolUtil

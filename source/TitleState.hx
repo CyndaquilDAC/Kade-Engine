@@ -23,6 +23,8 @@ import flixel.util.FlxTimer;
 import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
+import flixel.*;
+import haxe.*;
 
 #if desktop
 import Discord.DiscordClient;

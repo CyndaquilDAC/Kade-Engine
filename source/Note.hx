@@ -10,6 +10,8 @@ import flixel.util.FlxColor;
 import polymod.format.ParseRules.TargetSignatureElement;
 #end
 import PlayState;
+import flixel.*;
+import haxe.*;
 
 using StringTools;
 

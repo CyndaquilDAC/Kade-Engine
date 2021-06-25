@@ -2,7 +2,8 @@ package;
 
 import flixel.util.FlxColor;
 import openfl.display.ShaderParameter;
-
+import flixel.*;
+import haxe.*;
 typedef BlendModeShader =
 {
 	var uBlendColor:ShaderParameter<Float>;

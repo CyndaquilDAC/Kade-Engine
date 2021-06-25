@@ -7,6 +7,8 @@ import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
 import Section.SwagSection;
 import flixel.util.FlxSort;
+import flixel.*;
+import haxe.*;
 
 
 using StringTools;

@@ -7,6 +7,8 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import flixel.*;
+import haxe.*;
 
 class GameOverState extends FlxTransitionableState
 {

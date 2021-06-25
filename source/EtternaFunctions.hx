@@ -1,3 +1,6 @@
+import flixel.*;
+import haxe.*;
+
 class EtternaFunctions
 {
     // erf constants

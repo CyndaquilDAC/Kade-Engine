@@ -4,6 +4,8 @@ import Section.SwagSection;
 import haxe.Json;
 import haxe.format.JsonParser;
 import lime.utils.Assets;
+import flixel.*;
+import haxe.*;
 
 using StringTools;
 

@@ -10,7 +10,8 @@ import lime.utils.Assets;
 import haxe.Json;
 import flixel.input.keyboard.FlxKey;
 import openfl.utils.Dictionary;
-
+import flixel.*;
+import haxe.*;
 typedef KeyPress =
 {
     public var time:Float;

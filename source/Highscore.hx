@@ -1,6 +1,8 @@
 package;
 
 import flixel.FlxG;
+import flixel.*;
+import haxe.*;
 
 class Highscore
 {

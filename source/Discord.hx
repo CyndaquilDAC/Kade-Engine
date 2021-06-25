@@ -4,6 +4,8 @@ import Sys.sleep;
 #if desktop
 import discord_rpc.DiscordRpc;
 #end
+import flixel.*;
+import haxe.*;
 
 using StringTools;
 

@@ -44,6 +44,8 @@ import lime.utils.Assets;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
+import flixel.*;
+import haxe.*;
 
 #if desktop
 import Discord.DiscordClient;

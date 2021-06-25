@@ -14,6 +14,8 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.net.curl.CURLCode;
 import CoolUtil;
+import flixel.*;
+import haxe.*;
 
 #if desktop
 import Discord.DiscordClient;

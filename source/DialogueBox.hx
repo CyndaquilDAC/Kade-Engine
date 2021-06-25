@@ -12,6 +12,8 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import PlayState;
 import Song;
+import flixel.*;
+import haxe.*;
 
 using StringTools;
 

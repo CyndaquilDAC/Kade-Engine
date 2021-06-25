@@ -1,5 +1,6 @@
 package ;
- 
+import flixel.*;
+import haxe.*;
 import flixel.system.FlxBasePreloader;
 import openfl.display.Sprite;
 import flash.display.Bitmap;

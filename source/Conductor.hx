@@ -2,6 +2,8 @@ package;
 
 import Song.SwagSong;
 import flixel.FlxG;
+import flixel.*;
+import haxe.*;
 
 /**
  * ...
