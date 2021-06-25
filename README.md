@@ -1,13 +1,8 @@
-so we makin funky mod here's the development todo list:
-- CUSTOM CHARACTERS (task for vy rn) **Still working on it - Vy**
-- add external mod loading with our funky unhardcoded stuff
-- PLAYABLE CHARACTER SYSTEM
-- fix non-week 6 dialogue its all broken and ugly and offsets are wrong and antialiasing is messed up AHhhhhhHHHHAHAHAH **DONE YES YES YES - Cynda**
-- add animation triggering row to chartingstate so we can do away with stupid hardcoded heys and add more cool animations too (would support switching characters, gfversion, stage, all the funky shit there is to change too, and maybe supports sounds too? idfk
-- new icongrid system for funks sake **DONE - Vy**
-- winning icons **DONE - Cynda**
-- chart drug pop bopeebo
-
+**HEY!**
+this is a modded repo. not vanilla. there's also an additional dependency which you need called flixel studio which basically makes positioning shit EASY!!!
+to install it simply run:
+`haxelib git flixel-studio https://github.com/Dovyski/flixel-studio.git`
+in the terminal. love ya, hope you enjoy the mod!!!
 
 
 
