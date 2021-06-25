@@ -74,6 +74,8 @@ class TitleState extends MusicBeatState
 
 		// DEBUG BULLSHIT
 
+		flixel.addons.studio.FlxStudio.create();
+
 		super.create();
 
 		

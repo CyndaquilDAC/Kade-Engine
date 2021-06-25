@@ -77,10 +77,6 @@ class Main extends Sprite
 
 		addChild(game);
 
-		#if debug
-		flixel.addons.studio.FlxStudio.create();
-		#end
-
 		#if !mobile
 		fpsCounter = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsCounter);
