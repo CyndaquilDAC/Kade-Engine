@@ -1287,15 +1287,16 @@ class PlayState extends MusicBeatState
 		healthBarBG.scrollFactor.set();
 		add(healthBarBG);
 		//bar color vars
-		var picoBarColor = FlxColor.fromRGB(0, 191, 92);
-		var bfBarColor = FlxColor.fromRGB(58, 162, 207);
-		var parentsBarColor = FlxColor.fromRGB(138, 49, 173);
-		var spookyBarColor = FlxColor.fromRGB(255, 145, 0);
-		var senpaiBarColor = FlxColor.fromRGB(255, 185, 64);
-		var spiritAndGfAndShitBarColor = FlxColor.fromRGB(255, 0, 0);
+		var picoBarColor = FlxColor.fromRGB(183, 216, 85);
+		var bfBarColor = FlxColor.fromRGB(49, 176, 209);
+		var parentsBarColor = FlxColor.fromRGB(175, 102, 206);
+		var spookyBarColor = FlxColor.fromRGB(213, 126, 0);
+		var senpaiBarColor = FlxColor.fromRGB(255, 170, 111);
+		var spiritBarColor = FlxColor.fromRGB(255, 60, 110);
+		var gfBarColor = FlxColor.fromRGB(165, 0, 77);
 		var tankmanBarColor = FlxColor.fromRGB(28, 28, 28);
-		var testBarColor = FlxColor.fromRGB(122, 122, 122);
-		var monsterBarColor = FlxColor.fromRGB(255, 227, 115);
+		var testBarColor = FlxColor.fromRGB(161, 161, 161);
+		var monsterBarColor = FlxColor.fromRGB(243, 255, 110);
 		var realPlayerBarColor:FlxColor;
 		//the thing above is for playable characters which im too lazy to add rn
 		//so imma just make it set to bfBarColor by default cuz futureproofing
@@ -1326,8 +1327,14 @@ class PlayState extends MusicBeatState
 			case 'face':{
 				healthBar.createFilledBar(testBarColor, realPlayerBarColor);
 			}
+			case 'spirit':{
+				healthBar.createFilledBar(spiritBarColor, realPlayerBarColor);
+			}
+			case 'gf':{
+				healthBar.createFilledBar(gfBarColor, realPlayerBarColor);
+			}
 			default:{
-				healthBar.createFilledBar(spiritAndGfAndShitBarColor, realPlayerBarColor);
+				healthBar.createFilledBar(FlxColor.RED, realPlayerBarColor);
 			}
 		}
 		// healthBar
