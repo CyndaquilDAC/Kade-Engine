@@ -116,7 +116,7 @@ class Alphabet extends FlxSpriteGroup
 		splitWords = _finalText.split("");
 	}
 
-	public var personTalking:String = 'gf';
+	public var personTalking:String = 'GF';
 
 	public function startTypedText():Void
 	{
@@ -204,7 +204,7 @@ class Alphabet extends FlxSpriteGroup
 
 				if (FlxG.random.bool(40))
 				{
-					var daSound:String = "GF_";
+					var daSound:String = personTalking + "_";
 					FlxG.sound.play(Paths.soundRandom(daSound, 1, 4));
 				}
 
@@ -291,6 +291,10 @@ class AlphaCharacter extends FlxSprite
 		{
 			case '.':
 				animation.addByPrefix(letter, 'period', 24);
+				animation.play(letter);
+				y += 50;
+			case ',':
+				animation.addByPrefix(letter, 'comma', 24);
 				animation.play(letter);
 				y += 50;
 			case "'":

@@ -34,12 +34,13 @@ class StoryMenuState extends MusicBeatState
 		['Pico', 'Philly', 'Blammed'],
 		['Satin-Panties', 'High', 'Milf'],
 		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
-		['Senpai', 'Roses', 'Thorns']
+		['Senpai', 'Roses', 'Thorns'],
+		['Ugh', 'Guns', 'Stress']
 	];
 
 	var curDifficulty:Int = 1;
 
-	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true];
+	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true];
 
 	var weekCharacters:Array<Dynamic> = [
 		['', 'bf', 'gf'],
@@ -48,19 +49,10 @@ class StoryMenuState extends MusicBeatState
 		['pico', 'bf', 'gf'],
 		['mom', 'bf', 'gf'],
 		['parents-christmas', 'bf-christmas', 'gf-christmas'],
-		['senpai', 'bf', 'gf']
+		['senpai', 'bf', 'gf'],
+		['', 'bf', 'gf']
 	];
-	//too based for haxe to handle so i had to comment it out :(
-	//var weekNames:Array<String> = CoolUtil.coolTextFile(Paths.txt('weekNames'));
-	var weekNames:Array<String> = [
-		'How to Funk',
-		'Who should she call Daddy',
-		'The End of Spooky Month',
-		"Pico's Musical School",
-		'Mommy Must Murder',
-		'Red Snow',
-		'Hating Simulator'
-	];
+	var weekNames:Array<String> = CoolUtil.coolTextFile(Paths.txt('weekNames'));
 
 	var txtWeekTitle:FlxText;
 

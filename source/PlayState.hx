@@ -154,6 +154,8 @@ class PlayState extends MusicBeatState
 	private var camHUD:FlxCamera;
 	private var camGame:FlxCamera;
 
+	public var redRosesAddInt:Int = 0;
+
 	public static var offsetTesting:Bool = false;
 
 
@@ -175,6 +177,8 @@ class PlayState extends MusicBeatState
 	var upperBoppers:FlxSprite;
 	var bottomBoppers:FlxSprite;
 	var santa:FlxSprite;
+
+	public var redRoses:FlxSprite = new FlxSprite(-100, -100).makeGraphic(FlxG.width * 2, FlxG.height * 2, 0xFFff1b31);
 
 	public var tankResetShit = false;
 	public var sky:FlxSprite;
@@ -333,6 +337,10 @@ class PlayState extends MusicBeatState
 				hasIngameAnimatedScene = true;
 				trace('DAMN BITCH WE BE RUNNIN AN ANIMATED SCENE ON ' + SONG.song.toLowerCase());
 			}
+		if(SONG.song.toLowerCase() == 'ugh' || SONG.song.toLowerCase() == 'guns' || SONG.song.toLowerCase() == 'stress')
+			{
+				hasDialogueScene = false;
+			}
 		
 		/*
 		switch (SONG.song.toLowerCase())
@@ -385,7 +393,7 @@ class PlayState extends MusicBeatState
 
 		}
 		*/
-		if(SONG.song.toLowerCase() == 'philly nice' || SONG.song.toLowerCase() == 'winter horrorland' || SONG.song.toLowerCase() == 'satin panties' || SONG.song.toLowerCase() == 'dad battle' || SONG.song.toLowerCase() == 'ugh' || SONG.song.toLowerCase() == 'guns' || SONG.song.toLowerCase() == 'stress')
+		if(SONG.song.toLowerCase() == 'philly nice' || SONG.song.toLowerCase() == 'winter horrorland' || SONG.song.toLowerCase() == 'satin panties' || SONG.song.toLowerCase() == 'dad battle' || SONG.song.toLowerCase() == 'ugh' || SONG.song.toLowerCase() == 'guns' || SONG.song.toLowerCase() == 'stress' || SONG.song.toLowerCase() == 'ingame-scene-test')
 			{
 				switch(SONG.song.toLowerCase())
 				{
@@ -725,11 +733,6 @@ class PlayState extends MusicBeatState
 						bgGirls = new BackgroundGirls(-100, 190);
 						bgGirls.scrollFactor.set(0.9, 0.9);
 	
-						if (SONG.song.toLowerCase() == 'roses')
-							{
-								bgGirls.getScared();
-						}
-	
 						bgGirls.setGraphicSize(Std.int(bgGirls.width * daPixelZoom));
 						bgGirls.updateHitbox();
 						add(bgGirls);
@@ -1059,12 +1062,9 @@ class PlayState extends MusicBeatState
 		gf.scrollFactor.set(0.95, 0.95);
 
 		dad = new Character(100, 100, SONG.player2);
-
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
-
-		switch (SONG.player2)
-		{
-			case 'gf':
+		if(dad.curCharacter.startsWith('gf'))
+			{
 				dad.setPosition(gf.x, gf.y);
 				gf.visible = false;
 				if (isStoryMode)
@@ -1073,6 +1073,9 @@ class PlayState extends MusicBeatState
 					tweenCamIn();
 				}
 				trace('gf positioned (player 2)');
+			}
+		switch (SONG.player2)
+		{
 			case "spooky":
 				dad.y += 200;
 				trace('spooky positioned');
@@ -1181,7 +1184,6 @@ class PlayState extends MusicBeatState
 
 		doof = new DialogueBox(false, dialogue);
 		// doof.x += 70;
-		// doof.y = FlxG.height * 0.5;
 		doof.scrollFactor.set();
 		doof.finishThing = startCountdown;
 
@@ -1555,10 +1557,14 @@ class PlayState extends MusicBeatState
 			{
 				new FlxTimer().start(2, function(swagTimer:FlxTimer)
 					{
-						camFollow.setPosition(dad.getMidpoint().x, dad.getMidpoint().y);
+						camFollow.setPosition(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 						new FlxTimer().start(1, function(swagTimer:FlxTimer)
 							{
 								FlxG.sound.play(Paths.sound('ANGRY', 'shared'));
+								if(!FlxG.save.data.effects)
+									{
+										bgGirls.getScared();
+									}
 								new FlxTimer().start(1, function(swagTimer:FlxTimer)
 									{
 										add(doof);
@@ -1596,6 +1602,7 @@ class PlayState extends MusicBeatState
 			if (SONG.song.toLowerCase() == 'thorns')
 			{
 				add(red);
+				red.camera = camHUD;
 			}
 		}
 
@@ -1615,6 +1622,7 @@ class PlayState extends MusicBeatState
 
 					if (SONG.song.toLowerCase() == 'thorns')
 					{
+						senpaiEvil.camera = camHUD;
 						add(senpaiEvil);
 						senpaiEvil.alpha = 0;
 						new FlxTimer().start(0.3, function(swagTimer:FlxTimer)
@@ -1631,7 +1639,7 @@ class PlayState extends MusicBeatState
 								{
 									remove(senpaiEvil);
 									remove(red);
-									FlxG.camera.fade(FlxColor.WHITE, 0.01, true, function()
+									camHUD.fade(FlxColor.WHITE, 0.01, true, function()
 									{
 										add(dialogueBox);
 									}, true);
@@ -3881,7 +3889,23 @@ class PlayState extends MusicBeatState
 						altAnim = '';
 					}
 			}
-
+		if(SONG.song.toLowerCase() == 'roses')
+			{
+				if(isStoryMode)
+					{
+						if(curStep == 704)
+							{
+								redRoses.alpha = 0;
+								redRoses.camera = camHUD;
+								add(redRoses);				
+							}
+						else if (curStep == 707 + redRosesAddInt)
+							{
+								redRoses.alpha = redRoses.alpha + 0.1;
+								redRosesAddInt = redRosesAddInt + 2;
+							}
+					}
+			}
 		if (dad.curCharacter == 'spooky' && curStep % 4 == 2)
 		{
 			// dad.dance();

@@ -1,3 +1,5 @@
+//i hate how messy the shit i did to this code is and i hope i never have to look at it again.
+
 package;
 
 import flixel.system.FlxSound;
@@ -26,7 +28,7 @@ class DialogueBox extends FlxSpriteGroup
 	var dialogue:Alphabet;
 	var dialogueList:Array<String> = [];
 
-	// SECOND DIALOGUE FOR THE PIXEL SHIT INSTEAD???
+	// SECOND DIALOGUE FOR THE PIXEL SHIT INSTEAD??? WHY NINJAMUFFIN WHY??? I MEAN I GET FOR THE PIXEL FONT BUT YOU OBLITERATED THE OLD CODE!!!
 	var swagDialogue:FlxTypeText;
 
 	var dropText:FlxText;
@@ -111,19 +113,19 @@ class DialogueBox extends FlxSpriteGroup
 			if (bgFade.alpha > 0.7)
 				bgFade.alpha = 0.7;
 		}, 5);
-
-		box = new FlxSprite(-20, 45);
 		
 		var hasDialog = false;
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'senpai':
+				box = new FlxSprite(-20, 45);
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-pixel');
 				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
 				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
 				box.antialiasing = false;
 			case 'roses':
+				box = new FlxSprite(-20, 45);
 				hasDialog = true;
 				FlxG.sound.play(Paths.sound('ANGRY_TEXT_BOX'));
 
@@ -132,17 +134,20 @@ class DialogueBox extends FlxSpriteGroup
 				box.animation.addByIndices('normal', 'SENPAI ANGRY IMPACT SPEECH', [4], "", 24);
 
 			case 'thorns':
+				box = new FlxSprite(-20, 45);
 				hasDialog = true;
 				box.frames = Paths.getSparrowAtlas('weeb/pixelUI/dialogueBox-evil');
 				box.animation.addByPrefix('normalOpen', 'Spirit Textbox spawn', 24, false);
 				box.animation.addByIndices('normal', 'Spirit Textbox spawn', [11], "", 24);
 
 			default:
+				box = new FlxSprite(40);
 				hasDialog = true;
-				box.frames = Paths.getSparrowAtlas('ui/DialogueBox','shared');
-				box.animation.addByPrefix('normalOpen', 'Text Box Appear', 24, false);
-				box.animation.addByIndices('normal', 'Text Box Appear', [4], "", 24);
+				box.frames = Paths.getSparrowAtlas('ui/speech_bubbles','shared');
+				box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
+				box.animation.addByPrefix('normal', 'speech bubble normal', 24, true);
 				box.antialiasing = true;
+				box.y = FlxG.height * 0.5;
 
 		}
 
@@ -287,12 +292,17 @@ class DialogueBox extends FlxSpriteGroup
 				//rightDialogueSound = FlxG.sound.load(Paths.sound('bfDialogue'));
 		}
 		box.animation.play('normalOpen');
-		box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
-		box.updateHitbox();
+		switch(PlayState.SONG.song.toLowerCase())
+		{
+			case 'senpai' | 'roses' | 'thorns':
+				box.setGraphicSize(Std.int(box.width * PlayState.daPixelZoom * 0.9));
+				box.updateHitbox();
+			default:
+				//fuck you
+		}
 		add(box);
 
 		box.screenCenter(X);
-		box.antialiasing = true;
 		portraitLeft.screenCenter(X);
 
 		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9);
@@ -302,6 +312,7 @@ class DialogueBox extends FlxSpriteGroup
 			default:
 				handSelect.frames = Paths.getSparrowAtlas('ui/textboxhandanimatedgf','shared');
 				handSelect.antialiasing = true;
+				handSelect.visible = false;
 		}
 		handSelect.animation.addByPrefix('idle', 'textbox hand animated', 24, true);
 		add(handSelect);
@@ -310,7 +321,13 @@ class DialogueBox extends FlxSpriteGroup
 
 		if (!talkingRight)
 		{
-			// box.flipX = true;
+			switch(PlayState.SONG.song.toLowerCase())
+			{
+				case 'senpai' | 'roses' | 'thorns':
+					//fuck
+				default:
+					box.flipX = true;
+			}
 		}
 
 		dropText = new FlxText(242, 502, Std.int(FlxG.width * 0.6), "", 32);
@@ -318,11 +335,19 @@ class DialogueBox extends FlxSpriteGroup
 			case 'senpai' | 'roses' | 'thorns':
 				dropText.font = 'Pixel Arial 11 Bold';
 				dropText.color = 0xFFD89494;
-			default: 
+			default:
+				/*
 				dropText.font = Paths.font("vcr.ttf");
 				dropText.color = FlxColor.GRAY;
+				*/
 		}
-		add(dropText);
+		switch(PlayState.SONG.song.toLowerCase())
+		{
+			case 'senpai' | 'roses' | 'thorns':
+				add(dropText);
+			default:
+				//youre either a smart fella or a fart smella
+		}
 
 		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
 		switch(PlayState.SONG.song.toLowerCase()){
@@ -330,16 +355,31 @@ class DialogueBox extends FlxSpriteGroup
 				swagDialogue.font = 'Pixel Arial 11 Bold';
 				swagDialogue.color = 0xFF3F2021;
 				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
-			default: 
+			default:
+				/*
 				swagDialogue.font = Paths.font("vcr.ttf");
 				swagDialogue.color = FlxColor.BLACK;
 				swagDialogue.sounds = [FlxG.sound.load(Paths.sound('FunkinText'), 0.6)];
+				*/
 		}
-		add(swagDialogue);
+		switch(PlayState.SONG.song.toLowerCase())
+		{
+			case 'senpai' | 'roses' | 'thorns':
+				add(swagDialogue);
+			default:
+				//o3iutuidf
+		}
 
 		dialogue = new Alphabet(0, 80, "", false, true);
+		dialogue.y = 80 + FlxG.height * 0.5;
 		// dialogue.x = 90;
-		// add(dialogue);
+		switch(PlayState.SONG.song.toLowerCase())
+		{
+			case 'senpai' | 'roses' | 'thorns':
+				//egiyfgsresg3rehtegdvc
+			default:
+				add(dialogue);
+		}
 	}
 
 	var dialogueOpened:Bool = false;
@@ -386,7 +426,7 @@ class DialogueBox extends FlxSpriteGroup
 				{
 					isEnding = true;
 
-					if (PlayState.SONG.song.toLowerCase() == 'senpai' || PlayState.SONG.song.toLowerCase() == 'thorns')
+					if (PlayState.SONG.song.toLowerCase() != 'roses')
 						FlxG.sound.music.fadeOut(2.2, 0);
 
 					new FlxTimer().start(0.2, function(tmr:FlxTimer)
@@ -397,6 +437,7 @@ class DialogueBox extends FlxSpriteGroup
 						portraitRight.visible = false;
 						swagDialogue.alpha -= 1 / 5;
 						dropText.alpha = swagDialogue.alpha;
+						dialogue.alpha -= 1 / 5;
 					}, 5);
 
 					new FlxTimer().start(1.2, function(tmr:FlxTimer)
@@ -421,13 +462,22 @@ class DialogueBox extends FlxSpriteGroup
 	function startDialogue():Void
 	{
 		cleanDialog();
-		// var theDialog:Alphabet = new Alphabet(0, 70, dialogueList[0], false, true);
-		// dialogue = theDialog;
-		// add(theDialog);
-
-		// swagDialogue.text = ;
-		swagDialogue.resetText(dialogueList[0]);
-		swagDialogue.start(0.04, true);
+		switch(PlayState.SONG.song.toLowerCase())
+		{
+			case 'senpai' | 'roses' | 'thorns':
+				{
+					// swagDialogue.text = ;
+					swagDialogue.resetText(dialogueList[0]);
+					swagDialogue.start(0.04, true);
+				}
+			default:
+				{
+					var theDialog:Alphabet = new Alphabet(0, 70, dialogueList[0], false, true);
+					theDialog.y = 70 + FlxG.height * 0.5;
+					dialogue = theDialog;
+					add(theDialog);
+				}
+		}
 
 		switch (curCharacter)
 		{
@@ -447,6 +497,13 @@ class DialogueBox extends FlxSpriteGroup
 						portraitLeft.visible = true;
 						portraitLeft.animation.play('enter');
 					}
+				switch(PlayState.SONG.song.toLowerCase())
+				{
+					case 'senpai' | 'roses' | 'thorns':
+						//do nothing cuz the thing to do doesnt exist
+					default:
+						dialogue.personTalking = 'DAD';
+				}
 			case 'senpai':
 					portraitRight.visible = false;
 					portraitLeft.animation.remove('enter');
@@ -484,6 +541,13 @@ class DialogueBox extends FlxSpriteGroup
 						portraitLeft.visible = true;
 						portraitLeft.animation.play('enter');
 					}
+				switch(PlayState.SONG.song.toLowerCase())
+				{
+					case 'senpai' | 'roses' | 'thorns':
+						//do nothing cuz the thing to do doesnt exist
+					default:
+						dialogue.personTalking = 'MOM';
+				}
 			case 'gf':
 				face.visible = false;
 				portraitRight.visible = false;
@@ -532,6 +596,13 @@ class DialogueBox extends FlxSpriteGroup
 						portraitLeft.visible = true;
 						portraitLeft.animation.play('enter');
 					}
+				switch(PlayState.SONG.song.toLowerCase())
+				{
+					case 'senpai' | 'roses' | 'thorns':
+						//do nothing cuz the thing to do doesnt exist
+					default:
+						dialogue.personTalking = 'MONSTER';
+				}
 			case 'monsterchristmas':
 				face.visible = false;
 				portraitRight.visible = false;
@@ -548,6 +619,13 @@ class DialogueBox extends FlxSpriteGroup
 						portraitLeft.visible = true;
 						portraitLeft.animation.play('enter');
 					}
+				switch(PlayState.SONG.song.toLowerCase())
+				{
+					case 'senpai' | 'roses' | 'thorns':
+						//do nothing cuz the thing to do doesnt exist
+					default:
+						dialogue.personTalking = 'MONSTER';
+				}
 			case 'dadchristmas':
 				face.visible = false;
 				portraitRight.visible = false;
@@ -564,6 +642,13 @@ class DialogueBox extends FlxSpriteGroup
 						portraitLeft.visible = true;
 						portraitLeft.animation.play('enter');
 					}
+				switch(PlayState.SONG.song.toLowerCase())
+				{
+					case 'senpai' | 'roses' | 'thorns':
+						//do nothing cuz the thing to do doesnt exist
+					default:
+						dialogue.personTalking = 'DAD';
+				}
 			case 'momchristmas':
 				face.visible = false;
 				portraitRight.visible = false;
@@ -580,6 +665,13 @@ class DialogueBox extends FlxSpriteGroup
 						portraitLeft.visible = true;
 						portraitLeft.animation.play('enter');
 					}
+				switch(PlayState.SONG.song.toLowerCase())
+				{
+					case 'senpai' | 'roses' | 'thorns':
+						//do nothing cuz the thing to do doesnt exist
+					default:
+						dialogue.personTalking = 'MOM';
+				}
 			case 'parentschristmas':
 				face.visible = false;
 				portraitRight.visible = false;
@@ -612,6 +704,13 @@ class DialogueBox extends FlxSpriteGroup
 						portraitLeft.visible = true;
 						portraitLeft.animation.play('enter');
 					}
+				switch(PlayState.SONG.song.toLowerCase())
+				{
+					case 'senpai' | 'roses' | 'thorns':
+						//do nothing cuz the thing to do doesnt exist
+					default:
+						dialogue.personTalking = 'PICO';
+				}
 			case 'spooky':
 				face.visible = false;
 				portraitRight.visible = false;
@@ -628,6 +727,13 @@ class DialogueBox extends FlxSpriteGroup
 						portraitLeft.visible = true;
 						portraitLeft.animation.play('enter');
 					}
+				switch(PlayState.SONG.song.toLowerCase())
+				{
+					case 'senpai' | 'roses' | 'thorns':
+						//do nothing cuz the thing to do doesnt exist
+					default:
+						dialogue.personTalking = 'SPOOKY';
+				}
 			case 'bf':
 				face.visible = false;
 				portraitLeft.visible = false;
@@ -643,6 +749,13 @@ class DialogueBox extends FlxSpriteGroup
 					portraitRight.visible = true;
 					portraitRight.animation.play('enter');
 				}
+				switch(PlayState.SONG.song.toLowerCase())
+				{
+					case 'senpai' | 'roses' | 'thorns':
+						//do nothing cuz the thing to do doesnt exist
+					default:
+						dialogue.personTalking = 'BF';
+				}
 			case 'bfchristmas':
 				face.visible = false;
 				portraitLeft.visible = false;
@@ -657,6 +770,13 @@ class DialogueBox extends FlxSpriteGroup
 				{
 					portraitRight.visible = true;
 					portraitRight.animation.play('enter');
+				}
+				switch(PlayState.SONG.song.toLowerCase())
+				{
+					case 'senpai' | 'roses' | 'thorns':
+						//do nothing cuz the thing to do doesnt exist
+					default:
+						dialogue.personTalking = 'BF';
 				}
 			case 'bfpixel':
 				face.visible = false;
