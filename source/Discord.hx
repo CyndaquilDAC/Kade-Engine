@@ -6,6 +6,9 @@ import discord_rpc.DiscordRpc;
 #end
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 
 using StringTools;
 

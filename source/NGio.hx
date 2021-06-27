@@ -15,6 +15,8 @@ import lime.app.Application;
 import openfl.display.Stage;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 using StringTools;
 
 /**

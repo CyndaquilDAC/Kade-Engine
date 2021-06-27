@@ -4,6 +4,8 @@ package;
 import flixel.system.FlxAssets.FlxShader;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 enum WiggleEffectType
 {

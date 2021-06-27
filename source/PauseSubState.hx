@@ -14,6 +14,9 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 import PlayState;
 
 class PauseSubState extends MusicBeatSubstate

@@ -4,6 +4,9 @@ import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 
 class BackgroundGirls extends FlxSprite
 {

@@ -11,6 +11,8 @@ import flixel.util.FlxColor;
 import lime.utils.Assets;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 
 #if desktop

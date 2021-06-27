@@ -12,6 +12,8 @@ import flixel.math.FlxRect;
 import flixel.util.FlxTimer;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 class MusicBeatState extends FlxUIState
 {

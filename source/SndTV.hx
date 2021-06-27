@@ -1,6 +1,8 @@
 import h2d.Tweenie.TType;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 //praise delahee, i'll figure out what this shit means later!
 

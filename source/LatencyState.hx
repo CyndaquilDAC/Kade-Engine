@@ -7,6 +7,9 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 
 class LatencyState extends FlxState
 {

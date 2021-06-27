@@ -1639,7 +1639,7 @@ class PlayState extends MusicBeatState
 								{
 									remove(senpaiEvil);
 									remove(red);
-									camHUD.fade(FlxColor.WHITE, 0.01, true, function()
+									FlxG.camera.fade(FlxColor.WHITE, 0.01, true, function()
 									{
 										add(dialogueBox);
 									}, true);

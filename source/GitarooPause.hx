@@ -5,6 +5,9 @@ import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;

@@ -2,6 +2,8 @@ import openfl.Lib;
 import flixel.FlxG;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 class KadeEngineData
 {
     public static function initSave()

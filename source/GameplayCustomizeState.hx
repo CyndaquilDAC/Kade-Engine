@@ -13,6 +13,9 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 
 class GameplayCustomizeState extends MusicBeatState
 {

@@ -6,6 +6,8 @@ import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 class Paths
 {

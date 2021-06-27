@@ -5,6 +5,9 @@ import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 
 class HealthIcon extends FlxSprite
 {

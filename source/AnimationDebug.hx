@@ -10,6 +10,9 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;

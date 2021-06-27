@@ -8,6 +8,8 @@ import flixel.util.FlxColor;
 import lime.app.Application;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 class OutdatedSubState extends MusicBeatState
 {

@@ -9,6 +9,9 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 
 class GameOverSubstate extends MusicBeatSubstate
 {

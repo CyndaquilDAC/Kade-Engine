@@ -16,6 +16,8 @@ import lime.net.curl.CURLCode;
 import CoolUtil;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 #if desktop
 import Discord.DiscordClient;

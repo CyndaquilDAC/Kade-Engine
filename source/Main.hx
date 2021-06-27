@@ -14,6 +14,8 @@ import openfl.display.Sprite;
 import openfl.events.Event;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 class Main extends Sprite
 {

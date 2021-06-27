@@ -38,6 +38,8 @@ import openfl.net.FileReference;
 import openfl.utils.ByteArray;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 using StringTools;
 
@@ -1164,13 +1166,13 @@ class ChartingState extends MusicBeatState
 	{
 		if (check_mustHitSection.checked)
 		{
-			leftIcon.animation.play(_song.player1);
-			rightIcon.animation.play(_song.player2);
+			leftIcon.changeChar(_song.player1);
+			rightIcon.changeChar(_song.player2);
 		}
 		else
 		{
-			leftIcon.animation.play(_song.player2);
-			rightIcon.animation.play(_song.player1);
+			leftIcon.changeChar(_song.player2);
+			rightIcon.changeChar(_song.player1);
 		}
 	}
 

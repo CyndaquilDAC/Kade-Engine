@@ -7,6 +7,8 @@ import openfl.display.FPS;
 import openfl.Lib;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 class OptionCatagory
 {

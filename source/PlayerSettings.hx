@@ -6,6 +6,8 @@ import flixel.FlxG;
 import flixel.util.FlxSignal;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 // import ui.DeviceManager;
 // import props.Player;

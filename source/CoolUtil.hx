@@ -3,6 +3,9 @@ package;
 import lime.utils.Assets;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 using StringTools;
 
 class CoolUtil

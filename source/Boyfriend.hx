@@ -6,6 +6,9 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.util.FlxTimer;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 
 using StringTools;
 

@@ -12,6 +12,8 @@ import polymod.format.ParseRules.TargetSignatureElement;
 import PlayState;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 using StringTools;
 

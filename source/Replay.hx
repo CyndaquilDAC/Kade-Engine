@@ -12,6 +12,9 @@ import flixel.input.keyboard.FlxKey;
 import openfl.utils.Dictionary;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 typedef KeyPress =
 {
     public var time:Float;

@@ -3,6 +3,9 @@ package;
 import flixel.FlxG;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 
 class Highscore
 {

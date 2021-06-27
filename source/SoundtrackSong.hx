@@ -9,6 +9,8 @@ import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 import Paths;
 
 class SoundtrackSong

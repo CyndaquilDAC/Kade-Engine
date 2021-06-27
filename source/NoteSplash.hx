@@ -9,6 +9,8 @@ import flixel.math.FlxRandom;
 import flixel.util.FlxColor;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 #if polymod
 import polymod.format.ParseRules.TargetSignatureElement;
 #end

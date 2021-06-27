@@ -6,6 +6,8 @@ import haxe.format.JsonParser;
 import lime.utils.Assets;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 using StringTools;
 

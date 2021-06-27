@@ -17,6 +17,8 @@ import lime.app.Application;
 import Sys;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 #if desktop
 import Discord.DiscordClient;

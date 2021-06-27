@@ -1,6 +1,8 @@
 import faxe.Faxe;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 import SndTV;
 using StringTools;

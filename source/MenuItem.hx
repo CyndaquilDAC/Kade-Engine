@@ -8,6 +8,8 @@ import flixel.math.FlxMath;
 import flixel.util.FlxColor;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 class MenuItem extends FlxSpriteGroup
 {

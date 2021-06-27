@@ -1,5 +1,7 @@
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 class EtternaFunctions
 {

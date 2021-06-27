@@ -9,6 +9,8 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 class GameOverState extends FlxTransitionableState
 {

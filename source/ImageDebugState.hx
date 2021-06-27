@@ -4,6 +4,9 @@ import lime.app.Promise;
 import lime.app.Future;
 
 import flixel.*;
+import haxe.*;
+import lime.*;
+import openfl.*;
 
 import openfl.utils.Assets;
 import lime.utils.Assets as LimeAssets;

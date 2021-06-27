@@ -7,6 +7,8 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
 
 class OptionsSubState extends MusicBeatSubstate
 {

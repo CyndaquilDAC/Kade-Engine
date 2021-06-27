@@ -9,6 +9,9 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.util.FlxTimer;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 import openfl.utils.Assets;
 import lime.utils.Assets as LimeAssets;
 import lime.utils.AssetLibrary;

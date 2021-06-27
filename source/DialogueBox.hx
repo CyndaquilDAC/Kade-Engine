@@ -16,6 +16,9 @@ import PlayState;
 import Song;
 import flixel.*;
 import haxe.*;
+import lime.*;
+import openfl.*;
+
 
 using StringTools;
 
