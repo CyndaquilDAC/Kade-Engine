@@ -29,6 +29,10 @@ class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;
 
+	var returnWeek:Int = 0;
+
+	var yellowBG:FlxSprite;
+
 	var weekData:Array<Dynamic> = [
 		['Tutorial'],
 		['Bopeebo', 'Fresh', 'Dadbattle'],
@@ -43,6 +47,17 @@ class StoryMenuState extends MusicBeatState
 	var curDifficulty:Int = 1;
 
 	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true];
+
+	var weekColors:Array<FlxColor> = [
+		FlxColor.fromRGB(165, 0, 77),
+		FlxColor.fromRGB(175, 102, 206),
+		FlxColor.fromRGB(213, 126, 0),
+		FlxColor.fromRGB(183, 216, 85),
+		FlxColor.fromRGB(216, 85, 142),
+		FlxColor.WHITE,
+		FlxColor.fromRGB(255, 170, 111),
+		FlxColor.fromRGB(238, 157, 6)
+	];
 
 	var weekCharacters:Array<Dynamic> = [
 		['', 'bf', 'gf'],
@@ -105,7 +120,7 @@ class StoryMenuState extends MusicBeatState
 		rankText.screenCenter(X);
 
 		var ui_tex = Paths.getSparrowAtlas('campaign_menu_UI_assets');
-		var yellowBG:FlxSprite = new FlxSprite(0, 56).makeGraphic(FlxG.width, 400, 0xFFF9CF51);
+		yellowBG = new FlxSprite(0, 56).makeGraphic(FlxG.width, 400, FlxColor.WHITE);
 
 		grpWeekText = new FlxTypedGroup<MenuItem>();
 		add(grpWeekText);
@@ -167,6 +182,7 @@ class StoryMenuState extends MusicBeatState
 		sprDifficulty.animation.addByPrefix('baby', 'BABY');
 		sprDifficulty.animation.addByPrefix('insane', 'INSANE');
 		sprDifficulty.animation.play('easy');
+		sprDifficulty.antialiasing = true;
 		changeDifficulty();
 		trace('funie difficulty');
 
@@ -195,6 +211,7 @@ class StoryMenuState extends MusicBeatState
 		trace('text n shit');
 
 		updateText();
+		changeWeek(returnWeek);
 
 		super.create();
 	}
@@ -327,7 +344,7 @@ class StoryMenuState extends MusicBeatState
 			}
 
 			PlayState.storyDifficulty = curDifficulty;
-
+			returnWeek = curWeek;
 			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
@@ -392,6 +409,10 @@ class StoryMenuState extends MusicBeatState
 	function changeWeek(change:Int = 0):Void
 	{
 		curWeek += change;
+
+		//yellowBG.color = weekColors[curWeek];
+
+		FlxTween.color(yellowBG, 0.5, yellowBG.color, weekColors[curWeek]);
 
 		if (curWeek >= weekData.length)
 			curWeek = 0;

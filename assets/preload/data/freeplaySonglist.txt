@@ -1,4 +1,4 @@
-Tutorial:gf:1
+Tutorial:gf:0
 Bopeebo:dad:1
 Fresh:dad:1
 Dadbattle:dad:1
@@ -17,6 +17,6 @@ Winter-Horrorland:monster-christmas:5
 Senpai:senpai:6
 Roses:senpai-angry:6
 Thorns:spirit:6
-Ugh:tankman:1
-Guns:tankman:1
-Stress:tankman:1
+Ugh:tankman:7
+Guns:tankman:7
+Stress:tankman:7

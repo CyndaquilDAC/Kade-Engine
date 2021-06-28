@@ -1,5 +1,8 @@
 package;
 
+import flixel.tweens.FlxTween;
+import flixel.tweens.FlxTween.FlxTweenManager;
+import flixel.tweens.misc.ColorTween;
 import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -31,6 +34,7 @@ class FreeplayState extends MusicBeatState
 	var selector:FlxText;
 	var curSelected:Int = 0;
 	var curDifficulty:Int = 1;
+	var bg:FlxSprite;
 
 	var scoreText:FlxText;
 	var diffText:FlxText;
@@ -41,6 +45,17 @@ class FreeplayState extends MusicBeatState
 	private var curPlaying:Bool = false;
 
 	private var iconArray:Array<HealthIcon> = [];
+
+	var weekColors:Array<FlxColor> = [
+		FlxColor.fromRGB(165, 0, 77),
+		FlxColor.fromRGB(175, 102, 206),
+		FlxColor.fromRGB(213, 126, 0),
+		FlxColor.fromRGB(183, 216, 85),
+		FlxColor.fromRGB(216, 85, 142),
+		FlxColor.WHITE,
+		FlxColor.fromRGB(255, 170, 111),
+		FlxColor.fromRGB(238, 157, 6)
+	];
 
 	override function create()
 	{
@@ -75,7 +90,7 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuBGBlue'));
+		bg = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
 		add(bg);
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
@@ -265,6 +280,10 @@ class FreeplayState extends MusicBeatState
 
 		iconArray[curSelected].animation.curAnim.curFrame = 2;
 		// selector.y = (70 * curSelected) + 30;
+
+		//bg.color = weekColors[songs[curSelected].week];
+		
+		FlxTween.color(bg, 0.5, bg.color, weekColors[songs[curSelected].week]);
 
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
