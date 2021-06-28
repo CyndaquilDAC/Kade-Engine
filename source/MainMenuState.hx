@@ -17,8 +17,6 @@ import lime.app.Application;
 import Sys;
 import flixel.*;
 import haxe.*;
-import lime.*;
-import openfl.*;
 
 #if desktop
 import Discord.DiscordClient;
@@ -46,6 +44,9 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 	var backSpace:FlxSprite;
 
+	private var camOverlay:FlxCamera;
+	private var camBG:FlxCamera;
+
 	override function create()
 	{
 		#if desktop
@@ -59,6 +60,13 @@ class MainMenuState extends MusicBeatState
 			trace('kickstarter aint over adding kickstarter to list');
 		}
 		*/
+
+		camBG = new FlxCamera();
+		camOverlay = new FlxCamera();
+		camOverlay.bgColor.alpha = 0;
+		FlxG.cameras.reset(camBG);
+		FlxG.cameras.add(camOverlay);
+		FlxCamera.defaultCameras = [camBG];
 
 		if (!FlxG.sound.music.playing)
 		{
@@ -109,7 +117,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.antialiasing = true;
 		}
 
-		FlxG.camera.follow(camFollow, null, 0.60 * (60 / FlxG.save.data.fpsCap));
+		FlxG.camera.cameras[camBG.ID].follow(camFollow, null, 0.60 * (60 / FlxG.save.data.fpsCap));
 
 		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, gameVer + " FNF - " + kadeEngineVer + " Kade Engine", 12);
 		versionShit.scrollFactor.set();
@@ -131,6 +139,7 @@ class MainMenuState extends MusicBeatState
 		backSpace.frames = Paths.getSparrowAtlas('backMainMenu');
 		backSpace.animation.addByPrefix('idle', 'backspace title', true);
 		backSpace.animation.addByPrefix('pushed', 'pushed backspace title', true);
+		backSpace.cameras = [camOverlay];
 		add(backSpace);
 		backSpace.animation.play('idle');
 
@@ -198,7 +207,13 @@ class MainMenuState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('confirmMenu'));
 
 					FlxFlicker.flicker(magenta, 1.1, 0.15, false);
-
+					FlxTween.tween(backSpace, {alpha: 0}, 1.3, {
+						ease: FlxEase.quadOut,
+						onComplete: function(twn:FlxTween)
+						{
+							backSpace.kill();
+						}
+					});
 					menuItems.forEach(function(spr:FlxSprite)
 					{
 						if (curSelected != spr.ID)

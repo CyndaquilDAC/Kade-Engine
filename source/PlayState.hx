@@ -1,5 +1,6 @@
 package;
 
+import flixel.math.FlxAngle;
 import LoopState;
 import lime.app.Application;
 import lime.media.AudioContext;
@@ -856,26 +857,30 @@ class PlayState extends MusicBeatState
 			case 'tank':
 				{
 					defaultCamZoom = .9;
-					curStage = 'tank';
+					curStage = 'tankmen';
 
 					sky = new FlxSprite(-400, -400).loadGraphic(Paths.image('tank/tankSky'));
+					sky.scrollFactor.set();
 					add(sky);
 					trace('sky tank added');
 
-					clouds = new FlxSprite(-700, -100).loadGraphic(Paths.image('tank/tankClouds'));
+					clouds = new FlxSprite(FlxG.random.int(-700, -100), FlxG.random.int(-20, 20)).loadGraphic(Paths.image('tank/tankClouds'));
 					clouds.active = true;
 					clouds.velocity.x = FlxG.random.float(5, 15);
+					clouds.scrollFactor.set(0.1, 0.1);
 					add(clouds);
 					trace('clouds tank added');
 
 					mount = new FlxSprite(-300, -20).loadGraphic(Paths.image('tank/tankMountains'));
 					mount.setGraphicSize(Std.int(1.2 * mount.width));
+					mount.scrollFactor.set(0.2, 0.2);
 					mount.updateHitbox();
 					add(mount);
 					trace('mountain tank added');
 
 					buildings = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankBuildings'));
 					buildings.setGraphicSize(Std.int(1.1 * buildings.width));
+					buildings.scrollFactor.set(0.3, 0.3);
 					buildings.updateHitbox();
 					add(buildings);
 					trace('buildings tank added');
@@ -883,6 +888,7 @@ class PlayState extends MusicBeatState
 					ruins = new FlxSprite(-200, 0).loadGraphic(Paths.image('tank/tankRuins'));
 					ruins.setGraphicSize(Std.int(1.1 * ruins.width));
 					ruins.updateHitbox();
+					ruins.scrollFactor.set(0.35, 0.35);
 					add(ruins);
 					trace('ruins tank added');
 
@@ -890,6 +896,8 @@ class PlayState extends MusicBeatState
 					smokeLeft.frames = Paths.getSparrowAtlas('tank/smokeLeft');
 					smokeLeft.animation.addByPrefix('smokeLeft','SmokeBlurLeft', 24, true);
 					smokeLeft.animation.play('smokeLeft');
+					smokeLeft.scrollFactor.set(0.4, 0.4);
+					smokeLeft.antialiasing = true;
 					add(smokeLeft);
 					trace('smoke left tank added');
 
@@ -897,20 +905,37 @@ class PlayState extends MusicBeatState
 					smokeRight.frames = Paths.getSparrowAtlas('tank/smokeRight');
 					smokeRight.animation.addByPrefix('smokeRight','SmokeRight', 24, true);
 					smokeRight.animation.play('smokeRight');
+					smokeRight.scrollFactor.set(0.4, 0.4);
+					smokeRight.antialiasing = true;
 					add(smokeRight);
 					trace('smoke right tank added');
 
 					watchTower = new FlxSprite(100, 50);
 					watchTower.frames = Paths.getSparrowAtlas('tank/tankWatchtower');
 					watchTower.animation.addByPrefix('tankWatchtower','watchtower gradient color');
+					watchTower.scrollFactor.set(0.5, 0.5);
+					watchTower.antialiasing = true;
 					add(watchTower);
+					if(!FlxG.save.data.effects)
+						{
+							watchTower.visible = false;
+						}
 					trace('watchtower tank added');
 
 					tankGround = new FlxSprite(300, 300);
 					tankGround.frames = Paths.getSparrowAtlas('tank/tankRolling');
-					tankGround.animation.addByPrefix('tankRolling','BG tank w lighting');
+					tankGround.animation.addByPrefix('tankRolling', 'BG tank w lighting', 24, true);
+					tankGround.scrollFactor.set(0.5, 0.5);
+					tankGround.antialiasing = true;
 					add(tankGround);
+					if(!FlxG.save.data.effects)
+						{
+							tankGround.visible = false;
+						}
 					trace('rolling tank added');
+
+					tankGround.animation.play('tankRolling');
+					trace('roll tank loop anim played');
 
 					add(tankManRun);
 					trace('runners tank added');
@@ -918,6 +943,7 @@ class PlayState extends MusicBeatState
 					ground = new FlxSprite(-420, -150).loadGraphic(Paths.image('tank/tankGround'));
 					ground.setGraphicSize(Std.int(1.15 * ground.width));
 					ground.updateHitbox();
+					ground.antialiasing = true;
 					add(ground);
 					trace('ground tank added');
 
@@ -928,34 +954,31 @@ class PlayState extends MusicBeatState
 					tank0.frames = Paths.getSparrowAtlas('tank/tank0');
 					tank0.animation.addByPrefix('tank0','fg');
 					tank0.scrollFactor.set(1.7,1.5);
+					tank0.antialiasing = true;
 					foregroundSprites.add(tank0);
 					trace('tank0 added to fg sprite queue');
 
 					tank1 = new FlxSprite(-300, 750);
 					tank1.frames = Paths.getSparrowAtlas('tank/tank1');
 					tank1.animation.addByPrefix('dance','fg');
-					tank1.scrollFactor.set(2,.2);
+					tank1.scrollFactor.set(2, 0.2);
+					tank1.antialiasing = true;
 					foregroundSprites.add(tank1);
 					trace('tank1 added to fg sprite queue');
 
 					tank2 = new FlxSprite(450, 940);
 					tank2.frames = Paths.getSparrowAtlas('tank/tank2');
 					tank2.animation.addByPrefix('dance','foreground');
-					tank2.scrollFactor.set(1.5,1.5);
+					tank2.scrollFactor.set(1.5, 1.5);
+					tank2.antialiasing = true;
 					foregroundSprites.add(tank2);
 					trace('tank2 added to fg sprite queue');
-
-					tank3 = new FlxSprite(1620, 900);
-					tank3.frames = Paths.getSparrowAtlas('tank/tank3');
-					tank3.animation.addByPrefix('dance','fg');
-					tank3.scrollFactor.set(3.5,2.5);
-					foregroundSprites.add(tank3);
-					trace('tank3 added to fg sprite queue');
 
 					tank4 = new FlxSprite(1300, 700);
 					tank4.frames = Paths.getSparrowAtlas('tank/tank4');
 					tank4.animation.addByPrefix('dance','fg');
-					tank4.scrollFactor.set(1.5,1.5);
+					tank4.scrollFactor.set(1.5, 1.5);
+					tank4.antialiasing = true;
 					foregroundSprites.add(tank4);
 					trace('tank4 added to fg sprite queue');
 
@@ -963,8 +986,27 @@ class PlayState extends MusicBeatState
 					tank5.frames = Paths.getSparrowAtlas('tank/tank5');
 					tank5.animation.addByPrefix('dance','fg');
 					tank5.scrollFactor.set(1.5,1.5);
+					tank5.antialiasing = true;
 					foregroundSprites.add(tank5);
 					trace('tank5 added to fg sprite queue');
+
+					tank3 = new FlxSprite(1620, 900);
+					tank3.frames = Paths.getSparrowAtlas('tank/tank3');
+					tank3.animation.addByPrefix('dance','fg');
+					tank3.scrollFactor.set(3.5, 2.5);
+					tank3.antialiasing = true;
+					foregroundSprites.add(tank3);
+					trace('tank3 added to fg sprite queue');
+
+					if(!FlxG.save.data.effects)
+						{
+							tank0.visible = false;
+							tank1.visible = false;
+							tank2.visible = false;
+							tank3.visible = false;
+							tank4.visible = false;
+							tank5.visible = false;
+						}
 
 					trace('all tank shit added');
 				}
@@ -1120,8 +1162,15 @@ class PlayState extends MusicBeatState
 		}
 
 
-		
-		boyfriend = new Boyfriend(770, 450, SONG.player1);
+		if(curStage == 'tankmen')
+			{
+				boyfriend = new Boyfriend(770 + 40, 450, SONG.player1);
+			}
+		else
+			{
+				boyfriend = new Boyfriend(770, 450, SONG.player1);
+			}
+		//breaking: stupid fucking workaround to fix stupid fucking bug on stupid fucking stage
 
 		// REPOSITIONING PER STAGE
 		switch (curStage)
@@ -1161,8 +1210,6 @@ class PlayState extends MusicBeatState
 				gf.x += 180;
 				gf.y += 300;
 				trace('stage specific repositioning for schoolEvil is done');
-			case 'tank':
-				boyfriend.x += 40;
 		}
 
 		add(gf);
@@ -1674,16 +1721,16 @@ class PlayState extends MusicBeatState
 	var startTimer:FlxTimer;
 	var perfectMode:Bool = false;
 
+	var tankAngle = FlxG.random.float(-90, 45);
+	var tankSpeed = FlxG.random.float(5, 7);
 	var tankX = 400;
-	var tankAngle:Int = FlxG.random.int(-90,45);
-	var tankSpeed:Float = FlxG.random.float(5,7);
 
 	function moveTank()
 		{
-			tankAngle += Math.floor(elapsed * tankSpeed);
+			tankAngle += FlxG.elapsed * tankSpeed;
 			tankGround.angle = tankAngle - 90 + 15;
-			tankGround.x = tankX + 1500 * Math.cos(Math.PI / 180 * (1 * tankAngle + 180));
-			tankGround.y = 1300 + 1199 * Math.sin(Math.PI / 180 * (1 * tankAngle + 180));
+			tankGround.x = tankX + 1500 * FlxMath.fastCos(FlxAngle.asRadians(tankAngle + 180));
+			tankGround.y = 1300 + 1100 * FlxMath.fastSin(FlxAngle.asRadians(tankAngle + 180));
 		}
 
 	function startCountdown():Void
@@ -2303,7 +2350,6 @@ class PlayState extends MusicBeatState
 		#if !debug
 		perfectMode = false;
 		#end
-
 		if (currentFrames == FlxG.save.data.fpsCap)
 		{
 			for(i in 0...notesHitArray.length)
@@ -2353,11 +2399,14 @@ class PlayState extends MusicBeatState
 					}
 				}
 				// phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed;
-			case 'tank':
-				moveTank();
 		}
 
 		super.update(elapsed);
+
+		if(curStage == 'tankmen')
+			{
+				moveTank();
+			}
 
 		if (!offsetTesting)
 		{
@@ -3944,9 +3993,9 @@ class PlayState extends MusicBeatState
 			notes.sort(FlxSort.byY, FlxSort.DESCENDING);
 		}
 
-		if(curStage == 'tank')
+		if(curStage == 'tankmen')
 			{
-				watchTower.animation.play('watchTower');
+				watchTower.animation.play('tankWatchtower');
 
 				foregroundSprites.forEach(function(a) {
 					a.animation.play('dance');

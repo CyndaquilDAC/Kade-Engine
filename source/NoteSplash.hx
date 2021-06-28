@@ -1,3 +1,6 @@
+//detoria wrote the original version of this code
+//cyndaquildac did some fixins hehe
+
 package;
 
 import flixel.addons.effects.FlxSkewedSprite;
