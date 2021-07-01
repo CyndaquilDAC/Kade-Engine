@@ -1,9 +1,5 @@
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.*;
-import haxe.*;
-import lime.*;
-import openfl.*;
 
 class TankmenBG extends FlxSprite
 {

@@ -412,7 +412,7 @@ class StoryMenuState extends MusicBeatState
 
 		//yellowBG.color = weekColors[curWeek];
 
-		FlxTween.color(yellowBG, 0.5, yellowBG.color, weekColors[curWeek]);
+		FlxTween.color(yellowBG, 1, yellowBG.color, weekColors[curWeek]);
 
 		if (curWeek >= weekData.length)
 			curWeek = 0;
@@ -431,7 +431,7 @@ class StoryMenuState extends MusicBeatState
 			bullShit++;
 		}
 
-		FlxG.sound.play(Paths.sound('scrollMenu'));
+		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
 		updateText();
 	}

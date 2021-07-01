@@ -283,7 +283,7 @@ class FreeplayState extends MusicBeatState
 
 		//bg.color = weekColors[songs[curSelected].week];
 		
-		FlxTween.color(bg, 0.5, bg.color, weekColors[songs[curSelected].week]);
+		FlxTween.color(bg, 1, bg.color, weekColors[songs[curSelected].week]);
 
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);

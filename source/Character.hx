@@ -7,10 +7,6 @@ import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
 import Section.SwagSection;
 import flixel.util.FlxSort;
-import flixel.*;
-import haxe.*;
-import lime.*;
-import openfl.*;
 
 
 using StringTools;
@@ -242,6 +238,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'spooky DOWN note', 24, false);
 				animation.addByPrefix('singLEFT', 'note sing left', 24, false);
 				animation.addByPrefix('singRIGHT', 'spooky sing right', 24, false);
+				animation.addByPrefix('singUP-alt', 'spooky HEY', 24, false);
+				animation.addByPrefix('singDOWN-alt', 'spooky HEY', 24, false);
+				animation.addByPrefix('singLEFT-alt', 'spooky HEY', 24, false);
+				animation.addByPrefix('singRIGHT-alt', 'spooky HEY', 24, false);
 				animation.addByIndices('danceLeft', 'spooky dance idle', [0, 2, 6], "", 12, false);
 				animation.addByIndices('danceRight', 'spooky dance idle', [8, 10, 12, 14], "", 12, false);
 
@@ -252,6 +252,11 @@ class Character extends FlxSprite
 				addOffset("singRIGHT", -130, -14);
 				addOffset("singLEFT", 130, -10);
 				addOffset("singDOWN", -50, -130);
+
+				addOffset("singUP-alt", 60, 7);
+				addOffset("singRIGHT-alt", 60, 7);
+				addOffset("singLEFT-alt", 60, 7);
+				addOffset("singDOWN-alt", 60, 7);
 
 				playAnim('danceRight');
 			case 'mom':

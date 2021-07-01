@@ -157,6 +157,22 @@ class PlayState extends MusicBeatState
 
 	public var redRosesAddInt:Int = 0;
 
+	public var spiritAlphaAddInt:Int = 0;
+
+	public var senpaiBlackStage:Int = 0;
+
+	//i hate that i have to do this but im stupid and dumb and cannot figure out how to do it a cleaner way!!!
+	public var senpaiBlackColors:Array<FlxColor> = [
+		FlxColor.WHITE,
+		FlxColor.fromRGB(217, 217, 217),
+		FlxColor.fromRGB(189, 189, 189),
+		FlxColor.fromRGB(145, 145, 145),
+		FlxColor.fromRGB(107, 107, 107),
+		FlxColor.fromRGB(66, 66, 66),
+		FlxColor.fromRGB(36, 36, 36),
+		FlxColor.BLACK
+	];
+
 	public static var offsetTesting:Bool = false;
 
 
@@ -428,9 +444,9 @@ class PlayState extends MusicBeatState
 				var hallowTex = Paths.getSparrowAtlas('halloween_bg');
 				switch(SONG.song.toLowerCase()){
 					case 'spookeez' | 'south':
-						var hallowTex = Paths.getSparrowAtlas('halloween_bg_withmonster');
+						hallowTex = Paths.getSparrowAtlas('halloween_bg_withmonster');
 					default:
-						var hallowTex = Paths.getSparrowAtlas('halloween_bg');
+						hallowTex = Paths.getSparrowAtlas('halloween_bg');
 				}
 				halloweenBG = new FlxSprite(-200, -100);
 				halloweenBG.frames = hallowTex;
@@ -912,7 +928,7 @@ class PlayState extends MusicBeatState
 
 					watchTower = new FlxSprite(100, 50);
 					watchTower.frames = Paths.getSparrowAtlas('tank/tankWatchtower');
-					watchTower.animation.addByPrefix('tankWatchtower','watchtower gradient color');
+					watchTower.animation.addByPrefix('tankWatchtower', 'watchtower gradient color', 24, false);
 					watchTower.scrollFactor.set(0.5, 0.5);
 					watchTower.antialiasing = true;
 					add(watchTower);
@@ -952,15 +968,15 @@ class PlayState extends MusicBeatState
 
 					tank0 = new FlxSprite(-500, 650);
 					tank0.frames = Paths.getSparrowAtlas('tank/tank0');
-					tank0.animation.addByPrefix('tank0','fg');
-					tank0.scrollFactor.set(1.7,1.5);
+					tank0.animation.addByPrefix('dance', 'fg tankhead far right instance 1', 24, false);
+					tank0.scrollFactor.set(1.7, 1.5);
 					tank0.antialiasing = true;
 					foregroundSprites.add(tank0);
 					trace('tank0 added to fg sprite queue');
 
 					tank1 = new FlxSprite(-300, 750);
 					tank1.frames = Paths.getSparrowAtlas('tank/tank1');
-					tank1.animation.addByPrefix('dance','fg');
+					tank1.animation.addByPrefix('dance', 'fg tankhead 5 instance 1', 24, false);
 					tank1.scrollFactor.set(2, 0.2);
 					tank1.antialiasing = true;
 					foregroundSprites.add(tank1);
@@ -968,31 +984,31 @@ class PlayState extends MusicBeatState
 
 					tank2 = new FlxSprite(450, 940);
 					tank2.frames = Paths.getSparrowAtlas('tank/tank2');
-					tank2.animation.addByPrefix('dance','foreground');
+					tank2.animation.addByPrefix('dance', 'foreground man 3 instance 1', 24, false);
 					tank2.scrollFactor.set(1.5, 1.5);
 					tank2.antialiasing = true;
 					foregroundSprites.add(tank2);
 					trace('tank2 added to fg sprite queue');
 
-					tank4 = new FlxSprite(1300, 700);
+					tank4 = new FlxSprite(1300, 900);
 					tank4.frames = Paths.getSparrowAtlas('tank/tank4');
-					tank4.animation.addByPrefix('dance','fg');
+					tank4.animation.addByPrefix('dance', 'fg tankman bobbin 3 instance 1', 24, false);
 					tank4.scrollFactor.set(1.5, 1.5);
 					tank4.antialiasing = true;
 					foregroundSprites.add(tank4);
 					trace('tank4 added to fg sprite queue');
 
-					tank5 = new FlxSprite(1300, 1200);
+					tank5 = new FlxSprite(1620, 700);
 					tank5.frames = Paths.getSparrowAtlas('tank/tank5');
-					tank5.animation.addByPrefix('dance','fg');
+					tank5.animation.addByPrefix('dance', 'fg tankhead far right instance 1', 24, false);
 					tank5.scrollFactor.set(1.5,1.5);
 					tank5.antialiasing = true;
 					foregroundSprites.add(tank5);
 					trace('tank5 added to fg sprite queue');
 
-					tank3 = new FlxSprite(1620, 900);
+					tank3 = new FlxSprite(1300, 1200);
 					tank3.frames = Paths.getSparrowAtlas('tank/tank3');
-					tank3.animation.addByPrefix('dance','fg');
+					tank3.animation.addByPrefix('dance', 'fg tankhead 4 instance 1', 24, false);
 					tank3.scrollFactor.set(3.5, 2.5);
 					tank3.antialiasing = true;
 					foregroundSprites.add(tank3);
@@ -1041,22 +1057,8 @@ class PlayState extends MusicBeatState
 		}
 		trace('stage is ' + SONG.stage.toLowerCase());
 		var gfVersion:String = 'gf';
-	// the virgin hard coding
-	//	switch (curStage)
-	//	{
-	//		case 'limo':
-	//			gfVersion = 'gf-car';
-	//		case 'mall' | 'mallEvil':
-	//			gfVersion = 'gf-christmas';
-	//		case 'school':
-	//			gfVersion = 'gf-pixel';
-	//		case 'schoolEvil':
-	//			gfVersion = 'gf-pixel';
-	//	}
-	//	if (curStage == 'limo')
-	//		gfVersion = 'gf-car';
-	//the chad .json loading
-	switch (SONG.gfVersion){
+	switch (SONG.gfVersion)
+	{
 		case 'gf':
 			gfVersion = 'gf';
 		case 'gf-tankmen':
@@ -1071,6 +1073,8 @@ class PlayState extends MusicBeatState
 			gfVersion = 'gf-christmas';
 		case 'gf-pixel':
 			gfVersion = 'gf-pixel';
+		default:
+			gfVersion = 'gf';
 	}
 	trace('gfversion is ' + gfVersion);
 
@@ -3909,6 +3913,19 @@ class PlayState extends MusicBeatState
 			resyncVocals();
 		}
 
+		if(SONG.song.toLowerCase() == 'spookeez')
+			{
+				//for the fuckin "YEAH" things
+				if(curStep == 92 || curStep == 156 || curStep == 252 || curStep == 348 || curStep == 412)
+					{
+						altAnim = '-alt';
+					}
+				if(curStep == 95 || curStep == 157 || curStep == 255 || curStep == 351 || curStep == 413)
+					{
+						altAnim = '';
+					}
+			}
+
 		if(SONG.song.toLowerCase() == 'ugh')
 			{
 				//SO THE OPTION DOESN'T MUTE THE "UGH"S. ALSO PLAYS THE UGH ANIMS LOL
@@ -3957,8 +3974,30 @@ class PlayState extends MusicBeatState
 							}
 						else if (curStep == 707 + redRosesAddInt)
 							{
+								if(senpaiBlackStage < senpaiBlackColors.length)
+									{
+										senpaiBlackStage = senpaiBlackStage + 1;
+									}
 								redRoses.alpha = redRoses.alpha + 0.1;
+								boyfriend.alpha = boyfriend.alpha - 0.1;
+								gf.alpha = gf.alpha - 0.1;
+								if(!FlxG.save.data.effects)
+									{
+										bgGirls.alpha = bgGirls.alpha - 0.1;
+									}
+								dad.color = senpaiBlackColors[senpaiBlackStage];
 								redRosesAddInt = redRosesAddInt + 2;
+							}
+					}
+			}
+		if(SONG.song.toLowerCase() == 'thorns')
+			{
+				if(curStep == 1281 + spiritAlphaAddInt)
+					{
+						if(dad.alpha > 0)
+							{
+								dad.alpha = dad.alpha - 0.1;
+								spiritAlphaAddInt = spiritAlphaAddInt + 2;
 							}
 					}
 			}

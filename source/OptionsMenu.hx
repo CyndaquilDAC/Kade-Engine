@@ -105,7 +105,7 @@ class OptionsMenu extends MusicBeatState
 
 			if (controls.BACK && !isCat)
 				{
-					FlxG.sound.play(Paths.sound('cancelMenu'));
+					FlxG.sound.play(Paths.sound('cancelMenu'), 0.4);
 					FlxG.switchState(new MainMenuState());
 				}
 			else if (controls.BACK)
@@ -193,7 +193,7 @@ class OptionsMenu extends MusicBeatState
 				if (isCat)
 				{
 					if (currentSelectedCat.getOptions()[curSelected].press()) {
-						FlxG.sound.play(Paths.sound('confirmMenu'));
+						FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
 						grpControls.remove(grpControls.members[curSelected]);
 						var ctrl:Alphabet = new Alphabet(0, (70 * curSelected) + 30, currentSelectedCat.getOptions()[curSelected].getDisplay(), true, false);
 						ctrl.isMenuItem = true;
@@ -207,7 +207,7 @@ class OptionsMenu extends MusicBeatState
 					grpControls.clear();
 					for (i in 0...currentSelectedCat.getOptions().length)
 						{
-							FlxG.sound.play(Paths.sound('confirmMenu'));
+							FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
 							var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, currentSelectedCat.getOptions()[i].getDisplay(), true, false);
 							controlLabel.isMenuItem = true;
 							controlLabel.targetY = i;
