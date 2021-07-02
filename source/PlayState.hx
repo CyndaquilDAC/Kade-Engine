@@ -109,6 +109,8 @@ class PlayState extends MusicBeatState
 	var gf:Character;
 	var boyfriend:Boyfriend;
 
+	var evilTrail:FlxTrail;
+
 	private var notes:FlxTypedGroup<Note>;
 	private var allNotes:Array<Note> = [];
 	private var unspawnNotes:Array<Note> = [];
@@ -179,6 +181,7 @@ class PlayState extends MusicBeatState
 	var notesHitArray:Array<Date> = [];
 	var currentFrames:Int = 0;
 	var dialogue:Array<String> = ['dad:swagshit', 'bf:money money'];
+	var dialogueEnding:Array<String> = ['dad:swaggier shit', 'bf:monier money'];
 
 	var halloweenBG:FlxSprite;
 	var isHalloween:Bool = false;
@@ -359,57 +362,6 @@ class PlayState extends MusicBeatState
 				hasDialogueScene = false;
 			}
 		
-		/*
-		switch (SONG.song.toLowerCase())
-		{
-			case 'tutorial':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('tutorial/tutorialDialogue'));
-			case 'bopeebo':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('bopeebo/bopeeboDialogue'));
-			case 'drug-pop-bopeebo':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('drug-pop-bopeebo/drug-pop-bopeeboDialogue'));
-			case 'fresh':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('fresh/freshDialogue'));
-			case 'dadbattle':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('dadbattle/dadbattleDialogue'));
-			case 'spookeez':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('spookeez/spookeezDialogue'));
-			case 'south':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('south/southDialogue'));
-			case 'monster':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('monster/monsterDialogue'));
-			case 'pico':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('pico/picoDialogue'));
-			case 'philly':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('philly/phillyDialogue'));
-			case 'blammed':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('blammed/blammedDialogue'));
-			case 'satin-panties':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('satin-panties/satin-pantiesDialogue'));
-			case 'high':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('high/highDialogue'));
-			case 'milf':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('milf/milfDialogue'));
-			case 'cocoa':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('cocoa/cocoaDialogue'));
-			case 'eggnog':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('eggnog/eggnogDialogue'));
-			case 'winter-horrorland':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('winter-horrorland/winter-horrorlandDialogue'));
-			case 'senpai':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('senpai/senpaiDialogue'));
-			case 'roses':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('roses/rosesDialogue'));
-			case 'thorns':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('thorns/thornsDialogue'));
-			//funie easter eggs
-			case 'smash':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('smash/smashDialogue'));
-			case 'ridge':
-				dialogue = CoolUtil.coolTextFile(Paths.txt('ridge/ridgeDialogue'));
-
-		}
-		*/
 		if(SONG.song.toLowerCase() == 'philly nice' || SONG.song.toLowerCase() == 'winter horrorland' || SONG.song.toLowerCase() == 'satin panties' || SONG.song.toLowerCase() == 'dad battle' || SONG.song.toLowerCase() == 'ugh' || SONG.song.toLowerCase() == 'guns' || SONG.song.toLowerCase() == 'stress' || SONG.song.toLowerCase() == 'ingame-scene-test')
 			{
 				switch(SONG.song.toLowerCase())
@@ -1203,7 +1155,7 @@ class PlayState extends MusicBeatState
 			case 'schoolEvil':
 				// trailArea.scrollFactor.set();
 
-				var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
+				evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
 				// evilTrail.changeValuesEnabled(false, false, false, false);
 				// evilTrail.changeGraphic()
 				add(evilTrail);
@@ -1307,33 +1259,11 @@ class PlayState extends MusicBeatState
 				add(songName);
 				songName.cameras = [camHUD];
 			}
-		
-		/*if(dad.hasEvilTrail = true){
-			var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
-			// evilTrail.changeValuesEnabled(false, false, false, false);
-			// evilTrail.changeGraphic()
-			add(evilTrail);
-			// evilTrail.scrollFactor.set(1.1, 1.1);
-		}
-		if(boyfriend.hasEvilTrail = true){
-			var evilTrail = new FlxTrail(boyfriend, null, 4, 24, 0.3, 0.069);
-			// evilTrail.changeValuesEnabled(false, false, false, false);
-			// evilTrail.changeGraphic()
-			add(evilTrail);
-			// evilTrail.scrollFactor.set(1.1, 1.1);
-		if(gf.hasEvilTrail = true){
-			var evilTrail = new FlxTrail(gf, null, 4, 24, 0.3, 0.069);
-			// evilTrail.changeValuesEnabled(false, false, false, false);
-			// evilTrail.changeGraphic()
-			add(evilTrail);
-			// evilTrail.scrollFactor.set(1.1, 1.1);
-		}*/
-		//commenting the above out because its causing issues oops
-		//replacing it with the below temporarily
-		//nvm that broke shit oops!!!
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('ui/healthBar'));
 		if (FlxG.save.data.downscroll)
-			healthBarBG.y = 50;
+			{
+				healthBarBG.y = 50;
+			}
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
 		add(healthBarBG);
@@ -1660,7 +1590,6 @@ class PlayState extends MusicBeatState
 			if (SONG.song.toLowerCase() == 'thorns')
 			{
 				add(red);
-				red.camera = camHUD;
 			}
 		}
 
@@ -1680,7 +1609,7 @@ class PlayState extends MusicBeatState
 
 					if (SONG.song.toLowerCase() == 'thorns')
 					{
-						senpaiEvil.camera = camHUD;
+						camHUD.visible = false;
 						add(senpaiEvil);
 						senpaiEvil.alpha = 0;
 						new FlxTimer().start(0.3, function(swagTimer:FlxTimer)
@@ -1699,6 +1628,7 @@ class PlayState extends MusicBeatState
 									remove(red);
 									FlxG.camera.fade(FlxColor.WHITE, 0.01, true, function()
 									{
+										camHUD.visible = true;
 										add(dialogueBox);
 									}, true);
 								});
@@ -3997,8 +3927,12 @@ class PlayState extends MusicBeatState
 						if(dad.alpha > 0)
 							{
 								dad.alpha = dad.alpha - 0.1;
-								spiritAlphaAddInt = spiritAlphaAddInt + 2;
 							}
+						if(evilTrail.alpha > 0)
+							{
+								evilTrail.alpha = evilTrail.alpha - 0.01;
+							}
+						spiritAlphaAddInt = spiritAlphaAddInt + 2;
 					}
 			}
 		if (dad.curCharacter == 'spooky' && curStep % 4 == 2)
