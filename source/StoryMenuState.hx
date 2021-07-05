@@ -442,12 +442,12 @@ class StoryMenuState extends MusicBeatState
 		grpWeekCharacters.members[1].setCharacter(weekCharacters[curWeek][1]);
 		grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);
 
-		txtTracklist.text = "Tracks\n";
+		txtTracklist.text = "Tracks\n\n";
 		var stringThing:Array<String> = weekData[curWeek];
 
 		for (i in stringThing)
 		{
-			txtTracklist.text += "\n" + i;
+			txtTracklist.text += i + "\n";
 		}
 
 		txtTracklist.text = txtTracklist.text.toUpperCase();

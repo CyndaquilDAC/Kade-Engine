@@ -109,6 +109,8 @@ class PlayState extends MusicBeatState
 	var gf:Character;
 	var boyfriend:Boyfriend;
 
+	var preCutsceneSenpai:Character;
+
 	var evilTrail:FlxTrail;
 
 	private var notes:FlxTypedGroup<Note>;
@@ -344,6 +346,10 @@ class PlayState extends MusicBeatState
 
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
+
+		//movin this up here
+		iconP1 = new HealthIcon(SONG.player1, true);
+		iconP2 = new HealthIcon(SONG.player2, false);
 
 		trace('player1 is ' + SONG.player1.toLowerCase());
 		trace('player2 is ' + SONG.player2.toLowerCase());
@@ -1059,6 +1065,10 @@ class PlayState extends MusicBeatState
 		}
 		gf.scrollFactor.set(0.95, 0.95);
 
+		preCutsceneSenpai = new Character(100, 100, 'senpai');
+		preCutsceneSenpai.x += 150;
+		preCutsceneSenpai.y += 360;
+
 		dad = new Character(100, 100, SONG.player2);
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
 		if(dad.curCharacter.startsWith('gf'))
@@ -1180,6 +1190,12 @@ class PlayState extends MusicBeatState
 
 		add(dad);
 		trace('added dad');
+		if(SONG.song.toLowerCase() == 'roses' && isStoryMode)
+			{
+				iconP2.changeChar('senpai');
+				dad.visible = false;
+				add(preCutsceneSenpai);
+			}
 		add(boyfriend);
 		trace('added bf');
 		add(foregroundSprites);
@@ -1350,11 +1366,9 @@ class PlayState extends MusicBeatState
 				replayTxt.cameras = [camHUD];
 			}
 
-		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
 		add(iconP1);
 
-		iconP2 = new HealthIcon(SONG.player2, false);
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
 
@@ -1525,13 +1539,13 @@ class PlayState extends MusicBeatState
 						camFollow.setPosition(dad.getMidpoint().x, boyfriend.getMidpoint().y);
 						new FlxTimer().start(2, function(swagTimer:FlxTimer)
 							{
-								boyfriend.playAnim('idle');
+								boyfriend.playAnim('singDOWNmiss');
 								new FlxTimer().start(2, function(swagTimer:FlxTimer)
 									{
 										boyfriend.playAnim('bfCatch');
 										new FlxTimer().start(0.1, function(swagTimer:FlxTimer)
 											{
-												FlxG.sound.play(Paths.sound('GF_1', 'shared'));
+												FlxG.sound.play(Paths.soundRandom("GF_", 1, 4, 'shared'));
 												new FlxTimer().start(2, function(swagTimer:FlxTimer)
 													{
 														startCountdown();
@@ -1545,10 +1559,13 @@ class PlayState extends MusicBeatState
 			{
 				new FlxTimer().start(2, function(swagTimer:FlxTimer)
 					{
-						camFollow.setPosition(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+						camFollow.setPosition(dad.getMidpoint().x - 100, dad.getMidpoint().y - 430);				
 						new FlxTimer().start(1, function(swagTimer:FlxTimer)
 							{
 								FlxG.sound.play(Paths.sound('ANGRY', 'shared'));
+								preCutsceneSenpai.visible = false;
+								dad.visible = true;
+								iconP2.changeChar('senpai-angry');
 								if(!FlxG.save.data.effects)
 									{
 										bgGirls.getScared();
@@ -1817,7 +1834,7 @@ class PlayState extends MusicBeatState
 					'songPositionBar', 0, songLength - 1000);
 				songPosBar.numDivisions = 1000;
 				songPosBar.scrollFactor.set();
-				songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
+				songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.GREEN);
 				add(songPosBar);
 	
 				var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - 20,songPosBG.y,0,SONG.song, 16);

@@ -27,7 +27,6 @@ class ImageDebugState extends MusicBeatState
 	override function create()
 	{
         Conductor.changeBPM(102);
-
 	}
 	
 	override function beatHit()
