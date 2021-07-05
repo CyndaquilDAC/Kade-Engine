@@ -122,68 +122,6 @@ class MenuCharacter extends FlxSprite
 
 	public function setCharacter(character:String):Void
 	{
-
-		frames = Paths.getSparrowAtlas('menuCharacters/' + character);
-		switch(character)
-		{
-			case 'bf':
-				{
-					animation.addByPrefix('bf', "BF idle dance white", 24);
-					animation.addByPrefix('bfConfirm', 'BF HEY!!', 24, false);
-				}
-			case 'bf-christmas':
-				{
-					animation.addByPrefix('bf-christmas', "bf idle dance christmas white", 24);
-					animation.addByPrefix('bfChristmasConfirm', 'BF Christmas HEY!!', 24, false);
-				}
-			case 'gf':
-				{
-					animation.addByPrefix('gf', "GF Dancing Beat WHITE", 24);
-					animation.addByPrefix('gfCheer', "GF Cheer", 24, false);
-				}
-			case 'gf-christmas':
-				{
-					animation.addByPrefix('gf-christmas', "GF Dancing Beat Christmas WHITE", 24);
-					animation.addByPrefix('gfChristmasCheer', "GF Cheer Christmas", 24, false);
-				}
-			case 'dad':
-				{
-					animation.addByPrefix('dad', "Dad idle dance BLACK LINE", 24);
-				}
-			case 'spooky':
-				{
-					animation.addByPrefix('spooky', "spooky dance idle BLACK LINES", 24);
-				}
-			case 'pico':
-				{
-					animation.addByPrefix('pico', "Pico Idle Dance", 24);
-				}
-			case 'mom':
-				{
-					animation.addByPrefix('mom', "Mom Idle BLACK LINES", 24);
-				}
-			case 'parents-christmas':
-				{
-					animation.addByPrefix('parents-christmas', "Parent Christmas Idle", 24);
-				}
-			case 'parents-christmas-alt':
-				{
-					animation.addByPrefix('parents-christmas-alt', "Parent Christmas Idle BLACK AND BROWN LINES", 24);
-				}
-			case 'senpai':
-				{
-					animation.addByPrefix('senpai', "SENPAI idle Black Lines", 24);
-				}
-			case 'senpai-alt':
-				{
-					animation.addByPrefix('senpai-alt', "Senpai Transparent Idle", 24);
-				}
-			case 'tankman':
-				{
-					animation.addByPrefix('tankman', "Tankman Menu BLACK", 24);
-				}
-		}
-
 		if (character == '')
 		{
 			visible = false;
