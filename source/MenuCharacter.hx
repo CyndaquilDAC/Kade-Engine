@@ -38,7 +38,8 @@ class MenuCharacter extends FlxSprite
 		'mom' => new CharacterSetting(-30, 140, 0.85, false, 'mom'),
 		'parents-christmas' => new CharacterSetting(100, 130, 1.8, false, 'parents-christmas'),
 		'senpai' => new CharacterSetting(-40, -45, 1.4, false, 'senpai'),
-		'senpai-alt' => new CharacterSetting(-40, -45, 1.4, false, 'senpai-alt')
+		'senpai-alt' => new CharacterSetting(-40, -45, 1.4, false, 'senpai-alt'),
+		'tankman' => new CharacterSetting(-60, -30, 1.3)
 	];
 
 	private var flipped:Bool = false;
@@ -53,22 +54,67 @@ class MenuCharacter extends FlxSprite
 		this.publicName = name;
 
 		antialiasing = true;
-		frames = Paths.getSparrowAtlas('campaign_menu_UI_characters');
-		animation.addByPrefix('bf', "BF idle dance white", 24);
-		animation.addByPrefix('bfConfirm', 'BF HEY!!', 24, false);
-		animation.addByPrefix('bf-christmas', "bf idle dance christmas white", 24);
-		animation.addByPrefix('bfChristmasConfirm', 'BF Christmas HEY!!', 24, false);
-		animation.addByPrefix('gf', "GF Dancing Beat WHITE", 24);
-		animation.addByPrefix('gfCheer', "GF Cheer", 24, false);
-		animation.addByPrefix('gf-christmas', "GF Dancing Beat Christmas WHITE", 24);
-		animation.addByPrefix('gfChristmasCheer', "GF Cheer Christmas", 24, false);
-		animation.addByPrefix('dad', "Dad idle dance BLACK LINE", 24);
-		animation.addByPrefix('spooky', "spooky dance idle BLACK LINES", 24);
-		animation.addByPrefix('pico', "Pico Idle Dance", 24);
-		animation.addByPrefix('mom', "Mom Idle BLACK LINES", 24);
-		animation.addByPrefix('parents-christmas', "Parent Christmas Idle", 24);
-		animation.addByPrefix('senpai', "SENPAI idle Black Lines", 24);
-		animation.addByPrefix('senpai-alt', "Senpai Transparent Idle", 24);
+		//this is probably the least efficient way to do this but im too lazy to do it better
+		frames = Paths.getSparrowAtlas('menuCharacters/' + name);
+		switch(name)
+		{
+			case 'bf':
+				{
+					animation.addByPrefix('bf', "BF idle dance white", 24);
+					animation.addByPrefix('bfConfirm', 'BF HEY!!', 24, false);
+				}
+			case 'bf-christmas':
+				{
+					animation.addByPrefix('bf-christmas', "bf idle dance christmas white", 24);
+					animation.addByPrefix('bfChristmasConfirm', 'BF Christmas HEY!!', 24, false);
+				}
+			case 'gf':
+				{
+					animation.addByPrefix('gf', "GF Dancing Beat WHITE", 24);
+					animation.addByPrefix('gfCheer', "GF Cheer", 24, false);
+				}
+			case 'gf-christmas':
+				{
+					animation.addByPrefix('gf-christmas', "GF Dancing Beat Christmas WHITE", 24);
+					animation.addByPrefix('gfChristmasCheer', "GF Cheer Christmas", 24, false);
+				}
+			case 'dad':
+				{
+					animation.addByPrefix('dad', "Dad idle dance BLACK LINE", 24);
+				}
+			case 'spooky':
+				{
+					animation.addByPrefix('spooky', "spooky dance idle BLACK LINES", 24);
+				}
+			case 'pico':
+				{
+					animation.addByPrefix('pico', "Pico Idle Dance", 24);
+				}
+			case 'mom':
+				{
+					animation.addByPrefix('mom', "Mom Idle BLACK LINES", 24);
+				}
+			case 'parents-christmas':
+				{
+					animation.addByPrefix('parents-christmas', "Parent Christmas Idle", 24);
+				}
+			case 'parents-christmas-alt':
+				{
+					animation.addByPrefix('parents-christmas-alt', "Parent Christmas Idle BLACK AND BROWN LINES", 24);
+				}
+			case 'senpai':
+				{
+					animation.addByPrefix('senpai', "SENPAI idle Black Lines", 24);
+				}
+			case 'senpai-alt':
+				{
+					animation.addByPrefix('senpai-alt', "Senpai Transparent Idle", 24);
+				}
+			case 'tankman':
+				{
+					animation.addByPrefix('tankman', "Tankman Menu BLACK", 24);
+				}
+		}
 
 		setGraphicSize(Std.int(width * scale));
 		updateHitbox();
