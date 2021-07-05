@@ -67,7 +67,7 @@ class StoryMenuState extends MusicBeatState
 		['mom', 'bf', 'gf'],
 		['parents-christmas', 'bf-christmas', 'gf-christmas'],
 		['senpai', 'bf', 'gf'],
-		['tankman', 'bf', 'gf']
+		['', 'bf', 'gf']
 	];
 	var weekNames:Array<String> = CoolUtil.coolTextFile(Paths.txt('weekNames'));
 
