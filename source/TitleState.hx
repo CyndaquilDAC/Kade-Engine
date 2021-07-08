@@ -1,5 +1,7 @@
 package;
 
+import flixel.math.FlxRandom;
+import cpp.Random;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -44,6 +46,9 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
+
+	var beatsTillLogoBumpTypeSwitch:Int = 15;
+	var logoBumpType:Int = 0;
 
 	var curWacky:Array<String> = [];
 
@@ -174,7 +179,7 @@ class TitleState extends MusicBeatState
 		logoUnder = new FlxSprite(-150, -100);
 		logoUnder.frames = Paths.getSparrowAtlas('logoBumpin');
 		logoUnder.antialiasing = true;
-		logoUnder.animation.addByPrefix('bump', 'logo bumpin', 24);
+		logoUnder.animation.addByPrefix('bump', 'logo bumpin', 24, false);
 		logoUnder.animation.play('bump');
 		logoUnder.updateHitbox();
 		logoUnder.color = FlxColor.BLACK;
@@ -182,7 +187,7 @@ class TitleState extends MusicBeatState
 		logoBl = new FlxSprite(-150, -100);
 		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
 		logoBl.antialiasing = true;
-		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
+		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
 
@@ -277,6 +282,28 @@ class TitleState extends MusicBeatState
 	}
 
 	var transitioning:Bool = false;
+
+	function randomizeLogoBumpFx()
+		{
+			logoBumpType = FlxG.random.int(0, 1);
+			FlxTween.cancelTweensOf(logoUnder);
+			FlxTween.cancelTweensOf(logoBl);
+			logoBl.setPosition(-150, -100);
+			logoUnder.setPosition(-150, -100);
+			switch(logoBumpType)
+			{
+				case 0:
+					{
+						FlxTween.tween(logoUnder, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+						FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
+					}
+				case 1:
+					{
+						FlxTween.tween(logoUnder, {x: logoBl.x + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+						FlxTween.tween(logoBl, {x: logoBl.x + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
+					}
+			}
+		}
 
 	override function update(elapsed:Float)
 	{
@@ -399,9 +426,21 @@ class TitleState extends MusicBeatState
 	{
 		super.beatHit();
 
+		logoBl.animation.finish();
 		logoBl.animation.play('bump');
+		logoUnder.animation.finish();
 		logoUnder.animation.play('bump');
 		danceLeft = !danceLeft;
+
+		if(beatsTillLogoBumpTypeSwitch == 0)
+			{
+				randomizeLogoBumpFx();
+				beatsTillLogoBumpTypeSwitch = 0;
+			}
+		else
+			{
+				beatsTillLogoBumpTypeSwitch = beatsTillLogoBumpTypeSwitch - 1;
+			}
 
 		if (danceLeft)
 			gfDance.animation.play('danceRight');
