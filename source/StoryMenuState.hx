@@ -436,6 +436,14 @@ class StoryMenuState extends MusicBeatState
 		updateText();
 	}
 
+	override function beatHit()
+	{
+		super.beatHit();
+		grpWeekCharacters.members[0].dance();
+		grpWeekCharacters.members[1].dance();
+		grpWeekCharacters.members[2].dance();
+	}
+
 	function updateText()
 	{
 		grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);

@@ -146,6 +146,7 @@ class PlayState extends MusicBeatState
 	private var totalPlayed:Int = 0;
 	private var ss:Bool = false;
 
+	public var finalScrollSpeed:Float = 1;
 
 	private var healthBarBG:FlxSprite;
 	private var healthBar:FlxBar;
@@ -346,6 +347,8 @@ class PlayState extends MusicBeatState
 
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
+
+		finalScrollSpeed = SONG.speed;
 
 		//movin this up here
 		iconP1 = new HealthIcon(SONG.player1, true);
@@ -1339,14 +1342,14 @@ class PlayState extends MusicBeatState
 		trace('bar color specific to ' + SONG.player2.toLowerCase() + ' has been set');
 		
 
-		// Add Kade Engine watermark
-		var kadeEngineWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 4 ? "Baby" : storyDifficulty == 3 ? "Insane" : storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + " - KE " + MainMenuState.kadeEngineVer + " - " + (FlxG.save.data.etternaMode ? "E.Mode" : "FNF"), 16);
-		kadeEngineWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
-		kadeEngineWatermark.scrollFactor.set();
-		add(kadeEngineWatermark);
+		// Add Funkin Forever watermark
+		var funkinForeverWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 4 ? "Baby" : storyDifficulty == 3 ? "Insane" : storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + " - FF " + MainMenuState.funkinForeverVer + " - " + (FlxG.save.data.etternaMode ? "E.Mode" : "FNF"), 16);
+		funkinForeverWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
+		funkinForeverWatermark.scrollFactor.set();
+		add(funkinForeverWatermark);
 
 		if (FlxG.save.data.downscroll)
-			kadeEngineWatermark.y = FlxG.height * 0.9 + 45;
+			funkinForeverWatermark.y = FlxG.height * 0.9 + 45;
 
 		scoreTxt = new FlxText(FlxG.width / 2 - 235, healthBarBG.y + 50, 0, "", 20);
 		if (!FlxG.save.data.accuracyDisplay)
@@ -1387,7 +1390,7 @@ class PlayState extends MusicBeatState
 			songPosBG.cameras = [camHUD];
 			songPosBar.cameras = [camHUD];
 		}
-		kadeEngineWatermark.cameras = [camHUD];
+		funkinForeverWatermark.cameras = [camHUD];
 		if (loadRep)
 			replayTxt.cameras = [camHUD];
 		// if (SONG.song == 'South')
@@ -2656,6 +2659,10 @@ class PlayState extends MusicBeatState
 							if (SONG.notes[Math.floor(curStep / 16)].altAnim)
 								altAnim = '-alt';
 						}
+						if(daNote.altAnimNote)
+							{
+								altAnim = '-alt';
+							}
 	
 						switch (Math.abs(daNote.noteData))
 						{
@@ -2674,10 +2681,12 @@ class PlayState extends MusicBeatState
 								if (Math.abs(daNote.noteData) == spr.ID)
 								{
 									spr.animation.play('confirm', true);
-									var bruhSplashCpu:NoteSplash = grpNoteSplashesCpu.recycle(NoteSplash);
-									bruhSplashCpu.setupNoteSplash(daNote.noteData, daNote.x, strumLine.y);
-									grpNoteSplashesCpu.add(bruhSplashCpu);
-									
+									if(!daNote.isSustainNote)
+										{
+											var bruhSplashCpu:NoteSplash = grpNoteSplashesCpu.recycle(NoteSplash);
+											bruhSplashCpu.setupNoteSplash(daNote.noteData, daNote.x, strumLine.y);
+											grpNoteSplashesCpu.add(bruhSplashCpu);
+										}									
 								}
 								if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
 								{
@@ -2710,9 +2719,9 @@ class PlayState extends MusicBeatState
 					}
 	
 					if (FlxG.save.data.downscroll)
-						daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (-0.45 * FlxMath.roundDecimal(FlxG.save.data.scrollSpeed == 1 ? SONG.speed : FlxG.save.data.scrollSpeed, 2)));
+						daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (-0.45 * FlxMath.roundDecimal(FlxG.save.data.scrollSpeed == 1 ? finalScrollSpeed : FlxG.save.data.scrollSpeed, 2)));
 					else
-						daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(FlxG.save.data.scrollSpeed == 1 ? SONG.speed : FlxG.save.data.scrollSpeed, 2)));
+						daNote.y = (strumLine.y - (Conductor.songPosition - daNote.strumTime) * (0.45 * FlxMath.roundDecimal(FlxG.save.data.scrollSpeed == 1 ? finalScrollSpeed : FlxG.save.data.scrollSpeed, 2)));
 					//trace(daNote.y);
 					// WIP interpolation shit? Need to fix the pause issue
 					// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
@@ -3015,22 +3024,27 @@ class PlayState extends MusicBeatState
 				currentTimingShown.alpha = 1;
 
 			add(currentTimingShown);
-			
 			var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
 			comboSpr.screenCenter();
 			comboSpr.x = rating.x;
 			comboSpr.y = rating.y + 100;
+			if (FlxG.save.data.changedHit)
+				{
+					comboSpr.x = FlxG.save.data.changedHitX;
+					comboSpr.y = FlxG.save.data.changedHitY + 100;
+				}
 			comboSpr.acceleration.y = 600;
 			comboSpr.velocity.y -= 150;
-			add(comboSpr);
-
+			comboSpr.velocity.x += FlxG.random.int(1, 10);
+			if(combo >= 2)
+				{
+					add(comboSpr);
+				}
 			currentTimingShown.screenCenter();
 			currentTimingShown.x = comboSpr.x + 100;
 			currentTimingShown.y = rating.y + 100;
 			currentTimingShown.acceleration.y = 600;
 			currentTimingShown.velocity.y -= 150;
-	
-			comboSpr.velocity.x += FlxG.random.int(1, 10);
 			currentTimingShown.velocity.x += comboSpr.velocity.x;
 			add(rating);
 	
@@ -3416,7 +3430,7 @@ class PlayState extends MusicBeatState
 	
 			if (boyfriend.holdTimer > Conductor.stepCrochet * 4 * 0.001 && !up && !down && !right && !left)
 			{
-				if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss'))
+				if (boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss') && boyfriend.animation.curAnim.curFrame >= 10)
 				{
 					boyfriend.playAnim('idle');
 				}
@@ -3998,9 +4012,16 @@ class PlayState extends MusicBeatState
 			{
 				Conductor.changeBPM(SONG.notes[Math.floor(curStep / 16)].bpm);
 				FlxG.log.add('CHANGED BPM!');
+				trace('BPM CHANGED!');
 			}
-			// else
-			// Conductor.changeBPM(SONG.bpm);
+			//oops changescrollspeed literally breaks the entire fucking game oopsie daisy!!
+			/*
+			if (SONG.notes[Math.floor(curStep / 16)].changeScrollSpeed)
+			{
+				finalScrollSpeed = SONG.notes[Math.floor(curStep / 16)].scrollSpeed;
+				trace('SCROLL SPEED CHANGED!');
+			}
+			*/
 
 			// Dad doesnt interupt his own notes
 			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection)

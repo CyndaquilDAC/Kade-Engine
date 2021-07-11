@@ -35,17 +35,16 @@ class MainMenuState extends MusicBeatState
 	var newGaming2:FlxText;
 	var newInput:Bool = true;
 
-	public static var nightly:String = "mod build";
+	public static var nightly:String = "Github ";
+	public static var additive:String = "Debug";
 
-	public static var kadeEngineVer:String = "Custom " + nightly;
-	public static var gameVer:String = "Modded";
+
+	public static var funkinForeverVer:String = "0.1.0 " + nightly + additive;
+	public static var gameVer:String = '';
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 	var backSpace:FlxSprite;
-
-	private var camOverlay:FlxCamera;
-	private var camBG:FlxCamera;
 
 	override function create()
 	{
@@ -53,20 +52,6 @@ class MainMenuState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
-		//gotta comment out again cuz fuck
-		/*
-		if(Date.now < "2021-05-01"){
-			optionShit = ['story mode', 'freeplay', 'kickstarter', 'options'];
-			trace('kickstarter aint over adding kickstarter to list');
-		}
-		*/
-
-		camBG = new FlxCamera();
-		camOverlay = new FlxCamera();
-		camOverlay.bgColor.alpha = 0;
-		FlxG.cameras.reset(camBG);
-		FlxG.cameras.add(camOverlay);
-		FlxCamera.defaultCameras = [camBG];
 
 		if (!FlxG.sound.music.playing)
 		{
@@ -104,7 +89,7 @@ class MainMenuState extends MusicBeatState
 		for (i in 0...optionShit.length)
 		{
 			var menuItem:FlxSprite = new FlxSprite(0, 60 + (i * 160));
-			menuItem.frames = tex;
+			menuItem.frames = Paths.getSparrowAtlas('mainmenu/' + optionShit[i]);
 			menuItem.animation.addByPrefix('idle', optionShit[i] + " basic", 24);
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 			menuItem.animation.play('idle');
@@ -116,9 +101,9 @@ class MainMenuState extends MusicBeatState
 			menuItem.antialiasing = true;
 		}
 
-		FlxG.camera.cameras[camBG.ID].follow(camFollow, null, 0.60 * (60 / FlxG.save.data.fpsCap));
+		camera.follow(camFollow, null, 0.60 * (60 / FlxG.save.data.fpsCap));
 
-		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, gameVer + " FNF - " + kadeEngineVer + " Kade Engine", 12);
+		var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "Funkin' Forever " + funkinForeverVer + " Build", 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -138,7 +123,7 @@ class MainMenuState extends MusicBeatState
 		backSpace.frames = Paths.getSparrowAtlas('backMainMenu');
 		backSpace.animation.addByPrefix('idle', 'backspace title', true);
 		backSpace.animation.addByPrefix('pushed', 'pushed backspace title', true);
-		backSpace.cameras = [camOverlay];
+		backSpace.scrollFactor.set();
 		add(backSpace);
 		backSpace.animation.play('idle');
 

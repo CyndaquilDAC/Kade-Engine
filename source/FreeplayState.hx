@@ -1,5 +1,6 @@
 package;
 
+import Song.SwagSong;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxTween.FlxTweenManager;
 import flixel.tweens.misc.ColorTween;
@@ -36,10 +37,15 @@ class FreeplayState extends MusicBeatState
 	var curDifficulty:Int = 1;
 	var bg:FlxSprite;
 
+	public static var songData:Map<String,Array<SwagSong>> = [];
+
 	var scoreText:FlxText;
+	var comboText:FlxText;
 	var diffText:FlxText;
+	var diffCalcText:FlxText;
 	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
+	var combo:String = '';
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
@@ -64,7 +70,19 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...initSonglist.length)
 		{
 			var data:Array<String> = initSonglist[i].split(':');
-			songs.push(new SongMetadata(data[0], Std.parseInt(data[2]), data[1]));
+			var meta = new SongMetadata(data[0], Std.parseInt(data[2]), data[1]);
+			songs.push(meta);
+			var diffs = [];
+
+			var format = meta.songName;
+
+			FreeplayState.loadDiff(0,format,meta.songName,diffs);
+			FreeplayState.loadDiff(1,format,meta.songName,diffs);
+			FreeplayState.loadDiff(2,format,meta.songName,diffs);
+			FreeplayState.loadDiff(3,format,meta.songName,diffs);
+			FreeplayState.loadDiff(4,format,meta.songName,diffs);
+			FreeplayState.songData.set(meta.songName,diffs);
+			trace('loaded diffs for ' + meta.songName);
 		}
 
 		/* 
@@ -120,13 +138,21 @@ class FreeplayState extends MusicBeatState
 		scoreText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 
-		var scoreBG:FlxSprite = new FlxSprite(scoreText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 66, 0xFF000000);
+		var scoreBG:FlxSprite = new FlxSprite(scoreText.x - 6, 0).makeGraphic(Std.int(FlxG.width * 0.35), 105, 0xFF000000);
 		scoreBG.alpha = 0.6;
 		add(scoreBG);
 
 		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
 		diffText.font = scoreText.font;
 		add(diffText);
+
+		diffCalcText = new FlxText(scoreText.x, scoreText.y + 66, 0, "", 24);
+		diffCalcText.font = scoreText.font;
+		add(diffCalcText);
+
+		comboText = new FlxText(diffText.x + 100, diffText.y, 0, "", 24);
+		comboText.font = diffText.font;
+		add(comboText);
 
 		add(scoreText);
 
@@ -198,6 +224,8 @@ class FreeplayState extends MusicBeatState
 			lerpScore = intendedScore;
 
 		scoreText.text = "SCORE:" + lerpScore;
+		comboText.text = combo + '\n';
+
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
@@ -246,9 +274,11 @@ class FreeplayState extends MusicBeatState
 			curDifficulty = 4;
 		if (curDifficulty > 4)
 			curDifficulty = 0;
+		var songHighscore = songs[curSelected].songName;
 
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
+		combo = Highscore.getCombo(songHighscore, curDifficulty);
 		#end
 
 		switch (curDifficulty)
@@ -264,7 +294,20 @@ class FreeplayState extends MusicBeatState
 			case 4:
 				diffText.text = "BABY";
 		}
+		diffCalcText.text = 'RATING: ${DiffCalc.CalculateDiff(songData.get(songs[curSelected].songName)[curDifficulty])}';
 	}
+
+	public static function loadDiff(diff:Int, format:String, name:String, array:Array<SwagSong>)
+		{
+			try 
+			{
+				array.push(Song.loadFromJson(Highscore.formatSong(format, diff), name));
+			}
+			catch(ex)
+			{
+				// do nada
+			}
+		}
 
 	function changeSelection(change:Int = 0)
 	{
@@ -284,15 +327,31 @@ class FreeplayState extends MusicBeatState
 		//bg.color = weekColors[songs[curSelected].week];
 		
 		FlxTween.color(bg, 1, bg.color, weekColors[songs[curSelected].week]);
+		var songHighscore = songs[curSelected].songName;
 
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
 		// lerpScore = 0;
+		combo = Highscore.getCombo(songHighscore, curDifficulty);
 		#end
+
+		diffCalcText.text = 'RATING: ${DiffCalc.CalculateDiff(songData.get(songs[curSelected].songName)[curDifficulty])}';
 
 		#if PRELOAD_ALL
 		FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);
 		#end
+
+		var hmm;
+		try
+		{
+			hmm = songData.get(songs[curSelected].songName)[curDifficulty];
+			if (hmm == null)
+				return;
+		}
+		catch(ex)
+		{
+			return;
+		}
 
 		var bullShit:Int = 0;
 

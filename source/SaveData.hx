@@ -4,7 +4,7 @@ import flixel.*;
 import haxe.*;
 import lime.*;
 import openfl.*;
-class KadeEngineData
+class SaveData
 {
     public static function initSave()
     {
@@ -55,7 +55,7 @@ class KadeEngineData
 			FlxG.save.data.fpsCap = 120;
 
 		if (FlxG.save.data.fpsCap > 285 || FlxG.save.data.fpsCap < 60)
-			FlxG.save.data.fpsCap = 120; // baby proof so you can't hard lock ur copy of kade engine
+			FlxG.save.data.fpsCap = 120; // baby proof so you can't hard lock ur copy of funkin forever
 		
 		if (FlxG.save.data.scrollSpeed == null)
 			FlxG.save.data.scrollSpeed = 1;

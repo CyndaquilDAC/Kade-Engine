@@ -13,6 +13,9 @@ typedef SwagSection =
 	var mustHitSection:Bool;
 	var bpm:Float;
 	var changeBPM:Bool;
+	//change scroll speed literally breaks the entire fucking game so no more. might revisit it later tho
+	//var scrollSpeed:Float;
+	//var changeScrollSpeed:Bool;
 	var altAnim:Bool;
 }
 
@@ -24,9 +27,9 @@ class Section
 	public var typeOfSection:Int = 0;
 	public var mustHitSection:Bool = true;
 
-	/**
+	/*
 	 *	Copies the first section into the second section!
-	 */
+	*/
 	public static var COPYCAT:Int = 0;
 
 	public function new(lengthInSteps:Int = 16)

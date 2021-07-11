@@ -54,25 +54,38 @@ class MenuCharacter extends FlxSprite
 
 		antialiasing = true;
 		frames = Paths.getSparrowAtlas('campaign_menu_UI_characters');
-		animation.addByPrefix('bf', "BF idle dance white", 24);
+		animation.addByPrefix('bf', "BF idle dance white", 24, false);
 		animation.addByPrefix('bfConfirm', 'BF HEY!!', 24, false);
-		animation.addByPrefix('bf-christmas', "bf idle dance christmas white", 24);
+		animation.addByPrefix('bf-christmas', "bf idle dance christmas white", 24, false);
 		animation.addByPrefix('bfChristmasConfirm', 'BF Christmas HEY!!', 24, false);
 		animation.addByPrefix('gf', "GF Dancing Beat WHITE", 24);
 		animation.addByPrefix('gfCheer', "GF Cheer", 24, false);
 		animation.addByPrefix('gf-christmas', "GF Dancing Beat Christmas WHITE", 24);
 		animation.addByPrefix('gfChristmasCheer', "GF Cheer Christmas", 24, false);
-		animation.addByPrefix('dad', "Dad idle dance BLACK LINE", 24);
+		animation.addByPrefix('dad', "Dad idle dance BLACK LINE", 24, false);
 		animation.addByPrefix('spooky', "spooky dance idle BLACK LINES", 24);
-		animation.addByPrefix('pico', "Pico Idle Dance", 24);
-		animation.addByPrefix('mom', "Mom Idle BLACK LINES", 24);
-		animation.addByPrefix('parents-christmas', "Parent Christmas Idle", 24);
-		animation.addByPrefix('senpai', "SENPAI idle Black Lines", 24);
-		animation.addByPrefix('senpai-alt', "Senpai Transparent Idle", 24);
+		animation.addByPrefix('pico', "Pico Idle Dance", 24, false);
+		animation.addByPrefix('mom', "Mom Idle BLACK LINES", 24, false);
+		animation.addByPrefix('parents-christmas', "Parent Christmas Idle", 24, false);
+		animation.addByPrefix('senpai', "SENPAI idle Black Lines", 24, false);
+		animation.addByPrefix('senpai-alt', "Senpai Transparent Idle", 24, false);
 
 		setGraphicSize(Std.int(width * scale));
 		updateHitbox();
 	}
+
+	public function dance()
+		{
+			if(publicName == 'gf' || publicName == 'gf-christmas' || publicName == 'spooky')
+				{
+					//THIS IS A PLACEHOLDER UNTIL IM NOT FUCKING DUMB
+					animation.play(publicName);
+				}
+			else
+				{
+					animation.play(publicName);
+				}
+		}
 
 	public function setCharacter(character:String):Void
 	{

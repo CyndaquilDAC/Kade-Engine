@@ -23,6 +23,7 @@ class Note extends FlxSprite
 
 	public var mustPress:Bool = false;
 	public var noteData:Int = 0;
+	public var rawNoteData:Int = 0;
 	public var canBeHit:Bool = false;
 	public var tooLate:Bool = false;
 	public var wasGoodHit:Bool = false;
@@ -30,6 +31,8 @@ class Note extends FlxSprite
 	public var modifiedByLua:Bool = false;
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
+
+	public var altAnimNote:Bool = false;
 
 	public var noteScore:Float = 1;
 
@@ -41,7 +44,7 @@ class Note extends FlxSprite
 
 	public var rating:String = "shit";
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false)
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inCharter:Bool = false)
 	{
 		super();
 
@@ -54,6 +57,10 @@ class Note extends FlxSprite
 		x += 50;
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
 		y -= 2000;
+		if (inCharter)
+			this.strumTime = strumTime;
+		else 
+			this.strumTime = Math.round(strumTime);
 		this.strumTime = strumTime;
 
 		if (this.strumTime < 0 )
