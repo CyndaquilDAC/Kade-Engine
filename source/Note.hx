@@ -1,5 +1,7 @@
 package;
 
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.addons.effects.FlxSkewedSprite;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -9,11 +11,11 @@ import flixel.util.FlxColor;
 #if polymod
 import polymod.format.ParseRules.TargetSignatureElement;
 #end
-import PlayState;
 import flixel.*;
 import haxe.*;
 import lime.*;
 import openfl.*;
+//import PlayState;
 
 using StringTools;
 
@@ -31,6 +33,8 @@ class Note extends FlxSprite
 	public var modifiedByLua:Bool = false;
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
+
+	public var totallyRealScrollSpeedTotallyNotJustPutHereBecauseHaxeIsAnAss:Float = 1;
 
 	public var altAnimNote:Bool = false;
 
@@ -67,6 +71,8 @@ class Note extends FlxSprite
 			this.strumTime = 0;
 
 		this.noteData = noteData;
+
+		totallyRealScrollSpeedTotallyNotJustPutHereBecauseHaxeIsAnAss = PlayState.SONG.speed;
 
 		var daStage:String = PlayState.curStage;
 
@@ -140,7 +146,7 @@ class Note extends FlxSprite
 
 		// we make sure its downscroll and its a SUSTAIN NOTE (aka a trail, not a note)
 		// and flip it so it doesn't look weird.
-		// THIS DOESN'T FUCKING FLIP THE NOTE, CONTRIBUTERS DON'T JUST COMMENT THIS OUT JESUS
+		// THIS DOESN'T FUCKING FLIP THE NOTE, CONTRIBUTORS DON'T JUST COMMENT THIS OUT JESUS
 		if (FlxG.save.data.downscroll && sustainNote) 
 			flipY = true;
 
@@ -188,7 +194,7 @@ class Note extends FlxSprite
 				if(FlxG.save.data.scrollSpeed != 1)
 					prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * FlxG.save.data.scrollSpeed;
 				else
-					prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.SONG.speed;
+					prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.instance.speedTheScroll;
 				prevNote.updateHitbox();
 				// prevNote.setGraphicSize();
 			}
@@ -233,7 +239,8 @@ class Note extends FlxSprite
 		if (tooLate)
 		{
 			if (alpha > 0.3)
-				alpha = 0.3;
+				//alpha = 0.3;
+				FlxTween.tween(this, {alpha: 0.3}, 0.1, {ease: FlxEase.linear});
 		}
 	}
 }

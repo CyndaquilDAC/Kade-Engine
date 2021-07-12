@@ -23,15 +23,15 @@ class OptionsMenu extends MusicBeatState
 	var selector:FlxText;
 	var curSelected:Int = 0;
 
-	var options:Array<OptionCatagory> = [
-		new OptionCatagory("Gameplay", [
+	var options:Array<OptionCategory> = [
+		new OptionCategory("Gameplay", [
 			new DFJKOption(controls),
 			new FPSCapOption("Cap your FPS (Left for -10, Right for -10)"),
 			new ScrollSpeedOption("Change your scroll speed (Left for -0.1, right for +0.1. If its at 1, it will be chart dependent)"),
 			new OffsetMenu("Get a note offset based off of your inputs!"),
 			new CustomizeGameplay("Drag'n'Drop Gameplay Modules around to your preference")
 		]),
-		new OptionCatagory("Appearence", [
+		new OptionCategory("Appearence", [
 			new CutscenesInFreeplayOption("Enable and disable cutscenes and dialogue in freeplay."),
 			new SongPositionOption("Show the songs current position (as a bar)"),
 			new DownscrollOption("Change the layout of the strumline."),
@@ -40,7 +40,7 @@ class OptionsMenu extends MusicBeatState
 			new AccuracyOption("Display accuracy information."),
 			new NPSDisplayOption("Shows your current Notes Per Second.")
 		]),
-		new OptionCatagory("Misc", [
+		new OptionCategory("Misc", [
 			new EtternaModeOption("Harder Hit Windows and a different scoring system."),
 			#if !mobile
 			new FPSOption("Toggle the FPS Counter"),
@@ -55,7 +55,7 @@ class OptionsMenu extends MusicBeatState
 	private var grpControls:FlxTypedGroup<Alphabet>;
 	var versionShit:FlxText;
 
-	var currentSelectedCat:OptionCatagory;
+	var currentSelectedCat:OptionCategory;
 
 	override function create()
 	{

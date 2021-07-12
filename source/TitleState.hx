@@ -313,9 +313,9 @@ class TitleState extends MusicBeatState
 			diamond.destroyOnNoUse = false;
 
 			FlxTransitionableState.defaultTransIn = new TransitionData(TILES, FlxColor.BLACK, 1, new FlxPoint(0, -1), {asset: diamond, width: 32, height: 32},
-				new FlxRect(0, 0, FlxG.width, FlxG.height));
+				new FlxRect(0, 0, Lib.application.window.width, Lib.application.window.height));
 			FlxTransitionableState.defaultTransOut = new TransitionData(TILES, FlxColor.BLACK, 0.7, new FlxPoint(0, 1),
-				{asset: diamond, width: 32, height: 32}, new FlxRect(0, 0, FlxG.width, FlxG.height));
+				{asset: diamond, width: 32, height: 32}, new FlxRect(0, 0, Lib.application.window.width, Lib.application.window.height));
 
 			FlxTransitionableState.defaultTransIn.tileData = {asset: diamond, width: 32, height: 32};
 			FlxTransitionableState.defaultTransOut.tileData = {asset: diamond, width: 32, height: 32};

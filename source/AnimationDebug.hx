@@ -12,16 +12,20 @@ import flixel.*;
 import haxe.*;
 import lime.*;
 import openfl.*;
+import CoolUtil;
+import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
+import flixel.addons.transition.FlxTransitionableState;
+import flixel.addons.transition.TransitionData;
+import flixel.addons.*;
 
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;
 #end
 
-/**
-	*DEBUG MODE
- */
-class AnimationDebug extends FlxState
+using StringTools;
+
+class AnimationDebug extends MusicBeatState
 {
 	var bf:Boyfriend;
 	var dad:Character;
@@ -37,6 +41,8 @@ class AnimationDebug extends FlxState
 	public function new(daAnim:String = 'spooky')
 	{
 		super();
+		transIn = FlxTransitionableState.defaultTransIn;
+		transOut = FlxTransitionableState.defaultTransOut;
 		this.daAnim = daAnim;
 	}
 
@@ -44,9 +50,10 @@ class AnimationDebug extends FlxState
 	{
 		#if desktop
 		// Updating Discord Rich Presence
-		DiscordClient.changePresence("In the Animation Debug Menu (NOT CURRENTLY MEANT FOR PUBLIC USE DON'T ASK)", null);
+		DiscordClient.changePresence("In the Animation Debug Menu", null);
 		#end
 		FlxG.sound.music.stop();
+		FlxG.sound.playMusic(Paths.music('freakyMenu'), 1);
 
 		var gridBG:FlxSprite = FlxGridOverlay.create(10, 10);
 		gridBG.scrollFactor.set(0.5, 0.5);
@@ -103,7 +110,7 @@ class AnimationDebug extends FlxState
 		{
 			var text:FlxText = new FlxText(10, 20 + (18 * daLoop), 0, anim + ": " + offsets, 15);
 			text.scrollFactor.set();
-			text.color = FlxColor.BLUE;
+			text.color = FlxColor.BLACK;
 			dumbTexts.add(text);
 
 			if (pushList)
@@ -202,6 +209,11 @@ class AnimationDebug extends FlxState
 			genBoyOffsets(false);
 			char.playAnim(animList[curAnim]);
 		}
+
+		if (controls.BACK)
+			{
+				FlxG.switchState(new MainMenuState());
+			}
 
 		super.update(elapsed);
 	}

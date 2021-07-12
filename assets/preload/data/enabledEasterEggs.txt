@@ -1,0 +1,2 @@
+if you wanna enable an easter egg, add it here! ill give you a hint, there may or may not be an easter eggs list somewhere in the files if you enable show hidden folders.
+switch-healthheads
