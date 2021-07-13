@@ -26,17 +26,17 @@ class OptionsMenu extends MusicBeatState
 	var options:Array<OptionCategory> = [
 		new OptionCategory("Gameplay", [
 			new DFJKOption(controls),
+			new DownscrollOption("Change the layout of the strumline."),
 			new FPSCapOption("Cap your FPS (Left for -10, Right for -10)"),
 			new ScrollSpeedOption("Change your scroll speed (Left for -0.1, right for +0.1. If its at 1, it will be chart dependent)"),
 			new OffsetMenu("Get a note offset based off of your inputs!"),
 			new CustomizeGameplay("Drag'n'Drop Gameplay Modules around to your preference")
 		]),
 		new OptionCategory("Appearence", [
-			new CutscenesInFreeplayOption("Enable and disable cutscenes and dialogue in freeplay."),
 			new SongPositionOption("Show the songs current position (as a bar)"),
-			new DownscrollOption("Change the layout of the strumline."),
 			new EffectsEnabledOption("Toggles distracting effects on and off."),
-			new RainbowFPSOption("Make the FPS Counter Rainbow (Only works with the FPS Counter toggled on)"),
+			new CharacterAntialiasingOption("Antialias characters, at a slight performance penalty."),
+			new RainbowFPSOption("Make the FPS Counter Rainbow (Only works with the FPS Counter toggled on!)"),
 			new AccuracyOption("Display accuracy information."),
 			new NPSDisplayOption("Shows your current Notes Per Second.")
 		]),

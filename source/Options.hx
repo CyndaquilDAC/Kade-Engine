@@ -177,6 +177,27 @@ class CutscenesInFreeplayOption extends Option
 	}
 }
 
+class CharacterAntialiasingOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.charAntialiasing = !FlxG.save.data.charAntialiasing;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return FlxG.save.data.charAntialiasing ? "Character Antialiasing On" : "Character Antialiasing Off";
+	}
+}
+
 class OldWeekSixShitOption extends Option
 {
 	public function new(desc:String)
@@ -194,7 +215,7 @@ class OldWeekSixShitOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return FlxG.save.data.promoWeekSix ? "Promo Pixel Assets Off" : "Promo Pixel Assets On";
+		return FlxG.save.data.promoWeekSix ? "Promo Week 6 Assets Off" : "Promo Week 6 Assets On";
 	}
 }
 

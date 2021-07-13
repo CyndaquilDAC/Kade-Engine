@@ -21,6 +21,10 @@ class Character extends FlxSprite
 
 	public var holdTimer:Float = 0;
 
+	public var chartToMapAnimsFrom:String = "picospeaker";
+
+	public var songFolder:String = "stress";
+
 	public var hasEvilTrail:Bool = false;
 	//swaggy unhardcode
 
@@ -33,9 +37,14 @@ class Character extends FlxSprite
 		this.isPlayer = isPlayer;
 
 		var tex:FlxAtlasFrames;
-		antialiasing = true;
+		if(!FlxG.save.data.charAntialiasing)
+			{
+				antialiasing = true;
+			}
 
 		hasEvilTrail = false;
+
+		songFolder = PlayState.SONG.song.toLowerCase();
 
 		switch (curCharacter)
 		{
@@ -74,6 +83,7 @@ class Character extends FlxSprite
 				addOffset('scared', -2, -17);
 
 				playAnim('danceRight');
+			
 			case 'gf-tankmen':
 				// GIRLFRIEND CODE
 				tex = Paths.getSparrowAtlas('characters/gfTankmen');
@@ -87,7 +97,8 @@ class Character extends FlxSprite
 				addOffset('danceRight', 0, -9);	
 
 				playAnim('danceRight');
-				case 'gf-steps':
+			
+			case 'gf-steps':
 					// GIRLFRIEND CODE
 					tex = Paths.getSparrowAtlas('characters/GF_assets_steps');
 					frames = tex;
@@ -181,6 +192,34 @@ class Character extends FlxSprite
 
 				playAnim('danceRight');
 
+			case 'gf-car-night':
+				tex = Paths.getSparrowAtlas('characters/gfCarNight');
+				frames = tex;
+				animation.addByIndices('singUP', 'GF Dancing Beat Hair blowing CAR', [0], "", 24, false);
+				animation.addByIndices('danceLeft', 'GF Dancing Beat Hair blowing CAR', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				animation.addByIndices('danceRight', 'GF Dancing Beat Hair blowing CAR', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24,
+					false);
+				animation.addByPrefix('scared', 'GF FEAR', 24);
+				animation.addByIndices('sad', 'gf sad', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], "", 24, false);
+				animation.addByPrefix('cheer', 'GF Cheer', 24, false);
+				animation.addByPrefix('singLEFT', 'GF left note', 24, false);
+				animation.addByPrefix('singRIGHT', 'GF Right Note', 24, false);
+				animation.addByPrefix('singUP', 'GF Up Note', 24, false);
+				animation.addByPrefix('singDOWN', 'GF Down Note', 24, false);
+				
+
+				addOffset('danceLeft', 0);
+				addOffset('danceRight', 0);
+				addOffset('cheer');
+				addOffset('sad', -2, -21);
+				addOffset('scared', -2, -17);
+				addOffset("singUP", 0, 4);
+				addOffset("singRIGHT", 0, -20);
+				addOffset("singLEFT", 0, -19);
+				addOffset("singDOWN", 0, -20);
+
+				playAnim('danceRight');
+
 			case 'gf-pixel':
 				tex = Paths.getSparrowAtlas('characters/gfPixel');
 				frames = tex;
@@ -214,6 +253,7 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 0, -30);
 
 				playAnim('idle');
+			
 			case 'dad-test':
 				// DAD ANIMATION LOADING CODE
 				tex = Paths.getSparrowAtlas('characters/TestDad_assets','shared');
@@ -231,6 +271,7 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 0, -30);
 	
 				playAnim('idle');
+			
 			case 'spooky':
 				tex = Paths.getSparrowAtlas('characters/spooky_kids_assets');
 				frames = tex;
@@ -259,6 +300,7 @@ class Character extends FlxSprite
 				addOffset("singDOWN-alt", 60, 7);
 
 				playAnim('danceRight');
+			
 			case 'mom':
 				tex = Paths.getSparrowAtlas('characters/Mom_Assets');
 				frames = tex;
@@ -281,6 +323,25 @@ class Character extends FlxSprite
 
 			case 'mom-car':
 				tex = Paths.getSparrowAtlas('characters/momCar');
+				frames = tex;
+
+				animation.addByPrefix('idle', "Mom Idle", 24, false);
+				animation.addByPrefix('singUP', "Mom Up Pose", 24, false);
+				animation.addByPrefix('singDOWN', "MOM DOWN POSE", 24, false);
+				animation.addByPrefix('singLEFT', 'Mom Left Pose', 24, false);
+				// ANIMATION IS CALLED MOM LEFT POSE BUT ITS FOR THE RIGHT
+				// CUZ DAVE IS DUMB!
+				animation.addByPrefix('singRIGHT', 'Mom Pose Left', 24, false);
+
+				addOffset('idle');
+				addOffset("singUP", 14, 71);
+				addOffset("singRIGHT", 10, -60);
+				addOffset("singLEFT", 250, -23);
+				addOffset("singDOWN", 20, -160);
+
+				playAnim('idle');
+			case 'mom-car-night':
+				tex = Paths.getSparrowAtlas('characters/momCarNight');
 				frames = tex;
 
 				animation.addByPrefix('idle', "Mom Idle", 24, false);
@@ -513,6 +574,8 @@ class Character extends FlxSprite
 
 				playAnim("shoot1");
 
+				chartToMapAnimsFrom = 'picospeaker';
+
 				loadMappedAnims();
 			case 'bf-test':
 				var tex = Paths.getSparrowAtlas('characters/BFTest_Assets');
@@ -539,10 +602,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
 	
 				addOffset('idle', -5);
-				addOffset('hit', -5);
-				addOffset('attack', -5);
-				addOffset('dodge', -5);
-				addOffset('preattack', -5);
+				addOffset('hit', 22, 26);
+				addOffset('attack', 292, 266);
+				addOffset('dodge', -5, -15);
+				addOffset('preattack', -5, -54);
 				addOffset("singUP", -29, 27);
 				addOffset("singRIGHT", -38, -7);
 				addOffset("singLEFT", 12, -6);
@@ -603,8 +666,54 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
+				animation.addByPrefix('hit', 'BF hit', 24, false);
+				animation.addByPrefix('attack', 'boyfriend attack', 24, false);
+				animation.addByPrefix('preattack', 'bf pre attack', 24, false);
+				animation.addByPrefix('dodge', 'boyfriend dodge', 24, false);
 
 				addOffset('idle', -5);
+				addOffset('hit', 22, 26);
+				addOffset('attack', 292, 266);
+				addOffset('dodge', -5, -15);
+				addOffset('preattack', -5, -54);
+				addOffset("singUP", -29, 27);
+				addOffset("singRIGHT", -38, -7);
+				addOffset("singLEFT", 12, -6);
+				addOffset("singDOWN", -10, -50);
+				addOffset("singUPmiss", -29, 27);
+				addOffset("singRIGHTmiss", -30, 21);
+				addOffset("singLEFTmiss", 12, 24);
+				addOffset("singDOWNmiss", -11, -19);
+				addOffset("hey", 7, 4);
+				addOffset('scared', -4);
+
+				playAnim('idle');
+
+				flipX = true;
+			case 'bf-car-night':
+				var tex = Paths.getSparrowAtlas('characters/bfCarNight');
+				frames = tex;
+				animation.addByPrefix('idle', 'BF idle dance', 24, false);
+				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
+				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
+				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+				animation.addByPrefix('hey', 'BF HEY', 24, false);
+				animation.addByPrefix('scared', 'BF idle shaking', 24);
+				animation.addByPrefix('hit', 'BF hit', 24, false);
+				animation.addByPrefix('attack', 'boyfriend attack', 24, false);
+				animation.addByPrefix('preattack', 'bf pre attack', 24, false);
+				animation.addByPrefix('dodge', 'boyfriend dodge', 24, false);
+
+				addOffset('idle', -5);
+				addOffset('hit', 22, 26);
+				addOffset('attack', 292, 266);
+				addOffset('dodge', -5, -15);
+				addOffset('preattack', -5, -54);
 				addOffset("singUP", -29, 27);
 				addOffset("singRIGHT", -38, -7);
 				addOffset("singLEFT", 12, -6);
@@ -829,7 +938,7 @@ class Character extends FlxSprite
 			case 'gf':
 				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
 					playAnim('danceRight');
-			case 'pico-speaker': // idk anything about this lol
+			case 'pico-speaker':
 				if (animationNotes.length > 0)
 				{
 					if (Conductor.songPosition > animationNotes[0][0])
@@ -855,9 +964,9 @@ class Character extends FlxSprite
 
 	private var danced:Bool = false;
 
-	/**
-	 * FOR GF DANCING SHIT
-	 */
+	
+	//FOR DANCING SHIT
+	
 	public function dance()
 	{
 		if (!debugMode)
@@ -907,6 +1016,16 @@ class Character extends FlxSprite
 						else
 							playAnim('danceLeft');
 					}
+				case 'gf-car-night':
+					if (!animation.curAnim.name.startsWith('hair'))
+					{
+						danced = !danced;
+
+						if (danced)
+							playAnim('danceRight');
+						else
+							playAnim('danceLeft');
+					}
 				case 'gf-pixel':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
@@ -925,10 +1044,10 @@ class Character extends FlxSprite
 						playAnim('danceRight');
 					else
 						playAnim('danceLeft');
-				case "tankman":
-					if (!animation.curAnim.name.endsWith("DOWN-alt"))
-						playAnim("idle");
-				case "pico-speaker":
+				case 'tankman':
+					if (!animation.curAnim.name.endsWith('DOWN-alt'))
+						playAnim('idle');
+				case 'pico-speaker':
 					//fuck you, it does nothing
 				default:
 					playAnim('idle');
@@ -948,7 +1067,7 @@ class Character extends FlxSprite
 		else
 			offset.set(0, 0);
 
-		if (curCharacter == 'gf')
+		if (curCharacter.startsWith('gf'))
 		{
 			if (AnimName == 'singLEFT')
 			{
@@ -976,7 +1095,7 @@ class Character extends FlxSprite
 
 	function loadMappedAnims()
 	{
-		var a:Array<SwagSection> = Song.loadFromJson("picospeaker", "stress").notes;
+		var a:Array<SwagSection> = Song.loadFromJson('picospeaker', 'stress').notes;
 		for (i in a) {
 			for (note in i.sectionNotes)
 				animationNotes.push(note);

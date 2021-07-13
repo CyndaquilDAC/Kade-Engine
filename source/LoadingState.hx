@@ -21,12 +21,14 @@ import haxe.io.Path;
 
 class LoadingState extends MusicBeatState
 {
-	inline static var MIN_TIME = 1.0;
+	inline static var MIN_TIME = 0.5;
 	
 	var target:FlxState;
 	var stopMusic = false;
 	var callbacks:MultiCallback;
 	
+	var timeLeft:Float = 1;
+
 	var loadingBg:FlxSprite;
 	
 	function new(target:FlxState, stopMusic:Bool)
@@ -41,6 +43,7 @@ class LoadingState extends MusicBeatState
 		loadingBg = new FlxSprite(0,0);
         loadingBg.loadGraphic(Paths.image('loading/FunkyLoader'));
         loadingBg.antialiasing = true;
+		loadingBg.scrollFactor.set();
         add(loadingBg);
 		
 		initSongsManifest().onComplete
@@ -128,7 +131,10 @@ class LoadingState extends MusicBeatState
 	
 	inline static public function loadAndSwitchState(target:FlxState, stopMusic = false)
 	{
-		FlxG.switchState(getNextState(target, stopMusic));
+		new FlxTimer().start(MIN_TIME, function(tmr:FlxTimer)
+			{
+				FlxG.switchState(getNextState(target, stopMusic));
+			});
 	}
 	
 	static function getNextState(target:FlxState, stopMusic = false):FlxState

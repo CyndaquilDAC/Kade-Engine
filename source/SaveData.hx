@@ -16,6 +16,9 @@ class SaveData
 
 		if (FlxG.save.data.dfjk == null)
 			FlxG.save.data.dfjk = false;
+
+		if(FlxG.save.data.charAntialiasing == null)
+			FlxG.save.data.charAntialiasing == true;
 			
 		if (FlxG.save.data.accuracyDisplay == null)
 			FlxG.save.data.accuracyDisplay = true;

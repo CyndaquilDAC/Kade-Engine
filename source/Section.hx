@@ -13,9 +13,8 @@ typedef SwagSection =
 	var mustHitSection:Bool;
 	var bpm:Float;
 	var changeBPM:Bool;
-	//change scroll speed literally breaks the entire fucking game so no more. might revisit it later tho
-	//var scrollSpeed:Float;
-	//var changeScrollSpeed:Bool;
+	var scrollSpeed:Float;
+	var changeScrollSpeed:Bool;
 	var altAnim:Bool;
 }
 

@@ -23,10 +23,6 @@ class GameplayCustomizeState extends MusicBeatState
     var defaultX:Float = FlxG.width * 0.55 - 135;
     var defaultY:Float = FlxG.height / 2 - 50;
 
-    var background:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback','shared'));
-    var curt:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains','shared'));
-    var front:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront','shared'));
-
     var sick:FlxSprite = new FlxSprite().loadGraphic(Paths.image('sick','shared'));
 
     var bf:Boyfriend = new Boyfriend(770, 450, 'bf');
@@ -53,13 +49,57 @@ class GameplayCustomizeState extends MusicBeatState
 		camHUD.bgColor.alpha = 0;
         FlxG.cameras.add(camHUD);
 
-        background.scrollFactor.set(0.9,0.9);
-        curt.scrollFactor.set(0.9,0.9);
-        front.scrollFactor.set(0.9,0.9);
+        var bg:FlxSprite = new FlxSprite(-600, -200);
+        bg.frames = Paths.getSparrowAtlas('test/testBackground');
+        bg.animation.addByPrefix('back', 'stageBack', 24, true);
+        bg.animation.play('back');
+        bg.scrollFactor.set(0.9, 0.9);
+        bg.active = false;
+        add(bg);
+        trace('back added');
 
-        add(background);
-        add(front);
-        add(curt);
+        var stageFront:FlxSprite = new FlxSprite(-650, 600);
+        stageFront.frames = Paths.getSparrowAtlas('test/testBackground');
+        stageFront.animation.addByPrefix('front', 'stageFront', 24, true);
+        stageFront.animation.play('front');
+        stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+        stageFront.updateHitbox();
+        stageFront.antialiasing = true;
+        stageFront.scrollFactor.set(0.9, 0.9);
+        stageFront.active = false;
+        add(stageFront);
+        trace('front added');
+
+        var stageLightLeft:FlxSprite = new FlxSprite(-25, -75);
+        stageLightLeft.frames = Paths.getSparrowAtlas('test/testBackground');
+        stageLightLeft.animation.addByPrefix('light', 'stageLight', 24, true);
+        stageLightLeft.animation.play('light');
+        stageLightLeft.scrollFactor.set(1.25, 1.25);
+        stageLightLeft.antialiasing = true;
+        add(stageLightLeft);
+        trace('left light added');
+
+        var stageLightRight:FlxSprite = new FlxSprite(1570, -75);
+        stageLightRight.frames = Paths.getSparrowAtlas('test/testBackground');
+        stageLightRight.animation.addByPrefix('light', 'stageLight', 24, true);
+        stageLightRight.animation.play('light');
+        stageLightRight.flipX = true;
+        stageLightRight.scrollFactor.set(1.25, 1.25);
+        stageLightRight.antialiasing = true;
+        add(stageLightRight);
+        trace('right light added');
+
+        var stageCurtains:FlxSprite = new FlxSprite(-500, -300);
+        stageCurtains.frames = Paths.getSparrowAtlas('test/testBackground');
+        stageCurtains.animation.addByPrefix('curtains', 'stageCurtains', 24, true);
+        stageCurtains.animation.play('curtains');
+        stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+        stageCurtains.updateHitbox();
+        stageCurtains.scrollFactor.set(1.3, 1.3);
+        stageCurtains.active = false;
+        stageCurtains.antialiasing = true;
+        add(stageCurtains);
+        trace('curtains added');
 
 		var camFollow = new FlxObject(0, 0, 1, 1);
 

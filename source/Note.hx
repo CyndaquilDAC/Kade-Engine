@@ -240,7 +240,7 @@ class Note extends FlxSprite
 		{
 			if (alpha > 0.3)
 				//alpha = 0.3;
-				FlxTween.tween(this, {alpha: 0.3}, 0.1, {ease: FlxEase.linear});
+				FlxTween.tween(this, {alpha: 0}, 0.1);
 		}
 	}
 }

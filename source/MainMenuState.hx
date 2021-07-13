@@ -260,7 +260,8 @@ class MainMenuState extends MusicBeatState
 			if (spr.ID == curSelected)
 			{
 				spr.animation.play('selected');
-				camFollow.setPosition(FlxG.stage.stageWidth / 2, spr.getGraphicMidpoint().y);
+				camFollow.setPosition(Lib.application.window.width / 2, spr.getGraphicMidpoint().y);
+				camFollow.screenCenter(X);
 			}
 
 			spr.updateHitbox();
