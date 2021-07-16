@@ -2,6 +2,7 @@
 
 package;
 
+import flixel.tweens.FlxTween;
 import flixel.system.FlxSound;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -26,6 +27,7 @@ class DialogueBox extends FlxSpriteGroup
 {
 	var box:FlxSprite;
 
+	var dialogEnded:Bool = false;
 	var curCharacter:String = '';
 	var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
 	var dialogue:Alphabet;
@@ -49,10 +51,6 @@ class DialogueBox extends FlxSpriteGroup
 		
 		super();
 
-		face.setGraphicSize(Std.int(face.width * 6));
-		add(face);
-		face.visible = false;
-
 		switch (PlayState.SONG.song.toLowerCase())
 		{
 			case 'senpai':
@@ -69,10 +67,10 @@ class DialogueBox extends FlxSpriteGroup
 			case 'south':
 				FlxG.sound.playMusic(Paths.music('southDialogue'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'bopeebo' | 'drug-pop-bopeebo':
+			case 'bopeebo' | 'drug-pop-bopeebo' | 'drug pop bopeebo':
 				FlxG.sound.playMusic(Paths.music('bopeeboDialogue'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'dadbattle':
+			case 'dadbattle' | 'dad battle':
 				FlxG.sound.playMusic(Paths.music('dadbattleDialogue'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'fresh':
@@ -87,7 +85,7 @@ class DialogueBox extends FlxSpriteGroup
 			case 'pico':
 				FlxG.sound.playMusic(Paths.music('picoDialogue'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
-			case 'satin-panties':
+			case 'satin-panties' | 'satin panties':
 				FlxG.sound.playMusic(Paths.music('satin-pantiesDialogue'), 0);
 				FlxG.sound.music.fadeIn(1, 0, 0.8);
 			case 'spookeez':
@@ -109,13 +107,19 @@ class DialogueBox extends FlxSpriteGroup
 		bgFade.scrollFactor.set();
 		bgFade.alpha = 0;
 		add(bgFade);
-
-		new FlxTimer().start(0.83, function(tmr:FlxTimer)
+		switch(PlayState.SONG.song.toLowerCase())
 		{
-			bgFade.alpha += (1 / 5) * 0.7;
-			if (bgFade.alpha > 0.7)
-				bgFade.alpha = 0.7;
-		}, 5);
+			case 'senpai' | 'roses' | 'thorns':
+				new FlxTimer().start(0.83, function(tmr:FlxTimer)
+					{
+						bgFade.alpha += (1 / 5) * 0.7;
+						if (bgFade.alpha > 0.7)
+							bgFade.alpha = 0.7;
+					}, 5);
+			default:
+				bgFade.color = FlxColor.WHITE;
+				FlxTween.tween(bgFade, {alpha: 0.7}, 0.83);
+		}
 		
 		var hasDialog = false;
 		switch (PlayState.SONG.song.toLowerCase())
@@ -308,18 +312,26 @@ class DialogueBox extends FlxSpriteGroup
 		box.screenCenter(X);
 		portraitLeft.screenCenter(X);
 
-		handSelect = new FlxSprite(FlxG.width * 0.9, FlxG.height * 0.9);
-		switch(PlayState.SONG.song.toLowerCase()){
+		handSelect = new FlxSprite(1042, 590);
+		switch(PlayState.SONG.song.toLowerCase())
+		{
 			case 'senpai' | 'roses' | 'thorns':
-				handSelect.frames = Paths.getSparrowAtlas('weeb/pixelUI/textbox_hand_animated');
+				handSelect.frames = Paths.getSparrowAtlas('weeb/pixelUI/Textbox_Hand_Animated');
+				handSelect.animation.addByPrefix('hand', 'hand', 24, true);
+				handSelect.animation.play('hand');
+				handSelect.setGraphicSize(Std.int(handSelect.width * 6 * 0.9));
+				handSelect.updateHitbox();
 			default:
-				handSelect.frames = Paths.getSparrowAtlas('ui/textboxhandanimatedgf','shared');
-				handSelect.antialiasing = true;
-				handSelect.visible = false;
+				handSelect.frames = Paths.getSparrowAtlas('ui/Textbox_Arrow_Animated');
+				handSelect.animation.addByPrefix('hand', 'hand', 24, true);
+				handSelect.animation.play('hand');
 		}
-		handSelect.animation.addByPrefix('idle', 'textbox hand animated', 24, true);
+		handSelect.visible = false;
 		add(handSelect);
-		handSelect.animation.play('idle');
+
+		face.setGraphicSize(Std.int(face.width * 6));
+		add(face);
+		face.visible = false;
 
 
 		if (!talkingRight)
@@ -431,17 +443,33 @@ class DialogueBox extends FlxSpriteGroup
 
 					if (PlayState.SONG.song.toLowerCase() != 'roses')
 						FlxG.sound.music.fadeOut(2.2, 0);
-
-					new FlxTimer().start(0.2, function(tmr:FlxTimer)
+					
+					switch(PlayState.SONG.song.toLowerCase())
 					{
-						box.alpha -= 1 / 5;
-						bgFade.alpha -= 1 / 5 * 0.7;
-						portraitLeft.visible = false;
-						portraitRight.visible = false;
-						swagDialogue.alpha -= 1 / 5;
-						dropText.alpha = swagDialogue.alpha;
-						dialogue.alpha -= 1 / 5;
-					}, 5);
+						case 'senpai' | 'roses' | 'thorns':
+							new FlxTimer().start(0.2, function(tmr:FlxTimer)
+								{
+									box.alpha -= 1 / 5;
+									bgFade.alpha -= 1 / 5 * 0.7;
+									portraitLeft.alpha -= 1 / 5;
+									portraitRight.alpha -= 1 / 5;
+									face.alpha -= 1 / 5;
+									swagDialogue.alpha -= 1 / 5;
+									dropText.alpha = swagDialogue.alpha;
+									dialogue.alpha -= 1 / 5;
+									handSelect.alpha -= 1/5;
+								}, 5);
+						default:
+							FlxTween.tween(box, {alpha: 0}, 1.2);
+							FlxTween.tween(bgFade, {alpha: 0}, 1.2);
+							FlxTween.tween(portraitLeft, {alpha: 0}, 1.2);
+							FlxTween.tween(portraitRight, {alpha: 0}, 1.2);
+							FlxTween.tween(swagDialogue, {alpha: 0}, 1.2);
+							FlxTween.tween(dropText, {alpha: 0}, 1.2);
+							FlxTween.tween(dialogue, {alpha: 0}, 1.2);
+							FlxTween.tween(handSelect, {alpha: 0}, 1.2);
+							FlxTween.tween(face, {alpha: 0}, 1.2);
+					}
 
 					new FlxTimer().start(1.2, function(tmr:FlxTimer)
 					{
@@ -472,6 +500,13 @@ class DialogueBox extends FlxSpriteGroup
 					// swagDialogue.text = ;
 					swagDialogue.resetText(dialogueList[0]);
 					swagDialogue.start(0.04, true);
+					swagDialogue.completeCallback = function() {
+						trace("dialogue finish");
+						handSelect.visible = true;
+						dialogEnded = true;
+					}
+					handSelect.visible = false;
+					dialogEnded = false;
 				}
 			default:
 				{
@@ -479,6 +514,13 @@ class DialogueBox extends FlxSpriteGroup
 					theDialog.y = 70 + FlxG.height * 0.5;
 					dialogue = theDialog;
 					add(theDialog);
+					dialogue.completeCallback = function() {
+						trace("dialogue finish");
+						handSelect.visible = true;
+						dialogEnded = true;
+					}
+					handSelect.visible = false;
+					dialogEnded = false;
 				}
 		}
 

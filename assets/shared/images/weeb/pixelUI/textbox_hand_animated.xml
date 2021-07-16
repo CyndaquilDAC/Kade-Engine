@@ -1,9 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TextureAtlas imagePath="textbox_hand_animated.png">
+<TextureAtlas imagePath="Textbox_Hand.png">
 	<!-- Created with Adobe Animate version 21.0.1.37179 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="textbox hand animated0000" x="0" y="0" width="17" height="11" pivotX="10" pivotY="6" frameX="-1" frameY="0" frameWidth="20" frameHeight="13"/>
-	<SubTexture name="textbox hand animated0001" x="17" y="0" width="17" height="11" frameX="-1" frameY="0" frameWidth="20" frameHeight="13"/>
-	<SubTexture name="textbox hand animated0002" x="34" y="0" width="20" height="13"/>
-	<SubTexture name="textbox hand animated0003" x="0" y="13" width="20" height="13"/>
+	<SubTexture name="hand0000" x="10" y="10" width="17" height="11" pivotX="0" pivotY="0" frameX="0" frameY="0" frameWidth="17" frameHeight="12"/>
+	<SubTexture name="hand0001" x="10" y="10" width="17" height="11" frameX="0" frameY="0" frameWidth="17" frameHeight="12"/>
+	<SubTexture name="hand0002" x="10" y="10" width="17" height="11" frameX="0" frameY="0" frameWidth="17" frameHeight="12"/>
+	<SubTexture name="hand0003" x="10" y="10" width="17" height="11" frameX="0" frameY="0" frameWidth="17" frameHeight="12"/>
+	<SubTexture name="hand0004" x="10" y="10" width="17" height="11" frameX="0" frameY="-1" frameWidth="17" frameHeight="12"/>
+	<SubTexture name="hand0005" x="10" y="10" width="17" height="11" frameX="0" frameY="-1" frameWidth="17" frameHeight="12"/>
+	<SubTexture name="hand0006" x="10" y="10" width="17" height="11" frameX="0" frameY="-1" frameWidth="17" frameHeight="12"/>
+	<SubTexture name="hand0007" x="10" y="10" width="17" height="11" frameX="0" frameY="-1" frameWidth="17" frameHeight="12"/>
 </TextureAtlas>

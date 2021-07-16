@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Textbox_Arrow.png">
+	<!-- Created with Adobe Animate version 21.0.1.37179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="hand0000" x="10" y="10" width="49" height="71" pivotX="17.5" pivotY="26.95"/>
+	<SubTexture name="hand0001" x="10" y="10" width="49" height="71"/>
+	<SubTexture name="hand0002" x="69" y="10" width="49" height="71"/>
+	<SubTexture name="hand0003" x="69" y="10" width="49" height="71"/>
+	<SubTexture name="hand0004" x="10" y="10" width="49" height="71"/>
+	<SubTexture name="hand0005" x="10" y="10" width="49" height="71"/>
+	<SubTexture name="hand0006" x="69" y="10" width="49" height="71"/>
+	<SubTexture name="hand0007" x="69" y="10" width="49" height="71"/>
+</TextureAtlas>
