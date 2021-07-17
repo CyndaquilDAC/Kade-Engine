@@ -175,6 +175,7 @@ class TitleState extends MusicBeatState
 		logoUnder.animation.play('bump');
 		logoUnder.updateHitbox();
 		logoUnder.color = FlxColor.BLACK;
+		logoUnder.visible = false;
 
 		logoBl = new FlxSprite(-150, -100);
 		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
@@ -214,9 +215,6 @@ class TitleState extends MusicBeatState
 		logo.antialiasing = true;
 		add(logo);
 		*/
-
-		FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
-		FlxTween.tween(logoUnder, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
 
 		credGroup = new FlxGroup();
 		add(credGroup);
@@ -529,6 +527,13 @@ class TitleState extends MusicBeatState
 			// credTextShit.visible = true;
 			case 12:
 				addMoreText(curWacky[1]);
+				if(curWacky[1] == 'you deadass built like a')
+					{
+						PlayState.SONG = Song.loadFromJson(Highscore.formatSong('ugh-easter-egg', 2));
+						PlayState.storyDifficulty = 2;
+						PlayState.storyWeek = 7;
+						LoadingState.loadAndSwitchState(new PlayState(true));
+					}
 			// credTextShit.text += '\nlmao';
 			case 14:
 				deleteCoolText();
@@ -538,11 +543,25 @@ class TitleState extends MusicBeatState
 			// credTextShit.screenCenter();
 			case 16:
 				addMoreText(curWackyTwo[1]);
+				if(curWackyTwo[1] == 'you deadass built like a')
+					{
+						PlayState.SONG = Song.loadFromJson(Highscore.formatSong('ugh-easter-egg', 2));
+						PlayState.storyDifficulty = 2;
+						PlayState.storyWeek = 7;
+						LoadingState.loadAndSwitchState(new PlayState(true));
+					}
 			case 18:
 				deleteCoolText();
 				createCoolText([curWackyThree[0]]);
 			case 20:
 				addMoreText(curWackyThree[1]);
+				if(curWackyThree[1] == 'you deadass built like a')
+					{
+						PlayState.SONG = Song.loadFromJson(Highscore.formatSong('ugh-easter-egg', 2));
+						PlayState.storyDifficulty = 2;
+						PlayState.storyWeek = 7;
+						LoadingState.loadAndSwitchState(new PlayState(true));
+					}
 			case 22:
 				deleteCoolText();
 				addMoreText("Friday Night Funkin':");

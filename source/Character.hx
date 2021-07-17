@@ -576,7 +576,7 @@ class Character extends FlxSprite
 
 				chartToMapAnimsFrom = 'picospeaker';
 
-				loadMappedAnims();
+				loadMappedAnimsPicospeaker();
 			case 'bf-test':
 				var tex = Paths.getSparrowAtlas('characters/BFTest_Assets');
 				frames = tex;
@@ -1093,9 +1093,9 @@ class Character extends FlxSprite
 
 	var animationNotes:Array<Dynamic> = [];
 
-	function loadMappedAnims()
+	function loadMappedAnimsPicospeaker()
 	{
-		var a:Array<SwagSection> = Song.loadFromJson('picospeaker', 'stress').notes;
+		var a:Array<SwagSection> = Song.loadFromJson(chartToMapAnimsFrom, songFolder).notes;
 		for (i in a) {
 			for (note in i.sectionNotes)
 				animationNotes.push(note);

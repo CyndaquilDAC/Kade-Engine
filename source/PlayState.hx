@@ -1,5 +1,6 @@
 package;
 
+import openfl.system.System;
 import flixel.math.FlxAngle;
 import LoopState;
 import lime.app.Application;
@@ -166,6 +167,7 @@ class PlayState extends MusicBeatState
 	private var iconP1:HealthIcon;
 	private var iconP2:HealthIcon;
 	private var camHUD:FlxCamera;
+	private var strippedCam:FlxCamera;
 	private var camGame:FlxCamera;
 
 	public var redRosesAddInt:Int = 0;
@@ -235,6 +237,10 @@ class PlayState extends MusicBeatState
 	public var tankManRun = new FlxTypedGroup<TankmenBG>();
 	public var foregroundTankmen = new FlxTypedGroup<FlxSprite>();
 
+	public var stripped:Bool = false;
+
+	public var isUghEasterEgg:Bool = false;
+
 	var fc:Bool = true;
 
 	var bgGirls:BackgroundGirls;
@@ -270,10 +276,12 @@ class PlayState extends MusicBeatState
 
 	public var speedTheScroll:Float = 1;
 
-	override public function new()
+	override public function new(ughState = false)
 	{
 		super();
 		instance = this;
+		stripped = ughState;
+		isUghEasterEgg = ughState;
 	}
 
 	override public function create()
@@ -352,6 +360,15 @@ class PlayState extends MusicBeatState
 
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camHUD);
+		FlxG.cameras.add(strippedCam);
+
+		var strippedOverlay = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		strippedOverlay.scrollFactor.set();
+		strippedOverlay.camera = strippedCam;
+		if(stripped)
+			{
+				add(strippedOverlay);
+			}
 
 		var tempNoteSplash = new NoteSplash(0, 0, 0);
 		var tempNoteSplashCpu = new NoteSplash(0, 0, 0);
@@ -397,12 +414,12 @@ class PlayState extends MusicBeatState
 				hasIngameAnimatedScene = true;
 				trace('DAMN BITCH WE BE RUNNIN AN ANIMATED SCENE ON ' + SONG.song.toLowerCase());
 			}
-		if(SONG.song.toLowerCase() == 'ugh' || SONG.song.toLowerCase() == 'guns' || SONG.song.toLowerCase() == 'stress')
+		if(SONG.song.toLowerCase() == 'ugh' || SONG.song.toLowerCase() == 'guns' || SONG.song.toLowerCase() == 'stress' || SONG.song.toLowerCase() == 'ugh-easter-egg')
 			{
 				hasDialogueScene = false;
 			}
 		
-		if(SONG.song.toLowerCase() == 'philly nice' || SONG.song.toLowerCase() == 'winter horrorland' || SONG.song.toLowerCase() == 'satin panties' || SONG.song.toLowerCase() == 'dad battle' || SONG.song.toLowerCase() == 'ugh' || SONG.song.toLowerCase() == 'guns' || SONG.song.toLowerCase() == 'stress' || SONG.song.toLowerCase() == 'ingame-scene-test')
+		if(SONG.song.toLowerCase() == 'philly nice' || SONG.song.toLowerCase() == 'winter horrorland' || SONG.song.toLowerCase() == 'satin panties' || SONG.song.toLowerCase() == 'dad battle' || SONG.song.toLowerCase() == 'ugh' || SONG.song.toLowerCase() == 'guns' || SONG.song.toLowerCase() == 'stress' || SONG.song.toLowerCase() == 'ingame-scene-test' || SONG.song.toLowerCase() == 'ugh-easter-egg')
 			{
 				switch(SONG.song.toLowerCase())
 				{
@@ -1160,6 +1177,12 @@ class PlayState extends MusicBeatState
 		preCutsceneSenpai.y += 360;
 
 		dad = new Character(100, 100, SONG.player2);
+		if(isUghEasterEgg)
+			{
+				dad.camera = strippedCam;
+				dad.screenCenter();
+				dad.scrollFactor.set();
+			}
 		camPos = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
 		if(dad.curCharacter.startsWith('gf'))
 			{
@@ -1172,52 +1195,53 @@ class PlayState extends MusicBeatState
 				}
 				trace('gf positioned (player 2)');
 			}
-		switch (SONG.player2)
-		{
-			case "spooky":
-				dad.y += 200;
-				trace('spooky positioned');
-			case "monster":
-				dad.y += 100;
-				trace('monster positioned');
-			case 'monster-christmas':
-				dad.y += 130;
-				trace('monster-christmas positioned');
-			case 'dad':
-				camPos.x += 400;
-				trace('dad positioned');
-			case 'pico':
-				camPos.x += 600;
-				dad.y += 300;
-				trace('pico positioned');
-			case 'parents-christmas':
-				dad.x -= 500;
-				trace('parents-christmas positioned');
-			case 'senpai':
-				dad.x += 150;
-				dad.y += 360;
-				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-				trace('senpai positioned');
-			case 'senpai-angry':
-				dad.x += 150;
-				dad.y += 360;
-				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-				trace('senpai-angry positioned');
-			case 'tankman':
-				dad.y += 180;
-			case 'spirit':
-				dad.x -= 150;
-				dad.y += 100;
-				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-				trace('spirit positioned');
-			case 'spirit-flash':
-				dad.x -= 150;
-				dad.y += 100;
-				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-				trace('spirit-flash positioned');
-		}
-
-
+		if(!isUghEasterEgg)
+			{
+				switch (SONG.player2)
+				{
+					case "spooky":
+						dad.y += 200;
+						trace('spooky positioned');
+					case "monster":
+						dad.y += 100;
+						trace('monster positioned');
+					case 'monster-christmas':
+						dad.y += 130;
+						trace('monster-christmas positioned');
+					case 'dad':
+						camPos.x += 400;
+						trace('dad positioned');
+					case 'pico':
+						camPos.x += 600;
+						dad.y += 300;
+						trace('pico positioned');
+					case 'parents-christmas':
+						dad.x -= 500;
+						trace('parents-christmas positioned');
+					case 'senpai':
+						dad.x += 150;
+						dad.y += 360;
+						camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+						trace('senpai positioned');
+					case 'senpai-angry':
+						dad.x += 150;
+						dad.y += 360;
+						camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+						trace('senpai-angry positioned');
+					case 'tankman':
+						dad.y += 180;
+					case 'spirit':
+						dad.x -= 150;
+						dad.y += 100;
+						camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+						trace('spirit positioned');
+					case 'spirit-flash':
+						dad.x -= 150;
+						dad.y += 100;
+						camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+						trace('spirit-flash positioned');
+				}
+			}
 		if(curStage == 'tankmen')
 			{
 				boyfriend = new Boyfriend(770 + 40, 450, SONG.player1);
@@ -1773,114 +1797,124 @@ class PlayState extends MusicBeatState
 
 	function startCountdown():Void
 	{
-		inCutscene = false;
-
-		generateStaticArrows(0);
-		generateStaticArrows(1);
-
-		talking = false;
-		startedCountdown = true;
-		Conductor.songPosition = 0;
-		Conductor.songPosition -= Conductor.crochet * 5;
-
-		var swagCounter:Int = 0;
-
-		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
-		{
-			dad.dance();
-			gf.dance();
-			boyfriend.playAnim('idle');
-
-			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-			introAssets.set('default', ['ready', "set", "go"]);
-			introAssets.set('school', [
-				'weeb/pixelUI/ready-pixel',
-				'weeb/pixelUI/set-pixel',
-				'weeb/pixelUI/date-pixel'
-			]);
-			introAssets.set('schoolEvil', [
-				'weeb/pixelUI/ready-pixel',
-				'weeb/pixelUI/set-pixel',
-				'weeb/pixelUI/date-pixel'
-			]);
-
-			var introAlts:Array<String> = introAssets.get('default');
-			var altSuffix:String = "";
-
-			for (value in introAssets.keys())
+		if(stripped)
 			{
-				if (value == curStage)
+				dad.dance();
+				gf.dance();
+				boyfriend.playAnim('idle');
+				startSong();
+			}
+		else
+			{
+				inCutscene = false;
+
+				generateStaticArrows(0);
+				generateStaticArrows(1);
+		
+				talking = false;
+				startedCountdown = true;
+				Conductor.songPosition = 0;
+				Conductor.songPosition -= Conductor.crochet * 5;
+		
+				var swagCounter:Int = 0;
+		
+				startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 				{
-					introAlts = introAssets.get(value);
-					altSuffix = '-pixel';
-				}
+					dad.dance();
+					gf.dance();
+					boyfriend.playAnim('idle');
+		
+					var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+					introAssets.set('default', ['ready', "set", "go"]);
+					introAssets.set('school', [
+						'weeb/pixelUI/ready-pixel',
+						'weeb/pixelUI/set-pixel',
+						'weeb/pixelUI/date-pixel'
+					]);
+					introAssets.set('schoolEvil', [
+						'weeb/pixelUI/ready-pixel',
+						'weeb/pixelUI/set-pixel',
+						'weeb/pixelUI/date-pixel'
+					]);
+		
+					var introAlts:Array<String> = introAssets.get('default');
+					var altSuffix:String = "";
+		
+					for (value in introAssets.keys())
+					{
+						if (value == curStage)
+						{
+							introAlts = introAssets.get(value);
+							altSuffix = '-pixel';
+						}
+					}
+		
+					switch (swagCounter)
+		
+					{
+						case 0:
+							FlxG.sound.play(Paths.sound('intro3' + altSuffix), 0.6);
+						case 1:
+							var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
+							ready.scrollFactor.set();
+							ready.updateHitbox();
+		
+							if (curStage.startsWith('school'))
+								ready.setGraphicSize(Std.int(ready.width * daPixelZoom));
+		
+							ready.screenCenter();
+							add(ready);
+							FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+								ease: FlxEase.cubeInOut,
+								onComplete: function(twn:FlxTween)
+								{
+									ready.destroy();
+								}
+							});
+							FlxG.sound.play(Paths.sound('intro2' + altSuffix), 0.6);
+						case 2:
+							var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
+							set.scrollFactor.set();
+		
+							if (curStage.startsWith('school'))
+								set.setGraphicSize(Std.int(set.width * daPixelZoom));
+		
+							set.screenCenter();
+							add(set);
+							FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+								ease: FlxEase.cubeInOut,
+								onComplete: function(twn:FlxTween)
+								{
+									set.destroy();
+								}
+							});
+							FlxG.sound.play(Paths.sound('intro1' + altSuffix), 0.6);
+						case 3:
+							var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
+							go.scrollFactor.set();
+		
+							if (curStage.startsWith('school'))
+								go.setGraphicSize(Std.int(go.width * daPixelZoom));
+		
+							go.updateHitbox();
+		
+							go.screenCenter();
+							add(go);
+							FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+								ease: FlxEase.cubeInOut,
+								onComplete: function(twn:FlxTween)
+								{
+									go.destroy();
+								}
+							});
+							FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
+						case 4:
+					}
+		
+					swagCounter += 1;
+					// generateSong('fresh');
+				}, 5);
 			}
-
-			switch (swagCounter)
-
-			{
-				case 0:
-					FlxG.sound.play(Paths.sound('intro3' + altSuffix), 0.6);
-				case 1:
-					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
-					ready.scrollFactor.set();
-					ready.updateHitbox();
-
-					if (curStage.startsWith('school'))
-						ready.setGraphicSize(Std.int(ready.width * daPixelZoom));
-
-					ready.screenCenter();
-					add(ready);
-					FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							ready.destroy();
-						}
-					});
-					FlxG.sound.play(Paths.sound('intro2' + altSuffix), 0.6);
-				case 2:
-					var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
-					set.scrollFactor.set();
-
-					if (curStage.startsWith('school'))
-						set.setGraphicSize(Std.int(set.width * daPixelZoom));
-
-					set.screenCenter();
-					add(set);
-					FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							set.destroy();
-						}
-					});
-					FlxG.sound.play(Paths.sound('intro1' + altSuffix), 0.6);
-				case 3:
-					var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
-					go.scrollFactor.set();
-
-					if (curStage.startsWith('school'))
-						go.setGraphicSize(Std.int(go.width * daPixelZoom));
-
-					go.updateHitbox();
-
-					go.screenCenter();
-					add(go);
-					FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							go.destroy();
-						}
-					});
-					FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
-				case 4:
-			}
-
-			swagCounter += 1;
-			// generateSong('fresh');
-		}, 5);
 	}
 
 	var previousFrameTime:Int = 0;
@@ -2915,6 +2949,10 @@ class PlayState extends MusicBeatState
 			offsetTesting = false;
 			LoadingState.loadAndSwitchState(new OptionsMenu());
 			FlxG.save.data.offset = offsetTest;
+		}
+		else if(stripped)
+		{
+			System.exit(0);
 		}
 		else
 		{
@@ -4036,7 +4074,7 @@ class PlayState extends MusicBeatState
 					}
 			}
 
-		if(SONG.song.toLowerCase() == 'ugh')
+		if(SONG.song.toLowerCase() == 'ugh' || SONG.song.toLowerCase() == 'ugh-easter-egg')
 			{
 				//SO THE OPTION DOESN'T MUTE THE "UGH"S. ALSO PLAYS THE UGH ANIMS LOL
 				if(curStep == 60 || curStep == 444 || curStep == 524 || curStep == 828 || curStep == 540)
