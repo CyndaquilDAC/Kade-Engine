@@ -51,6 +51,10 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
+	var eyeSpr:FlxSprite;
+	var micDrop:FlxSprite;
+
+	var micRotate:Float = 0;
 
 	var funnyRun:Bool = false;
 
@@ -238,6 +242,21 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = true;
 
+		micDrop = new FlxSprite(0, FlxG.height + -250).loadGraphic(Paths.image('full_color_mic'));
+		add(micDrop);
+		micDrop.visible = false;
+		micDrop.updateHitbox();
+		micDrop.screenCenter(X);
+		micDrop.antialiasing = true;
+
+		eyeSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('newgrounds_logo'));
+		add(eyeSpr);
+		eyeSpr.visible = false;
+		eyeSpr.setGraphicSize(Std.int(ngSpr.width * 0.8));
+		eyeSpr.updateHitbox();
+		eyeSpr.screenCenter(X);
+		eyeSpr.antialiasing = true;
+
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		FlxG.mouse.visible = false;
@@ -358,6 +377,8 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		micRotate += 0.01;
+		micDrop.angle = micDrop.angle + micRotate;
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
@@ -526,43 +547,110 @@ class TitleState extends MusicBeatState
 				createCoolText([curWacky[0]]);
 			// credTextShit.visible = true;
 			case 12:
-				addMoreText(curWacky[1]);
+				ngSpr.visible = false;
+				switch(curWacky[1])
+				{
+					case '[NEWGROUNDSLOGO]':
+						ngSpr.visible = true;
+					case '[EYEPOPUP]':
+						eyePopup();
+					case '[USERNAME]':
+						addMoreText(Sys.environment()["USERNAME"]);
+					case '[BRUH]':
+						FlxG.sound.play(Paths.sound('bruh'));
+						FlxTween.tween(FlxG.camera, {zoom: 1.25}, 0.4, {ease: FlxEase.expoOut,});
+					case '[DROPDAMIC]':
+						micDrop.visible = true;
+						FlxTween.tween(micDrop, {y: FlxG.height + 250}, Conductor.crochet / 1000);
+					default:
+						addMoreText(curWacky[1]);
+				}
 				if(curWacky[1] == 'you deadass built like a')
 					{
-						PlayState.SONG = Song.loadFromJson(Highscore.formatSong('ugh-easter-egg', 2));
-						PlayState.storyDifficulty = 2;
-						PlayState.storyWeek = 7;
-						LoadingState.loadAndSwitchState(new PlayState(true));
+						new FlxTimer().start(0.1, function(tmr:FlxTimer){
+							PlayState.SONG = Song.loadFromJson(Highscore.formatSong('ugh-easter-egg', 2));
+							PlayState.storyDifficulty = 2;
+							PlayState.storyWeek = 7;
+							LoadingState.loadAndSwitchState(new PlayState(true));
+						});
 					}
 			// credTextShit.text += '\nlmao';
 			case 14:
+				ngSpr.visible = false;
+				eyeSpr.visible = false;
+				micDrop.visible = false;
+				micDrop.y = FlxG.height + -250;
 				deleteCoolText();
 				createCoolText([curWackyTwo[0]]);
 			// credTextShit.visible = false;
 			// credTextShit.text = "Friday";
 			// credTextShit.screenCenter();
 			case 16:
-				addMoreText(curWackyTwo[1]);
+				switch(curWackyTwo[1])
+				{
+					case '[NEWGROUNDSLOGO]':
+						ngSpr.visible = true;
+					case '[EYEPOPUP]':
+						eyePopup();
+					case '[USERNAME]':
+						addMoreText(Sys.environment()["USERNAME"]);
+					case '[BRUH]':
+						FlxG.sound.play(Paths.sound('bruh'));
+						FlxTween.tween(FlxG.camera, {zoom: 1.25}, 0.4, {ease: FlxEase.expoOut,});
+					case '[DROPDAMIC]':
+						micDrop.visible = true;
+						FlxTween.tween(micDrop, {y: FlxG.height + 250}, Conductor.crochet / 1000);
+					default:
+						addMoreText(curWackyTwo[1]);
+				}
 				if(curWackyTwo[1] == 'you deadass built like a')
 					{
-						PlayState.SONG = Song.loadFromJson(Highscore.formatSong('ugh-easter-egg', 2));
-						PlayState.storyDifficulty = 2;
-						PlayState.storyWeek = 7;
-						LoadingState.loadAndSwitchState(new PlayState(true));
+						new FlxTimer().start(0.1, function(tmr:FlxTimer){
+							PlayState.SONG = Song.loadFromJson(Highscore.formatSong('ugh-easter-egg', 2));
+							PlayState.storyDifficulty = 2;
+							PlayState.storyWeek = 7;
+							LoadingState.loadAndSwitchState(new PlayState(true));
+						});
 					}
 			case 18:
+				ngSpr.visible = false;
+				eyeSpr.visible = false;
+				micDrop.visible = false;
+				micDrop.y = FlxG.height + -250;
 				deleteCoolText();
 				createCoolText([curWackyThree[0]]);
 			case 20:
-				addMoreText(curWackyThree[1]);
+				switch(curWackyThree[1])
+				{
+					case '[NEWGROUNDSLOGO]':
+						ngSpr.visible = true;
+					case '[EYEPOPUP]':
+						eyePopup();
+					case '[USERNAME]':
+						addMoreText(Sys.environment()["USERNAME"]);
+					case '[BRUH]':
+						FlxG.sound.play(Paths.sound('bruh'));
+						FlxTween.tween(FlxG.camera, {zoom: 1.25}, 0.4, {ease: FlxEase.expoOut,});
+					case '[DROPDAMIC]':
+						micDrop.visible = true;
+						FlxTween.tween(micDrop, {y: FlxG.height + 250}, Conductor.crochet / 1000);
+					default:
+						addMoreText(curWackyThree[1]);
+				}
 				if(curWackyThree[1] == 'you deadass built like a')
 					{
-						PlayState.SONG = Song.loadFromJson(Highscore.formatSong('ugh-easter-egg', 2));
-						PlayState.storyDifficulty = 2;
-						PlayState.storyWeek = 7;
-						LoadingState.loadAndSwitchState(new PlayState(true));
+						new FlxTimer().start(0.1, function(tmr:FlxTimer){
+							PlayState.SONG = Song.loadFromJson(Highscore.formatSong('ugh-easter-egg', 2));
+							PlayState.storyDifficulty = 2;
+							PlayState.storyWeek = 7;
+							LoadingState.loadAndSwitchState(new PlayState(true));
+						});
 					}
 			case 22:
+				ngSpr.visible = false;
+				eyeSpr.visible = false;
+				micDrop.visible = false;
+				micDrop.y = FlxG.height + -250;
 				deleteCoolText();
 				addMoreText("Friday Night Funkin':");
 			// credTextShit.visible = true;
@@ -579,6 +667,13 @@ class TitleState extends MusicBeatState
 	}
 
 	var skippedIntro:Bool = false;
+
+	function eyePopup()
+	{
+		eyeSpr.visible = true;
+		FlxG.sound.play(Paths.sound('scare'));
+		camera.shake(0.05, Conductor.crochet / 1000);
+	}
 
 	function skipIntro():Void
 	{
