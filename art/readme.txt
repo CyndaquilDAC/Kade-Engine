@@ -1,92 +1,57 @@
- __                 /                                  
-/ _   _ |_ |_ .  _                                     
-\__) (- |_ |_ | | )                                    
-                                                       
- __                                                    
-|_   _  _  _  |                                        
-|   |  (- (_| |( \/                                    
-                 /                                     
-                                                       
- _   _     _                                           
-(_) | )   (_|                                          
-                                                       
- __                                                    
-|_   _ .  _|  _        _  .  _  |_  |_       _  _  |_  
-|   |  | (_| (_| \/   | ) | (_) | ) |_   \/ (- (_| | ) 
-                 /          _/           /             
+  ______           _    _       _ ______                            
+ |  ____|         | |  (_)     ( )  ____|                           
+ | |__ _   _ _ __ | | ___ _ __ |/| |__ ___  _ __ _____   _____ _ __ 
+ |  __| | | | '_ \| |/ / | '_ \  |  __/ _ \| '__/ _ \ \ / / _ \ '__|
+ | |  | |_| | | | |   <| | | | | | | | (_) | | |  __/\ V /  __/ |   
+ |_|   \__,_|_| |_|_|\_\_|_| |_| |_|  \___/|_|  \___| \_/ \___|_|   
+------------------------------------------------------------------------
+Thanks for downloading Funkin' Forever, an open source fan modification of Friday Night Funkin' based on KadeDeveloper's Kade Engine!
+------------------------------------------------------------------------
+  _   _  ____ _______ _____ _____ ______  _____ 
+ | \ | |/ __ \__   __|_   _/ ____|  ____|/ ____|
+ |  \| | |  | | | |    | || |    | |__  | (___  
+ | . ` | |  | | | |    | || |    |  __|  \___ \ 
+ | |\  | |__| | | |   _| || |____| |____ ____) |
+ |_| \_|\____/  |_|  |_____\_____|______|_____/ 
+------------------------------------------------------------------------
+If you downloaded this from anyone other than CyndaquilDAC or any other official source (Unless it's a modification of Funkin' Forever), you might be in DANGER!!!
+If you paid even a single cent for this, you were SCAMMED! This is completely free and open source!
+Be sure to read LICENSE.txt for legal info regarding this software.
+------------------------------------------------------------------------
+           ____   ____  _    _ _______ 
+     /\   |  _ \ / __ \| |  | |__   __|
+    /  \  | |_) | |  | | |  | |  | |   
+   / /\ \ |  _ <| |  | | |  | |  | |   
+  / ____ \| |_) | |__| | |__| |  | |   
+ /_/    \_\____/ \____/ \____/   |_|   
+------------------------------------------------------------------------
+With the necessary notices out of the way, let's talk about what this thing even is!
+It's probably pretty clear from the initial description, but it's a fanmade mod of Friday Night Funkin', a game by Ninjamuffin99, PhantomArcade, EvilSk8r, KawaiSprite, and many other talented creators!
+You can download it on Itch.io (https://ninja-muffin24.itch.io/funkin) or play it on Newgrounds (https://www.newgrounds.com/portal/view/770371). Please do so at some point if you haven't, it's a really fun game!
+This modification in particular is based on KadeDeveloper's Kade Engine, a really high quality mod of Friday Night Funkin' originally created as the basis for the VS. Whitty mod.
+You can download it on GameBanana (https://gamebanana.com/mods/44291) or GitHub (https://github.com/KadeDev/Kade-Engine). I encourage you to do so if you haven't! It's a great mod that I (CyndaquilDAC) have contributed to before!
+------------------------------------------------------------------------
+   _____ _____  ______ _____ _____ _______ _____ 
+  / ____|  __ \|  ____|  __ \_   _|__   __/ ____|
+ | |    | |__) | |__  | |  | || |    | | | (___  
+ | |    |  _  /|  __| | |  | || |    | |  \___ \ 
+ | |____| | \ \| |____| |__| || |_   | |  ____) |
+  \_____|_|  \_\______|_____/_____|  |_| |_____/ 
+------------------------------------------------------------------------
+Let's talk credits.
 
-HEY
-Thanks for downloadin Friday Night FUNKIN'
-If you downloaded this from any other place than ninja-muffin24.itch.io/FUNKIN
-You might be in DANGER!!! 
-
-The Itch.io release is the only official source for the desktop (PC, Mac, Linux) versions of the game!
-As of right now, the game is FREE! If you paid for it, you got SCAMMED!
-
-Now that that's out of the way....
-THANKS FOR DOWNLOADIN. 
-
-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
-    PERMISSIONS XDDDD
-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
-
-Little info, you have FULL PERMISSION to stream, letsplay, meme, shitpost, do WHATEVER you want with the game.
-Use the music in videos you do, use art, ANYTHING. GO CRAZY BRO.
-
-If you do make any sort of video, it would be a bro move if you linked the game and spread the word
-
-Play On Newgrounds - https://www.newgrounds.com/portal/view/770371
-Support on Itch.io - https://ninja-muffin24.itch.io/funkin
-
-If not no biggie we don't fully hate you only kinda no biggie.
-
-
-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
-    INFO AND LINKS
-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
-
-If you wanna dig around, the game is fully open source on Github
-https://github.com/ninjamuffin99/Funkin
-
-It's made in Haxe / HaxeFlixel
-
-MUSIC IS ON SPOTIFY AND BANDCAMP AND EVERYWHERE ELSE PROB TOO
-https://kawaisprite.bandcamp.com/album/friday-night-funkin-ost-vol-1
-
-
-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
-    FINAL WORDS / CREDITS
-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-#-
-
-Friday Night Funkin' is made by ninjamuffin99 (programmer), PhantomArcade (animator), kawaisprite (musician), and evilsk8r (artist)
-
-https://twitter.com/ninja_muffin99
-https://twitter.com/phantomarcade3k
-https://twitter.com/kawaisprite
-https://twitter.com/evilsk8r
-
-Pico is created by Tom Fulp
-Skid and Pump are created by SrPelo
-BassetFilms did music for lemon monster songs
-
-
-Final important thing, this is made with the support and love to and from Newgrounds.com.
-Go to newgrounds, we love newgrounds. newgrounds good. How many times do I gotta damn say it. Newgrounds newgrounds newgrounds newgrounds
-I love Tom Fulp.
-
-- Cameron ♪(´▽｀)
-
-##################################################################################
-                                                                                  
- _   _   _____   _      _    ____   ____     ___    _   _   _   _   ____    ____  
-| \ | | | ____| | |    | |  / ___| |  _ \   / _ \  | | | | | \ | | |  _ \  / ___| 
-|  \| | |  _|   | | /\ | | | |  _  | |_) | | | | | | | | | |  \| | | | | | \___ \ 
-| |\  | | |___   \ V  V /  | |_| | |  _ <  | |_| | | |_| | | |\  | | |_| |  ___) |
-|_| \_| |_____|   \_/\_/    \____| |_| \_\  \___/   \___/  |_| \_| |____/  |____/ 
- _       _  _     ___    ___       __              _       _  _       _        _  
-|_ |  | |_ |_) \_/ | |_|  |  |\ | /__     |_      |_ |  | |_ |_) \_/ / \ |\ | |_  
-|_  \/  |_ | \  |  | | | _|_ | \| \_| o   |_)\/   |_  \/  |_ | \  |  \_/ | \| |_ o
-                                      /      /                                    
-                                                                                  
-##################################################################################
-i stole this from stamper.
+CyndaquilDAC - Lead Programmer
+VyrusStudios / Vy - Programmer
+Syembol - Pixel artist for custom sprites
+KadeDeveloper - Kade Engine
+Ninjamuffin99, PhantomArcade, EvilSk8r, and KawaiSprite - Friday Night Funkin'
+------------------------------------------------------------------------
+  _______ _    _ ______   ______ _   _ _____  
+ |__   __| |  | |  ____| |  ____| \ | |  __ \ 
+    | |  | |__| | |__    | |__  |  \| | |  | |
+    | |  |  __  |  __|   |  __| | . ` | |  | |
+    | |  | |  | | |____  | |____| |\  | |__| |
+    |_|  |_|  |_|______| |______|_| \_|_____/ 
+------------------------------------------------------------------------
+thanks for reading lol
+------------------------------------------------------------------------

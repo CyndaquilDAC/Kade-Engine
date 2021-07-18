@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Rating_Mics.png">
+	<!-- Created with Adobe Animate version 21.0.1.37179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="bad0000" x="322" y="10" width="146" height="145" pivotX="0" pivotY="0"/>
+	<SubTexture name="fc0000" x="166" y="10" width="146" height="145" pivotX="0" pivotY="0"/>
+	<SubTexture name="good0000" x="322" y="165" width="146" height="145" pivotX="0" pivotY="0"/>
+	<SubTexture name="null0000" x="10" y="320" width="146" height="145" pivotX="0" pivotY="0"/>
+	<SubTexture name="okay0000" x="10" y="10" width="146" height="145" pivotX="0" pivotY="0"/>
+	<SubTexture name="shit0000" x="10" y="165" width="146" height="145" pivotX="0" pivotY="0"/>
+	<SubTexture name="sick0000" x="166" y="165" width="146" height="145" pivotX="0" pivotY="0"/>
+</TextureAtlas>
