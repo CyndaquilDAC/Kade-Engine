@@ -80,7 +80,7 @@ class StoryMenuState extends MusicBeatState
 	var grpWeekText:FlxTypedGroup<WeekItem>;
 	var grpWeekCharacters:FlxTypedGroup<MenuCharacter>;
 
-	var grpLocks:FlxTypedGroup<FlxSprite>;
+	var grpLocks:FlxTypedGroup<WeekLockItem>;
 
 	var difficultySelectors:FlxGroup;
 	var sprDifficulty:FlxSprite;
@@ -130,7 +130,7 @@ class StoryMenuState extends MusicBeatState
 
 		grpWeekCharacters = new FlxTypedGroup<MenuCharacter>();
 
-		grpLocks = new FlxTypedGroup<FlxSprite>();
+		grpLocks = new FlxTypedGroup<WeekLockItem>();
 		add(grpLocks);
 
 		for (i in 0...weekData.length)
@@ -147,12 +147,8 @@ class StoryMenuState extends MusicBeatState
 			// Needs an offset thingie
 			if (!weekUnlocked[i])
 			{
-				var lock:FlxSprite = new FlxSprite(weekThing.width + 10 + weekThing.x);
-				lock.frames = ui_tex;
-				lock.animation.addByPrefix('lock', 'lock');
-				lock.animation.play('lock');
+				var lock:WeekLockItem = new WeekLockItem(weekThing.width + 10 + weekThing.x);
 				lock.ID = i;
-				lock.antialiasing = true;
 				grpLocks.add(lock);
 				trace('week locked');
 			}
