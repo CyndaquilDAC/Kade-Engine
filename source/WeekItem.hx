@@ -11,7 +11,7 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
-class MenuItem extends FlxSpriteGroup
+class WeekItem extends FlxSpriteGroup
 {
 	public var targetY:Float = 0;
 	public var week:FlxSprite;
