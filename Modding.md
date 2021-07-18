@@ -1,1 +1,1 @@
-This mod features built in MODDING SUPPORT! kinda. we're still working on it lol.
+This mod features built in MODDING SUPPORT! kinda. we're still working on it. 
