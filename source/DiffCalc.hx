@@ -18,9 +18,11 @@ class DiffCalc
 {
     public static var scale = 3 * 1.8;
 
+    public static var daFinalDifficulty:Float;
+
     public static function CalculateDiff(song:SwagSong, ?accuracy:Float = .93)
     {
-        trace('calcuilafjwaf');
+        trace('calculatamables difficultizalations ' + song.song.toLowerCase());
         // cleaned notes
         var cleanedNotes:Array<SmallNote> = [];
 
@@ -44,12 +46,10 @@ class DiffCalc
                     cleanedNotes.push(new SmallNote(ii[0],Math.floor(Math.abs(ii[1]))));
             }
         }
+        cleanedNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
 
         var handOne:Array<SmallNote> = [];
         var handTwo:Array<SmallNote> = [];
-        
-        cleanedNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
-
 
         
         var firstNoteTime = cleanedNotes[0].strumTime;
@@ -261,11 +261,13 @@ class DiffCalc
             maxPoints += i;
         for(i in point_npsTwo)
             maxPoints += i;
-        
         if (accuracy > .965)
             accuracy = .965;
-
-        return HelperFunctions.truncateFloat(chisel(accuracy,hand_diffOne,hand_diffTwo,point_npsOne,point_npsTwo,maxPoints),2);
+        daFinalDifficulty = HelperFunctions.truncateFloat(chisel(accuracy,hand_diffOne,hand_diffTwo,point_npsOne,point_npsTwo,maxPoints),2);
+        //return HelperFunctions.truncateFloat(chisel(accuracy,hand_diffOne,hand_diffTwo,point_npsOne,point_npsTwo,maxPoints),2);
+        return daFinalDifficulty;
+        //trace('difficulty for ' + song.song.toLowerCase() + ' is ' + HelperFunctions.truncateFloat(chisel(accuracy,hand_diffOne,hand_diffTwo,point_npsOne,point_npsTwo,maxPoints),2));
+        trace('difficulty for ' + song.song.toLowerCase() + ' is ' + daFinalDifficulty);
     }
 
     public static function chisel(scoreGoal:Float,diffOne:Array<Float>,diffTwo:Array<Float>,pointsOne:Array<Float>,pointsTwo:Array<Float>,maxPoints:Float)

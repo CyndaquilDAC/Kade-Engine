@@ -52,6 +52,8 @@ class FreeplayState extends MusicBeatState
 	var intendedScore:Int = 0;
 	var combo:String = '';
 
+	var maxScoreLol:Float = 0;
+
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
 
@@ -227,27 +229,31 @@ class FreeplayState extends MusicBeatState
 			}
 		else
 			{
-				//THIS IS TEMP, IM JUST TOO DUMB TO FIGURE OUT HOW TO CALCULATE SONG MAX SCORE AND DIVIDE IT FAIRLY AND IM TIRED AND ITS MIDNIGHT
-				if(lerpScore >= 50000)
+				if(intendedScore >= maxScoreLol / 1.25)
 					{
 						micRating.animation.play('sick');
 					}
-				else if(lerpScore >= 40000)
+				else if(intendedScore >= maxScoreLol / 1.5)
 					{
 						micRating.animation.play('good');
 					}
-				else if(lerpScore >= 30000)
+				else if(intendedScore >= maxScoreLol / 1.75)
 					{
 						micRating.animation.play('okay');
 					}
-				else if(lerpScore >= 20000)
+				else if(intendedScore >= maxScoreLol / 2)
 					{
 						micRating.animation.play('bad');
 					}
-				else if(lerpScore >= 10000)
+				else if(intendedScore != 0)
 					{
 						micRating.animation.play('shit');
 					}
+				else
+					{
+						micRating.animation.play('null');
+					}
+
 			}
 	}
 
@@ -336,6 +342,7 @@ class FreeplayState extends MusicBeatState
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
 		combo = Highscore.getCombo(songHighscore, curDifficulty);
+		maxScoreLol = MaxScoreCalc.CalculateMaxScore(songData.get(songs[curSelected].songName)[curDifficulty]);
 		#end
 
 		switch (curDifficulty)
@@ -392,6 +399,7 @@ class FreeplayState extends MusicBeatState
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
 		// lerpScore = 0;
 		combo = Highscore.getCombo(songHighscore, curDifficulty);
+		maxScoreLol = MaxScoreCalc.CalculateMaxScore(songData.get(songs[curSelected].songName)[curDifficulty]);
 		#end
 
 		diffCalcText.text = 'RATING: ${DiffCalc.CalculateDiff(songData.get(songs[curSelected].songName)[curDifficulty])}';
