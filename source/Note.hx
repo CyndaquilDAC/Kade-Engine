@@ -34,6 +34,8 @@ class Note extends FlxSprite
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
 
+	public var noteYOff:Int = 0;
+
 	public var totallyRealScrollSpeedTotallyNotJustPutHereBecauseHaxeIsAnAss:Float = 1;
 
 	public var altAnimNote:Bool = false;
@@ -79,6 +81,7 @@ class Note extends FlxSprite
 		switch (PlayState.SONG.noteStyle)
 		{
 			case 'pixel':
+				noteYOff = -13;
 				loadGraphic(Paths.image('noteStyles/pixel'), true, 17, 17);
 
 				animation.add('greenScroll', [6]);
@@ -104,6 +107,7 @@ class Note extends FlxSprite
 				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 				updateHitbox();
 			default:
+				noteYOff = 0;
 				frames = Paths.getSparrowAtlas('noteStyles/normal');
 
 				animation.addByPrefix('greenScroll', 'green0');
@@ -173,7 +177,10 @@ class Note extends FlxSprite
 
 			x -= width / 2;
 
-			if (PlayState.curStage.startsWith('school'))
+			//if (PlayState.curStage.startsWith('school'))
+			//	x += 30;
+
+			if(inCharter)
 				x += 30;
 
 			if (prevNote.isSustainNote)
@@ -191,10 +198,12 @@ class Note extends FlxSprite
 				}
 
 
-				if(FlxG.save.data.scrollSpeed != 1)
-					prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * FlxG.save.data.scrollSpeed;
-				else
-					prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.instance.speedTheScroll;
+				//if(FlxG.save.data.scrollSpeed != 1)
+					//prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * FlxG.save.data.scrollSpeed;
+				//else
+					//prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.instance.speedTheScroll;
+				prevNote.noteYOff = 0;
+                prevNote.scale.y *= (0.45 * Conductor.stepCrochet * FlxMath.roundDecimal(PlayState.instance.speedTheScroll == 1 ? PlayState.instance.speedTheScroll : PlayState.instance.speedTheScroll, 2)) / prevNote.height * 1.01; //The 1.01 is so that there aren't odd 1 pixel gaps as the notes scroll
 				prevNote.updateHitbox();
 				// prevNote.setGraphicSize();
 			}
