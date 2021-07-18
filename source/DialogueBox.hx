@@ -514,13 +514,6 @@ class DialogueBox extends FlxSpriteGroup
 					theDialog.y = 70 + FlxG.height * 0.5;
 					dialogue = theDialog;
 					add(theDialog);
-					dialogue.completeCallback = function() {
-						trace("dialogue finish");
-						handSelect.visible = true;
-						dialogEnded = true;
-					}
-					handSelect.visible = false;
-					dialogEnded = false;
 				}
 		}
 
