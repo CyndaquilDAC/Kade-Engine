@@ -1,8 +1,5 @@
 package;
 
-import cpp.Stdio;
-import flixel.tweens.FlxEase;
-import flixel.util.FlxTimer;
 import Song.SwagSong;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxTween.FlxTweenManager;
@@ -39,8 +36,6 @@ class FreeplayState extends MusicBeatState
 	var curSelected:Int = 0;
 	var curDifficulty:Int = 1;
 	var bg:FlxSprite;
-
-	var micRating:FlxSprite;
 
 	public static var songData:Map<String,Array<SwagSong>> = [];
 
@@ -161,18 +156,6 @@ class FreeplayState extends MusicBeatState
 
 		add(scoreText);
 
-		micRating = new FlxSprite(1130, 570);
-		micRating.frames = Paths.getSparrowAtlas('Rating_Mics');
-		micRating.animation.addByPrefix('okay', 'okay');
-		micRating.animation.addByPrefix('null', 'null');
-		micRating.animation.addByPrefix('good', 'good');
-		micRating.animation.addByPrefix('shit', 'shit');
-		micRating.animation.addByPrefix('bad', 'bad');
-		micRating.animation.addByPrefix('sick', 'sick');
-		micRating.animation.addByPrefix('fc', 'fc');
-		micRating.animation.play('null');
-		add(micRating);
-
 		changeSelection(startingSelection);
 		changeDiff();
 
@@ -185,14 +168,6 @@ class FreeplayState extends MusicBeatState
 		// add(selector);
 
 		var swag:Alphabet = new Alphabet(1, 0, "swag");
-
-		new FlxTimer().start(0.01, function(tmr:FlxTimer)
-			{
-				if(micRating.angle == -4) 
-					FlxTween.angle(micRating, micRating.angle, 4, 4, {ease: FlxEase.quartInOut});
-				if (micRating.angle == 4) 
-					FlxTween.angle(micRating, micRating.angle, -4, 4, {ease: FlxEase.quartInOut});
-			}, 0);
 
 		// JUST DOIN THIS SHIT FOR TESTING!!!
 		/* 
@@ -217,38 +192,6 @@ class FreeplayState extends MusicBeatState
 	public function addSong(songName:String, weekNum:Int, songCharacter:String)
 	{
 		songs.push(new SongMetadata(songName, weekNum, songCharacter));
-	}
-
-	function changeMicRating()
-	{
-		if(Highscore.getCombo(songs[curSelected].songName.toLowerCase(), curDifficulty).contains('FC'))
-			{
-				micRating.animation.play('fc');
-			}
-		else
-			{
-				//THIS IS TEMP, IM JUST TOO DUMB TO FIGURE OUT HOW TO CALCULATE SONG MAX SCORE AND DIVIDE IT FAIRLY AND IM TIRED AND ITS MIDNIGHT
-				if(lerpScore >= 50000)
-					{
-						micRating.animation.play('sick');
-					}
-				else if(lerpScore >= 40000)
-					{
-						micRating.animation.play('good');
-					}
-				else if(lerpScore >= 30000)
-					{
-						micRating.animation.play('okay');
-					}
-				else if(lerpScore >= 20000)
-					{
-						micRating.animation.play('bad');
-					}
-				else if(lerpScore >= 10000)
-					{
-						micRating.animation.play('shit');
-					}
-			}
 	}
 
 	public function addWeek(songs:Array<String>, weekNum:Int, ?songCharacters:Array<String>)
@@ -319,7 +262,7 @@ class FreeplayState extends MusicBeatState
 			startingSelection = curSelected;
 			PlayState.storyWeek = songs[curSelected].week;
 			trace('CUR WEEK' + PlayState.storyWeek);
-			LoadingState.loadAndSwitchState(new PlayState(false));
+			LoadingState.loadAndSwitchState(new PlayState());
 		}
 	}
 
@@ -352,8 +295,6 @@ class FreeplayState extends MusicBeatState
 				diffText.text = "BABY";
 		}
 		diffCalcText.text = 'RATING: ${DiffCalc.CalculateDiff(songData.get(songs[curSelected].songName)[curDifficulty])}';
-
-		changeMicRating();
 	}
 
 	public static function loadDiff(diff:Int, format:String, name:String, array:Array<SwagSong>)
@@ -395,8 +336,6 @@ class FreeplayState extends MusicBeatState
 		#end
 
 		diffCalcText.text = 'RATING: ${DiffCalc.CalculateDiff(songData.get(songs[curSelected].songName)[curDifficulty])}';
-
-		changeMicRating(); 
 
 		#if PRELOAD_ALL
 		FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);

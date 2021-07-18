@@ -377,7 +377,8 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		//micDrop.angle = micDrop.angle + 0.01;
+		micRotate += 0.01;
+		micDrop.angle = micDrop.angle + micRotate;
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
@@ -554,7 +555,7 @@ class TitleState extends MusicBeatState
 					case '[EYEPOPUP]':
 						eyePopup();
 					case '[USERNAME]':
-						//addMoreText(Sys.environment()["USERNAME"]);
+						addMoreText(Sys.environment()["USERNAME"]);
 					case '[BRUH]':
 						FlxG.sound.play(Paths.sound('bruh'));
 						FlxTween.tween(FlxG.camera, {zoom: 1.25}, 0.4, {ease: FlxEase.expoOut,});
@@ -592,7 +593,7 @@ class TitleState extends MusicBeatState
 					case '[EYEPOPUP]':
 						eyePopup();
 					case '[USERNAME]':
-						//addMoreText(Sys.environment()["USERNAME"]);
+						addMoreText(Sys.environment()["USERNAME"]);
 					case '[BRUH]':
 						FlxG.sound.play(Paths.sound('bruh'));
 						FlxTween.tween(FlxG.camera, {zoom: 1.25}, 0.4, {ease: FlxEase.expoOut,});
@@ -626,7 +627,7 @@ class TitleState extends MusicBeatState
 					case '[EYEPOPUP]':
 						eyePopup();
 					case '[USERNAME]':
-						//addMoreText(Sys.environment()["USERNAME"]);
+						addMoreText(Sys.environment()["USERNAME"]);
 					case '[BRUH]':
 						FlxG.sound.play(Paths.sound('bruh'));
 						FlxTween.tween(FlxG.camera, {zoom: 1.25}, 0.4, {ease: FlxEase.expoOut,});
@@ -690,6 +691,14 @@ class TitleState extends MusicBeatState
 						FlxTween.angle(logoBl, logoBl.angle, 4, 4, {ease: FlxEase.quartInOut});
 					if (logoBl.angle == 4) 
 						FlxTween.angle(logoBl, logoBl.angle, -4, 4, {ease: FlxEase.quartInOut});
+					if(logoUnder.angle == -4)
+						{
+							FlxTween.angle(logoUnder, logoUnder.angle, 4, 4, {ease: FlxEase.quartInOut, startDelay: 0.1});
+						}
+					if(logoUnder.angle == 4)
+						{
+							FlxTween.angle(logoUnder, logoUnder.angle, -4, 4, {ease: FlxEase.quartInOut, startDelay: 0.1});
+						}
 				}, 0);
 			skippedIntro = true;
 		}
