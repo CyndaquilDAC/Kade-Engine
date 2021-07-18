@@ -33,14 +33,6 @@ class StoryMenuState extends MusicBeatState
 
 	var yellowBG:FlxSprite;
 
-	var maxScorelol:Float = 0;
-
-	var stringThing:Array<String>;
-
-	var difficultyButString:String = 'normal';
-
-	var rankText:FlxText = new FlxText(0, 10);
-
 	var weekData:Array<Dynamic> = [
 		['Tutorial'],
 		['Bopeebo', 'Fresh', 'Dadbattle'],
@@ -121,7 +113,8 @@ class StoryMenuState extends MusicBeatState
 		txtWeekTitle.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, RIGHT);
 		txtWeekTitle.alpha = 0.7;
 
-		rankText.text = '';
+		var rankText:FlxText = new FlxText(0, 10);
+		rankText.text = 'RANK: NONE';
 		rankText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE);
 		rankText.size = scoreText.size;
 		rankText.screenCenter(X);
@@ -191,13 +184,13 @@ class StoryMenuState extends MusicBeatState
 		txtTracklist.font = rankText.font;
 		txtTracklist.color = 0xFFe55777;
 		add(txtTracklist);
-		add(rankText);
+		// add(rankText);
 		add(scoreText);
 		add(txtWeekTitle);
 		trace('text n shit');
 
 		updateText();
-		changeWeek(returnWeek, true);
+		changeWeek(returnWeek);
 
 		super.create();
 	}
@@ -345,8 +338,6 @@ class StoryMenuState extends MusicBeatState
 	{
 		curDifficulty += change;
 
-		maxScorelol = 0;
-
 		if (curDifficulty < 0)
 			curDifficulty = 4;
 		if (curDifficulty > 4)
@@ -380,27 +371,13 @@ class StoryMenuState extends MusicBeatState
 
 		sprDifficulty.alpha = 0;
 
-		switch (curDifficulty)
-		{
-			case 0:
-				difficultyButString = '-easy';
-			case 2:
-				difficultyButString = '-hard';
-			case 3:
-				difficultyButString = '-insane';
-			case 4:
-				difficultyButString = '-baby';
-			default:
-				difficultyButString = '';
-		}
-
 		// USING THESE WEIRD VALUES SO THAT IT DOESNT FLOAT UP
 		sprDifficulty.y = leftArrow.y - 15;
 		intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);
-		for(song in stringThing)
-			{
-				maxScorelol += MaxScoreCalc.CalculateMaxScore(Song.loadFromJson(song.toLowerCase() + difficultyButString, song.toLowerCase()));
-			}
+
+		#if !switch
+		intendedScore = Highscore.getWeekScore(curWeek, curDifficulty);
+		#end
 
 		FlxTween.tween(sprDifficulty, {y: leftArrow.y + 15, alpha: 1}, 0.07);
 	}
@@ -408,17 +385,9 @@ class StoryMenuState extends MusicBeatState
 	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
 
-	function changeWeek(change:Int = 0, isStartChange:Bool = false):Void
+	function changeWeek(change:Int = 0):Void
 	{
-		maxScorelol = 0;
-		if(isStartChange)
-			{
-				curWeek = change;
-			}
-		else
-			{
-				curWeek += change;
-			}
+		curWeek += change;
 
 		//yellowBG.color = weekColors[curWeek];
 
@@ -428,7 +397,7 @@ class StoryMenuState extends MusicBeatState
 			curWeek = 0;
 		if (curWeek < 0)
 			curWeek = weekData.length - 1;
-		updateText();
+
 		var bullShit:Int = 0;
 
 		for (item in grpWeekText.members)
@@ -442,6 +411,8 @@ class StoryMenuState extends MusicBeatState
 		}
 
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
+
+		updateText();
 	}
 
 	override function beatHit()
@@ -452,34 +423,6 @@ class StoryMenuState extends MusicBeatState
 		grpWeekCharacters.members[2].dance();
 	}
 
-	function changeRanking()
-	{
-		if(intendedScore >= maxScorelol / 1.25)
-			{
-				rankText.text = 'RANK: SICK';
-			}
-		else if(intendedScore >= maxScorelol / 1.5)
-			{
-				rankText.text = 'RANK: GOOD';
-			}
-		else if(intendedScore >= maxScorelol / 1.75)
-			{
-				rankText.text = 'RANK: OKAY';
-			}
-		else if(intendedScore >= maxScorelol / 2)
-			{
-				rankText.text = 'RANK: BAD';
-			}
-		else if(intendedScore != 0)
-			{
-				rankText.text = 'RANK: SHIT';
-			}
-		else
-			{
-				rankText.text = '';
-			}
-	}
-
 	function updateText()
 	{
 		grpWeekCharacters.members[0].setCharacter(weekCharacters[curWeek][0]);
@@ -487,11 +430,7 @@ class StoryMenuState extends MusicBeatState
 		grpWeekCharacters.members[2].setCharacter(weekCharacters[curWeek][2]);
 
 		txtTracklist.text = "Tracks\n\n";
-		stringThing = weekData[curWeek];
-		for(song in stringThing)
-			{
-				maxScorelol += MaxScoreCalc.CalculateMaxScore(Song.loadFromJson(song.toLowerCase() + difficultyButString, song.toLowerCase()));
-			}
+		var stringThing:Array<String> = weekData[curWeek];
 
 		for (i in stringThing)
 		{
