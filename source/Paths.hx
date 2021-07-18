@@ -79,11 +79,6 @@ class Paths
 		return getPath('sounds/$key.$SOUND_EXT', SOUND, library);
 	}
 
-	static public function soundWav(key:String, ?library:String)
-	{
-		return getPath('sounds/$key.wav', SOUND, library);
-	}
-
 	inline static public function soundRandom(key:String, min:Int, max:Int, ?library:String)
 	{
 		return sound(key + FlxG.random.int(min, max), library);
