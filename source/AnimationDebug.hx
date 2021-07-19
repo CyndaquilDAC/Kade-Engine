@@ -183,10 +183,10 @@ class AnimationDebug extends MusicBeatState
 			genBoyOffsets(false);
 		}
 
-		var upP = FlxG.keys.anyJustPressed([UP]);
-		var rightP = FlxG.keys.anyJustPressed([RIGHT]);
-		var downP = FlxG.keys.anyJustPressed([DOWN]);
-		var leftP = FlxG.keys.anyJustPressed([LEFT]);
+		var upP = FlxG.keys.anyPressed([UP]);
+		var rightP = FlxG.keys.anyPressed([RIGHT]);
+		var downP = FlxG.keys.anyPressed([DOWN]);
+		var leftP = FlxG.keys.anyPressed([LEFT]);
 
 		var holdShift = FlxG.keys.pressed.SHIFT;
 		var multiplier = 1;
