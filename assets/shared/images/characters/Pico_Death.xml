@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Pico_Death.png">
+	<!-- Created with Adobe Animate version 21.0.1.37179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Pico Dead Confirm0000" x="1002" y="1501" width="486" height="479" pivotX="54.65" pivotY="9.35" frameX="0" frameY="-42" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0001" x="506" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0002" x="10" y="10" width="486" height="521"/>
+	<SubTexture name="Pico Dead Confirm0003" x="1002" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0004" x="1498" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0005" x="1994" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0006" x="2490" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0007" x="2986" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0008" x="3482" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0009" x="3978" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0010" x="4474" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0011" x="4970" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0012" x="5466" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0013" x="5962" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0014" x="6458" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0015" x="6954" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0016" x="7450" y="10" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0017" x="506" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0018" x="1002" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0019" x="1498" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0020" x="1994" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0021" x="2490" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0022" x="2986" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0023" x="2986" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0024" x="3482" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0025" x="3482" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0026" x="3482" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0027" x="3482" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0028" x="3482" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0029" x="3482" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0030" x="3482" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0031" x="3482" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0032" x="3482" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Confirm0033" x="3482" y="512" width="486" height="492" frameX="0" frameY="-29" frameWidth="486" frameHeight="521"/>
+	<SubTexture name="Pico Dead Loop0000" x="3004" y="1014" width="486" height="479" pivotX="54.65" pivotY="-33.75"/>
+	<SubTexture name="Pico Dead Loop0001" x="4477" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0002" x="4477" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0003" x="4973" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0004" x="4973" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0005" x="5469" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0006" x="5469" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0007" x="5965" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0008" x="6461" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0009" x="6461" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0010" x="6461" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0011" x="6461" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0012" x="6461" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0013" x="6461" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0014" x="6461" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0015" x="6461" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0016" x="6461" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0017" x="6957" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0018" x="7453" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0019" x="7453" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0020" x="3500" y="1487" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0021" x="3500" y="1487" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0022" x="10" y="1501" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0023" x="5469" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0024" x="506" y="1501" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0025" x="506" y="1501" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0026" x="506" y="1501" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0027" x="506" y="1501" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0028" x="506" y="1501" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0029" x="506" y="1501" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0030" x="5965" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0031" x="6461" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0032" x="6461" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dead Loop0033" x="6461" y="1486" width="486" height="479"/>
+	<SubTexture name="Pico Dies0000" x="4459" y="1975" width="531" height="428" pivotX="99.55" pivotY="-33.75" frameX="0" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0001" x="5000" y="1975" width="522" height="428" frameX="-9" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0002" x="5532" y="1975" width="513" height="428" frameX="-18" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0003" x="6055" y="1975" width="496" height="430" frameX="-41" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0004" x="10" y="541" width="476" height="454" frameX="-64" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0005" x="3500" y="1014" width="460" height="454" frameX="-78" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0006" x="1498" y="1987" width="448" height="453" frameX="-78" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0007" x="6561" y="1975" width="453" height="454" frameX="-78" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0008" x="7024" y="1975" width="453" height="454" frameX="-78" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0009" x="7487" y="1975" width="453" height="454" frameX="-78" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0010" x="3432" y="1976" width="453" height="454" frameX="-78" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0011" x="1997" y="1501" width="453" height="507" frameX="-78" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0012" x="3996" y="1487" width="453" height="513" frameX="-78" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0013" x="2951" y="1503" width="471" height="486" frameX="-60" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0014" x="2460" y="1501" width="481" height="476" frameX="-50" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0015" x="3978" y="512" width="489" height="478" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0016" x="1498" y="1501" width="489" height="476" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0017" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0018" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0019" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0020" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0021" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0022" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0023" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0024" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0025" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0026" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0027" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0028" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0029" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0030" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0031" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0032" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0033" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0034" x="4477" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0035" x="4976" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0036" x="5475" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0037" x="5974" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0038" x="6473" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0039" x="6972" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0040" x="7471" y="512" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0041" x="4477" y="999" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0042" x="4976" y="999" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0043" x="5475" y="999" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0044" x="5974" y="999" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0045" x="6473" y="999" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0046" x="6972" y="999" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0047" x="7471" y="999" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0048" x="3978" y="1000" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0049" x="10" y="1014" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0050" x="509" y="1014" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0051" x="1008" y="1014" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0052" x="1507" y="1014" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0053" x="2006" y="1014" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0054" x="2505" y="1014" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0055" x="2505" y="1014" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0056" x="2505" y="1014" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+	<SubTexture name="Pico Dies0057" x="2505" y="1014" width="489" height="477" frameX="-42" frameY="0" frameWidth="540" frameHeight="513"/>
+</TextureAtlas>

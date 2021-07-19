@@ -283,6 +283,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN-alt', 'spooky HEY', 24, false);
 				animation.addByPrefix('singLEFT-alt', 'spooky HEY', 24, false);
 				animation.addByPrefix('singRIGHT-alt', 'spooky HEY', 24, false);
+				animation.addByPrefix('hey', 'spooky HEY', 24, false);
 				animation.addByIndices('danceLeft', 'spooky dance idle', [0, 2, 6], "", 12, false);
 				animation.addByIndices('danceRight', 'spooky dance idle', [8, 10, 12, 14], "", 12, false);
 
@@ -298,6 +299,7 @@ class Character extends FlxSprite
 				addOffset("singRIGHT-alt", 60, 7);
 				addOffset("singLEFT-alt", 60, 7);
 				addOffset("singDOWN-alt", 60, 7);
+				addOffset("hey", 60, 7);
 
 				playAnim('danceRight');
 			
@@ -401,28 +403,44 @@ class Character extends FlxSprite
 					animation.addByPrefix('singRIGHT', 'Pico Note Right0', 24, false);
 					animation.addByPrefix('singRIGHTmiss', 'Pico Note Right Miss', 24, false);
 					animation.addByPrefix('singLEFTmiss', 'Pico NOTE LEFT miss', 24, false);
+					addOffset("singLEFT", -68, -7);
+					addOffset("singRIGHT", 65, 9);
+					addOffset("singLEFTmiss", -60, 41);
+					addOffset("singRIGHTmiss", 62, 64);
 				}
 				else
 				{
-					// Need to be flipped! REDO THIS LATER!
 					animation.addByPrefix('singLEFT', 'Pico Note Right0', 24, false);
 					animation.addByPrefix('singRIGHT', 'Pico NOTE LEFT0', 24, false);
+					addOffset("singRIGHT", -68, -7);
+					addOffset("singLEFT", 65, 9);
 					animation.addByPrefix('singRIGHTmiss', 'Pico NOTE LEFT miss', 24, false);
 					animation.addByPrefix('singLEFTmiss', 'Pico Note Right Miss', 24, false);
+					addOffset("singRIGHTmiss", -60, 41);
+					addOffset("singLEFTmiss", 62, 64);
 				}
 
 				animation.addByPrefix('singUPmiss', 'pico Up note miss', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'Pico Down Note MISS', 24, false);
 
+				animation.addByPrefix('hey', 'Pico HEY!', 24, false);
+				animation.addByPrefix('hit', 'pico hit', 24, false);
+				animation.addByPrefix('attack', 'Pico Attack', 24, false);
+				animation.addByPrefix('preattack', 'Pico Preattack', 24, false);
+				animation.addByPrefix('dodge', 'Pico Dodge', 24, false);
+				animation.addByPrefix('scared', 'Pico Idle Scared', 24);
+
 				addOffset('idle');
 				addOffset("singUP", -29, 27);
-				addOffset("singRIGHT", -68, -7);
-				addOffset("singLEFT", 65, 9);
 				addOffset("singDOWN", 200, -70);
 				addOffset("singUPmiss", -19, 67);
-				addOffset("singRIGHTmiss", -60, 41);
-				addOffset("singLEFTmiss", 62, 64);
 				addOffset("singDOWNmiss", 210, -28);
+				addOffset('hey');
+				addOffset('hit');
+				addOffset('attack');
+				addOffset('preattack');
+				addOffset('dodge');
+				addOffset('scared');
 
 				playAnim('idle');
 
@@ -441,20 +459,22 @@ class Character extends FlxSprite
 				{
 					animation.addByPrefix('singLEFT', 'Tankman Note Left', 24, false);
 					animation.addByPrefix('singRIGHT', 'Tankman Right Note', 24, false);
+					addOffset("singRIGHT", 93, -26);
+					addOffset("singLEFT", -16, -14);
 				}
 				else
 				{
 					// Need to be flipped! REDO THIS LATER!
 					animation.addByPrefix('singLEFT', 'Tankman Right Note', 24, false);
 					animation.addByPrefix('singRIGHT', 'Tankman Note Left', 24, false);
+					addOffset("singLEFT", 93, -26);
+					addOffset("singRIGHT", -16, -14);
 				}
 
 				addOffset('idle');
 				addOffset("singUP", 24, 51);
 				addOffset("singUP-alt", -20, -6);
 				addOffset("singLEFT-alt", -20, -6);
-				addOffset("singLEFT", 93, -26);
-				addOffset("singRIGHT", -16, -14);
 				addOffset("singDOWN", 95, -103);
 				addOffset("singDOWN-alt", 100, 17);
 
@@ -467,8 +487,6 @@ class Character extends FlxSprite
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance w gf', 24, false);
 				animation.addByPrefix('bfCatch', 'BF catches GF', 24, false);
-				//animation.addByPrefix('sex', 'BF fuck GF', 24, false);
-				//because boyfriend has SEX with girlfriend ON SCREEN in fnf 2.0
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
 				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
 				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
@@ -510,8 +528,27 @@ class Character extends FlxSprite
 				playAnim('firstDeath');
 
 				flipX = true;
+
+			case 'pico-dead':
+				var tex = Paths.getSparrowAtlas('characters/Pico_Death','shared');
+				frames = tex;
+				animation.addByPrefix('idle', 'Pico Dies', 24, false);
+				animation.addByPrefix('singUP', 'Pico Dies', 24, false);
+				animation.addByPrefix('firstDeath', "Pico Dies", 24, false);
+				animation.addByPrefix('deathLoop', "Pico Dead Loop", 24, true);
+				animation.addByPrefix('deathConfirm', "Pico Dead Confirm", 24, false);
+
+				addOffset('idle', 37, 11);
+				addOffset("singUP", 37, 11);
+				addOffset('firstDeath', 37, 11);
+				addOffset('deathLoop', 37, 5);
+				addOffset('deathConfirm', 37, 69);
+
+				playAnim('firstDeath');
+
+				flipX = true;
 				
-				case 'bf':
+			case 'bf':
 				var tex = Paths.getSparrowAtlas('characters/BOYFRIEND','shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
@@ -528,12 +565,11 @@ class Character extends FlxSprite
 				animation.addByPrefix('attack', 'boyfriend attack', 24, false);
 				animation.addByPrefix('preattack', 'bf pre attack', 24, false);
 				animation.addByPrefix('dodge', 'boyfriend dodge', 24, false);
+				animation.addByPrefix('scared', 'BF idle shaking', 24);
 
 				animation.addByPrefix('firstDeath', "BF dies", 24, false);
 				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
 				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
-
-				animation.addByPrefix('scared', 'BF idle shaking', 24);
 
 				addOffset('idle', -5);
 				addOffset('hit', 22, 26);

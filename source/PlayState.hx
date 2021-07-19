@@ -4256,8 +4256,42 @@ class PlayState extends MusicBeatState
 
 		if (curBeat % 8 == 7 && curSong == 'Bopeebo')
 		{
-			boyfriend.playAnim('hey', true);
-			gf.playAnim('cheer', true);
+			if(boyfriend.animOffsets.exists('hey'))
+				{
+					boyfriend.playAnim('hey', true);
+				}
+			else if(boyfriend.animOffsets.exists('cheer'))
+				{
+					boyfriend.playAnim('cheer', true);
+				}
+			else
+				{
+					//do nothing cuz it no exist!!!!
+				}
+			if(dad.animOffsets.exists('hey'))
+				{
+					dad.playAnim('hey', true);
+				}
+			else if(dad.animOffsets.exists('cheer'))
+				{
+					dad.playAnim('cheer', true);
+				}
+			else
+				{
+					//do nothing cuz it no exist!!!!
+				}
+			if(gf.animOffsets.exists('cheer'))
+				{
+					gf.playAnim('cheer', true);
+				}
+			else if(gf.animOffsets.exists('hey'))
+				{
+					gf.playAnim('hey', true);
+				}
+			else
+				{
+					//do nothing cuz it no exist!!!!
+				}
 			FlxTween.tween(FlxG.camera, {zoom: 1.25}, 0.4, {ease: FlxEase.expoOut,});
 		}
 
@@ -4271,8 +4305,42 @@ class PlayState extends MusicBeatState
 						{
 							if(curBeat % 16 == 8)
 							{
-								gf.playAnim('cheer', true);
-								boyfriend.playAnim('hey', true);
+								if(boyfriend.animOffsets.exists('hey'))
+									{
+										boyfriend.playAnim('hey', true);
+									}
+								else if(boyfriend.animOffsets.exists('cheer'))
+									{
+										boyfriend.playAnim('cheer', true);
+									}
+								else
+									{
+										//do nothing cuz it no exist!!!!
+									}
+								if(dad.animOffsets.exists('hey'))
+									{
+										dad.playAnim('hey', true);
+									}
+								else if(dad.animOffsets.exists('cheer'))
+									{
+										dad.playAnim('cheer', true);
+									}
+								else
+									{
+										//do nothing cuz it no exist!!!!
+									}
+								if(gf.animOffsets.exists('cheer'))
+									{
+										gf.playAnim('cheer', true);
+									}
+								else if(gf.animOffsets.exists('hey'))
+									{
+										gf.playAnim('hey', true);
+									}
+								else
+									{
+										//do nothing cuz it no exist!!!!
+									}
 								FlxTween.tween(FlxG.camera, {zoom: 1.25}, 0.4, {ease: FlxEase.expoOut,});
 							}
 						}
@@ -4286,8 +4354,42 @@ class PlayState extends MusicBeatState
 						{
 							if(curBeat % 4 == 2)
 							{
-								gf.playAnim('cheer', true);
-								boyfriend.playAnim('hey', true);
+								if(boyfriend.animOffsets.exists('hey'))
+									{
+										boyfriend.playAnim('hey', true);
+									}
+								else if(boyfriend.animOffsets.exists('cheer'))
+									{
+										boyfriend.playAnim('cheer', true);
+									}
+								else
+									{
+										//do nothing cuz it no exist!!!!
+									}
+								if(dad.animOffsets.exists('hey'))
+									{
+										dad.playAnim('hey', true);
+									}
+								else if(dad.animOffsets.exists('cheer'))
+									{
+										dad.playAnim('cheer', true);
+									}
+								else
+									{
+										//do nothing cuz it no exist!!!!
+									}
+								if(gf.animOffsets.exists('cheer'))
+									{
+										gf.playAnim('cheer', true);
+									}
+								else if(gf.animOffsets.exists('hey'))
+									{
+										gf.playAnim('hey', true);
+									}
+								else
+									{
+										//do nothing cuz it no exist!!!!
+									}
 								FlxTween.tween(FlxG.camera, {zoom: 1.25}, 0.4, {ease: FlxEase.expoOut,});
 							}
 						}
@@ -4301,8 +4403,42 @@ class PlayState extends MusicBeatState
 						{
 							if(curBeat % 16 == 15)
 							{
-								gf.playAnim('cheer', true);
-								boyfriend.playAnim('hey', true);
+								if(boyfriend.animOffsets.exists('hey'))
+									{
+										boyfriend.playAnim('hey', true);
+									}
+								else if(boyfriend.animOffsets.exists('cheer'))
+									{
+										boyfriend.playAnim('cheer', true);
+									}
+								else
+									{
+										//do nothing cuz it no exist!!!!
+									}
+								if(dad.animOffsets.exists('hey'))
+									{
+										dad.playAnim('hey', true);
+									}
+								else if(dad.animOffsets.exists('cheer'))
+									{
+										dad.playAnim('cheer', true);
+									}
+								else
+									{
+										//do nothing cuz it no exist!!!!
+									}
+								if(gf.animOffsets.exists('cheer'))
+									{
+										gf.playAnim('cheer', true);
+									}
+								else if(gf.animOffsets.exists('hey'))
+									{
+										gf.playAnim('hey', true);
+									}
+								else
+									{
+										//do nothing cuz it no exist!!!!
+									}
 								FlxTween.tween(FlxG.camera, {zoom: 1.25}, 0.4, {ease: FlxEase.expoOut,});
 							}
 						}
@@ -4314,8 +4450,42 @@ class PlayState extends MusicBeatState
 					{
 						if(curBeat % 8 == 7)
 						{
-							gf.playAnim('cheer', true);
-							boyfriend.playAnim('hey', true);
+							if(boyfriend.animOffsets.exists('hey'))
+								{
+									boyfriend.playAnim('hey', true);
+								}
+							else if(boyfriend.animOffsets.exists('cheer'))
+								{
+									boyfriend.playAnim('cheer', true);
+								}
+							else
+								{
+									//do nothing cuz it no exist!!!!
+								}
+							if(dad.animOffsets.exists('hey'))
+								{
+									dad.playAnim('hey', true);
+								}
+							else if(dad.animOffsets.exists('cheer'))
+								{
+									dad.playAnim('cheer', true);
+								}
+							else
+								{
+									//do nothing cuz it no exist!!!!
+								}
+							if(gf.animOffsets.exists('cheer'))
+								{
+									gf.playAnim('cheer', true);
+								}
+							else if(gf.animOffsets.exists('hey'))
+								{
+									gf.playAnim('hey', true);
+								}
+							else
+								{
+									//do nothing cuz it no exist!!!!
+								}
 							FlxTween.tween(FlxG.camera, {zoom: 1.25}, 0.4, {ease: FlxEase.expoOut,});
 						}
 					}
@@ -4324,8 +4494,42 @@ class PlayState extends MusicBeatState
 
 		if (curBeat % 16 == 15 && SONG.song == 'Tutorial' && dad.curCharacter == 'gf' && curBeat > 16 && curBeat < 48)
 			{
-				boyfriend.playAnim('hey', true);
-				dad.playAnim('cheer', true);
+				if(boyfriend.animOffsets.exists('cheer'))
+					{
+						boyfriend.playAnim('cheer', true);
+					}
+				else if(boyfriend.animOffsets.exists('hey'))
+					{
+						boyfriend.playAnim('hey', true);
+					}
+				else
+					{
+						//do nothing cuz it no exist!!!!
+					}
+				if(dad.animOffsets.exists('cheer'))
+					{
+						dad.playAnim('cheer', true);
+					}
+				else if(dad.animOffsets.exists('hey'))
+					{
+						dad.playAnim('hey', true);
+					}
+				else
+					{
+						//do nothing cuz it no exist!!!!
+					}
+				if(gf.animOffsets.exists('cheer'))
+					{
+						gf.playAnim('cheer', true);
+					}
+				else if(gf.animOffsets.exists('hey'))
+					{
+						gf.playAnim('hey', true);
+					}
+				else
+					{
+						//do nothing cuz it no exist!!!!
+					}
 				FlxTween.tween(FlxG.camera, {zoom: 1.25}, 0.4, {ease: FlxEase.expoOut,});
 			}
 

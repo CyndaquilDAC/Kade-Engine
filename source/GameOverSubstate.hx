@@ -30,6 +30,8 @@ class GameOverSubstate extends MusicBeatSubstate
 				daBf = 'bf-pixel-dead';
 			case 'bf-holding-gf':
 				daBf = 'bf-holding-gf-dead';
+			case 'pico' | 'pico-christmas' | 'pico-car':
+				daBf = 'pico';
 			default:
 				daBf = 'bf';
 		}
