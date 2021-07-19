@@ -28,22 +28,30 @@ using StringTools;
 class AnimationDebug extends MusicBeatState
 {
 	var bf:Boyfriend;
+	var bfUnderlay:Boyfriend;
 	var dad:Character;
+	var dadUnderlay:Character;
 	var char:Character;
+	var charUnderlay:Character;
 	var textAnim:FlxText;
+	var textUnderlayAnim:FlxText;
 	var dumbTexts:FlxTypedGroup<FlxText>;
 	var animList:Array<String> = [];
 	var curAnim:Int = 0;
+	var curAnimUnderlay:Int = 0;
 	var isDad:Bool = true;
-	var daAnim:String = 'spooky';
+	var daAnim:String = 'dad';
 	var camFollow:FlxObject;
+	var enemy:Bool = true;
+	var animToUnderlay:String = 'idle';
 
-	public function new(daAnim:String = 'spooky')
+	public function new(daAnim:String = 'dad', enemy:Bool = true)
 	{
 		super();
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
 		this.daAnim = daAnim;
+		this.enemy = enemy;
 	}
 
 	override function create()
@@ -59,37 +67,59 @@ class AnimationDebug extends MusicBeatState
 		gridBG.scrollFactor.set(0.5, 0.5);
 		add(gridBG);
 
-		if (daAnim == 'bf')
+		if (!enemy)
 			isDad = false;
 
 		if (isDad)
 		{
-			dad = new Character(0, 0, daAnim);
+			dad = new Character(100, 100, daAnim);
 			dad.screenCenter();
 			dad.debugMode = true;
 			add(dad);
-
 			char = dad;
 			dad.flipX = false;
+
+			dadUnderlay = new Character(100, 100, daAnim);
+			dadUnderlay.screenCenter();
+			dadUnderlay.debugMode = true;
+			add(dadUnderlay);
+			charUnderlay = dadUnderlay;
+			dadUnderlay.flipX = false;
+			dadUnderlay.color = FlxColor.BLACK;
+			dadUnderlay.alpha = 0.5;
 		}
 		else
 		{
-			bf = new Boyfriend(0, 0);
+			bf = new Boyfriend(770, 450, daAnim);
 			bf.screenCenter();
 			bf.debugMode = true;
 			add(bf);
-
 			char = bf;
 			bf.flipX = false;
+
+			bfUnderlay = new Boyfriend(770, 450, daAnim);
+			bfUnderlay.screenCenter();
+			bfUnderlay.debugMode = true;
+			add(bfUnderlay);
+			charUnderlay = bfUnderlay;
+			bfUnderlay.flipX = false;
+			bfUnderlay.color = FlxColor.BLACK;
+			bfUnderlay.alpha = 0.5;
 		}
 
 		dumbTexts = new FlxTypedGroup<FlxText>();
 		add(dumbTexts);
 
 		textAnim = new FlxText(300, 16);
+		textAnim.color = FlxColor.BLACK;
 		textAnim.size = 26;
 		textAnim.scrollFactor.set();
 		add(textAnim);
+		textUnderlayAnim = new FlxText(300, 46);
+		textUnderlayAnim.color = FlxColor.BLACK;
+		textUnderlayAnim.size = 26;
+		textUnderlayAnim.scrollFactor.set();
+		add(textUnderlayAnim);
 
 		genBoyOffsets();
 
@@ -132,11 +162,19 @@ class AnimationDebug extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		textAnim.text = char.animation.curAnim.name;
+		textUnderlayAnim.text = animToUnderlay;
 
-		if (FlxG.keys.justPressed.E)
-			FlxG.camera.zoom += 0.25;
-		if (FlxG.keys.justPressed.Q)
-			FlxG.camera.zoom -= 0.25;
+		if (FlxG.keys.pressed.E)
+			FlxG.camera.zoom += 0.025;
+		if (FlxG.keys.pressed.Q)
+			FlxG.camera.zoom -= 0.025;
+
+		if(FlxG.keys.justPressed.MINUS)
+			curAnimUnderlay--;
+			animToUnderlay = animList[curAnimUnderlay].toLowerCase();
+		if(FlxG.keys.justPressed.PLUS)
+			curAnimUnderlay++;
+			animToUnderlay = animList[curAnimUnderlay].toLowerCase();
 
 		if (FlxG.keys.pressed.I || FlxG.keys.pressed.J || FlxG.keys.pressed.K || FlxG.keys.pressed.L)
 		{
@@ -178,6 +216,7 @@ class AnimationDebug extends MusicBeatState
 		if (FlxG.keys.justPressed.S || FlxG.keys.justPressed.W || FlxG.keys.justPressed.SPACE)
 		{
 			char.playAnim(animList[curAnim]);
+			charUnderlay.playAnim(animToUnderlay);
 
 			updateTexts();
 			genBoyOffsets(false);
@@ -198,16 +237,21 @@ class AnimationDebug extends MusicBeatState
 			updateTexts();
 			if (upP)
 				char.animOffsets.get(animList[curAnim])[1] += 1 * multiplier;
+				charUnderlay.animOffsets.get(animList[curAnim])[1] += 1 * multiplier;
 			if (downP)
 				char.animOffsets.get(animList[curAnim])[1] -= 1 * multiplier;
+				charUnderlay.animOffsets.get(animList[curAnim])[1] -= 1 * multiplier;
 			if (leftP)
 				char.animOffsets.get(animList[curAnim])[0] += 1 * multiplier;
+				charUnderlay.animOffsets.get(animList[curAnim])[0] += 1 * multiplier;
 			if (rightP)
 				char.animOffsets.get(animList[curAnim])[0] -= 1 * multiplier;
+				charUnderlay.animOffsets.get(animList[curAnim])[0] -= 1 * multiplier;
 
 			updateTexts();
 			genBoyOffsets(false);
 			char.playAnim(animList[curAnim]);
+			charUnderlay.playAnim(animToUnderlay);
 		}
 
 		if (controls.BACK)

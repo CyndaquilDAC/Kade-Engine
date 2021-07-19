@@ -435,12 +435,12 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 200, -70);
 				addOffset("singUPmiss", -19, 67);
 				addOffset("singDOWNmiss", 210, -28);
-				addOffset('hey');
-				addOffset('hit');
-				addOffset('attack');
-				addOffset('preattack');
-				addOffset('dodge');
-				addOffset('scared');
+				addOffset('hey', 16, 0);
+				addOffset('hit', 6, 28);
+				addOffset('attack', 321, -84);
+				addOffset('preattack', -39, -94);
+				addOffset('dodge', -20, -112);
+				addOffset('scared', 0, -2);
 
 				playAnim('idle');
 
