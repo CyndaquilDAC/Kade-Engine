@@ -82,10 +82,10 @@ class StoryMenuState extends MusicBeatState
 
 	var grpLocks:FlxTypedGroup<WeekLockItem>;
 
-	var difficultySelectors:FlxTypedGroup<DifficultySelectItem>;
-	var sprDifficulty:DifficultySelectItem;
-	var leftArrow:DifficultySelectItem;
-	var rightArrow:DifficultySelectItem;
+	var difficultySelectors:FlxGroup;
+	var sprDifficulty:FlxSprite;
+	var leftArrow:FlxSprite;
+	var rightArrow:FlxSprite;
 
 	override function create()
 	{
@@ -158,20 +158,37 @@ class StoryMenuState extends MusicBeatState
 		grpWeekCharacters.add(new MenuCharacter(450, 25, 0.9, true, 'bf'));
 		grpWeekCharacters.add(new MenuCharacter(850, 100, 0.5, true, 'gf'));
 
-		difficultySelectors = new FlxTypedGroup<DifficultySelectItem>();
+		difficultySelectors = new FlxGroup();
 		add(difficultySelectors);
 		trace('difficulty selectors added');
 
-		leftArrow = new DifficultySelectItem(grpWeekText.members[0].x + grpWeekText.members[0].width + 10, grpWeekText.members[0].y + 10, false, false);
+		leftArrow = new FlxSprite(grpWeekText.members[0].x + grpWeekText.members[0].width + 10, grpWeekText.members[0].y + 10);
+		leftArrow.frames = ui_tex;
+		leftArrow.animation.addByPrefix('idle', "arrow left");
+		leftArrow.animation.addByPrefix('press', "arrow push left");
+		leftArrow.animation.play('idle');
 		difficultySelectors.add(leftArrow);
 		trace('left arrow added');
 
-		sprDifficulty = new DifficultySelectItem(leftArrow.x + 130, leftArrow.y, true, false);
+		sprDifficulty = new FlxSprite(leftArrow.x + 130, leftArrow.y);
+		sprDifficulty.frames = ui_tex;
+		sprDifficulty.animation.addByPrefix('easy', 'EASY');
+		sprDifficulty.animation.addByPrefix('normal', 'NORMAL');
+		sprDifficulty.animation.addByPrefix('hard', 'HARD');
+		sprDifficulty.animation.addByPrefix('baby', 'BABY');
+		sprDifficulty.animation.addByPrefix('insane', 'INSANE');
+		sprDifficulty.animation.play('easy');
+		sprDifficulty.antialiasing = true;
 		changeDifficulty();
 		trace('funie difficulty');
+
 		difficultySelectors.add(sprDifficulty);
 
-		rightArrow = new DifficultySelectItem(sprDifficulty.x + sprDifficulty.width + 50, leftArrow.y, false, true);
+		rightArrow = new FlxSprite(sprDifficulty.x + sprDifficulty.width + 50, leftArrow.y);
+		rightArrow.frames = ui_tex;
+		rightArrow.animation.addByPrefix('idle', 'arrow right');
+		rightArrow.animation.addByPrefix('press', "arrow push right", 24, false);
+		rightArrow.animation.play('idle');
 		difficultySelectors.add(rightArrow);
 		trace('right arrow added');
 
