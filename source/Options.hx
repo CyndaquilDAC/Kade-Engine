@@ -215,7 +215,7 @@ class OldWeekSixShitOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return FlxG.save.data.promoWeekSix ? "Promo Week 6 Assets Off" : "Promo Week 6 Assets On";
+		return FlxG.save.data.promoWeekSix ? "Promo Pixel Assets Off" : "Promo Pixel Assets On";
 	}
 }
 

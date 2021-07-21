@@ -42,12 +42,10 @@ class OptionsMenu extends MusicBeatState
 		]),
 		new OptionCategory("Misc", [
 			new EtternaModeOption("Harder Hit Windows and a different scoring system."),
-			#if !mobile
 			new FPSOption("Toggle the FPS Counter"),
-			#end
-			new ChartBasedVocalsOption("Toggle vocals getting muted when there aren't any notes being hit by either player."),
+			new ChartBasedVocalsOption("Toggle vocals getting muted when there aren't any notes being hit."),
 			new OldWeekSixShitOption("Assets in week 6 will be based off of the promotional material instead of the final versions."),
-			new ReplayOption("View replays")
+			new ReplayOption("View saved replays.")
 		])
 	];
 

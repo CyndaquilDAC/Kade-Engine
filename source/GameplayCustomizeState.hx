@@ -50,16 +50,15 @@ class GameplayCustomizeState extends MusicBeatState
         FlxG.cameras.add(camHUD);
 
         var bg:FlxSprite = new FlxSprite(-600, -200);
-        bg.frames = Paths.getSparrowAtlas('test/testBackground');
+        bg.frames = Paths.getSparrowAtlas('stage/stageBackground');
         bg.animation.addByPrefix('back', 'stageBack', 24, true);
         bg.animation.play('back');
         bg.scrollFactor.set(0.9, 0.9);
         bg.active = false;
         add(bg);
-        trace('back added');
 
         var stageFront:FlxSprite = new FlxSprite(-650, 600);
-        stageFront.frames = Paths.getSparrowAtlas('test/testBackground');
+        stageFront.frames = Paths.getSparrowAtlas('stage/stageBackground');
         stageFront.animation.addByPrefix('front', 'stageFront', 24, true);
         stageFront.animation.play('front');
         stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
@@ -68,29 +67,26 @@ class GameplayCustomizeState extends MusicBeatState
         stageFront.scrollFactor.set(0.9, 0.9);
         stageFront.active = false;
         add(stageFront);
-        trace('front added');
 
         var stageLightLeft:FlxSprite = new FlxSprite(-25, -75);
-        stageLightLeft.frames = Paths.getSparrowAtlas('test/testBackground');
+        stageLightLeft.frames = Paths.getSparrowAtlas('stage/stageBackground');
         stageLightLeft.animation.addByPrefix('light', 'stageLight', 24, true);
         stageLightLeft.animation.play('light');
-        stageLightLeft.scrollFactor.set(1.25, 1.25);
+        stageLightLeft.scrollFactor.set(1.3, 1.3);
         stageLightLeft.antialiasing = true;
         add(stageLightLeft);
-        trace('left light added');
 
         var stageLightRight:FlxSprite = new FlxSprite(1570, -75);
-        stageLightRight.frames = Paths.getSparrowAtlas('test/testBackground');
+        stageLightRight.frames = Paths.getSparrowAtlas('stage/stageBackground');
         stageLightRight.animation.addByPrefix('light', 'stageLight', 24, true);
         stageLightRight.animation.play('light');
         stageLightRight.flipX = true;
-        stageLightRight.scrollFactor.set(1.25, 1.25);
+        stageLightRight.scrollFactor.set(1.3, 1.3);
         stageLightRight.antialiasing = true;
         add(stageLightRight);
-        trace('right light added');
 
         var stageCurtains:FlxSprite = new FlxSprite(-500, -300);
-        stageCurtains.frames = Paths.getSparrowAtlas('test/testBackground');
+        stageCurtains.frames = Paths.getSparrowAtlas('stage/stageBackground');
         stageCurtains.animation.addByPrefix('curtains', 'stageCurtains', 24, true);
         stageCurtains.animation.play('curtains');
         stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
@@ -99,7 +95,6 @@ class GameplayCustomizeState extends MusicBeatState
         stageCurtains.active = false;
         stageCurtains.antialiasing = true;
         add(stageCurtains);
-        trace('curtains added');
 
 		var camFollow = new FlxObject(0, 0, 1, 1);
 
@@ -213,7 +208,7 @@ class GameplayCustomizeState extends MusicBeatState
             {
                 // FlxG.log.add(i);
                 var babyArrow:FlxSprite = new FlxSprite(0, strumLine.y);
-                babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets', 'shared');
+                babyArrow.frames = Paths.getSparrowAtlas('noteStyles/normal', 'shared');
                 babyArrow.animation.addByPrefix('green', 'arrowUP');
                 babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
                 babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
