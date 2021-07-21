@@ -2406,6 +2406,14 @@ class PlayState extends MusicBeatState
 		#if !debug
 		perfectMode = false;
 		#end
+
+		if(preCutsceneSenpai.animation.name == 'trans' && preCutsceneSenpai.animation.curAnim.curFrame == preCutsceneSenpai.animation.curAnim.numFrames - 3)
+			{
+				//its bullshit but it works
+				preCutsceneSenpai.visible = false;
+				dad.visible = true;
+			}
+
 		if (currentFrames == FlxG.save.data.fpsCap)
 		{
 			for(i in 0...notesHitArray.length)
