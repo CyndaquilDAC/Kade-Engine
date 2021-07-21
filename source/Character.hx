@@ -826,11 +826,6 @@ class Character extends FlxSprite
 
 			case 'senpai':
 				frames = Paths.getSparrowAtlas('characters/senpai');
-				var dumbAssCutsceneFrames = Paths.getSparrowAtlas('Senpai_To_Roses_Transition');
-				for(frame in dumbAssCutsceneFrames.frames)
-					{
-						frames.pushFrame(frame);
-					}
 				animation.addByPrefix('idle', 'Senpai Idle', 24, false);
 				animation.addByPrefix('trans', 'Senpai to Roses Transition', 24, false);
 				animation.addByPrefix('singUP', 'SENPAI UP NOTE', 24, false);
@@ -853,11 +848,6 @@ class Character extends FlxSprite
 				antialiasing = false;
 			case 'senpai-angry':
 				frames = Paths.getSparrowAtlas('characters/senpai');
-				var dumbAssCutsceneFrames = Paths.getSparrowAtlas('Senpai_To_Roses_Transition');
-				for(frame in dumbAssCutsceneFrames.frames)
-					{
-						frames.pushFrame(frame);
-					}
 				animation.addByPrefix('idle', 'Angry Senpai Idle', 24, false);
 				animation.addByPrefix('trans', 'Senpai to Roses Transition', 24, false);
 				animation.addByPrefix('singUP', 'Angry Senpai UP NOTE', 24, false);
