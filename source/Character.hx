@@ -766,7 +766,14 @@ class Character extends FlxSprite
 				flipX = true;
 			case 'bf-pixel':
 				frames = Paths.getSparrowAtlas('characters/bfPixel');
-				animation.addByPrefix('idle', 'BF IDLE', 24, false);
+				if(FlxG.save.data.promoWeekSix)
+					{
+						animation.addByPrefix('idle', 'BF OLD IDLE', 24, false);
+					}
+				else
+					{
+						animation.addByPrefix('idle', 'BF IDLE', 24, false);
+					}
 				animation.addByPrefix('singUP', 'BF UP NOTE', 24, false);
 				animation.addByPrefix('singLEFT', 'BF LEFT NOTE', 24, false);
 				animation.addByPrefix('singRIGHT', 'BF RIGHT NOTE', 24, false);
@@ -775,8 +782,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFTmiss', 'BF LEFT MISS', 24, false);
 				animation.addByPrefix('singRIGHTmiss', 'BF RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF DOWN MISS', 24, false);
+				animation.addByPrefix('hey', 'BF HEY', 24, false);
 
 				addOffset('idle');
+				addOffset('hey');
 				addOffset("singUP");
 				addOffset("singRIGHT");
 				addOffset("singLEFT");
