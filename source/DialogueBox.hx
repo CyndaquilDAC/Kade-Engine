@@ -316,7 +316,7 @@ class DialogueBox extends FlxSpriteGroup
 		switch(PlayState.SONG.song.toLowerCase())
 		{
 			case 'senpai' | 'roses' | 'thorns':
-				handSelect.frames = Paths.getSparrowAtlas('weeb/pixelUI/Textbox_Hand_Animated');
+				handSelect.frames = Paths.getSparrowAtlas('weeb/pixelUI/textbox_hand_animated');
 				handSelect.animation.addByPrefix('hand', 'hand', 24, true);
 				handSelect.animation.play('hand');
 				handSelect.setGraphicSize(Std.int(handSelect.width * 6 * 0.9));
