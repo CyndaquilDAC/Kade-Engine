@@ -834,7 +834,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'SENPAI DOWN NOTE', 24, false);
 
 				addOffset('idle');
-				addOffset('trans');
+				addOffset('trans', -162, -151);
 				addOffset("singUP", 5, 37);
 				addOffset("singRIGHT");
 				addOffset("singLEFT", 40);
@@ -856,7 +856,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Angry Senpai DOWN NOTE', 24, false);
 
 				addOffset('idle');
-				addOffset('trans');
+				addOffset('trans', -162, -151);
 				addOffset("singUP", 5, 37);
 				addOffset("singRIGHT");
 				addOffset("singLEFT", 40);
