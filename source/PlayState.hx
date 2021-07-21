@@ -1645,22 +1645,27 @@ class PlayState extends MusicBeatState
 			}
 		else if(SONG.song.toLowerCase() == 'roses')
 			{
-				new FlxTimer().start(2, function(swagTimer:FlxTimer)
+				new FlxTimer().start(0.5, function(swagTimer:FlxTimer)
 					{
-						camFollow.setPosition(dad.getMidpoint().x - 100, dad.getMidpoint().y - 430);				
-						new FlxTimer().start(1, function(swagTimer:FlxTimer)
+						camFollow.setPosition(dad.getMidpoint().x - 100, dad.getMidpoint().y - 430);
+						preCutsceneSenpai.playAnim('trans');			
+						new FlxTimer().start(0.5, function(swagTimer:FlxTimer)
 							{
-								FlxG.sound.play(Paths.sound('ANGRY', 'shared'));
-								preCutsceneSenpai.visible = false;
-								dad.visible = true;
-								iconP2.changeChar('senpai-angry');
-								if(!FlxG.save.data.effects)
+								FlxTween.tween(FlxG.camera, {zoom: 1.35}, 0.5, {ease: FlxEase.expoOut,});
+								new FlxTimer().start(0.5, function(swagTimer:FlxTimer)
 									{
-										bgGirls.getScared();
-									}
-								new FlxTimer().start(1, function(swagTimer:FlxTimer)
-									{
-										add(doof);
+										FlxG.sound.play(Paths.sound('ANGRY', 'shared'));
+										preCutsceneSenpai.visible = false;
+										dad.visible = true;
+										iconP2.changeChar('senpai-angry');
+										if(!FlxG.save.data.effects)
+											{
+												bgGirls.getScared();
+											}
+										new FlxTimer().start(1, function(swagTimer:FlxTimer)
+											{
+												add(doof);
+											});
 									});
 							});
 					});
