@@ -1095,14 +1095,17 @@ class Character extends FlxSprite
 
 	var animationNotes:Array<Dynamic> = [];
 
-	function loadMappedAnims()
+	function loadMappedAnims(isTankmenBg:Bool = true)
 	{
 		var a:Array<SwagSection> = Song.loadFromJson(chartToMapAnimsFrom, songFolder).notes;
 		for (i in a) {
 			for (note in i.sectionNotes)
 				animationNotes.push(note);
 		}
-		TankmenBG.animationNotes = animationNotes;
+		if(isTankmenBg)
+		{
+			TankmenBG.animationNotes = animationNotes;
+		}
 		animationNotes.sort(sortAnims);
 	}
 
