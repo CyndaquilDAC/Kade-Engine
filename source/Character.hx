@@ -768,7 +768,9 @@ class Character extends FlxSprite
 				frames = Paths.getSparrowAtlas('characters/bfPixel');
 				if(FlxG.save.data.promoWeekSix)
 					{
-						animation.addByPrefix('idle', 'BF OLD IDLE', 24, false);
+						//this bs no work so imma just
+						//animation.addByPrefix('idle', 'BF OLD IDLE', 24, false);
+						animation.addByPrefix('idle', 'BF IDLE', 24, false);
 					}
 				else
 					{
@@ -964,7 +966,7 @@ class Character extends FlxSprite
 
 	override function update(elapsed:Float)
 	{
-		if (!curCharacter.startsWith('bf'))
+		if (!isPlayer)
 		{
 			if (animation.curAnim.name.startsWith('sing'))
 			{
