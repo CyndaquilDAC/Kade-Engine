@@ -1022,86 +1022,37 @@ class Character extends FlxSprite
 	{
 		if (!debugMode)
 		{
-			switch (curCharacter)
+			if(curCharacter.startsWith('gf'))
+				{
+					if (!animation.curAnim.name.startsWith('hair'))
+						{
+							danced = !danced;
+	
+							if (danced)
+								playAnim('danceRight');
+							else
+								playAnim('danceLeft');
+						}
+				}
+			else
 			{
-				case 'gf':
-					if (!animation.curAnim.name.startsWith('hair'))
-					{
+				switch (curCharacter)
+				{
+					case 'spooky':
 						danced = !danced;
-
+	
 						if (danced)
 							playAnim('danceRight');
 						else
 							playAnim('danceLeft');
-					}
-
-				case 'gf-tankmen':
-					if (!animation.curAnim.name.startsWith('hair'))
-					{
-						danced = !danced;
-
-						if (danced)
-							playAnim('danceRight');
-						else
-							playAnim('danceLeft');
-					}
-
-				case 'gf-christmas':
-					if (!animation.curAnim.name.startsWith('hair'))
-					{
-						danced = !danced;
-
-						if (danced)
-							playAnim('danceRight');
-						else
-							playAnim('danceLeft');
-					}
-
-				case 'gf-car':
-					if (!animation.curAnim.name.startsWith('hair'))
-					{
-						danced = !danced;
-
-						if (danced)
-							playAnim('danceRight');
-						else
-							playAnim('danceLeft');
-					}
-				case 'gf-car-night':
-					if (!animation.curAnim.name.startsWith('hair'))
-					{
-						danced = !danced;
-
-						if (danced)
-							playAnim('danceRight');
-						else
-							playAnim('danceLeft');
-					}
-				case 'gf-pixel':
-					if (!animation.curAnim.name.startsWith('hair'))
-					{
-						danced = !danced;
-
-						if (danced)
-							playAnim('danceRight');
-						else
-							playAnim('danceLeft');
-					}
-
-				case 'spooky':
-					danced = !danced;
-
-					if (danced)
-						playAnim('danceRight');
-					else
-						playAnim('danceLeft');
-				case 'tankman':
-					if (!animation.curAnim.name.endsWith('DOWN-alt'))
+					case 'tankman':
+						if (!animation.curAnim.name.endsWith('DOWN-alt'))
+							playAnim('idle');
+					case 'pico-speaker':
+						//fuck you, it does nothing
+					default:
 						playAnim('idle');
-				case 'pico-speaker':
-					//fuck you, it does nothing
-				default:
-					playAnim('idle');
+				}
 			}
 		}
 	}
