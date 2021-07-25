@@ -1097,7 +1097,7 @@ class Character extends FlxSprite
 
 	function loadMappedAnims()
 	{
-		var a:Array<SwagSection> = Song.loadFromJson('picospeaker', 'stress').notes;
+		var a:Array<SwagSection> = Song.loadFromJson(chartToMapAnimsFrom, songFolder).notes;
 		for (i in a) {
 			for (note in i.sectionNotes)
 				animationNotes.push(note);
