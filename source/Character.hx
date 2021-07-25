@@ -26,7 +26,6 @@ class Character extends FlxSprite
 	public var songFolder:String = "stress";
 
 	public var hasEvilTrail:Bool = false;
-	//swaggy unhardcode
 
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
@@ -612,7 +611,7 @@ class Character extends FlxSprite
 
 				chartToMapAnimsFrom = 'picospeaker';
 
-				loadMappedAnims();
+				loadMappedAnims(true);
 			case 'bf-test':
 				var tex = Paths.getSparrowAtlas('characters/BFTest_Assets');
 				frames = tex;
