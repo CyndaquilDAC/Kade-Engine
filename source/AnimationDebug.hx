@@ -72,13 +72,6 @@ class AnimationDebug extends MusicBeatState
 
 		if (isDad)
 		{
-			dad = new Character(100, 100, daAnim);
-			dad.screenCenter();
-			dad.debugMode = true;
-			add(dad);
-			char = dad;
-			dad.flipX = false;
-
 			dadUnderlay = new Character(100, 100, daAnim);
 			dadUnderlay.screenCenter();
 			dadUnderlay.debugMode = true;
@@ -87,16 +80,16 @@ class AnimationDebug extends MusicBeatState
 			dadUnderlay.flipX = false;
 			dadUnderlay.color = FlxColor.BLACK;
 			dadUnderlay.alpha = 0.5;
+			
+			dad = new Character(100, 100, daAnim);
+			dad.screenCenter();
+			dad.debugMode = true;
+			add(dad);
+			char = dad;
+			dad.flipX = false;
 		}
 		else
 		{
-			bf = new Boyfriend(770, 450, daAnim);
-			bf.screenCenter();
-			bf.debugMode = true;
-			add(bf);
-			char = bf;
-			bf.flipX = false;
-
 			bfUnderlay = new Boyfriend(770, 450, daAnim);
 			bfUnderlay.screenCenter();
 			bfUnderlay.debugMode = true;
@@ -105,6 +98,13 @@ class AnimationDebug extends MusicBeatState
 			bfUnderlay.flipX = false;
 			bfUnderlay.color = FlxColor.BLACK;
 			bfUnderlay.alpha = 0.5;
+
+			bf = new Boyfriend(770, 450, daAnim);
+			bf.screenCenter();
+			bf.debugMode = true;
+			add(bf);
+			char = bf;
+			bf.flipX = false;
 		}
 
 		dumbTexts = new FlxTypedGroup<FlxText>();
