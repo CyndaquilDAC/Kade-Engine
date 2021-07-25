@@ -785,7 +785,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
 
 				addOffset('idle');
-				addOffset('hey');
+				addOffset('hey', 98, 83);
 				addOffset("singUP");
 				addOffset("singRIGHT");
 				addOffset("singLEFT");
