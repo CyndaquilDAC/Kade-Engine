@@ -92,7 +92,7 @@ class FreeplayState extends MusicBeatState
 			FreeplayState.loadDiff(3,format,meta.songName,diffs);
 			FreeplayState.loadDiff(4,format,meta.songName,diffs);
 			FreeplayState.songData.set(meta.songName,diffs);
-			trace('loaded diffs for ' + meta.songName);
+			//trace('loaded diffs for ' + meta.songName);
 		}
 
 		/* 
@@ -159,6 +159,7 @@ class FreeplayState extends MusicBeatState
 		diffCalcText = new FlxText(scoreText.x, scoreText.y + 66, 0, "", 24);
 		diffCalcText.font = scoreText.font;
 		add(diffCalcText);
+		diffCalcText.visible = false;
 
 		comboText = new FlxText(diffText.x + 100, diffText.y, 0, "", 24);
 		comboText.font = diffText.font;
@@ -325,7 +326,7 @@ class FreeplayState extends MusicBeatState
 			case 4:
 				diffText.text = "BABY";
 		}
-		diffCalcText.text = 'RATING: ${DiffCalc.CalculateDiff(songData.get(songs[curSelected].songName)[curDifficulty])}';
+		//diffCalcText.text = 'RATING: ${DiffCalc.CalculateDiff(songData.get(songs[curSelected].songName)[curDifficulty])}';
 		changeMicRating();
 	}
 
@@ -333,7 +334,7 @@ class FreeplayState extends MusicBeatState
 		{
 			try 
 			{
-				array.push(Song.loadFromJson(Highscore.formatSong(format, diff), name));
+				//array.push(Song.loadFromJson(Highscore.formatSong(format, diff), name));
 			}
 			catch(ex)
 			{
@@ -403,7 +404,7 @@ class FreeplayState extends MusicBeatState
 		maxScoreLol = MaxScoreCalc.CalculateMaxScore(songData.get(songs[curSelected].songName)[curDifficulty]);
 		#end
 
-		diffCalcText.text = 'RATING: ${DiffCalc.CalculateDiff(songData.get(songs[curSelected].songName)[curDifficulty])}';
+		//diffCalcText.text = 'RATING: ${DiffCalc.CalculateDiff(songData.get(songs[curSelected].songName)[curDifficulty])}';
 
 		changeMicRating();
 
