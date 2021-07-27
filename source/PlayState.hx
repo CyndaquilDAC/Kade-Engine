@@ -1,5 +1,6 @@
 package;
 
+import openfl.utils.Object;
 import flixel.math.FlxAngle;
 import LoopState;
 import lime.app.Application;
@@ -275,6 +276,8 @@ class PlayState extends MusicBeatState
 
 	public var speedTheScroll:Float = 1;
 
+	var funkinForeverWatermark:FlxText;
+
 	override public function new()
 	{
 		super();
@@ -430,11 +433,8 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt(SONG.song.toLowerCase() + '/' + SONG.song.toLowerCase() + 'Dialogue'));
 			}
 		trace('dialogue set');
-
-		if(SONG.song.toLowerCase() == 'thorns')
-			{
-				camHUD.visible = false;
-			}
+		
+		camHUD.visible = false;
 		
 
 		switch(SONG.stage)
@@ -1358,7 +1358,6 @@ class PlayState extends MusicBeatState
 				songPosBar.scrollFactor.set();
 				songPosBar.createFilledBar(FlxColor.GRAY, FlxColor.LIME);
 				add(songPosBar);
-	
 				var songName = new FlxText(songPosBG.x + (songPosBG.width / 2) - 20,songPosBG.y,0,SONG.song, 16);
 				if (FlxG.save.data.downscroll)
 					songName.y -= 3;
@@ -1366,6 +1365,7 @@ class PlayState extends MusicBeatState
 				songName.scrollFactor.set();
 				add(songName);
 				songName.cameras = [camHUD];
+
 			}
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('ui/healthBar'));
 		if (FlxG.save.data.downscroll)
@@ -1432,7 +1432,7 @@ class PlayState extends MusicBeatState
 		
 
 		// Funkin Forever watermark
-		var funkinForeverWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 4 ? "Baby" : storyDifficulty == 3 ? "Insane" : storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + " - FF " + MainMenuState.funkinForeverVer + " - " + (FlxG.save.data.etternaMode ? "E.Mode" : "FNF"), 16);
+		funkinForeverWatermark = new FlxText(4,healthBarBG.y + 50,0,SONG.song + " " + (storyDifficulty == 4 ? "Baby" : storyDifficulty == 3 ? "Insane" : storyDifficulty == 2 ? "Hard" : storyDifficulty == 1 ? "Normal" : "Easy") + " - FF " + MainMenuState.funkinForeverVer + " - " + (FlxG.save.data.etternaMode ? "E.Mode" : "FNF"), 16);
 		funkinForeverWatermark.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		funkinForeverWatermark.scrollFactor.set();
 
@@ -1783,10 +1783,15 @@ class PlayState extends MusicBeatState
 
 	function startCountdown():Void
 	{
+		camHUD.visible = true;
+
 		inCutscene = false;
 
 		generateStaticArrows(0);
 		generateStaticArrows(1);
+
+		introSpriteTween(iconP2, 0);
+		introSpriteTween(iconP1, 1);
 
 		talking = false;
 		startedCountdown = true;
@@ -1956,6 +1961,22 @@ class PlayState extends MusicBeatState
 	}
 
 	var debugNum:Int = 0;
+
+	public function introSpriteTween(tweenedObject:FlxSprite, timeOffset:Float = 0, yOffset:Float = 0)
+		{
+			if(FlxG.save.data.downscroll)
+				{
+					tweenedObject.y += 10 + yOffset;
+					tweenedObject.alpha = 0;
+					FlxTween.tween(tweenedObject, {y: tweenedObject.y - 10 + yOffset, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * 1 + timeOffset)});
+				}
+			else
+				{
+					tweenedObject.y -= 10 + yOffset;
+					tweenedObject.alpha = 0;
+					FlxTween.tween(tweenedObject, {y: tweenedObject.y + 10 + yOffset, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * 1 + timeOffset)});
+				}
+		}
 
 	private function generateSong(dataPath:String):Void
 	{
@@ -2194,21 +2215,8 @@ class PlayState extends MusicBeatState
 
 			babyArrow.updateHitbox();
 			babyArrow.scrollFactor.set();
-			if(!isStoryMode)
-				{
-					if(FlxG.save.data.downscroll)
-						{
-							babyArrow.y += 10;
-							babyArrow.alpha = 0;
-							FlxTween.tween(babyArrow, {y: babyArrow.y - 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
-						}
-					else
-						{
-							babyArrow.y -= 10;
-							babyArrow.alpha = 0;
-							FlxTween.tween(babyArrow, {y: babyArrow.y + 10, alpha: 1}, 1, {ease: FlxEase.circOut, startDelay: 0.5 + (0.2 * i)});
-						}
-				}
+
+			introSpriteTween(babyArrow, i);
 
 			babyArrow.ID = i;
 
