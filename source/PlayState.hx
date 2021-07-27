@@ -55,6 +55,9 @@ import Discord.DiscordClient;
 
 using StringTools;
 
+/**
+ * the one, the only, the playstate! where the grand majority of actual gameplay shit is kept.
+ */
 class PlayState extends MusicBeatState
 {
 
@@ -77,6 +80,8 @@ class PlayState extends MusicBeatState
 	public static var sicks:Int = 0;
 
 	public var doof:DialogueBox;
+
+	public var endingDia:DialogueBox;
 
 	public static var songPosBG:FlxSprite;
 	public static var songPosBar:FlxBar;
@@ -1485,12 +1490,12 @@ class PlayState extends MusicBeatState
 		// cameras = [FlxG.cameras.list[1]];
 		startingSong = true;
 
-		if (isStoryMode)
+		if (isStoryMode || FlxG.save.data.freescenes)
 		{
 			switch (curSong.toLowerCase())
 			{
 				
-				case "winter horrorland":
+				case "winter horrorland" | "winter-horrorland":
 					if (isStoryMode = true || FlxG.save.data.freescenes){
 						var blackScreen:FlxSprite = new FlxSprite(0, 0).makeGraphic(Std.int(FlxG.width * 2), Std.int(FlxG.height * 2), FlxColor.BLACK);
 						add(blackScreen);

@@ -8,7 +8,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
-
+/**
+ * health icons!!!
+ */
 class HealthIcon extends FlxSprite
 {
 	public var sprTracker:FlxSprite;

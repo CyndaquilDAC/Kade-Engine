@@ -15,18 +15,27 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
+/**
+ * when you press a button on your keyboard like the funny game tells you to
+ */
 typedef KeyPress =
 {
     public var time:Float;
     public var key:String;
 }
 
+/**
+ * when you stop pressing a key on your keyboard
+ */
 typedef KeyRelease =
 {
     public var time:Float;
     public var key:String;
 }
 
+/**
+ * json shit for replays
+ */
 typedef ReplayJSON =
 {
     public var replayGameVer:String;
@@ -37,6 +46,9 @@ typedef ReplayJSON =
     public var keyReleases:Array<KeyRelease>;
 }
 
+/**
+ * replays themselves.
+ */
 class Replay
 {
     public static var version:String = "1.0"; // replay file version

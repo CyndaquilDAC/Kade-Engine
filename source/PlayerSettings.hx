@@ -11,6 +11,10 @@ import openfl.*;
 
 // import ui.DeviceManager;
 // import props.Player;
+
+/**
+ * player settings lol. no idea what this does tbh.
+ */
 class PlayerSettings
 {
 	static public var numPlayers(default, null) = 0;

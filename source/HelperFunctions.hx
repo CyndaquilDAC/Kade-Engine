@@ -1,5 +1,8 @@
 import flixel.math.FlxMath;
 
+/**
+ * functions that help you
+ */
 class HelperFunctions
 {
     public static function truncateFloat( number : Float, precision : Int): Float {

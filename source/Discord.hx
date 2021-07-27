@@ -12,6 +12,9 @@ import openfl.*;
 
 using StringTools;
 
+/**
+ * garbage hellhole but funkin???
+ */
 class DiscordClient
 {
 	public function new()

@@ -15,6 +15,9 @@ import lime.utils.AssetManifest;
 
 import haxe.io.Path;
 
+/**
+ * developer debugger for images whenever we need to test positioning.
+ */
 class ImageDebugState extends MusicBeatState
 {
 

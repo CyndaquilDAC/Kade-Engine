@@ -28,6 +28,9 @@ import Discord.DiscordClient;
 
 using StringTools;
 
+/**
+ * freeplay menu
+ */
 class FreeplayState extends MusicBeatState
 {
 

@@ -19,6 +19,9 @@ import openfl.*;
 
 using StringTools;
 
+/**
+ * a note. yk, like those things that kinda give the game gameplay?
+ */
 class Note extends FlxSprite
 {
 	public var strumTime:Float = 0;

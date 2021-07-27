@@ -19,6 +19,9 @@ import openfl.*;
 
 import PlayState;
 
+/**
+ * pause screen
+ */
 class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;

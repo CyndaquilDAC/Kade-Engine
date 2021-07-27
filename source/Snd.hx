@@ -1,4 +1,6 @@
+#if switch
 import faxe.Faxe;
+#end
 import flixel.*;
 import haxe.*;
 import lime.*;
@@ -9,6 +11,9 @@ using StringTools;
 
 //praise delahee, i'll figure out what this shit means later!
 
+/**
+ * channel for sound on switch or somethin idfk
+ */
 class Channel {
 	public var		name:String;
 	public var 		onEnd : Void -> Void 	= null;
@@ -131,7 +136,10 @@ class Channel {
 	}
 }
 
-class ChannelEventInstance extends Channel {//basically a sound instance
+/**
+ * basically a sound instance
+ */
+class ChannelEventInstance extends Channel {
 	public static var EMPTY_STRING = "";
 	public var data : FmodStudioEventInstanceRef = null;
 	
@@ -289,6 +297,9 @@ class ChannelEventInstance extends Channel {//basically a sound instance
 	}
 }
 
+/**
+ * channel but LOW LEVEL and COMPLICATED-ER AND DUMB
+ */
 class ChannelLowLevel extends Channel{
 	
 	public static var EMPTY_STRING = "";
@@ -453,10 +464,10 @@ class ChannelLowLevel extends Channel{
 	
 }
 
+/**
+ * sounds. length is in seconds
+ */
 class Sound {
-	/**
-	 * length is in seconds
-	 */
 	public var name = "";
 	public var length(get, null) 						: Float;
 	public var id3 	: Dynamic							= null;
@@ -495,6 +506,9 @@ class Sound {
 	}
 }
 
+/**
+ * sounds but LOW LEVEL!!
+ */
 class SoundLowLevel extends Sound{
 	
 	public var data : FmodSoundRef					 	= null;
@@ -559,7 +573,9 @@ class SoundLowLevel extends Sound{
 	}
 }
 
-
+/**
+ * sound EVENT??? rare sussy burger king?
+ */
 class SoundEvent extends Sound{
 	
 	public var data : FmodStudioEventDescriptionRef	= null;
@@ -622,6 +638,9 @@ class SoundEvent extends Sound{
 	}
 }
 
+/**
+ * snd IDFK IM JUST THE DUMBASS WRITING THIS SHIT
+ */
 class Snd {
 	public static var EMPTY_STRING = "";
 	public static var 	PLAYING 		: hxd.Stack<Snd> 	= new hxd.Stack();

@@ -7,7 +7,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
-
+/**
+ * background dancin fellers in week 4
+ */
 class BackgroundDancer extends FlxSprite
 {
 	public function new(x:Float, y:Float, isMilf:Bool = false)

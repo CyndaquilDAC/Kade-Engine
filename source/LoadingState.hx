@@ -19,6 +19,9 @@ import lime.utils.AssetManifest;
 
 import haxe.io.Path;
 
+/**
+ * load da state
+ */
 class LoadingState extends MusicBeatState
 {
 	inline static var MIN_TIME = 0.5;

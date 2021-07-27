@@ -6,6 +6,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
+/**
+ * overlay deez nutz
+ */
 class OverlayShader extends FlxShader
 {
 	@:glFragmentSource('

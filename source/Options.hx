@@ -10,6 +10,10 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
+
+/**
+ * option categories lol
+ */
 class OptionCategory
 {
 	private var _options:Array<Option> = new Array<Option>();
@@ -41,6 +45,9 @@ class OptionCategory
 	}
 }
 
+/**
+ * base option.
+ */
 class Option
 {
 	public function new()
@@ -64,6 +71,9 @@ class Option
 	private function updateDisplay():String { return throw "stub!"; }
 }
 
+/**
+ * dfjk toggle option
+ */
 class DFJKOption extends Option
 {
 	private var controls:Controls;
@@ -93,6 +103,9 @@ class DFJKOption extends Option
 	}
 }
 
+/**
+ * downscroll toggle option
+ */
 class DownscrollOption extends Option
 {
 	public function new(desc:String)
@@ -114,6 +127,9 @@ class DownscrollOption extends Option
 	}
 }
 
+/**
+ * effects toggle
+ */
 class EffectsEnabledOption extends Option
 {
 	public function new(desc:String)
@@ -135,6 +151,9 @@ class EffectsEnabledOption extends Option
 	}
 }
 
+/**
+ * chart based vox option
+ */
 class ChartBasedVocalsOption extends Option
 {
 	public function new(desc:String)
@@ -156,6 +175,9 @@ class ChartBasedVocalsOption extends Option
 	}
 }
 
+/**
+ * freeplay cutscenes toggle
+ */
 class CutscenesInFreeplayOption extends Option
 {
 	public function new(desc:String)
@@ -177,6 +199,10 @@ class CutscenesInFreeplayOption extends Option
 	}
 }
 
+/**
+ * antialiasing option
+ * might use it for more than characters later
+ */
 class CharacterAntialiasingOption extends Option
 {
 	public function new(desc:String)
@@ -194,10 +220,13 @@ class CharacterAntialiasingOption extends Option
 
 	private override function updateDisplay():String
 	{
-		return FlxG.save.data.charAntialiasing ? "Character Antialiasing On" : "Character Antialiasing Off";
+		return "Antialiasing " + (!FlxG.save.data.charAntialiasing ? "Off" : "On");
 	}
 }
 
+/**
+ * promo week 6 shit lolol!
+ */
 class OldWeekSixShitOption extends Option
 {
 	public function new(desc:String)
@@ -219,6 +248,9 @@ class OldWeekSixShitOption extends Option
 	}
 }
 
+/**
+ * accuracy option
+ */
 class AccuracyOption extends Option
 {
 	public function new(desc:String)
@@ -239,6 +271,9 @@ class AccuracyOption extends Option
 	}
 }
 
+/**
+ * song position bar toggle
+ */
 class SongPositionOption extends Option
 {
 	public function new(desc:String)
@@ -259,6 +294,9 @@ class SongPositionOption extends Option
 	}
 }
 
+/**
+ * etterna mode toggle
+ */
 class EtternaModeOption extends Option
 {
 	public function new(desc:String)
@@ -280,6 +318,9 @@ class EtternaModeOption extends Option
 	}
 }
 
+/**
+ * fps counter toggle
+ */
 class FPSOption extends Option
 {
 	public function new(desc:String)
@@ -302,6 +343,9 @@ class FPSOption extends Option
 	}
 }
 
+/**
+ * fps cap option
+ */
 class FPSCapOption extends Option
 {
 	public function new(desc:String)
@@ -321,7 +365,9 @@ class FPSCapOption extends Option
 	}
 }
 
-
+/**
+ * custom scroll speed
+ */
 class ScrollSpeedOption extends Option
 {
 	public function new(desc:String)
@@ -341,7 +387,9 @@ class ScrollSpeedOption extends Option
 	}
 }
 
-
+/**
+ * funni rainbow fps counter
+ */
 class RainbowFPSOption extends Option
 {
 	public function new(desc:String)
@@ -364,6 +412,9 @@ class RainbowFPSOption extends Option
 	}
 }
 
+/**
+ * notes per second display
+ */
 class NPSDisplayOption extends Option
 {
 	public function new(desc:String)
@@ -385,6 +436,9 @@ class NPSDisplayOption extends Option
 	}
 }
 
+/**
+ * load ya damn replays
+ */
 class ReplayOption extends Option
 {
 	public function new(desc:String)
@@ -406,6 +460,9 @@ class ReplayOption extends Option
 	}
 }
 
+/**
+ * customize gameplay modules n shit lol
+ */
 class CustomizeGameplay extends Option
 {
 	public function new(desc:String)
@@ -427,6 +484,9 @@ class CustomizeGameplay extends Option
 	}
 }
 
+/**
+ * offset testin
+ */
 class OffsetMenu extends Option
 {
 	public function new(desc:String)

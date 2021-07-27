@@ -25,6 +25,9 @@ import sys.thread.Thread;
 
 using StringTools;
 
+/**
+ * animation debugger for offsets n shit
+ */
 class AnimationDebug extends MusicBeatState
 {
 	var bf:Boyfriend;

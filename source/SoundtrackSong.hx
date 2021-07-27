@@ -13,10 +13,13 @@ import lime.*;
 import openfl.*;
 import Paths;
 
+/**
+ * this isnt used quite yet cuz im too stupid to make the soundtrack screen
+ */
 class SoundtrackSong
 {
 	public function new(song:String, songSound:FlxSound)
 	{
-		//this isnt used quite yet cuz im too stupid to make the soundtrack screen
+		
 	}
 }

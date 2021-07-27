@@ -3,6 +3,9 @@ import openfl.system.System;
 import flixel.math.FlxMath;
 import Song.SwagSong;
 
+/**
+ * calculate your maximum possible scores! or dont idk lol
+ */
 class MaxScoreCalc
 {
     public static function CalculateMaxScore(song:SwagSong)

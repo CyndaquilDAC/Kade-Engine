@@ -18,6 +18,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
+/**
+ * options menu state!!!
+ */
 class OptionsMenu extends MusicBeatState
 {
 	var selector:FlxText;
@@ -41,6 +44,7 @@ class OptionsMenu extends MusicBeatState
 			new NPSDisplayOption("Shows your current Notes Per Second.")
 		]),
 		new OptionCategory("Misc", [
+			new CutscenesInFreeplayOption("Enable and disable story-based cutscenes in freeplay. Basically, story mode but without playing through the whole week!"),
 			new EtternaModeOption("Harder Hit Windows and a different scoring system."),
 			new FPSOption("Toggle the FPS Counter"),
 			new ChartBasedVocalsOption("Toggle vocals getting muted when there aren't any notes being hit."),

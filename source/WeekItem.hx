@@ -11,6 +11,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
+/**
+ * week names lol
+ */
 class WeekItem extends FlxSpriteGroup
 {
 	public var targetY:Float = 0;

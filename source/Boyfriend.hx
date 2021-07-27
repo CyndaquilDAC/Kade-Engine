@@ -12,6 +12,9 @@ import openfl.*;
 
 using StringTools;
 
+/**
+ * THE boyfriend himself
+ */
 class Boyfriend extends Character
 {
 	public var stunned:Bool = false;

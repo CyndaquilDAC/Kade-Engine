@@ -12,6 +12,9 @@ import lime.*;
 import openfl.*;
 import Paths;
 
+/**
+ * week locks!!
+ */
 class WeekLockItem extends FlxSpriteGroup
 {
 	public function new(x:Float)

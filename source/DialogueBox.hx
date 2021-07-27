@@ -23,6 +23,9 @@ import openfl.*;
 
 using StringTools;
 
+/**
+ * dialogue box class, king of being the worst thing to look at or work on
+ */
 class DialogueBox extends FlxSpriteGroup
 {
 	var box:FlxSprite;
@@ -32,6 +35,9 @@ class DialogueBox extends FlxSpriteGroup
 	var face:FlxSprite = new FlxSprite(320, 170).loadGraphic(Paths.image('weeb/spiritFaceForward'));
 	var dialogue:Alphabet;
 	var dialogueList:Array<String> = [];
+
+	var skipText:FlxText;
+	var skipTextButAlphabet:Alphabet;
 
 	// SECOND DIALOGUE FOR THE PIXEL SHIT INSTEAD??? WHY NINJAMUFFIN WHY??? I MEAN I GET FOR THE PIXEL FONT BUT YOU OBLITERATED THE OLD CODE!!!
 	var swagDialogue:FlxTypeText;
@@ -395,6 +401,21 @@ class DialogueBox extends FlxSpriteGroup
 			default:
 				add(dialogue);
 		}
+
+		//smokey i will literally kiss you on the lips for this code
+		skipText = new FlxText(5, 695, 640, "Press SPACE to skip the dialogue.\n", 40);
+		skipText.scrollFactor.set(0, 0);
+		skipText.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		skipText.borderSize = 2;
+		skipText.borderQuality = 1;
+		skipTextButAlphabet = new Alphabet(5, 695, "Press SPACE to skip the dialogue.", true);
+		switch(PlayState.SONG.song.toLowerCase())
+		{
+			case 'senpai' | 'roses' | 'thorns':
+				add(skipText);
+			default:
+				add(skipTextButAlphabet);
+		}
 	}
 
 	var dialogueOpened:Bool = false;
@@ -458,6 +479,7 @@ class DialogueBox extends FlxSpriteGroup
 									dropText.alpha = swagDialogue.alpha;
 									dialogue.alpha -= 1 / 5;
 									handSelect.alpha -= 1/5;
+									skipText.alpha -= 1/5;
 								}, 5);
 						default:
 							FlxTween.tween(box, {alpha: 0}, 1.2);
@@ -469,6 +491,7 @@ class DialogueBox extends FlxSpriteGroup
 							FlxTween.tween(dialogue, {alpha: 0}, 1.2);
 							FlxTween.tween(handSelect, {alpha: 0}, 1.2);
 							FlxTween.tween(face, {alpha: 0}, 1.2);
+							FlxTween.tween(skipTextButAlphabet, {alpha: 0}, 1.2);
 					}
 
 					new FlxTimer().start(1.2, function(tmr:FlxTimer)

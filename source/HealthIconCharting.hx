@@ -2,10 +2,11 @@ package;
 
 import flixel.FlxSprite;
 
+/**
+ * THIS IS ONLY HERE BECAUSE IM TOO LAZY TO MAKE A COMPETENT ICON SWITCHER FOR CHARTING STATE LMAO
+ */
 class HealthIconCharting extends FlxSprite
 {
-    //THIS IS ONLY HERE BECAUSE IM TOO LAZY TO MAKE A COMPETENT ICON SWITCHER FOR CHARTING STATE LMAO
-
 	public var sprTracker:FlxSprite;
 
 	public function new(char:String = 'bf', isPlayer:Bool = false)

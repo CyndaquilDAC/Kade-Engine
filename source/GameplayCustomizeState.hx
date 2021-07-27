@@ -16,7 +16,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
-
+/**
+ * customize ya gameplay modules n shit
+ */
 class GameplayCustomizeState extends MusicBeatState
 {
 

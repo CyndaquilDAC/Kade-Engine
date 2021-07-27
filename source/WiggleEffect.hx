@@ -7,6 +7,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
+/**
+ * types of da wiggle
+ */
 enum WiggleEffectType
 {
 	DREAMY;
@@ -16,6 +19,9 @@ enum WiggleEffectType
 	FLAG;
 }
 
+/**
+ * wiggle wiggle wiggle
+ */
 class WiggleEffect
 {
 	public var shader(default, null):WiggleShader = new WiggleShader();
@@ -63,6 +69,9 @@ class WiggleEffect
 	}
 }
 
+/**
+ * wiggle shader shit
+ */
 class WiggleShader extends FlxShader
 {
 	@:glFragmentSource('

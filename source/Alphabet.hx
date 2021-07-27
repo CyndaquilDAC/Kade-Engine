@@ -14,7 +14,7 @@ import openfl.*;
 using StringTools;
 
 /**
- * Loosley based on FlxTypeText lolol
+ * Loosely based on FlxTypeText lolol
  */
 class Alphabet extends FlxSpriteGroup
 {

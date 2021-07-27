@@ -7,6 +7,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
+/**
+ * settings for menu characters
+ */
 class CharacterSetting
 {
 	public var x(default, null):Int;
@@ -25,6 +28,9 @@ class CharacterSetting
 	}
 }
 
+/**
+ * menu characters
+ */
 class MenuCharacter extends FlxSprite
 {
 	private static var settings:Map<String, CharacterSetting> = [

@@ -11,6 +11,9 @@ import openfl.*;
 
 using StringTools;
 
+/**
+ * ludum dare chart parser
+ */
 class ChartParser
 {
 	static public function parse(songName:String, section:Int):Array<Dynamic>

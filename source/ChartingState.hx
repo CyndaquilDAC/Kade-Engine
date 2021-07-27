@@ -40,6 +40,9 @@ import openfl.utils.ByteArray;
 
 using StringTools;
 
+/**
+ * you push button and note go exist and you push again and it go byebye ok you can make song now
+ */
 class ChartingState extends MusicBeatState
 {
 	var _file:FileReference;

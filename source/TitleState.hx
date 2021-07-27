@@ -51,23 +51,9 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
+	var skipText:Alphabet;
 
 	var funnyRun:Bool = false;
-
-	//im goin fuckin mad with these fx
-	/*
-	var transRandomTypeOne:Int = 0;
-	var transRandomTypeTwo:Int = 0;
-	var transRandomIntroShape:Int = 0;
-	var transRandomOutroShape:Int = 0;
-	var transTypeOneFinal:TransitionType;
-	var transTypeTwoFinal:TransitionType;
-	var transGraphicIntro:FlxGraphic;
-	var transGraphicOutro:FlxGraphic;
-
-	var beatsTillLogoBumpTypeSwitch:Int = 15;
-	var logoBumpType:Int = 0;
-	*/
 
 	var curWacky:Array<String> = [];
 	var curWackyTwo:Array<String> = [];
@@ -110,12 +96,10 @@ class TitleState extends MusicBeatState
 
 		FlxG.save.bind('foreverfunkin', 'cyndaquildac');
 		//save system??? never...
-		/*
-		if(FlxG.save.data.saveThatsBeenPicked == null)
+		/*if(FlxG.save.data.saveThatsBeenPicked == null)
 			{
 				FlxG.save.data.saveThatsBeenPicked = 0;
-			}
-		*/
+			}*/
 		SaveData.initSave();
 
 		Highscore.load();
@@ -128,15 +112,13 @@ class TitleState extends MusicBeatState
 
 			if (StoryMenuState.weekUnlocked.length < 4)
 				StoryMenuState.weekUnlocked.insert(0, true);
-
-			// QUICK PATCH OOPS!
 			if (!StoryMenuState.weekUnlocked[0])
 				StoryMenuState.weekUnlocked[0] = true;
 		}
 
 		if (Date.now().getDay() == 5)
 			{
-				//FlxG.save.data.unlockedLoadingFunkerSkin = true;
+				//its friday
 			}
 
 		#if FREEPLAY
@@ -168,7 +150,7 @@ class TitleState extends MusicBeatState
 		bg.antialiasing = true;
 		add(bg);
 
-		logoUnder = new FlxSprite(-150, -100);
+		logoUnder = new FlxSprite(-150, 1500);
 		logoUnder.frames = Paths.getSparrowAtlas('logoBumpin');
 		logoUnder.antialiasing = true;
 		logoUnder.animation.addByPrefix('bump', 'logo bumpin', 24, false);
@@ -176,7 +158,7 @@ class TitleState extends MusicBeatState
 		logoUnder.updateHitbox();
 		logoUnder.color = FlxColor.BLACK;
 
-		logoBl = new FlxSprite(-150, -100);
+		logoBl = new FlxSprite(-150, 1500);
 		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
 		logoBl.antialiasing = true;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24, false);
@@ -204,16 +186,7 @@ class TitleState extends MusicBeatState
 		titleText.antialiasing = true;
 		titleText.animation.play('idle');
 		titleText.updateHitbox();
-		// titleText.screenCenter(X);
 		add(titleText);
-
-		//this bitch said OLD LOGO
-		/*
-		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
-		logo.screenCenter();
-		logo.antialiasing = true;
-		add(logo);
-		*/
 
 		FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
 		FlxTween.tween(logoUnder, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
@@ -227,9 +200,6 @@ class TitleState extends MusicBeatState
 
 		credTextShit = new Alphabet(0, 0, "ninjamuffin99\nPhantomArcade\nkawaisprite\nevilsk8r", true);
 		credTextShit.screenCenter();
-
-		// credTextShit.alignment = CENTER;
-
 		credTextShit.visible = false;
 
 		ngSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('newgrounds_logo'));
@@ -240,6 +210,10 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = true;
 
+		skipText = new Alphabet(5, 695, "Press enter to skip the intro!", true);
+		add(skipText);
+		skipText.visible = false;
+
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		FlxG.mouse.visible = false;
@@ -248,66 +222,6 @@ class TitleState extends MusicBeatState
 			skipIntro();
 		else
 		{
-			//god forgive me for this code
-			/*
-			transRandomIntroShape = FlxG.random.int(0, 2);
-			transRandomOutroShape = FlxG.random.int(0, 2);
-			transRandomTypeOne = FlxG.random.int(0, 1);
-			transRandomTypeTwo = FlxG.random.int(0, 1);
-			switch(transRandomIntroShape)
-			{
-				case 0:
-					{
-						transGraphicIntro = FlxGraphic.fromClass(GraphicTransTileDiamond);
-					}
-				case 1:
-					{
-						transGraphicIntro = FlxGraphic.fromClass(GraphicTransTileCircle);
-					}
-				case 2:
-					{
-						transGraphicIntro = FlxGraphic.fromClass(GraphicTransTileSquare);
-					}
-			}
-			switch(transRandomOutroShape)
-			{
-				case 0:
-					{
-						transGraphicOutro = FlxGraphic.fromClass(GraphicTransTileDiamond);
-					}
-				case 1:
-					{
-						transGraphicOutro = FlxGraphic.fromClass(GraphicTransTileCircle);
-					}
-				case 2:
-					{
-						transGraphicOutro = FlxGraphic.fromClass(GraphicTransTileSquare);
-					}
-			}
-			switch(transRandomTypeOne)
-			{
-				case 0:
-					{
-						transTypeOneFinal = FADE;
-					}
-				case 1:
-					{
-						transTypeOneFinal = TILES;
-					}
-			}
-			switch(transRandomTypeTwo)
-			{
-				case 0:
-					{
-						transTypeTwoFinal = FADE;
-					}
-				case 1:
-					{
-						transTypeTwoFinal = TILES;
-					}
-			}
-			*/
-			
 			var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
 			diamond.persist = true;
 			diamond.destroyOnNoUse = false;
@@ -323,22 +237,13 @@ class TitleState extends MusicBeatState
 			transIn = FlxTransitionableState.defaultTransIn;
 			transOut = FlxTransitionableState.defaultTransOut;
 
-			// HAD TO MODIFY SOME BACKEND SHIT
-			// IF THIS PR IS HERE IF ITS ACCEPTED UR GOOD TO GO
-			// https://github.com/HaxeFlixel/flixel-addons/pull/348
-
-			// var music:FlxSound = new FlxSound();
-			// music.loadStream(Paths.music('freakyMenu'));
-			// FlxG.sound.list.add(music);
-			// music.play();
 			FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
 			Conductor.changeBPM(102);
 			initialized = true;
+			//skipText.visible = true;
 		}
-			
-		// credGroup.add(credTextShit);
 	}
 
 	function getIntroTextShit():Array<Array<String>>
@@ -360,9 +265,9 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
-		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
 
 		if (FlxG.keys.justPressed.F)
 		{
@@ -475,6 +380,11 @@ class TitleState extends MusicBeatState
 			textGroup.remove(textGroup.members[0], true);
 		}
 	}
+	function deleteSingleCoolText()
+		{
+			credGroup.remove(textGroup.members[0], true);
+			textGroup.remove(textGroup.members[0], true);
+		}
 
 	override function beatHit()
 	{
@@ -496,65 +406,92 @@ class TitleState extends MusicBeatState
 		switch (curBeat)
 		{
 			case 1:
-				createCoolText(['ninjamuffin99', 'PhantomArcade', 'kawaisprite', 'evilsk8r', 'CyndaquilDAC']);
-			// credTextShit.visible = true;
+				createCoolText(['ninjamuffin99']);
+			case 2:
+				addMoreText('PhantomArcade');
 			case 3:
-				addMoreText('present...');
-			// credTextShit.text += '\npresent...';
-			// credTextShit.addText();
+				addMoreText('kawaisprite');
 			case 4:
-				deleteCoolText();
-			// credTextShit.visible = false;
-			// credTextShit.text = 'In association \nwith';
-			// credTextShit.screenCenter();
+				addMoreText('evilsk8r');
 			case 5:
-				createCoolText(["Funkin' Forever", 'created by']);
-			case 6:
 				addMoreText('CyndaquilDAC');
-			// credTextShit.text += '\nNewgrounds';
+			case 6:
+				addMoreText('present...');
 			case 7:
-				deleteCoolText();
-				ngSpr.visible = false;
-			// credTextShit.visible = false;
-
-			// credTextShit.text = 'Shoutouts Tom Fulp';
-			// credTextShit.screenCenter();
-			case  8:
-				createCoolText(["Based on Kade Engine", 'created by']);
+				deleteSingleCoolText();
+			case 8:
+				deleteSingleCoolText();
 			case 9:
-				addMoreText('KadeDeveloper');
+				deleteSingleCoolText();
 			case 10:
-				deleteCoolText();
-				createCoolText([curWacky[0]]);
-			// credTextShit.visible = true;
+				deleteSingleCoolText();
+			case 11:
+				deleteSingleCoolText();
 			case 12:
-				addMoreText(curWacky[1]);
-			// credTextShit.text += '\nlmao';
+				deleteSingleCoolText();
+			case 13:
+				createCoolText(["Funkin' Forever"]);
 			case 14:
-				deleteCoolText();
-				createCoolText([curWackyTwo[0]]);
-			// credTextShit.visible = false;
-			// credTextShit.text = "Friday";
-			// credTextShit.screenCenter();
+				addMoreText('Created By');
+			case 15:
+				addMoreText('CyndaquilDAC');
 			case 16:
-				addMoreText(curWackyTwo[1]);
+				deleteSingleCoolText();
+			case 17:
+				deleteSingleCoolText();
 			case 18:
-				deleteCoolText();
-				createCoolText([curWackyThree[0]]);
+				deleteSingleCoolText();
+			case 19:
+				createCoolText(['Based on Kade Engine']);
 			case 20:
-				addMoreText(curWackyThree[1]);
+				addMoreText('Created By');
+			case 21:
+				addMoreText('KadeDeveloper');
 			case 22:
-				deleteCoolText();
-				addMoreText("Friday Night Funkin':");
-			// credTextShit.visible = true;
+				deleteSingleCoolText();
 			case 23:
+				deleteSingleCoolText();
+			case 24:
+				deleteSingleCoolText();
+			case 25:
+				createCoolText([curWacky[0]]);
+			case 26:
+				addMoreText(curWacky[1]);
+			case 27:
+				addMoreText(curWackyTwo[0]);
+				deleteSingleCoolText();
+			case 28:
+				deleteSingleCoolText();
+				addMoreText(curWackyTwo[1]);
+			case 29:
+				deleteSingleCoolText();
+				addMoreText(curWackyThree[0]);
+			case 30:
+				deleteSingleCoolText();
+				addMoreText(curWackyThree[1]);
+			case 31:
+				deleteSingleCoolText();
+			case 32:
+				deleteSingleCoolText();
+			case 33:
+				createCoolText(["Friday Night Funkin':"]);
+			// credTextShit.visible = true;
+			case 34:
 				addMoreText("Funkin'");
 			// credTextShit.text += '\nNight';
-			case 24:
+			case 35:
 				addMoreText('Forever'); // credTextShit.text += '\nFunkin';
-			case 25:
+			case 36:
 				addMoreText('Version 0.1.0');
-			case 26:
+			case 37:
+				deleteSingleCoolText();
+			case 38:
+				deleteSingleCoolText();
+			case 39:
+				deleteSingleCoolText();
+			case 40:
+				deleteSingleCoolText();
+			case 41:
 				skipIntro();
 		}
 	}
@@ -566,11 +503,21 @@ class TitleState extends MusicBeatState
 		if (!skippedIntro)
 		{
 			remove(ngSpr);
+			skipText.visible = false;
 
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
 			FlxTween.tween(logoBl,{y: -100}, 1.4, {ease: FlxEase.expoInOut});
 			FlxTween.tween(logoUnder,{y: -100}, 1.4, {ease: FlxEase.expoInOut, startDelay: 0.1});
+			new FlxTimer().start(1.4, function(trollTime:FlxTimer)
+				{
+					FlxTween.tween(logoBl, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG});
+					new FlxTimer().start(0.01, function(fuckYou:FlxTimer)
+					{
+						//stupid startdelay bullshit
+						FlxTween.tween(logoUnder, {y: logoBl.y + 50}, 0.6, {ease: FlxEase.quadInOut, type: PINGPONG, startDelay: 0.1});
+					});
+				});
 			new FlxTimer().start(0.01, function(tmr:FlxTimer)
 				{
 					if(logoBl.angle == -4) 

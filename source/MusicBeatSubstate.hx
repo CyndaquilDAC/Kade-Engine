@@ -4,6 +4,9 @@ import Conductor.BPMChangeEvent;
 import flixel.FlxG;
 import flixel.FlxSubState;
 
+/**
+ * BEAT TRACKING SHIT BUT AS A SUBSTATE
+ */
 class MusicBeatSubstate extends FlxSubState
 {
     public function new()

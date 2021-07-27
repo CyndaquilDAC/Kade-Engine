@@ -13,6 +13,9 @@ import Discord.DiscordClient;
 import sys.thread.Thread;
 #end
 
+/**
+ * gitaroo man easter egg
+ */
 class GitarooPause extends MusicBeatState
 {
 	var replayButton:FlxSprite;

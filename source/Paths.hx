@@ -9,6 +9,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
+/**
+ * calculate asset paths EASILY instead of with utter BULLSHIT! cool.
+ */
 class Paths
 {
 	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;

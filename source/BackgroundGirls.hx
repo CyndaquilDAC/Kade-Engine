@@ -7,7 +7,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
-
+/**
+ * weeb ass background bitches in week 6. pixely bitches.
+ */
 class BackgroundGirls extends FlxSprite
 {
 	public function new(x:Float, y:Float)

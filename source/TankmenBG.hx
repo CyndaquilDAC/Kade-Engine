@@ -1,6 +1,9 @@
 import flixel.FlxG;
 import flixel.FlxSprite;
 
+/**
+ * da tankmen
+ */
 class TankmenBG extends FlxSprite
 {
     public var tankSpeed = .7;

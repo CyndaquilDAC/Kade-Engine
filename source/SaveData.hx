@@ -4,12 +4,19 @@ import flixel.*;
 import haxe.*;
 import lime.*;
 import openfl.*;
+
+/**
+ * save data management class.
+ */
 class SaveData
 {
     public static function initSave()
     {
         if (FlxG.save.data.newInput == null)
 			FlxG.save.data.newInput = true;
+
+		if (FlxG.save.data.freescenes == null)
+			FlxG.save.data.freescenes = false;
 
 		if (FlxG.save.data.downscroll == null)
 			FlxG.save.data.downscroll = false;
@@ -19,6 +26,7 @@ class SaveData
 
 		if(FlxG.save.data.charAntialiasing == null)
 			FlxG.save.data.charAntialiasing == true;
+			//it says character antialiasing but im making it a general thing now!!
 			
 		if (FlxG.save.data.accuracyDisplay == null)
 			FlxG.save.data.accuracyDisplay = true;

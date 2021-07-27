@@ -11,6 +11,9 @@ import openfl.*;
 
 using StringTools;
 
+/**
+ * swag song variables in a fancy shmancy typedef
+ */
 typedef SwagSong =
 {
 	var song:String;
@@ -27,6 +30,9 @@ typedef SwagSong =
 	var validScore:Bool;
 }
 
+/**
+ * song but USEFUL and BORING
+ */
 class Song
 {
 	public var song:String;

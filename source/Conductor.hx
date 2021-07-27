@@ -7,12 +7,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
-
 /**
- * ...
- * @ninjamuffin
+bpm change event
  */
-
 typedef BPMChangeEvent =
 {
 	var stepTime:Int;
@@ -20,6 +17,9 @@ typedef BPMChangeEvent =
 	var bpm:Float;
 }
 
+/**
+ * conductor lol. basically manages all the beat calculation shits
+ */
 class Conductor
 {
 	public static var bpm:Float = 100;

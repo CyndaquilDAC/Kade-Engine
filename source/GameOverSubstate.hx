@@ -12,7 +12,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
-
+/**
+ * da REAL gameover screen
+ */
 class GameOverSubstate extends MusicBeatSubstate
 {
 	var bf:Boyfriend;

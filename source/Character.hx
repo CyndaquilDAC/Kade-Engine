@@ -11,6 +11,9 @@ import flixel.util.FlxSort;
 
 using StringTools;
 
+/**
+ * da guys n gals that exist and do shit
+ */
 class Character extends FlxSprite
 {
 	public var animOffsets:Map<String, Array<Dynamic>>;

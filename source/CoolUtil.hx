@@ -8,6 +8,9 @@ import openfl.*;
 
 using StringTools;
 
+/**
+ * the COOL utility
+ */
 class CoolUtil
 {
 	public static var difficultyArray:Array<String> = ['EASY', "NORMAL", "HARD", "INSANE", "BABY"];

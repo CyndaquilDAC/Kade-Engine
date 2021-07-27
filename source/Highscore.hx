@@ -8,7 +8,9 @@ import openfl.*;
 
 using StringTools;
 
-
+/**
+ * high score storin and loadin shit
+ */
 class Highscore
 {
 	#if (haxe >= "4.0.0")

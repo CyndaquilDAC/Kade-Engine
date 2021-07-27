@@ -13,6 +13,9 @@ import flixel.addons.ui.FlxUIState;
 import flixel.math.FlxRect;
 import flixel.util.FlxTimer;
 
+/**
+ * BEAT TRACKING SHIT
+ */
 class MusicBeatState extends FlxUIState
 {
     private var lastBeat:Float = 0;

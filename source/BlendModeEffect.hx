@@ -7,11 +7,17 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
+/**
+ * blend mode shader typedef!
+ */
 typedef BlendModeShader =
 {
 	var uBlendColor:ShaderParameter<Float>;
 }
 
+/**
+ * blend mode effect itself lol!
+ */
 class BlendModeEffect
 {
 	public var shader(default, null):BlendModeShader;

@@ -21,6 +21,9 @@ import openfl.*;
 import sys.io.File;
 #end
 
+/**
+ * load your replays lol
+ */
 class LoadReplayState extends MusicBeatState
 {
 	var selector:FlxText;

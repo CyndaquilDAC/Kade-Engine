@@ -11,6 +11,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
+/**
+ * OUTDATED SUBSTATE
+ */
 class OutdatedSubState extends MusicBeatState
 {
 	public static var leftState:Bool = false;

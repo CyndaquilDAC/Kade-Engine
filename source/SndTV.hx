@@ -5,13 +5,18 @@ import lime.*;
 import openfl.*;
 
 //praise delahee, i'll figure out what this shit means later!
-
+/**
+ * tv variables r somethin
+ */
 enum TVVar{
 	TVVVolume;
 	TVVPan;
 }
 
 @:publicFields
+/**
+ * tween but V
+ */
 class TweenV {
 	static var GUID = 0;
 	var uid 		= 0;

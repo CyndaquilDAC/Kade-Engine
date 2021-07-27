@@ -1,6 +1,3 @@
-//detoria wrote the original version of this code
-//cyndaquildac did some fixins hehe
-
 package;
 
 import flixel.addons.effects.FlxSkewedSprite;
@@ -20,6 +17,12 @@ import polymod.format.ParseRules.TargetSignatureElement;
 
 using StringTools;
 
+/**
+ * note splash particles for sicks!!!
+ * detoria wrote the original version of this code (i think. i might be dumb.)
+ * cyndaquildac did some fixins hehe.
+ * so yeah.
+ */
 class NoteSplash extends FlxSprite
 {
 	public function new(?fromNote:Int = 0, x:Float, y:Float)

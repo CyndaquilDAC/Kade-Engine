@@ -2,7 +2,10 @@ import openfl.system.System;
 import flixel.math.FlxMath;
 import Song.SwagSong;
 
-class SmallNote // basically Note.hx but small as fuck
+/**
+ * basically Note.hx but small as fuck
+ */
+class SmallNote
 {
     public var strumTime:Float;
     public var noteData:Int;
@@ -14,6 +17,9 @@ class SmallNote // basically Note.hx but small as fuck
     }
 }
 
+/**
+ * calculate your difficulties! or let the game do it for ya idfk
+ */
 class DiffCalc
 {
     public static var scale = 3 * 1.8;

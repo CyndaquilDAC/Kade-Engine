@@ -10,7 +10,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
-
+/**
+ * test da latency
+ */
 class LatencyState extends FlxState
 {
     

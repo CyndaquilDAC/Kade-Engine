@@ -24,6 +24,9 @@ import Discord.DiscordClient;
 
 using StringTools;
 
+/**
+ * main menu state
+ */
 class MainMenuState extends MusicBeatState
 {
 	var curSelected:Int = 0;

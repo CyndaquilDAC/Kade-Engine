@@ -3,6 +3,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
+/**
+ * what the FUCK is an etterna
+ */
 class EtternaFunctions
 {
     // erf constants

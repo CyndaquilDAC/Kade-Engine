@@ -5,6 +5,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
+/**
+ * swag section variables!!!
+ */
 typedef SwagSection =
 {
 	var sectionNotes:Array<Dynamic>;
@@ -18,6 +21,9 @@ typedef SwagSection =
 	var altAnim:Bool;
 }
 
+/**
+ * section class for BORING ASS LOSER PEOPLE
+ */
 class Section
 {
 	public var sectionNotes:Array<Dynamic> = [];

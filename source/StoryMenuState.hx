@@ -25,6 +25,9 @@ import Discord.DiscordClient;
 
 using StringTools;
 
+/**
+ * story menu lol!!!
+ */
 class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;

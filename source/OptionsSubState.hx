@@ -10,6 +10,9 @@ import haxe.*;
 import lime.*;
 import openfl.*;
 
+/**
+ * pathetic pissbaby ninjamuffin options menu
+ */
 class OptionsSubState extends MusicBeatSubstate
 {
 	var textMenuItems:Array<String> = ['Master Volume', 'Sound Volume', 'Controls'];
