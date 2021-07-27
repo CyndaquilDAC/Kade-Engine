@@ -127,7 +127,8 @@ class ChartingState extends MusicBeatState
 				noteStyle: 'normal',
 				stage: 'stage',
 				speed: 1,
-				validScore: false
+				validScore: false,
+				sepPlayerVoices: false
 			};
 		}
 
@@ -306,6 +307,15 @@ class ChartingState extends MusicBeatState
 			trace('CHECKED!');
 		};
 
+		var check_uniqueOpponentPlayerVox = new FlxUICheckBox(10, 50, null, null, "Has seperate player 1/2 voice tracks", 100);
+		check_uniqueOpponentPlayerVox.checked = _song.sepPlayerVoices;
+		// _song.needsVoices = check_uniqueOpponentPlayerVox.checked;
+		check_uniqueOpponentPlayerVox.callback = function()
+		{
+			_song.sepPlayerVoices = check_uniqueOpponentPlayerVox.checked;
+			trace('CHECKED!');
+		};
+
 		var saveButton:FlxButton = new FlxButton(110, 8, "Save", function()
 		{
 			saveLevel();
@@ -425,6 +435,7 @@ class ChartingState extends MusicBeatState
 		tab_group_song.add(UI_songTitle);
 		tab_group_song.add(restart);
 		tab_group_song.add(check_voices);
+		tab_group_song.add(check_uniqueOpponentPlayerVox);
 		//tab_group_song.add(check_mute_inst);
 		tab_group_song.add(saveButton);
 		tab_group_song.add(reloadSong);

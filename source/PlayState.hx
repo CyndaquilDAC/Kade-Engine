@@ -88,6 +88,7 @@ class PlayState extends MusicBeatState
 	public static var songPosBar:FlxBar;
 
 	public var altAnim:String = "";
+	public var altAnimPlayer:String = "";
 
 	//cut deez nutz
 	public var hasDialogueScene:Bool = true;
@@ -435,7 +436,6 @@ class PlayState extends MusicBeatState
 		trace('dialogue set');
 		
 		camHUD.visible = false;
-		
 
 		switch(SONG.stage)
 		{
@@ -2817,13 +2817,41 @@ class PlayState extends MusicBeatState
 						switch (Math.abs(daNote.noteData))
 						{
 							case 2:
-								dad.playAnim('singUP' + altAnim, true);
+								if(dad.animOffsets.exists('singUP' + altAnim))
+									{
+										dad.playAnim('singUP' + altAnim, true);
+									}
+								else
+									{
+										dad.playAnim('singUP', true);
+									}
 							case 3:
-								dad.playAnim('singRIGHT' + altAnim, true);
+								if(dad.animOffsets.exists('singRIGHT' + altAnim))
+									{
+										dad.playAnim('singRIGHT' + altAnim, true);
+									}
+								else
+									{
+										dad.playAnim('singRIGHT', true);
+									}
 							case 1:
-								dad.playAnim('singDOWN' + altAnim, true);
+								if(dad.animOffsets.exists('singDOWN' + altAnim))
+									{
+										dad.playAnim('singDOWN' + altAnim, true);
+									}
+								else
+									{
+										dad.playAnim('singDOWN', true);
+									}
 							case 0:
-								dad.playAnim('singLEFT' + altAnim, true);
+								if(dad.animOffsets.exists('singLEFT' + altAnim))
+									{
+										dad.playAnim('singLEFT' + altAnim, true);
+									}
+								else
+									{
+										dad.playAnim('singLEFT', true);
+									}
 						}
 
 						cpuStrums.forEach(function(spr:FlxSprite)
@@ -3891,13 +3919,41 @@ class PlayState extends MusicBeatState
 					switch (note.noteData)
 					{
 						case 2:
-							boyfriend.playAnim('singUP', true);
+							if(boyfriend.animOffsets.exists('singUP' + altAnimPlayer))
+								{
+									boyfriend.playAnim('singUP' + altAnimPlayer, true);
+								}
+							else
+								{
+									boyfriend.playAnim('singUP', true);
+								}
 						case 3:
-							boyfriend.playAnim('singRIGHT', true);
+							if(boyfriend.animOffsets.exists('singRIGHT' + altAnimPlayer))
+								{
+									boyfriend.playAnim('singRIGHT' + altAnimPlayer, true);
+								}
+							else
+								{
+									boyfriend.playAnim('singRIGHT', true);
+								}
 						case 1:
-							boyfriend.playAnim('singDOWN', true);
+							if(boyfriend.animOffsets.exists('singDOWN' + altAnimPlayer))
+								{
+									boyfriend.playAnim('singDOWN' + altAnimPlayer, true);
+								}
+							else
+								{
+									boyfriend.playAnim('singDOWN', true);
+								}
 						case 0:
-							boyfriend.playAnim('singLEFT', true);
+							if(boyfriend.animOffsets.exists('singLEFT' + altAnimPlayer))
+								{
+									boyfriend.playAnim('singLEFT' + altAnimPlayer, true);
+								}
+							else
+								{
+									boyfriend.playAnim('singLEFT', true);
+								}
 					}
 		
 					if (!loadRep)

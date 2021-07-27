@@ -407,8 +407,8 @@ class Character extends FlxSprite
 					animation.addByPrefix('singLEFTmiss', 'Pico NOTE LEFT miss', 24, false);
 					addOffset("singLEFT", -68, -7);
 					addOffset("singRIGHT", 65, 9);
-					addOffset("singLEFTmiss", -60, 41);
-					addOffset("singRIGHTmiss", 62, 64);
+					addOffset("singRIGHTmiss", -60, 41);
+					addOffset("singLEFTmiss", 62, 64);
 				}
 				else
 				{
@@ -418,8 +418,8 @@ class Character extends FlxSprite
 					addOffset("singLEFT", 65, 9);
 					animation.addByPrefix('singRIGHTmiss', 'Pico NOTE LEFT miss', 24, false);
 					animation.addByPrefix('singLEFTmiss', 'Pico Note Right Miss', 24, false);
-					addOffset("singRIGHTmiss", -60, 41);
-					addOffset("singLEFTmiss", 62, 64);
+					addOffset("singLEFTmiss", -60, 41);
+					addOffset("singRIGHTmiss", 62, 64);
 				}
 
 				animation.addByPrefix('singUPmiss', 'pico Up note miss', 24, false);
