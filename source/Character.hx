@@ -1117,4 +1117,15 @@ class Character extends FlxSprite
 		a < b ? FlxSort.ASCENDING : FlxSort.DESCENDING;
 		return c;
 	}
+
+	public function loadOffsetFile(character:String)
+	{
+		var offset:Array<String> = CoolUtil.coolTextFile(Paths.txtNondata('images/$character/offsets'));
+
+		for (i in 0...offset.length)
+		{
+			var data:Array<String> = offset[i].split(' ');
+			addOffset(data[0], Std.parseInt(data[1]), Std.parseInt(data[2]));
+		}
+	}
 }
