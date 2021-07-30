@@ -1,0 +1,33 @@
+REGULAR BOPPERS IDLE: "idle"
+
+GF BOPPERS IDLE: "danceLeft" (left bop), "danceRight" (right bop)
+
+SINGING NOTES: "singDOWN" (down note), "singUP" (up note), "singLEFT" (left note), "singRIGHT" (right note)
+
+for alt animation toggle singing notes, simply add the -alt suffix.
+
+for miss notes, simply add the "miss" sufix.
+
+SHOOTER SPEAKER ANIMS: "shoot" + WHAT NOTE IT IS (FROM LEFT TO RIGHT ON THE RECEPTORS)
+
+HEY ANIMATION: "hey"
+
+CHEER ANIMATION: "cheer"
+
+DEATH ANIMATION: "firstDeath"
+
+DEAD LOOP: "deathLoop"
+
+DEATH CONFIRM: "deathConfirm"
+
+SCARED: "scared"
+
+PREATTACK: "preattack"
+
+ATTACK: "attack"
+
+HIT: "hit"
+
+DODGE: "dodge"
+
+for any custom animations, make up your own names! 

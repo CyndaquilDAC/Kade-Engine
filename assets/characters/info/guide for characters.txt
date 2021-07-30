@@ -1,0 +1,37 @@
+1. CHARACTER LAYOUT
+you're gonna have to lay out your characters in a certain way. goes like this:
+character png: "char.png"
+character xml (if using sparrow atlas): "char.xml"
+character txt (if using packer atlas): "char.txt"
+character NIGHT png: "night.png"
+character NIGHT xml (if using sparrow atlas): "night.xml"
+character NIGHT txt (if using packer atlas): "night.txt"
+character ICONS: "icon.png"
+attributes text file: "attributes.txt"
+offsets text file: "offsets.txt"
+animations text file: "anims.txt"
+
+2. NIGHT FORMS
+this might seem odd, but there's a reason for it. Night levels are a feature that allow you to, well, dim the atmosphere of the level.
+because of these, night forms are required for all assets (stage assets, character assets, the works).
+for night forms of regular characters, seperate the outlines from the character colors and use the "nightEffects.asl" file in this folder on the character's colors in an image editor (i use krita)
+for night forms of, say, pixel characters, use the "pixelNightEffects.asl" file on the entire character sheet, outlines included.
+
+3. ATTRIBUTES
+these are what makes your character tick. here's a little guide to writing them yourself. if you use the ingame editor, IGNORE THIS!
+line 1: character name (what your character will be referred to as ingame.). keep it lowercase, and use dashes instead of spaces!
+line 2: antialiasing (if the character sprite is blurred ingame to make it look less pixelated). type "y" for yes or  "n" for no. make sure to say "n" for pixel characters!
+line 3: has night form (enables or disables the night forms being loaded). type "y" for yes or  "n" for no. make sure to say "n" for characters with no night forms so the game doesnt crash!
+line 4: bops like gf (if character bops like normal characters or like gf) type "y" for gf or  "n" for regular.
+line 5: speaker shooter (if character is a speaker shooter, like pico-speaker.) type "y" for yes or  "n" for no.
+line 6: speaker shooter chart name (what chart it loads to know when to shoot. defaults to picospeaker.). keep it lowercase, and use dashes instead of spaces!
+more to come, maybe
+
+4. ANIMATIONS
+what controls your character. if you use the ingame editor, IGNORE THIS!
+for every animation that's useable, put a line similar to this in anims.txt:
+:character animation name:ingame animation name:fps:indices
+replace "fps" with the animation fps (usually its 24)
+replace "character animation name" with the assigned animation name in the xml (it's case sensitive!)
+replace "ingame animation name" with the name it will use ingame (reference the "ingame animation names" guide in this folder).
+replace "indices" with how many frames of the animation it will play, starting from 0. to play all of them, simply type "all".

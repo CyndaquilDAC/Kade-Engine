@@ -67,6 +67,11 @@ class Paths
 		return getPath('data/$key.txt', TEXT, library);
 	}
 
+	inline static public function txtNondata(key:String, ?library:String)
+	{
+		return getPath('$key.txt', TEXT, library);
+	}
+
 	inline static public function xml(key:String, ?library:String)
 	{
 		return getPath('data/$key.xml', TEXT, library);
@@ -75,6 +80,16 @@ class Paths
 	inline static public function json(key:String, ?library:String)
 	{
 		return getPath('data/$key.json', TEXT, library);
+	}
+
+	inline static public function xmlNondata(key:String, ?library:String)
+	{
+		return getPath('$key.xml', TEXT, library);
+	}
+
+	inline static public function jsonNondata(key:String, ?library:String)
+	{
+		return getPath('$key.json', TEXT, library);
 	}
 
 	static public function sound(key:String, ?library:String)
@@ -120,5 +135,25 @@ class Paths
 	inline static public function getPackerAtlas(key:String, ?library:String)
 	{
 		return FlxAtlasFrames.fromSpriteSheetPacker(image(key, library), file('images/$key.txt', library));
+	}
+
+	inline static public function getSparrowAtlasCharacter(key:String, ?library:String)
+	{
+		return FlxAtlasFrames.fromSparrow(image('$key/char', library), file('images/$key/char.xml', library));
+	}
+
+	inline static public function getPackerAtlasCharacter(key:String, ?library:String)
+	{
+		return FlxAtlasFrames.fromSpriteSheetPacker(image('$key/char', library), file('images/$key/char.txt', library));
+	}
+
+	inline static public function getSparrowAtlasNightCharacter(key:String, ?library:String)
+	{
+		return FlxAtlasFrames.fromSparrow(image('$key/night', library), file('images/$key/night.xml', library));
+	}
+
+	inline static public function getPackerAtlasNightCharacter(key:String, ?library:String)
+	{
+		return FlxAtlasFrames.fromSpriteSheetPacker(image('$key/night', library), file('images/$key/night.txt', library));
 	}
 }
