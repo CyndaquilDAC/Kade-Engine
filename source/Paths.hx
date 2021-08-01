@@ -137,23 +137,41 @@ class Paths
 		return FlxAtlasFrames.fromSpriteSheetPacker(image(key, library), file('images/$key.txt', library));
 	}
 
-	inline static public function getSparrowAtlasCharacter(key:String, ?library:String)
+	/**
+ 	* get a character from a sparrow atlas
+ 	*/
+	inline static public function getSparrowAtlasCharacter(key:String, ?type:String)
 	{
-		return FlxAtlasFrames.fromSparrow(image('$key/char', library), file('images/$key/char.xml', library));
+		if(type != null)
+			return FlxAtlasFrames.fromSparrow(image('$key/$type', 'characters'), file('images/$key/$type.xml', 'characters'));
+		else
+			return FlxAtlasFrames.fromSparrow(image('$key/char', 'characters'), file('images/$key/char.xml', 'characters'));
 	}
 
-	inline static public function getPackerAtlasCharacter(key:String, ?library:String)
+	/**
+ 	* get a character from a packer atlas
+ 	*/
+	inline static public function getPackerAtlasCharacter(key:String, ?type:String)
 	{
-		return FlxAtlasFrames.fromSpriteSheetPacker(image('$key/char', library), file('images/$key/char.txt', library));
+		if(type != null)
+			return FlxAtlasFrames.fromSpriteSheetPacker(image('$key/$type', 'characters'), file('images/$key/$type.txt', 'characters'));
+		else
+			return FlxAtlasFrames.fromSpriteSheetPacker(image('$key/char', 'characters'), file('images/$key/char.txt', 'characters'));
 	}
 
+	/**
+ 	* DEPRECATED, USE 'TYPE' VARIABLE ON REGULAR GET CHARACTER INSTEAD!
+ 	*/
 	inline static public function getSparrowAtlasNightCharacter(key:String, ?library:String)
 	{
-		return FlxAtlasFrames.fromSparrow(image('$key/night', library), file('images/$key/night.xml', library));
+		return FlxAtlasFrames.fromSparrow(image('$key/night', 'characters'), file('images/$key/night.xml', 'characters'));
 	}
 
+	/**
+ 	* DEPRECATED, USE 'TYPE' VARIABLE ON REGULAR GET CHARACTER INSTEAD!
+ 	*/
 	inline static public function getPackerAtlasNightCharacter(key:String, ?library:String)
 	{
-		return FlxAtlasFrames.fromSpriteSheetPacker(image('$key/night', library), file('images/$key/night.txt', library));
+		return FlxAtlasFrames.fromSpriteSheetPacker(image('$key/night', 'characters'), file('images/$key/night.txt', 'characters'));
 	}
 }

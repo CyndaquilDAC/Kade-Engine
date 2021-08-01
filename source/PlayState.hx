@@ -137,6 +137,8 @@ class PlayState extends MusicBeatState
 	private var loopB:Float;
 	private var loopState:LoopState = NONE;
 
+	public var levelType:String = 'normal';
+
 	public var grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
 	public var grpNoteSplashesCpu = new FlxTypedGroup<NoteSplash>();
 
@@ -392,6 +394,9 @@ class PlayState extends MusicBeatState
 		trace('notestyle is ' + SONG.noteStyle.toLowerCase());
 		//COMMENTED OUT CUZ ITS NOT IMPLEMENTED YET
 		//trace('introstyle is ' + SONG.introStyle.toLowerCase());
+
+		if(SONG.levelType != null)
+			levelType == SONG.levelType;
 
 		if(SONG.song.toLowerCase() == 'milf')
 			{

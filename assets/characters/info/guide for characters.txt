@@ -3,9 +3,6 @@ you're gonna have to lay out your characters in a certain way. goes like this:
 character png: "char.png"
 character xml (if using sparrow atlas): "char.xml"
 character txt (if using packer atlas): "char.txt"
-character NIGHT png: "night.png"
-character NIGHT xml (if using sparrow atlas): "night.xml"
-character NIGHT txt (if using packer atlas): "night.txt"
 character ICONS: "icon.png"
 attributes text file: "attributes.txt"
 offsets text file: "offsets.txt"
@@ -30,8 +27,6 @@ more to come, maybe
 4. ANIMATIONS
 what controls your character. if you use the ingame editor, IGNORE THIS!
 for every animation that's useable, put a line similar to this in anims.txt:
-:character animation name:ingame animation name:fps:indices
-replace "fps" with the animation fps (usually its 24)
+ingame animation name character animation name
 replace "character animation name" with the assigned animation name in the xml (it's case sensitive!)
 replace "ingame animation name" with the name it will use ingame (reference the "ingame animation names" guide in this folder).
-replace "indices" with how many frames of the animation it will play, starting from 0. to play all of them, simply type "all".
