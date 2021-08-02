@@ -15,6 +15,9 @@ class SaveData
         if (FlxG.save.data.newInput == null)
 			FlxG.save.data.newInput = true;
 
+		if (FlxG.save.data.naughty == null)
+			FlxG.save.data.naughty = true;
+
 		if (FlxG.save.data.freescenes == null)
 			FlxG.save.data.freescenes = false;
 

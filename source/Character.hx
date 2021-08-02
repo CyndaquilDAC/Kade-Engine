@@ -1164,7 +1164,7 @@ class Character extends FlxSprite
 		for (i in 0...anim.length)
 		{
 			var data:Array<String> = anim[i].split(' ');
-			//i would add indices support but im dumb
+			//i would add indices support but im dumb. might add a shitty workaround later lol
 			animation.addByPrefix(data[1], data[2], 24, false);
 		}
 	}

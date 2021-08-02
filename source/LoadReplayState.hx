@@ -45,7 +45,7 @@ class LoadReplayState extends MusicBeatState
         #end
 		trace(controlsStrings);
 
-        controlsStrings.sort(Reflect.compare);
+        controlsStrings.sort(sortByDate);
 
         addWeek(['Bopeebo', 'Fresh', 'Dadbattle'], 1, ['dad']);
         addWeek(['Spookeez', 'South', 'Monster'], 2, ['spooky', 'spooky', 'monster']);
@@ -65,7 +65,7 @@ class LoadReplayState extends MusicBeatState
         }
 
         if (controlsStrings.length == 0)
-            controlsStrings.push("No Replays...");
+            controlsStrings.push("No replays...");
 
 		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
@@ -87,7 +87,7 @@ class LoadReplayState extends MusicBeatState
 		}
 
 
-		versionShit = new FlxText(5, FlxG.height - 34, 0, "Replay Loader (ESCAPE TO GO BACK)\nNOTICE!!!! Replays are in a beta stage, and they are probably not 100% correct. expect misses and other stuff that isn't there!", 12);
+		versionShit = new FlxText(5, FlxG.height - 34, 0, "Replay Loader (ESCAPE TO GO BACK)\nNOTICE!!!! Replays are in a beta stage, and they are probably not 100% correct. Expect misses and other stuff that isn't there!", 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -114,6 +114,13 @@ class LoadReplayState extends MusicBeatState
         }
         return week;
     }
+
+	function sortByDate(a:String, b:String) {
+		var aTime = Std.parseFloat(a.split("time")[1])/1000;
+		var bTime = Std.parseFloat(b.split("time")[1])/1000;
+
+		return Std.int(bTime - aTime); // Newest first
+	}
 
 	public function addSong(songName:String, weekNum:Int, songCharacter:String)
         {

@@ -128,7 +128,8 @@ class ChartingState extends MusicBeatState
 				stage: 'stage',
 				speed: 1,
 				validScore: false,
-				sepPlayerVoices: false
+				sepPlayerVoices: false,
+				levelType: 'normal'
 			};
 		}
 

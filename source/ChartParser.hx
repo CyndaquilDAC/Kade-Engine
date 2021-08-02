@@ -1,5 +1,3 @@
-//THIS SHIT IS OLD IMAGE CHART PARSER
-
 package;
 
 import flixel.util.FlxStringUtil;
@@ -12,7 +10,7 @@ import openfl.*;
 using StringTools;
 
 /**
- * ludum dare chart parser
+ * ludum dare chart parser. no idea why we still keep it here. parses charts, one image per section, 8x16 pixels.
  */
 class ChartParser
 {

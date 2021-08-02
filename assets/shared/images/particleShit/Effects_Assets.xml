@@ -2,19 +2,56 @@
 <TextureAtlas imagePath="Effects_Assets.png">
 	<!-- Created with Adobe Animate version 21.0.1.37179 -->
 	<!-- http://www.adobe.com/products/animate.html -->
-	<SubTexture name="blood 10000" x="840" y="620" width="75" height="190" pivotX="-442.4" pivotY="180.45" frameX="0" frameY="-108" frameWidth="383" frameHeight="380"/>
-	<SubTexture name="blood 10001" x="222" y="360" width="131" height="200" frameX="-22" frameY="-53" frameWidth="383" frameHeight="380"/>
-	<SubTexture name="blood 10002" x="10" y="360" width="202" height="181" frameX="-46" frameY="-5" frameWidth="383" frameHeight="380"/>
-	<SubTexture name="blood 10003" x="218" y="592" width="210" height="143" frameX="-62" frameY="0" frameWidth="383" frameHeight="380"/>
-	<SubTexture name="blood 10004" x="218" y="592" width="210" height="143" frameX="-62" frameY="0" frameWidth="383" frameHeight="380"/>
-	<SubTexture name="blood 10005" x="438" y="592" width="219" height="135" frameX="-89" frameY="-18" frameWidth="383" frameHeight="380"/>
-	<SubTexture name="blood 10006" x="438" y="592" width="219" height="135" frameX="-89" frameY="-18" frameWidth="383" frameHeight="380"/>
-	<SubTexture name="blood 10007" x="757" y="10" width="224" height="181" frameX="-113" frameY="-35" frameWidth="383" frameHeight="380"/>
-	<SubTexture name="blood 10008" x="10" y="551" width="198" height="179" frameX="-161" frameY="-100" frameWidth="383" frameHeight="380"/>
-	<SubTexture name="blood 10009" x="667" y="620" width="163" height="143" frameX="-217" frameY="-175" frameWidth="383" frameHeight="380"/>
-	<SubTexture name="blood 10010" x="757" y="201" width="152" height="121" frameX="-231" frameY="-259" frameWidth="383" frameHeight="380"/>
-	<SubTexture name="impact particles0000" x="387" y="343" width="304" height="239" pivotX="-439.5" pivotY="123.35" frameX="0" frameY="-39" frameWidth="414" frameHeight="340"/>
-	<SubTexture name="impact particles0001" x="387" y="10" width="360" height="323" frameX="-21" frameY="-3" frameWidth="414" frameHeight="340"/>
+	<SubTexture name="blood 10000" x="670" y="360" width="75" height="190" pivotX="-442.4" pivotY="180.45" frameX="0" frameY="-108" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 10001" x="597" y="809" width="131" height="200" frameX="-22" frameY="-53" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 10002" x="1818" y="478" width="202" height="181" frameX="-46" frameY="-5" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 10003" x="960" y="620" width="210" height="143" frameX="-62" frameY="0" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 10004" x="960" y="620" width="210" height="143" frameX="-62" frameY="0" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 10005" x="157" y="759" width="219" height="135" frameX="-89" frameY="-18" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 10006" x="157" y="759" width="219" height="135" frameX="-89" frameY="-18" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 10007" x="10" y="360" width="224" height="181" frameX="-113" frameY="-35" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 10008" x="390" y="573" width="198" height="179" frameX="-161" frameY="-100" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 10009" x="157" y="904" width="163" height="143" frameX="-217" frameY="-175" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 10010" x="892" y="918" width="152" height="121" frameX="-231" frameY="-259" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 1 CENSOR0000" x="503" y="904" width="75" height="190" pivotX="-442.4" pivotY="180.45" frameX="0" frameY="-108" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 1 CENSOR0001" x="1597" y="822" width="131" height="200" frameX="-22" frameY="-53" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 1 CENSOR0002" x="1488" y="508" width="202" height="181" frameX="-46" frameY="-5" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 1 CENSOR0003" x="1700" y="669" width="210" height="143" frameX="-62" frameY="0" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 1 CENSOR0004" x="1700" y="669" width="210" height="143" frameX="-62" frameY="0" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 1 CENSOR0005" x="960" y="773" width="219" height="135" frameX="-89" frameY="-18" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 1 CENSOR0006" x="960" y="773" width="219" height="135" frameX="-89" frameY="-18" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 1 CENSOR0007" x="244" y="360" width="224" height="181" frameX="-113" frameY="-35" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 1 CENSOR0008" x="598" y="620" width="198" height="179" frameX="-161" frameY="-100" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 1 CENSOR0009" x="330" y="904" width="163" height="143" frameX="-217" frameY="-175" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood 1 CENSOR0010" x="1054" y="918" width="152" height="121" frameX="-231" frameY="-259" frameWidth="383" frameHeight="380"/>
+	<SubTexture name="blood car0000" x="1347" y="928" width="191" height="74" pivotX="-302.15" pivotY="14.75" frameX="-82" frameY="0" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car0001" x="386" y="762" width="201" height="132" frameX="-127" frameY="-20" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car0002" x="1296" y="343" width="182" height="203" frameX="-194" frameY="-44" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car0003" x="1296" y="556" width="144" height="210" frameX="-237" frameY="-61" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car0004" x="1296" y="556" width="144" height="210" frameX="-237" frameY="-61" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car0005" x="1450" y="699" width="137" height="219" frameX="-226" frameY="-88" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car0006" x="1450" y="699" width="137" height="219" frameX="-226" frameY="-88" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car0007" x="1818" y="10" width="182" height="224" frameX="-164" frameY="-112" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car0008" x="10" y="551" width="180" height="198" frameX="-101" frameY="-160" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car0009" x="1738" y="822" width="144" height="163" frameX="-62" frameY="-215" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car0010" x="1892" y="822" width="121" height="152" frameX="0" frameY="-230" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car CENSOR0000" x="1738" y="995" width="191" height="74" pivotX="-302.15" pivotY="14.75" frameX="-82" frameY="0" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car CENSOR0001" x="1189" y="776" width="201" height="132" frameX="-127" frameY="-20" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car CENSOR0002" x="478" y="360" width="182" height="203" frameX="-194" frameY="-44" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car CENSOR0003" x="806" y="620" width="144" height="210" frameX="-237" frameY="-61" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car CENSOR0004" x="806" y="620" width="144" height="210" frameX="-237" frameY="-61" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car CENSOR0005" x="10" y="759" width="137" height="219" frameX="-226" frameY="-88" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car CENSOR0006" x="10" y="759" width="137" height="219" frameX="-226" frameY="-88" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car CENSOR0007" x="1818" y="244" width="182" height="224" frameX="-164" frameY="-112" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car CENSOR0008" x="200" y="551" width="180" height="198" frameX="-101" frameY="-160" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car CENSOR0009" x="738" y="840" width="144" height="163" frameX="-62" frameY="-215" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="blood car CENSOR0010" x="1216" y="918" width="121" height="152" frameX="0" frameY="-230" frameWidth="381" frameHeight="382"/>
+	<SubTexture name="impact particles0000" x="1504" y="10" width="304" height="239" pivotX="-439.5" pivotY="123.35" frameX="0" frameY="-39" frameWidth="414" frameHeight="340"/>
+	<SubTexture name="impact particles0001" x="764" y="10" width="360" height="323" frameX="-21" frameY="-3" frameWidth="414" frameHeight="340"/>
 	<SubTexture name="impact particles0002" x="10" y="10" width="367" height="340" frameX="-47" frameY="0" frameWidth="414" frameHeight="340"/>
-	<SubTexture name="impact particles0003" x="701" y="343" width="256" height="267" frameX="-98" frameY="-59" frameWidth="414" frameHeight="340"/>
+	<SubTexture name="impact particles0003" x="764" y="343" width="256" height="267" frameX="-98" frameY="-59" frameWidth="414" frameHeight="340"/>
+	<SubTexture name="impact particles blue0000" x="1504" y="259" width="304" height="239" pivotX="-439.5" pivotY="123.35" frameX="0" frameY="-39" frameWidth="414" frameHeight="340"/>
+	<SubTexture name="impact particles blue0001" x="1134" y="10" width="360" height="323" frameX="-21" frameY="-3" frameWidth="414" frameHeight="340"/>
+	<SubTexture name="impact particles blue0002" x="387" y="10" width="367" height="340" frameX="-47" frameY="0" frameWidth="414" frameHeight="340"/>
+	<SubTexture name="impact particles blue0003" x="1030" y="343" width="256" height="267" frameX="-98" frameY="-59" frameWidth="414" frameHeight="340"/>
 </TextureAtlas>
