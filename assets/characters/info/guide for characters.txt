@@ -8,11 +8,20 @@ attributes text file: "attributes.txt"
 offsets text file: "offsets.txt"
 animations text file: "anims.txt"
 
-2. NIGHT FORMS
-this might seem odd, but there's a reason for it. Night levels are a feature that allow you to, well, dim the atmosphere of the level.
-because of these, night forms are required for all assets (stage assets, character assets, the works).
-for night forms of regular characters, seperate the outlines from the character colors and use the "nightEffects.asl" file in this folder on the character's colors in an image editor (i use krita)
-for night forms of, say, pixel characters, use the "pixelNightEffects.asl" file on the entire character sheet, outlines included.
+2. ALTERNATE FORMS
+you must create night and sunset forms of your character as well. do that by:
+
+opening the image in any image editor
+shift select all the transparent area
+invert the selection so youre selecting the sprites
+make a new layer
+bucket the associated color listed below over all the selected area
+blur it
+make it into a multiply layer
+select all the transparent bit on the bottom layer again and cut on the upper layer
+
+for night forms, use the following color for the bucketing: 1D327A
+for sunset forms, use the following color for the bucketing: FF8800
 
 3. ATTRIBUTES
 these are what makes your character tick. here's a little guide to writing them yourself. if you use the ingame editor, IGNORE THIS!
