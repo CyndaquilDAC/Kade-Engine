@@ -3920,6 +3920,10 @@ class PlayState extends MusicBeatState
 					else
 						totalNotesHit += 1;
 	
+					if(note.isSustainNote)
+					{
+						health += 0.004;
+					}
 
 					switch (note.noteData)
 					{
