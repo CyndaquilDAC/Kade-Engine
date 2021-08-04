@@ -86,11 +86,19 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)
 		{
-			FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
 			if(PlayState.SONG.player2 == 'tankman')
 				{
-					FlxG.sound.play(Paths.sound('jeffGameover/jeffGameover-' + FlxG.random.int(1, 25)).toString(), 1);
+					var funnySound = new FlxSound().loadEmbedded(Paths.soundRandom('jeffGameover/jeffGameover-', 1, 25));
+					FlxG.sound.list.add(funnySound);
+					funnySound.play(true);
+					FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix), 0.475);
+					new FlxTimer().start(funnySound.length / 1000, function(tmr:FlxTimer)
+					{
+						FlxG.sound.music.fadeIn(0.35, 0.475, 1);
+					});
 				}
+			else
+				FlxG.sound.playMusic(Paths.music('gameOver' + stageSuffix));
 		}
 
 		if (FlxG.sound.music.playing)
