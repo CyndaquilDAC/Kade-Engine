@@ -1,4 +1,6 @@
 package;
+import openfl.filters.ColorMatrixFilter;
+import openfl.filters.BitmapFilter;
 import lime.app.Application;
 import openfl.utils.Future;
 import openfl.media.Sound;
@@ -53,6 +55,47 @@ class FreeplayState extends MusicBeatState
 
 	public static var songData:Map<String,Array<SwagSong>> = [];
 
+	public var filters:Array<BitmapFilter> = [];
+
+    function ShaderFilters():Void
+	{
+        for(filter in filters)
+        {
+            filters.remove(filter);
+        }
+		//Matrix shaders:
+		if (FlxG.save.data.colorblindMode == 'deuteranopia')
+		{
+			var matrix:Array<Float> = [
+						0.43, 0.72, -.15, 0, 0,
+						0.34, 0.57, 0.09, 0, 0,
+						-.02, 0.03,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+		if (FlxG.save.data.colorblindMode == 'protanopia')
+		{
+			var matrix:Array<Float> = [
+						0.20, 0.99, -.19, 0, 0,
+						0.16, 0.79, 0.04, 0, 0,
+						0.01, -.01,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+		if (FlxG.save.data.colorblindMode == 'tritanopia')
+		{
+			var matrix:Array<Float> = [
+						0.20, 0.99, -.19, 0, 0,
+						0.16, 0.79, 0.04, 0, 0,
+						0.01, -.01,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+	}
+
 	public static function loadDiff(diff:Int, format:String, name:String, array:Array<SwagSong>)
 	{
 		try 
@@ -67,6 +110,11 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
+		ShaderFilters();
+		if(filters != null)
+			camera.setFilters(filters);
+			camera.filtersEnabled = true;
+
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('data/freeplaySonglist'));
 
 		//var diffList = "";

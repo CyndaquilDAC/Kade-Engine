@@ -96,6 +96,26 @@ class DFJKOption extends Option
 	}
 }
 
+class ColorblindOption extends Option
+{
+
+	public function new()
+	{
+		super();
+	}
+
+	public override function press():Bool
+	{
+		OptionsMenu.instance.openSubState(new ColorblindMenu());
+		return false;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Colorblind Filter";
+	}
+}
+
 class CpuStrums extends Option
 {
 	public function new(desc:String)
@@ -947,7 +967,7 @@ class ResetSettings extends Option
 		FlxG.save.data.cacheImages = null;
 		FlxG.save.data.editor = null;
 
-		KadeEngineData.initSave();
+		SaveHandler.initSave();
 		confirm = false;
 		trace('All settings have been reset');
 		display = updateDisplay();

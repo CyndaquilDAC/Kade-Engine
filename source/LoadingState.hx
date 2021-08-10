@@ -1,5 +1,7 @@
 package;
 
+import openfl.filters.BitmapFilter;
+import openfl.filters.ColorMatrixFilter;
 import lime.app.Promise;
 import lime.app.Future;
 import flixel.FlxG;
@@ -26,6 +28,47 @@ class LoadingState extends MusicBeatState
 	var logo:FlxSprite;
 	var gfDance:FlxSprite;
 	var danceLeft = false;
+
+	public var filters:Array<BitmapFilter> = [];
+
+    function ShaderFilters():Void
+	{
+        for(filter in filters)
+        {
+            filters.remove(filter);
+        }
+		//Matrix shaders:
+		if (FlxG.save.data.colorblindMode == 'deuteranopia')
+		{
+			var matrix:Array<Float> = [
+						0.43, 0.72, -.15, 0, 0,
+						0.34, 0.57, 0.09, 0, 0,
+						-.02, 0.03,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+		if (FlxG.save.data.colorblindMode == 'protanopia')
+		{
+			var matrix:Array<Float> = [
+						0.20, 0.99, -.19, 0, 0,
+						0.16, 0.79, 0.04, 0, 0,
+						0.01, -.01,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+		if (FlxG.save.data.colorblindMode == 'tritanopia')
+		{
+			var matrix:Array<Float> = [
+						0.20, 0.99, -.19, 0, 0,
+						0.16, 0.79, 0.04, 0, 0,
+						0.01, -.01,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+	}
 	
 	function new(target:FlxState, stopMusic:Bool)
 	{
@@ -36,6 +79,11 @@ class LoadingState extends MusicBeatState
 	
 	override function create()
 	{
+		ShaderFilters();
+		if(filters != null)
+			camera.setFilters(filters);
+			camera.filtersEnabled = true;
+		
 		logo = new FlxSprite(-150, -100);
 		logo.frames = Paths.getSparrowAtlas('logoBumpin');
 		logo.antialiasing = FlxG.save.data.antialiasing;

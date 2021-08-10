@@ -1,5 +1,7 @@
 package;
 
+import openfl.filters.BitmapFilter;
+import openfl.filters.ColorMatrixFilter;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -54,7 +56,6 @@ class OptionsMenu extends MusicBeatState
 		
 		new OptionCategory("Misc", [
 			new FPSOption("Toggle the FPS Counter"),
-			new FlashingLightsOption("Toggle flashing lights that can cause epileptic seizures and strain."),
 			new WatermarkOption("Enable and disable all watermarks from the engine."),
 			new AntialiasingOption("Toggle antialiasing, improving graphics quality at a slight performance penalty."),
 			new MissSoundsOption("Toggle miss sounds playing when you don't hit a note."),
@@ -63,6 +64,11 @@ class OptionsMenu extends MusicBeatState
 			new Optimization("No characters or backgrounds. Just a usual rhythm game layout."),
 			new GraphicLoading("On startup, cache every character. Significantly decrease load times. (HIGH MEMORY)"),
 			new BotPlay("Showcase your charts and mods with autoplay.")
+		]),
+
+		new OptionCategory("Accessibility", [
+			new ColorblindOption(),
+			new FlashingLightsOption("Toggle flashing lights that can cause epileptic seizures and strain.")
 		]),
 		
 		new OptionCategory("Saves and Data", [
@@ -84,8 +90,56 @@ class OptionsMenu extends MusicBeatState
 
 	var currentSelectedCat:OptionCategory;
 	var blackBorder:FlxSprite;
+
+	public var filters:Array<BitmapFilter> = [];
+
+    function ShaderFilters():Void
+	{
+        for(filter in filters)
+        {
+            filters.remove(filter);
+        }
+		//Matrix shaders:
+		if (FlxG.save.data.colorblindMode == 'deuteranopia')
+		{
+			var matrix:Array<Float> = [
+						0.43, 0.72, -.15, 0, 0,
+						0.34, 0.57, 0.09, 0, 0,
+						-.02, 0.03,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+		if (FlxG.save.data.colorblindMode == 'protanopia')
+		{
+			var matrix:Array<Float> = [
+						0.20, 0.99, -.19, 0, 0,
+						0.16, 0.79, 0.04, 0, 0,
+						0.01, -.01,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+		if (FlxG.save.data.colorblindMode == 'tritanopia')
+		{
+			var matrix:Array<Float> = [
+						0.20, 0.99, -.19, 0, 0,
+						0.16, 0.79, 0.04, 0, 0,
+						0.01, -.01,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+	}
+
 	override function create()
 	{
+
+		ShaderFilters();
+		if(filters != null)
+			camera.setFilters(filters);
+			camera.filtersEnabled = true;
+
 		instance = this;
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image("menuDesat"));
 

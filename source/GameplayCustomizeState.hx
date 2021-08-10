@@ -1,3 +1,5 @@
+import openfl.filters.BitmapFilter;
+import openfl.filters.ColorMatrixFilter;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
@@ -39,8 +41,53 @@ class GameplayCustomizeState extends MusicBeatState
     var strumLineNotes:FlxTypedGroup<FlxSprite>;
     var playerStrums:FlxTypedGroup<FlxSprite>;
     private var camHUD:FlxCamera;
+
+    public var filters:Array<BitmapFilter> = [];
+
+    function ShaderFilters():Void
+	{
+        for(filter in filters)
+        {
+            filters.remove(filter);
+        }
+		//Matrix shaders:
+		if (FlxG.save.data.colorblindMode == 'deuteranopia')
+		{
+			var matrix:Array<Float> = [
+						0.43, 0.72, -.15, 0, 0,
+						0.34, 0.57, 0.09, 0, 0,
+						-.02, 0.03,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+		if (FlxG.save.data.colorblindMode == 'protanopia')
+		{
+			var matrix:Array<Float> = [
+						0.20, 0.99, -.19, 0, 0,
+						0.16, 0.79, 0.04, 0, 0,
+						0.01, -.01,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+		if (FlxG.save.data.colorblindMode == 'tritanopia')
+		{
+			var matrix:Array<Float> = [
+						0.20, 0.99, -.19, 0, 0,
+						0.16, 0.79, 0.04, 0, 0,
+						0.01, -.01,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+	}
     
     public override function create() {
+        ShaderFilters();
+		if(filters != null)
+			camera.setFilters(filters);
+			camera.filtersEnabled = true;
         #if windows
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("Customizing Gameplay Modules", null);

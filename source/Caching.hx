@@ -1,6 +1,9 @@
 #if sys
 package;
 
+import openfl.filters.ColorMatrixFilter;
+import openfl.filters.BitmapFilter;
+
 import lime.app.Application;
 #if windows
 import Discord.DiscordClient;
@@ -46,6 +49,46 @@ class Caching extends MusicBeatState
 	var music = [];
 	var charts = [];
 
+	public var filters:Array<BitmapFilter> = [];
+
+    function ShaderFilters():Void
+	{
+        for(filter in filters)
+        {
+            filters.remove(filter);
+        }
+		//Matrix shaders:
+		if (FlxG.save.data.colorblindMode == 'deuteranopia')
+		{
+			var matrix:Array<Float> = [
+						0.43, 0.72, -.15, 0, 0,
+						0.34, 0.57, 0.09, 0, 0,
+						-.02, 0.03,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+		if (FlxG.save.data.colorblindMode == 'protanopia')
+		{
+			var matrix:Array<Float> = [
+						0.20, 0.99, -.19, 0, 0,
+						0.16, 0.79, 0.04, 0, 0,
+						0.01, -.01,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+		if (FlxG.save.data.colorblindMode == 'tritanopia')
+		{
+			var matrix:Array<Float> = [
+						0.20, 0.99, -.19, 0, 0,
+						0.16, 0.79, 0.04, 0, 0,
+						0.01, -.01,    1, 0, 0,
+						   0,    0,    0, 1, 0,
+					];
+			filters.push(new ColorMatrixFilter(matrix));
+		}
+	}
 
 	override function create()
 	{
@@ -54,11 +97,16 @@ class Caching extends MusicBeatState
 
 		PlayerSettings.init();
 
-		KadeEngineData.initSave();
+		SaveHandler.initSave();
 
 		FlxG.mouse.visible = false;
 
 		FlxG.worldBounds.set(0,0);
+
+		ShaderFilters();
+		if(filters != null)
+			camera.setFilters(filters);
+			camera.filtersEnabled = true;
 
 		bitmapData = new Map<String,FlxGraphic>();
 
