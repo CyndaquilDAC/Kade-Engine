@@ -128,6 +128,8 @@ class Caching extends MusicBeatState
 		
 		kadeLogo.alpha = 0;
 
+		FlxGraphic.defaultPersist = FlxG.save.data.cacheImages;
+
 		#if cpp
 		if (FlxG.save.data.cacheImages)
 		{
