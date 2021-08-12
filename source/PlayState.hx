@@ -19,6 +19,7 @@ import Replay.Analysis;
 #if cpp
 import webm.WebmPlayer;
 #end
+import LoopState;
 import flixel.input.keyboard.FlxKey;
 import haxe.Exception;
 import openfl.geom.Matrix;
@@ -98,6 +99,10 @@ class PlayState extends MusicBeatState
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
 
+	private var loopA:Float = 0;
+	private var loopB:Float;
+	private var loopState:LoopState = NONE;
+
 	public static var songPosBG:FlxSprite;
 	public static var songPosBar:FlxBar;
 
@@ -135,7 +140,7 @@ class PlayState extends MusicBeatState
 	public static var boyfriend:Boyfriend;
 
 	public var notes:FlxTypedGroup<Note>;
-
+	public var allNotes:Array<Note> = [];
 	private var unspawnNotes:Array<Note> = [];
 
 	public var strumLine:FlxSprite;
@@ -1094,9 +1099,6 @@ class PlayState extends MusicBeatState
 		playerStrums = new FlxTypedGroup<FlxSprite>();
 		cpuStrums = new FlxTypedGroup<FlxSprite>();
 
-		generateStaticArrows(0);
-		generateStaticArrows(1);
-
 		// startCountdown();
 
 		if (SONG.song == null)
@@ -1403,9 +1405,8 @@ class PlayState extends MusicBeatState
 	{
 		inCutscene = false;
 
-		appearStaticArrows();
-		//generateStaticArrows(0);
-		//generateStaticArrows(1);
+		generateStaticArrows(0);
+		generateStaticArrows(1);
 
 		if (startTime != 0)
 		{
@@ -1731,6 +1732,8 @@ class PlayState extends MusicBeatState
 
 		FlxG.sound.music.play();
 		vocals.play();
+		
+		loopB = FlxG.sound.music.length - 100;
 
 		// Song check real quick
 		switch (curSong)
@@ -1987,6 +1990,8 @@ class PlayState extends MusicBeatState
 
 		unspawnNotes.sort(sortByShit);
 
+		allNotes = deepCopyNotes(unspawnNotes);
+
 		generatedMusic = true;
 	}
 
@@ -2038,23 +2043,23 @@ class PlayState extends MusicBeatState
 					{
 						case 2:
 							babyArrow.x += Note.swagWidth * 2;
-							babyArrow.animation.add('static', [2]);
+							babyArrow.animation.add('static', [2], 24, true);
 							babyArrow.animation.add('pressed', [6, 10], 12, false);
-							babyArrow.animation.add('confirm', [14, 18], 12, false);
+							babyArrow.animation.add('confirm', [14, 18], 24, false);
 						case 3:
 							babyArrow.x += Note.swagWidth * 3;
-							babyArrow.animation.add('static', [3]);
-							babyArrow.animation.add('pressed', [7, 11], 12, false);
+							babyArrow.animation.add('static', [3], 24, true);
+							babyArrow.animation.add('pressed', [7, 11], 24, false);
 							babyArrow.animation.add('confirm', [15, 19], 24, false);
 						case 1:
 							babyArrow.x += Note.swagWidth * 1;
-							babyArrow.animation.add('static', [1]);
-							babyArrow.animation.add('pressed', [5, 9], 12, false);
+							babyArrow.animation.add('static', [1], 24, true);
+							babyArrow.animation.add('pressed', [5, 9], 24, false);
 							babyArrow.animation.add('confirm', [13, 17], 24, false);
 						case 0:
 							babyArrow.x += Note.swagWidth * 0;
-							babyArrow.animation.add('static', [0]);
-							babyArrow.animation.add('pressed', [4, 8], 12, false);
+							babyArrow.animation.add('static', [0], 24, true);
+							babyArrow.animation.add('pressed', [4, 8], 24, false);
 							babyArrow.animation.add('confirm', [12, 16], 24, false);
 					}
 
@@ -2062,12 +2067,12 @@ class PlayState extends MusicBeatState
 					babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
 					for (j in 0...4)
 					{
-						babyArrow.animation.addByPrefix(dataColor[j], 'arrow' + dataSuffix[j]);	
+						babyArrow.animation.addByPrefix(dataColor[j], 'arrow' + dataSuffix[j], 24, true);	
 					}
 
 					var lowerDir:String = dataSuffix[i].toLowerCase();
 
-					babyArrow.animation.addByPrefix('static', 'arrow' + dataSuffix[i]);
+					babyArrow.animation.addByPrefix('static', 'arrow' + dataSuffix[i], 24, true);
 					babyArrow.animation.addByPrefix('pressed', lowerDir + ' press', 24, false);
 					babyArrow.animation.addByPrefix('confirm', lowerDir + ' confirm', 24, false);
 
@@ -2449,7 +2454,7 @@ class PlayState extends MusicBeatState
 				FlxG.switchState(new GitarooPause());
 			}
 			else
-				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+				openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y, loopHandler.bind(_), loopState));
 		}
 
 		if (FlxG.keys.justPressed.SEVEN)
@@ -2600,6 +2605,13 @@ class PlayState extends MusicBeatState
 		{
 			// Conductor.songPosition = FlxG.sound.music.time;
 			Conductor.songPosition += FlxG.elapsed * 1000;
+			if (loopState != NONE && Conductor.songPosition >= loopB)
+			{
+				Conductor.songPosition = loopA;
+				FlxG.sound.music.time = loopA;
+				resyncVocals();
+				unspawnNotes = deepCopyNotes(allNotes, loopA);
+			}
 			/*@:privateAccess
 				{
 					FlxG.sound.music._channel.
@@ -3870,7 +3882,7 @@ class PlayState extends MusicBeatState
 		{
 			notes.forEachAlive(function(daNote:Note)
 			{
-				if (daNote.isSustainNote && daNote.canBeHit && daNote.mustPress && holdArray[daNote.noteData] && daNote.sustainActive)
+				if (daNote.isSustainNote && daNote.canBeHit && daNote.mustPress && holdArray[daNote.noteData] && daNote.sustainActive && !daNote.isRollIfSus)
 				{
 					trace(daNote.sustainActive);
 					goodNoteHit(daNote);
@@ -4098,7 +4110,7 @@ class PlayState extends MusicBeatState
 			vocals.pause();
 		}
 
-		openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+		openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y, loopHandler.bind(_), loopState));
 	}
 
 	public function focusIn()
@@ -4162,6 +4174,25 @@ class PlayState extends MusicBeatState
 		else
 			webmHandler.resume();
 		#end
+	}
+
+	function deepCopyNotes(noteArray:Array<Note>, ?startingpoint:Float = 0):Array<Note>
+	{
+		var noteRef:Note = null;
+		var newNoteArray:Array<Note> = [];
+
+		for (note in noteArray)
+		{
+			if (note.strumTime > startingpoint)
+			{
+				noteRef = newNoteArray.length > 0 ? newNoteArray[newNoteArray.length - 1] : null;
+				var deepCopy:Note = new Note(note.strumTime, note.noteData, noteRef, note.isSustainNote, false, note.isRollIfSus);
+				deepCopy.mustPress = note.mustPress;
+				deepCopy.x = note.x;
+				newNoteArray.push(deepCopy);
+			}
+		}
+		return newNoteArray;
 	}
 
 	function noteMiss(direction:Int = 1, daNote:Note):Void
@@ -4366,6 +4397,11 @@ class PlayState extends MusicBeatState
 			}
 			else
 				totalNotesHit += 1;
+
+			if(note.isSustainNote)
+			{
+				health += 0.004;
+			}
 
 			switch (note.noteData)
 			{
@@ -4720,6 +4756,44 @@ class PlayState extends MusicBeatState
 				lightningStrikeShit();
 			}
 		}
+	}
+
+	function loopHandler(abLoop:Bool):LoopState
+	{
+		FlxG.log.add("Made it" + abLoop);
+		if(abLoop){
+			switch(loopState)
+			{				
+				case REPEAT | NONE:
+					if(!startingSong)
+						loopA = Conductor.songPosition;
+					else
+						loopA = 0;
+					loopState = ANODE;
+					FlxG.log.add("Setting A Node");
+				case ANODE:
+					loopB = Conductor.songPosition;
+					loopState = ABREPEAT;
+					FlxG.log.add("Setting B Node");
+				case ABREPEAT:
+					loopState = NONE;
+					FlxG.log.add("Removing Nodes");				
+			}
+		}
+		else{
+			switch(loopState)
+			{
+				case NONE | ABREPEAT:
+					loopA = 0;
+					loopB = FlxG.sound.music.length - 100;
+					loopState = REPEAT;
+					FlxG.log.add("Looping Entire Song");
+				case REPEAT | ANODE:
+					loopState = NONE;
+					FlxG.log.add("No longer Looping");
+			}
+		}
+		return loopState;
 	}
 
 	var curLight:Int = 0;

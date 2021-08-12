@@ -29,6 +29,7 @@ class Note extends FlxSprite
 	public var prevNote:Note;
 	public var modifiedByLua:Bool = false;
 	public var sustainLength:Float = 0;
+	public var isRollIfSus:Bool = false;
 	public var isSustainNote:Bool = false;
 	public var originColor:Int = 0; // The sustain note's original note's color
 	public var noteSection:Int = 0;
@@ -61,7 +62,7 @@ class Note extends FlxSprite
 
 	public var children:Array<Note> = [];
 
-	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inCharter:Bool = false)
+	public function new(strumTime:Float, noteData:Int, ?prevNote:Note, ?sustainNote:Bool = false, ?inCharter:Bool = false, ?roll:Bool = false)
 	{
 		super();
 
@@ -70,6 +71,7 @@ class Note extends FlxSprite
 
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
+		isRollIfSus = roll;
 
 		x += 50;
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
@@ -115,6 +117,7 @@ class Note extends FlxSprite
 				animation.addByPrefix(dataColor[i] + 'Scroll', dataColor[i] + ' alone'); // Normal notes
 				animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
 				animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
+				animation.addByPrefix(dataColor[i] + 'roll', dataColor[i] + ' roll', 24, true); // Roll
 			}
 
 			setGraphicSize(Std.int(width * 0.7));
@@ -136,9 +139,9 @@ class Note extends FlxSprite
 
 					for (i in 0...4)
 					{
-						animation.add(dataColor[i] + 'Scroll', [i + 4]); // Normal notes
-						animation.add(dataColor[i] + 'hold', [i]); // Holds
-						animation.add(dataColor[i] + 'holdend', [i + 4]); // Tails
+						animation.add(dataColor[i] + 'Scroll', [i + 4], 24, true); // Normal notes
+						animation.add(dataColor[i] + 'hold', [i], 24, true); // Holds
+						animation.add(dataColor[i] + 'holdend', [i + 4], 24, true); // Tails
 					}
 
 					setGraphicSize(Std.int(width * PlayState.daPixelZoom));
@@ -148,9 +151,10 @@ class Note extends FlxSprite
 
 					for (i in 0...4)
 					{
-						animation.addByPrefix(dataColor[i] + 'Scroll', dataColor[i] + ' alone'); // Normal notes
-						animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
-						animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
+						animation.addByPrefix(dataColor[i] + 'Scroll', dataColor[i] + ' alone', 24, true); // Normal notes
+						animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold', 24, true); // Hold
+						animation.addByPrefix(dataColor[i] + 'roll', dataColor[i] + ' roll', 24, true); // Roll
+						animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail', 24, true); // Tails
 					}
 
 					setGraphicSize(Std.int(width * 0.7));
@@ -196,13 +200,20 @@ class Note extends FlxSprite
 		if (isSustainNote && prevNote != null)
 		{
 			noteScore * 0.2;
-			alpha = 0.6;
+			if(!isRollIfSus)
+			{
+				alpha = 0.6;
+			}
 
 			x += width / 2;
 
 			originColor = prevNote.originColor; 
 
-			animation.play(dataColor[originColor] + 'holdend'); // This works both for normal colors and quantization colors
+
+			if(!isRollIfSus)
+			{
+				animation.play(dataColor[originColor] + 'holdend'); // This works both for normal colors and quantization colors
+			}
 			updateHitbox();
 
 			x -= width / 2;
@@ -214,7 +225,14 @@ class Note extends FlxSprite
 
 			if (prevNote.isSustainNote)
 			{
-				prevNote.animation.play(dataColor[prevNote.originColor] + 'hold');
+				if(isRollIfSus)
+				{
+					prevNote.animation.play(dataColor[prevNote.originColor] + 'roll');
+				}
+				else
+				{
+					prevNote.animation.play(dataColor[prevNote.originColor] + 'hold');
+				}
 				prevNote.updateHitbox();
 
 				prevNote.scale.y *= (stepHeight + 1) / prevNote.height; // + 1 so that there's no odd gaps as the notes scroll

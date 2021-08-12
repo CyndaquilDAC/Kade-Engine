@@ -29,6 +29,9 @@ class PauseSubState extends MusicBeatSubstate
 
 	var pauseMusic:FlxSound;
 	var perSongOffset:FlxText;
+
+	var loopCallback:Bool->Void;
+	var loopState:LoopState;
 	
 	var offsetChanged:Bool = false;
 
@@ -73,9 +76,12 @@ class PauseSubState extends MusicBeatSubstate
 		}
 	}
 
-	public function new(x:Float, y:Float)
+	public function new(x:Float, y:Float, loopCallback:Bool->Void,loopState:LoopState)
 	{
 		super();
+
+		this.loopCallback = loopCallback;
+		this.loopState = loopState;
 
 		if (PlayState.instance.useVideo)
 		{

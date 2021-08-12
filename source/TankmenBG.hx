@@ -1,0 +1,90 @@
+import flixel.FlxG;
+import flixel.FlxSprite;
+
+/**
+ * da tankmen
+ */
+class TankmenBG extends FlxSprite
+{
+    public var tankSpeed = .7;
+    public var goingRight = false;
+    public var strumTime = 0;
+    public static var animationNotes = [];
+    public var endingOffset = 0.0;
+
+    public function new(x:Float, y:Float, isGoingRight:Bool)
+    {
+        super(x, y);
+
+        goingRight = isGoingRight;
+
+        frames = Paths.getSparrowAtlas("tank/tankmanKilled1");
+
+        antialiasing = true;
+
+        animation.addByPrefix("run","tankman running", 24, true);
+        animation.addByPrefix("shot","John Shot " + FlxG.random.int(1,2), 24, false);
+
+        animation.play("run");
+
+        animation.curAnim.curFrame = FlxG.random.int(0,animation.curAnim.frames.length - 1);
+
+        updateHitbox();
+        setGraphicSize(Std.int(.8 * width));
+        updateHitbox();
+    }
+
+    public function resetShit(x,y,goingR)
+    {
+        setPosition(x,y);
+        goingRight = goingR;
+        endingOffset = FlxG.random.float(50,200);
+        tankSpeed = FlxG.random.float(.6,1);
+        flipX = goingRight;
+        trace('TANKMEN SHIT RESET LOL');
+    }
+
+    override function update(elapsed:Float)
+        {
+            super.update(elapsed);
+        
+            if (x >= FlxG.width * 1.2 || x <= FlxG.width * -0.5)
+                visible = false;
+            else
+                visible = true;
+        
+            if (animation.curAnim.name == 'run')
+            {
+                var endDirection:Float = (FlxG.width * 0.74) + endingOffset;
+        
+                if (goingRight)
+                {
+                    endDirection = (FlxG.width * 0.02) - endingOffset;
+        
+                    x = (endDirection + (Conductor.songPosition - strumTime) * tankSpeed);
+                }
+                else
+                {
+                    x = (endDirection - (Conductor.songPosition - strumTime) * tankSpeed);
+                }
+            }
+        
+            if (Conductor.songPosition > strumTime)
+            {
+                // kill();
+                animation.play('shot');
+                
+                if (goingRight)
+                {
+                    offset.y = 200;
+                    offset.x = 300;
+                }
+            }
+        
+            if (animation.curAnim.name == 'shot' && animation.curAnim.curFrame >= animation.curAnim.frames.length - 1)
+            {
+                trace('FUCKING DEAD');
+                kill();
+            }
+        }
+}
