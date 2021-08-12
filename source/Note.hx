@@ -112,7 +112,7 @@ class Note extends FlxSprite
 
 		if (inCharter)
 		{
-			frames = Paths.getSparrowAtlas('NOTE_assets');
+			frames = Paths.getSparrowAtlas('hud/notes/notes');
 
 			for (i in 0...4)
 			{
@@ -135,9 +135,9 @@ class Note extends FlxSprite
 			switch (noteTypeCheck)
 			{
 				case 'pixel':
-					loadGraphic(Paths.image('weeb/pixelUI/arrows-pixels', 'week6'), true, 17, 17);
+					loadGraphic(Paths.image('hud/notes/notes-pixel', 'week6'), true, 17, 17);
 					if (isSustainNote)
-						loadGraphic(Paths.image('weeb/pixelUI/arrowEnds', 'week6'), true, 7, 6);
+						loadGraphic(Paths.image('hud/notes/note-ends-pixel', 'week6'), true, 7, 6);
 
 					for (i in 0...4)
 					{
@@ -149,7 +149,7 @@ class Note extends FlxSprite
 					setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 					updateHitbox();
 				default:
-					frames = Paths.getSparrowAtlas('NOTE_assets');
+					frames = Paths.getSparrowAtlas('hud/notes/notes');
 
 					for (i in 0...4)
 					{

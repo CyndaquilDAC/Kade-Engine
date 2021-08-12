@@ -1,5 +1,7 @@
 package;
 
+import flixel.FlxSprite;
+import flixel.tweens.FlxTween;
 import openfl.filters.BitmapFilter;
 import openfl.filters.ColorMatrixFilter;
 import flixel.FlxG;
@@ -15,6 +17,8 @@ class GameOverSubstate extends MusicBeatSubstate
 	var camFollow:FlxObject;
 
 	var stageSuffix:String = "";
+
+	var bg:FlxSprite;
 
 	public var filters:Array<BitmapFilter> = [];
 
@@ -72,6 +76,11 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		super();
 
+		bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		bg.alpha = 0;
+		bg.scrollFactor.set();
+		add(bg);
+
 		Conductor.songPosition = 0;
 
 		bf = new Boyfriend(x, y, daBf);
@@ -126,6 +135,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.curFrame == 12)
 		{
 			FlxG.camera.follow(camFollow, LOCKON, 0.01);
+			FlxTween.tween(bg, {alpha: 1}, 1);
 		}
 
 		if (bf.animation.curAnim.name == 'firstDeath' && bf.animation.curAnim.finished)

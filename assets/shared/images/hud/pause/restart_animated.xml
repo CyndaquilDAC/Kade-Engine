@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="restart_animated.png">
+	<!-- Created with Adobe Animate version 21.0.1.37179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="restart?0000" x="10" y="1162" width="1012" height="278" pivotX="0" pivotY="0"/>
+	<SubTexture name="restart?0001" x="10" y="1162" width="1012" height="278"/>
+	<SubTexture name="restart?0002" x="10" y="1162" width="1012" height="278"/>
+	<SubTexture name="restart?0003" x="10" y="1162" width="1012" height="278"/>
+	<SubTexture name="restart?0004" x="10" y="1162" width="1012" height="278"/>
+	<SubTexture name="restart?0005" x="10" y="1162" width="1012" height="278"/>
+	<SubTexture name="restart?0006" x="10" y="1162" width="1012" height="278"/>
+	<SubTexture name="restart?0007" x="10" y="1162" width="1012" height="278"/>
+	<SubTexture name="restart?0008" x="10" y="1162" width="1012" height="278"/>
+	<SubTexture name="restart?0009" x="10" y="1450" width="1012" height="278"/>
+	<SubTexture name="restart?0010" x="10" y="1450" width="1012" height="278"/>
+	<SubTexture name="restart?0011" x="10" y="1450" width="1012" height="278"/>
+	<SubTexture name="restart?0012" x="10" y="1450" width="1012" height="278"/>
+	<SubTexture name="restart?0013" x="10" y="1450" width="1012" height="278"/>
+	<SubTexture name="restart?0014" x="10" y="1450" width="1012" height="278"/>
+	<SubTexture name="restart?0015" x="10" y="1450" width="1012" height="278"/>
+	<SubTexture name="restart?0016" x="10" y="1450" width="1012" height="278"/>
+	<SubTexture name="restart?0017" x="10" y="1450" width="1012" height="278"/>
+	<SubTexture name="restart? pressed0000" x="10" y="10" width="1012" height="278" pivotX="0" pivotY="0"/>
+	<SubTexture name="restart? pressed0001" x="10" y="10" width="1012" height="278"/>
+	<SubTexture name="restart? pressed0002" x="10" y="298" width="1012" height="278"/>
+	<SubTexture name="restart? pressed0003" x="10" y="586" width="1012" height="278"/>
+	<SubTexture name="restart? pressed0004" x="10" y="586" width="1012" height="278"/>
+	<SubTexture name="restart? pressed0005" x="10" y="874" width="1012" height="278"/>
+</TextureAtlas>

@@ -96,9 +96,9 @@ class GameplayCustomizeState extends MusicBeatState
         sick = new FlxSprite().loadGraphic(Paths.image('sick','shared'));
         sick.antialiasing = FlxG.save.data.antialiasing;
         sick.scrollFactor.set();
-        background = new FlxSprite(-1000, -200).loadGraphic(Paths.image('stageback','shared'));
-        curt = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains','shared'));
-        front = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront','shared'));
+        background = new FlxSprite(-1000, -200).loadGraphic(Paths.image('stages/stage/stageback','shared'));
+        curt = new FlxSprite(-500, -300).loadGraphic(Paths.image('stages/stage/stagecurtains','shared'));
+        front = new FlxSprite(-650, 600).loadGraphic(Paths.image('stages/stage/stagefront','shared'));
         background.antialiasing = FlxG.save.data.antialiasing;
         curt.antialiasing = FlxG.save.data.antialiasing;
         front.antialiasing = FlxG.save.data.antialiasing;
@@ -291,7 +291,7 @@ class GameplayCustomizeState extends MusicBeatState
             {
                 // FlxG.log.add(i);
                 var babyArrow:FlxSprite = new FlxSprite(0, strumLine.y);
-                babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets', 'shared');
+                babyArrow.frames = Paths.getSparrowAtlas('hud/notes/notes', 'shared');
                 babyArrow.animation.addByPrefix('green', 'arrowUP');
                 babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
                 babyArrow.animation.addByPrefix('purple', 'arrowLEFT');

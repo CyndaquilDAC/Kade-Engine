@@ -18,7 +18,7 @@ class TankmenBG extends FlxSprite
 
         goingRight = isGoingRight;
 
-        frames = Paths.getSparrowAtlas("tank/tankmanKilled1");
+        frames = Paths.getSparrowAtlas("stages/tankmen/tankmanKilled1");
 
         antialiasing = true;
 
