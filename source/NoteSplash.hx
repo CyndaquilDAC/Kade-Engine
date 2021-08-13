@@ -25,12 +25,17 @@ using StringTools;
  */
 class NoteSplash extends FlxSprite
 {
-	public function new(?fromNote:String = 'green', x:Float, y:Float, ?frameSuffix:String = '')
+    public var colorSwap:CustomColor = null;
+	public function new(?fromNote:String = 'green', x:Float, y:Float, ?noteId:Int = 0, ?frameSuffix:String = '')
 	{
         if(frameSuffix.contains('pixel'))
         {
             setGraphicSize(Std.int(width * 6));
             updateHitbox();
+        }
+        else
+        {
+            antialiasing = FlxG.save.data.antialiasing;
         }
 
 		super(x, y);
@@ -46,10 +51,10 @@ class NoteSplash extends FlxSprite
 		animation.addByPrefix('notered-0', 'note impact 1 red', 24, false);
 		animation.addByPrefix('notered-1', 'note impact 2 red', 24, false);
 
-		setupNoteSplash(fromNote, x, y);
+		setupNoteSplash(fromNote, x, y, noteId);
 	}
 
-	public function setupNoteSplash(?fromNote:String = 'green', x:Float, y:Float)
+	public function setupNoteSplash(?fromNote:String = 'green', x:Float, y:Float, ?noteId:Int = 0)
 	{
 		this.x = x;
 		this.y = y;
@@ -64,6 +69,14 @@ class NoteSplash extends FlxSprite
 
 		offset.x += 90;
 		offset.y += 80;
+
+        if(colorSwap == null) {
+			colorSwap = new CustomColor();
+			shader = colorSwap.shader;
+		}
+		for (i in 0...3) {
+			colorSwap.update(FlxG.save.data.arrowHSV[noteId % 4][i], i);
+		}
 
 		//trace('note splash called');
 	}

@@ -21,6 +21,9 @@ class SaveHandler
 		if(FlxG.save.data.colorblindMode == null)
 			FlxG.save.data.colorblindMode = 'none';
 
+		if (FlxG.save.data.arrowHSV == null)
+			FlxG.save.data.arrowHSV = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
+
 		if (FlxG.save.data.missSounds == null)
 			FlxG.save.data.missSounds = true;
 

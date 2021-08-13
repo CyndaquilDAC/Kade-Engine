@@ -26,6 +26,7 @@ class Note extends FlxSprite
 	public var noteData:Int = 0;
 	public var rawNoteData:Int = 0;
 	public var canBeHit:Bool = false;
+	public var colorSwap:CustomColor;
 	public var tooLate:Bool = false;
 	public var wasGoodHit:Bool = false;
 	public var prevNote:Note;
@@ -135,9 +136,9 @@ class Note extends FlxSprite
 			switch (noteTypeCheck)
 			{
 				case 'pixel':
-					loadGraphic(Paths.image('hud/notes/notes-pixel', 'week6'), true, 17, 17);
+					loadGraphic(Paths.image('hud/notes/notes-pixel', 'shared'), true, 17, 17);
 					if (isSustainNote)
-						loadGraphic(Paths.image('hud/notes/note-ends-pixel', 'week6'), true, 7, 6);
+						loadGraphic(Paths.image('hud/notes/note-ends-pixel', 'shared'), true, 7, 6);
 
 					for (i in 0...4)
 					{
@@ -187,6 +188,16 @@ class Note extends FlxSprite
 			localAngle -= arrowAngles[col];
 			localAngle += arrowAngles[noteData];
 			originColor = col;
+
+			if(originColor > -1)
+			{
+				colorSwap = new CustomColor();
+				shader = colorSwap.shader;
+				for (i in 0...3)
+				{
+					colorSwap.update(FlxG.save.data.arrowHSV[originColor % 4][i], i);
+				}
+			}
 		}
 		
 		// we make sure its downscroll and its a SUSTAIN NOTE (aka a trail, not a note)
